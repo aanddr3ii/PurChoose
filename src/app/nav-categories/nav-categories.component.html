@@ -1,0 +1,42 @@
+<nav class="nav-categories">
+    <ul>
+      <li>
+        <span>
+          <a href="#" (click)="toggleSidenav($event)">☰ Todas las categorías</a>
+        </span>
+      </li>
+      <li><a href="#">Tecnología y electrónica</a></li>
+      <li><a href="#">Cine, libros y música</a></li>
+      <li><a href="#">Moda y accesorios</a></li>
+      <li><a href="#">Coches</a></li>
+      <li><a href="#">Hogar y jardín</a></li>
+    </ul>
+</nav>
+  
+<!-- Sidenav que se abrirá -->
+<div class="side-menu" [class.open]="isSidenavOpen">
+<div class="side-menu-header">
+    <h3>Todas las categorías</h3>
+    <button class="close-btn" (click)="toggleSidenav($event)">X</button>
+</div>
+<ul>
+    <li><a href="#">Coches</a></li>
+    <li><a href="#">Motos</a></li>
+    <li><a href="#">Motor y accesorios</a></li>
+    <li><a href="#">Moda y accesorios</a></li>
+    <li><a href="#">Inmobiliaria</a></li>
+    <li><a href="#">Tecnología y electrónica</a></li>
+    <li><a href="#">Deporte y ocio</a></li>
+    <li><a href="#">Bicicletas</a></li>
+    <li><a href="#">Hogar y jardín</a></li>
+    <li><a href="#">Electrodomésticos</a></li>
+    <li><a href="#">Cine, libros y musica</a></li>
+    <li><a href="#">Niños y bebes</a></li>
+    <li><a href="#">Coleccionismo</a></li>
+    <li><a href="#">Construccion y reformas</a></li>
+    <li><a href="#">Industria y agricultura</a></li>
+</ul>
+</div>
+
+<!-- Oscurece el fondo cuando se abre el menú -->
+<div class="overlay" [class.show]="isSidenavOpen" (click)="toggleSidenav($event)"></div>
