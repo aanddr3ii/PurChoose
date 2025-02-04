@@ -1,9 +1,10 @@
 /* El menu de arriba */
 .nav-categories {
     background-color: #2c3265;
-    padding: 15px 30px;
+    padding: 12px 30px;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 16px;
     font-family: 'Arial';
 }
@@ -16,12 +17,17 @@
     padding: 0;
 }
 
+.nav-categories li {
+    display: flex;
+    align-items: center;
+}
+
 .nav-categories li a {
     color: white;
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
-    padding: 10px 15px;
+    padding: 1px 15px;
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -34,7 +40,7 @@
 /* El menu desplegable */
 .side-menu {
     position: fixed;
-    top: 127px; 
+    top: 121px; 
     left: -340px;
     width: 300px;
     height: calc(100% - 127px);
@@ -97,7 +103,7 @@
 /* Para el fondo negro de categorias cuando abres el desplegable */
 .overlay {
     position: fixed;
-    top: 127px;
+    top: 121px;
     left: 0;
     width: 100%;
     height: calc(100% - 127px);
