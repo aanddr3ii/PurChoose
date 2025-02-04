@@ -43,7 +43,7 @@
     top: 121px; 
     left: -340px;
     width: 300px;
-    height: calc(100% - 127px);
+    height: calc(100% - 121px);
     background-color: #2c3265;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
     transition: left 0.3s ease;
@@ -78,7 +78,6 @@
     cursor: pointer;
 }
 
-/* Side menu links */
 .side-menu ul {
     list-style: none;
     padding: 0;
@@ -106,7 +105,7 @@
     top: 121px;
     left: 0;
     width: 100%;
-    height: calc(100% - 127px);
+    height: calc(100% - 121px);
     background-color: rgba(0, 0, 0, 0.5);
     display: none;
     z-index: 999;
