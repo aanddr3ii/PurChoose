@@ -1,26 +1,26 @@
-body {
-    font-family: 'Arial, sans-serif';
-    background-color: #f5f5f5;
+:host {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #f0f3fa;
     margin: 0;
+    font-family: 'Arial';
 }
 
-/* Main container */
 .register-container {
     background-color: #ffffff;
-    width: 450px;
+    width: 420px;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     text-align: center;
+    box-sizing: border-box;
 }
 
-/* Header and description */
+/* Título de la sección de registro */
 h1 {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
     color: #1e1e1e;
     margin-bottom: 10px;
@@ -35,13 +35,14 @@ p {
 p a {
     color: #007bff;
     text-decoration: none;
+    font-weight: 600;
 }
 
 p a:hover {
     text-decoration: underline;
 }
 
-/* Form input groups */
+/* Estilo de los contenedores de grupos de formulario */
 .form-group {
     text-align: left;
     margin-bottom: 20px;
@@ -49,72 +50,55 @@ p a:hover {
 
 label {
     display: block;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     color: #333;
     margin-bottom: 5px;
 }
 
-input {
+/* Estilo general de los campos de entrada */
+input, select {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     font-size: 14px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 8px;
     outline: none;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
-input:focus {
+input:focus, select:focus {
     border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
-/* Password input with toggle visibility */
-.password-wrapper {
+/* Sección de número de teléfono */
+.phone-container {
     display: flex;
-    align-items: center;
+    gap: 8px;
 }
 
-.toggle-password {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    padding-left: 10px;
-    color: #666;
+.phone-container select {
+    width: 30%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
 }
 
-.toggle-password:hover {
-    color: #007bff;
+.phone-container input {
+    width: 70%;
 }
 
-/* Checkbox and recaptcha */
-.terms, .form-group {
-    font-size: 13px;
-    color: #555;
+/* Sección de fecha de nacimiento */
+.dob-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
-.terms a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.terms a:hover {
-    text-decoration: underline;
-}
-
-input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-/* Recaptcha alignment */
-.recaptcha {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-/* Button styling */
+/* Botón de registro */
 .register-button {
     width: 100%;
     padding: 12px;
@@ -125,7 +109,7 @@ input[type="checkbox"] {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .register-button:hover {

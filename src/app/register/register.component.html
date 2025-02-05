@@ -1,54 +1,49 @@
 <div class="register-container">
-    <h1>Create an account</h1>
-    <p>Create your account below. If you already have an account, you can <a href="#">log in here</a>.</p>
+    <h1>Sign up</h1>
+    <p>Already have an account? <a href="#">Login</a></p>
   
     <form>
-      <div class="form-group">
-        <label for="firstName">First Name and last name</label>
-        <input type="text" id="firstName" name="firstName" required>
-      </div>
-  
-  
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-  
-  
-      <div class="form-group">
-        <label for="password">Password</label>
-        <div class="password-wrapper">
-          <input type="password" id="password" name="password" required>
-          <button type="button" class="toggle-password">
-            👁️ <!-- Replace with an icon if necessary -->
-          </button>
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required>
         </div>
-      </div>
   
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <div class="password-wrapper">
-          <input type="password" id="confirmPassword" name="confirmPassword" required>
-          <button type="button" class="toggle-password">
-            👁️ <!-- Replace with an icon if necessary -->
-          </button>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
         </div>
-      </div>
   
-      <div class="form-group recaptcha">
-        <div class="g-recaptcha" data-sitekey="your-site-key"></div>
-      </div>
+        <div class="form-group">
+            <label for="dob">Birth of Date</label>
+            <div class="dob-container">
+                <input type="date" id="dob" name="dob" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <div class="phone-container">
+                <select id="countryCode" name="countryCode">
+                <option value="+1" selected>🇺🇸 +1</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+34">🇪🇸 +34</option>
+                <option value="+91">🇮🇳 +91</option>
+                </select>
+                <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890" required>
+            </div>
+        </div>
   
-      <div class="form-group terms">
-        <input type="checkbox" id="terms" required>
-        <label for="terms">By clicking this button, you are agreeing to our <a href="#">terms and conditions</a> and <a href="#">privacy policy</a>.</label>
-      </div>
+        <div class="form-group">
+            <label for="password">Set Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+        </div>
   
-      <div class="form-group">
-        <input type="checkbox" id="newsletter">
-        <label for="newsletter">Please tick the box if you <strong>do not</strong> want us to send you exclusive customer discounts and offers.</label>
-      </div>
-  
-      <button type="submit" class="register-button">Register</button>
+        <button type="submit" class="register-button">Register</button>
     </form>
 </div>
+  
