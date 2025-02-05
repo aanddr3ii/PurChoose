@@ -1,24 +1,25 @@
 <div class="login-container">
-    <h1>Log In</h1>
-  
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" formControlName="email" required>
+  <h1>Login</h1>
+  <p>Don't have an account? <a routerLink="/register">Sign Up</a></p>
+
+  <form>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="password" name="password" required>
+        <button type="button" class="toggle-password"></button>
       </div>
-  
-      <div class="form-group">
-        <label for="password">Password</label>
-        <div class="password-wrapper">
-          <input type="password" id="password" formControlName="password" [type]="showPassword ? 'text' : 'password'" required>
-          <button type="button" class="toggle-password" (click)="togglePassword()">
-            {{ showPassword ? '🙈' : '👁️' }}
-          </button>
-        </div>
-      </div>
-  
-      <button type="submit" class="login-button" [disabled]="loginForm.invalid">Login</button>
-      If you don't have an account <a href="register" class="register-button"><span class="text" routerLink="/register/register">register here</span></a>
-    </form>
-  </div>
-  
+    </div>
+
+    <div class="form-remember">
+      <a href="#">Forgot Password?</a>
+    </div>
+
+    <button type="submit" class="login-button">Log In</button>
+  </form>
+</div>
