@@ -1,0 +1,49 @@
+<div class="slider-container">
+  <div class="slider">
+    <!-- Botón para ir atrás -->
+    <button class="slider-button prev" (click)="prevSlide()">&#8249;</button>
+
+    <!-- Foto dos posiciones atrás -->
+    @if (imagenAnteriorSecundaria) {
+      <img 
+        [src]="imagenAnteriorSecundaria.src" 
+        class="slider-image slider-image-secondary" 
+        [attr.data-id]="imagenAnteriorSecundaria.id">
+    }
+
+    <!-- Foto izquierda -->
+    @if (imagenAnteriorPrimaria) {
+      <img 
+        [src]="imagenAnteriorPrimaria.src" 
+        class="slider-image slider-image-primary" 
+        [attr.data-id]="imagenAnteriorPrimaria.id">
+    }
+
+    <!-- Foto actual -->
+    @if (imagenPrincipal) {
+      <img 
+        [src]="imagenPrincipal.src" 
+        class="slider-image slider-image-current" 
+        [attr.data-id]="imagenPrincipal.id">
+    }
+
+    <!-- Foto derecha -->
+    @if (imagenSiguientePrimaria) {
+      <img 
+        [src]="imagenSiguientePrimaria.src" 
+        class="slider-image slider-image-primary" 
+        [attr.data-id]="imagenSiguientePrimaria.id">
+    }
+
+    <!-- Foto dos posiciones adelante -->
+    @if (imagenSiguienteSecundaria) {
+      <img 
+        [src]="imagenSiguienteSecundaria.src" 
+        class="slider-image slider-image-secondary" 
+        [attr.data-id]="imagenSiguienteSecundaria.id">
+    }
+
+    <!-- Botón para ir adelante -->
+    <button class="slider-button next" (click)="nextSlide()">&#8250;</button>
+  </div>
+</div>

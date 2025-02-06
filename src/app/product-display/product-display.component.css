@@ -1,0 +1,47 @@
+.featured-product {
+    text-align: left;
+    padding: 20px; /* Espacio entre el borde del recuadro y el contenido */
+    background-color: #3864CC; /* Fondo azul */
+    color: white; /* Letras en blanco */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px auto; /* Centrado y margen */
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 16px; /* Reducir tamaño de texto */
+    max-width: 1200px; /* Tamaño máximo para el recuadro (aumentado) */
+    width: 90%; /* Ocupa el 90% del ancho disponible hasta el máximo */
+}
+
+.featured-product h2 {
+    font-weight: bold; /* Hace que el texto h2 sea en negrita */
+    margin: 0; /* Eliminar márgenes extra entre los textos */
+}
+
+.featured-product p {
+    margin: 0; /* Eliminar márgenes extra entre los textos */
+}
+
+.text-content {
+    max-width: 60%; /* Limita el espacio del texto a la mitad del contenedor */
+    font-size: 20px; /* Aumentar tamaño de texto para que sea más grande */
+    padding-right: 20px; /* Añadir espacio entre el texto y la parte derecha */
+}
+
+.product-images {
+    display: inline-flex; /* Alinea las imágenes horizontalmente sin espacio entre ellas */
+}
+
+.product-image {
+    max-width: 120px; /* Reducir el tamaño de las imágenes */
+    max-height: 120px; /* Reducir el tamaño de las imágenes */
+    margin: 0; /* Elimina el margen entre las imágenes */
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
