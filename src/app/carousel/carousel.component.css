@@ -6,7 +6,6 @@
   transform: translate(-50%, -50%); /* Centra el contenedor */
   background-color: #ffffff; 
   padding: 20px;
-  border: 1px solid #cfcfcf88; 
   width: 100%;
   max-width: 1200px; /* Ancho máximo del carrusel */
   overflow: hidden; /* Oculta contenido fuera del carrusel */

@@ -2,39 +2,39 @@
     <ul>
       <li>
         <span>
-          <a href="#" (click)="toggleSidenav($event)">☰ Todas las categorías</a>
+          <a href="#" (click)="toggleSidenav($event)">☰ {{ 'NAV-CATEGORIES.ALL_CATEGORIES' | translate }}</a>
         </span>
       </li>
-      <li><a href="#">Tecnología y electrónica</a></li>
-      <li><a href="#">Cine, libros y música</a></li>
-      <li><a href="#">Moda y accesorios</a></li>
-      <li><a href="#">Coches</a></li>
-      <li><a href="#">Hogar y jardín</a></li>
+      <li><a href="#">{{ 'NAV-CATEGORIES.TECHNOLOGY_AND_ELECTRONICS' | translate }}</a></li>
+      <li><a href="#">{{ 'NAV-CATEGORIES.MOVIES_BOOKS_MUSIC' | translate }}</a></li>
+      <li><a href="#">{{ 'NAV-CATEGORIES.FASHION_AND_ACCESSORIES' | translate }}</a></li>
+      <li><a href="#">{{ 'NAV-CATEGORIES.CARS' | translate }}</a></li>
+      <li><a href="#">{{ 'NAV-CATEGORIES.HOME_AND_GARDEN' | translate }}</a></li>
     </ul>
 </nav>
   
 <!-- Sidenav que se abrirá -->
 <div class="side-menu" [class.open]="isSidenavOpen">
 <div class="side-menu-header">
-    <h3>Todas las categorías</h3>
+    <h3>{{ 'NAV-CATEGORIES.ALL_CATEGORIES' | translate }}</h3>
     <button class="close-btn" (click)="toggleSidenav($event)">X</button>
 </div>
 <ul>
-    <li><a href="#">Coches</a></li>
-    <li><a href="#">Motos</a></li>
-    <li><a href="#">Motor y accesorios</a></li>
-    <li><a href="#">Moda y accesorios</a></li>
-    <li><a href="#">Inmobiliaria</a></li>
-    <li><a href="#">Tecnología y electrónica</a></li>
-    <li><a href="#">Deporte y ocio</a></li>
-    <li><a href="#">Bicicletas</a></li>
-    <li><a href="#">Hogar y jardín</a></li>
-    <li><a href="#">Electrodomésticos</a></li>
-    <li><a href="#">Cine, libros y musica</a></li>
-    <li><a href="#">Niños y bebes</a></li>
-    <li><a href="#">Coleccionismo</a></li>
-    <li><a href="#">Construccion y reformas</a></li>
-    <li><a href="#">Industria y agricultura</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.CARS' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.MOTORBIKES' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.MOTOR_AND_ACCESSORIES' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.FASHION_AND_ACCESSORIES' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.REAL_ESTATE' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.TECHNOLOGY_AND_ELECTRONICS' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.SPORTS_AND_LEISURE' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.BICYCLES' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.HOME_AND_GARDEN' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.APPLIANCES' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.MOVIES_BOOKS_MUSIC' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.KIDS_AND_BABIES' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.COLLECTIBLES' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.CONSTRUCTION_AND_RENOVATIONS' | translate }}</a></li>
+    <li><a href="#">{{ 'NAV-CATEGORIES.INDUSTRY_AND_AGRICULTURE' | translate }}</a></li>
 </ul>
 </div>
 

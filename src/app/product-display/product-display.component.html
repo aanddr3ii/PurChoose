@@ -1,21 +1,7 @@
-<div class="featured-product">
-    <div class="text-content">
-      <h2>Múltiples productos de</h2>
-      <br>
-      <h2>limpieza</h2>
-      <br>
-      <p>Selección múltiple con mucha variedad</p>
-    </div>
-  
-    <div class="product-images">
-      @for (product of products; track product.id) {
-        @if (product.id <= 3) {
-          <div class="product-image">
-            <img [src]="product.src" [alt]="product.id">
-          </div>
-        }
-      } @empty {
-        <p>No hay productos disponibles.</p>
-      }
-    </div>
+<div class="banner-container" style="margin-bottom: 20px;">
+  <img src="https://media.product.which.co.uk/prod/images/1500_750/gm-5fdd10ed-c4ab-412b-9320-3267b77d22b8-selling-second-hand-4.jpg" alt="Banner Image" class="banner-image" />
+  <div class="overlay-text">
+    <h2>{{ 'BANNER.TITLE' | translate }}</h2>
+    <p>{{ 'BANNER.DESCRIPTION' | translate }}</p>
   </div>
+</div>

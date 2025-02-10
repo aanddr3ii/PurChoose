@@ -1,49 +1,52 @@
 <div class="register-container">
-    <h1>Sign up</h1>
-    <p>Create your account below. If you already have an account, you can <a routerLink="/login">Log in here</a>.</p>
+    <h1>{{ 'REGISTER.TITLE' | translate }}</h1>
+    <p>
+        {{ 'REGISTER.DESCRIPTION' | translate }}
+        <a routerLink="/login">{{ 'REGISTER.LINK' | translate }}</a>.
+    </p>
   
     <form>
         <div class="form-group">
-            <label for="fullName">Full Name</label>
+            <label for="fullName">{{ 'REGISTER.FULL_NAME' | translate }}</label>
             <input type="text" id="fullName" name="fullName" required>
         </div>
   
         <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">{{ 'REGISTER.EMAIL' | translate }}</label>
             <input type="email" id="email" name="email" required>
         </div>
   
         <div class="form-group">
-            <label for="dob">Birth of Date</label>
+            <label for="dob">{{ 'REGISTER.DOB' | translate }}</label>
             <div class="dob-container">
                 <input type="date" id="dob" name="dob" required>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="phone">Phone Number</label>
+            <label for="phone">{{ 'REGISTER.PHONE_NUMBER' | translate }}</label>
             <div class="phone-container">
                 <select id="countryCode" name="countryCode">
                 <option value="+1" selected>🇺🇸 +1</option>
                 <option value="+44">🇬🇧 +44</option>
                 <option value="+34">🇪🇸 +34</option>
-                <option value="+91">🇮🇳 +91</option>
+                <option value="+40">🇷🇴 +40</option>
                 </select>
                 <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890" required>
             </div>
         </div>
   
         <div class="form-group">
-            <label for="password">Set Password</label>
+            <label for="password">{{ 'REGISTER.SET_PASSWORD' | translate }}</label>
             <input type="password" id="password" name="password" required>
         </div>
 
         <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
+            <label for="confirmPassword">{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</label>
             <input type="password" id="confirmPassword" name="confirmPassword" required>
         </div>
   
-        <button type="submit" class="register-button">Register</button>
+        <button type="submit" class="register-button">{{ 'REGISTER.BUTTON' | translate }}</button>
     </form>
 </div>
   

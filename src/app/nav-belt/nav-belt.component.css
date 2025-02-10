@@ -48,6 +48,74 @@
 }
   
 /* Parte derecha de la barra de navegación */
+
+/***lauguage section*/
+.language-selector {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.selected-language {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.flag-icon {
+  width: 20px;
+  height: 15px;
+  object-fit: cover;
+}
+
+.dropdown-icon {
+  font-size: 10px;
+  color: #666;
+}
+
+/* Initially hide the dropdown */
+.language-dropdown {
+  width: 155px;
+  color: black;
+  list-style: none;
+  padding: 0;
+  margin: 0px 0;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  display: none;
+  z-index: 1000;
+}
+
+/* Show the dropdown when the class is active */
+.language-dropdown.show {
+  display: block;
+}
+
+.language-dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.language-dropdown li:hover {
+  color: #1e53cc;
+  text-decoration: underline;
+}
+
+.language-dropdown input[type="radio"] {
+  margin-right: 5px;
+}
+
+
+/**/
 .nav-right {
   display: flex;
   align-items: center;
@@ -55,8 +123,19 @@
 
   .nav-link {
     text-decoration: none;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 18px;
+    font-weight: 600;
+    transition: text-decoration 0.3s ease;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .nav-lang {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
     font-weight: 600;
     transition: text-decoration 0.3s ease;
 

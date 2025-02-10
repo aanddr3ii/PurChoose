@@ -1,0 +1,55 @@
+{
+  "NAV-BELT": {
+    "FAVORITES": "Favorites",
+    "INBOX": "Inbox"
+  },
+
+  "NAV-CATEGORIES": {
+    "ALL_CATEGORIES": "All Categories",
+    "TECHNOLOGY_AND_ELECTRONICS": "Technology and Electronics",
+    "MOVIES_BOOKS_MUSIC": "Movies, Books, and Music",
+    "FASHION_AND_ACCESSORIES": "Fashion and Accessories",
+    "CARS": "Cars",
+    "HOME_AND_GARDEN": "Home and Garden",
+    "MOTOR_AND_ACCESSORIES": "Motor and Accessories",
+    "REAL_ESTATE": "Real Estate",
+    "SPORTS_AND_LEISURE": "Sports and Leisure",
+    "BICYCLES": "Bicycles",
+    "APPLIANCES": "Appliances",
+    "KIDS_AND_BABIES": "Kids and Babies",
+    "COLLECTIBLES": "Collectibles",
+    "CONSTRUCTION_AND_RENOVATIONS": "Construction and Renovations",
+    "INDUSTRY_AND_AGRICULTURE": "Industry and Agriculture",
+    "MOTORBIKES": "Motorbikes"
+  },
+
+  "REGISTER": {
+    "TITLE": "Sign up",
+    "DESCRIPTION": "Create your account below. If you already have an account, you can",
+    "LINK": "Log in here",
+    "FULL_NAME": "Full Name",
+    "EMAIL": "Email",
+    "DOB": "Birth of Date",
+    "PHONE_NUMBER": "Phone Number",
+    "COUNTRY_CODE": "Country Code",
+    "SET_PASSWORD": "Set Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "BUTTON": "Register"
+  },
+
+  "LOGIN": {
+    "TITLE": "Login",
+    "DESCRIPTION": "Don't have an account?",
+    "LINK": "Sign Up",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "FORGOT_PASSWORD": "Forgot Password?",
+    "BUTTON": "Log In"
+  },
+
+  "BANNER": {
+    "TITLE": "Multiple Products",
+    "DESCRIPTION": "Multiple selection with great variety of products"
+  }
+  
+}

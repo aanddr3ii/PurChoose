@@ -1,0 +1,55 @@
+{
+  "NAV-BELT": {
+    "FAVORITES": "Favorite",
+    "INBOX": "Mesaje"
+  },
+
+  "NAV-CATEGORIES": {
+    "ALL_CATEGORIES": "Toate categoriile",
+    "TECHNOLOGY_AND_ELECTRONICS": "Tehnologie și electronice",
+    "MOVIES_BOOKS_MUSIC": "Filme, cărți și muzică",
+    "FASHION_AND_ACCESSORIES": "Modă și accesorii",
+    "CARS": "Mașini",
+    "HOME_AND_GARDEN": "Casă și grădină",
+    "MOTOR_AND_ACCESSORIES": "Motor și accesorii",
+    "REAL_ESTATE": "Imobiliare",
+    "SPORTS_AND_LEISURE": "Sport și agrement",
+    "BICYCLES": "Biciclete",
+    "APPLIANCES": "Electrocasnice",
+    "KIDS_AND_BABIES": "Copii și bebeluși",
+    "COLLECTIBLES": "Colecționabile",
+    "CONSTRUCTION_AND_RENOVATIONS": "Construcții și renovări",
+    "INDUSTRY_AND_AGRICULTURE": "Industrie și agricultură",
+    "MOTORBIKES": "Motociclete"
+  },
+  
+  "REGISTER": {
+    "TITLE": "Înregistrează-te",
+    "DESCRIPTION": "Creează-ți contul mai jos. Dacă ai deja un cont, poți",
+    "LINK": "Conectează-te aici",
+    "FULL_NAME": "Nume complet",
+    "EMAIL": "E-mail",
+    "DOB": "Data nașterii",
+    "PHONE_NUMBER": "Număr de telefon",
+    "COUNTRY_CODE": "Codul țării",
+    "SET_PASSWORD": "Setează parola",
+    "CONFIRM_PASSWORD": "Confirmă parola",
+    "BUTTON": "Înregistrează-te"
+  },
+
+  "LOGIN": {
+    "TITLE": "Autentificare",
+    "DESCRIPTION": "Nu ai un cont?",
+    "LINK": "Înregistrează-te",
+    "EMAIL": "E-mail",
+    "PASSWORD": "Parolă",
+    "FORGOT_PASSWORD": "Ai uitat parola?",
+    "BUTTON": "Conectează-te"
+  },
+
+  "BANNER": {
+    "TITLE": "Produse multiple",
+    "DESCRIPTION": "Selecție multiplă cu o mare varietate de produse"
+  }
+  
+}

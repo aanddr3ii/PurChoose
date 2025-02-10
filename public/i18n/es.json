@@ -1,0 +1,55 @@
+{
+  "NAV-BELT": {
+    "FAVORITES": "Favoritos",
+    "INBOX": "Buzón"
+  },
+  
+  "NAV-CATEGORIES": {
+    "ALL_CATEGORIES": "Todas las categorías",
+    "TECHNOLOGY_AND_ELECTRONICS": "Tecnología y electrónica",
+    "MOVIES_BOOKS_MUSIC": "Cine, libros y música",
+    "FASHION_AND_ACCESSORIES": "Moda y accesorios",
+    "CARS": "Coches",
+    "HOME_AND_GARDEN": "Hogar y jardín",
+    "MOTOR_AND_ACCESSORIES": "Motor y accesorios",
+    "REAL_ESTATE": "Inmobiliaria",
+    "SPORTS_AND_LEISURE": "Deporte y ocio",
+    "BICYCLES": "Bicicletas",
+    "APPLIANCES": "Electrodomésticos",
+    "KIDS_AND_BABIES": "Niños y bebés",
+    "COLLECTIBLES": "Coleccionismo",
+    "CONSTRUCTION_AND_RENOVATIONS": "Construcción y reformas",
+    "INDUSTRY_AND_AGRICULTURE": "Industria y agricultura",
+    "MOTORBIKES": "Motos"
+  },
+  
+  "REGISTER": {
+    "TITLE": "Regístrate",
+    "DESCRIPTION": "Crea tu cuenta abajo. Si ya tienes una cuenta, puedes",
+    "LINK": "Iniciar sesión aquí",
+    "FULL_NAME": "Nombre completo",
+    "EMAIL": "Correo electrónico",
+    "DOB": "Fecha de nacimiento",
+    "PHONE_NUMBER": "Número de teléfono",
+    "COUNTRY_CODE": "Código del país",
+    "SET_PASSWORD": "Establecer contraseña",
+    "CONFIRM_PASSWORD": "Confirmar contraseña",
+    "BUTTON": "Registrarse"
+  },
+
+  "LOGIN": {
+    "TITLE": "Iniciar sesión",
+    "DESCRIPTION": "¿No tienes una cuenta?",
+    "LINK": "Regístrate",
+    "EMAIL": "Correo electrónico",
+    "PASSWORD": "Contraseña",
+    "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
+    "BUTTON": "Iniciar sesión"
+  },
+
+  "BANNER": {
+    "TITLE": "Múltiples Productos",
+    "DESCRIPTION": "Selección múltiple con gran variedad de productos"
+  }
+  
+}
