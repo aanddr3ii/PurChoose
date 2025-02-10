@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID, Inject } from '@angular/core';
+
 @Component({
   selector: 'app-nav-belt',
   standalone: true,
@@ -16,20 +19,22 @@ export class NavBeltComponent {
   languages = [
     { code: 'en', label: 'english - EN' },
     { code: 'es', label: 'español - ES' },
-    { code: 'ro', label: 'rumania - RO' }
+    { code: 'ro', label: 'rumano - RO' }
   ];
 
-  constructor(private translate: TranslateService) {}
-
+  constructor(private translate: TranslateService, @Inject(PLATFORM_ID) private platformId: object) {}
+  
   ngOnInit(): void {
-    // Check if a language is saved in localStorage
-    const savedLang = localStorage.getItem('selectedLanguage');
-    if (savedLang) {
-      this.currentLang = savedLang;
-    } else {
-      this.currentLang = this.translate.getBrowserLang() || 'en';
+    if (isPlatformBrowser(this.platformId)) {
+
+      const savedLang = localStorage.getItem('selectedLanguage');
+      if (savedLang) {
+        this.currentLang = savedLang;
+      } else {
+        this.currentLang = this.translate.getBrowserLang() || 'en';
+      }
+      this.translate.use(this.currentLang);
     }
-    this.translate.use(this.currentLang);
   }
 
   toggleDropdown(state: boolean): void {
