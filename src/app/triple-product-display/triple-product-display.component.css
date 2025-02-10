@@ -1,0 +1,67 @@
+.triple-product-container {
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    position: absolute; /* Cambiar a posición absoluta */
+    bottom: 0; /* Colocarlos en el borde inferior */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+}
+
+.triple-product-container h2 {
+    font-size: 24px;
+    color: #ffffff;
+    
+}
+
+.triple-product-container p {
+    font-size: 16px;
+    color: #dbdbdb;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: space-between; /* Asegura que los recuadros estén separados uniformemente */
+    width: 1830px; /* Para que los recuadros ocupen todo el ancho disponible */
+}
+
+.featured-product {
+    background-color: #3864CC; /* Fondo azul */
+    color: white; /* Letras en blanco */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px; /* Reducir padding para hacer el recuadro más pequeño */
+    flex: 1 1 calc(30% - 20px); /* Hacer los recuadros un poco más pequeños */
+    max-width: calc(30% - 20px); /* Limita el ancho de cada recuadro */
+    text-align: left; /* Cambiar a izquierda */
+    display: flex; /* Usamos flexbox para organizar el contenido */
+    justify-content: space-between; /* Espacio entre texto y la imagen */
+    align-items: center; /* Alinea verticalmente el contenido */
+    font-size: 14px; /* Reducir tamaño de texto para que encaje mejor */
+    margin: 0; /* Eliminar márgenes para reducir el espacio entre recuadros */
+}
+
+.featured-product h3 {
+    font-size: 18px; /* Reducir el tamaño del título */
+    margin: 0;
+    line-height: 1.2;
+}
+
+.featured-product p {
+    font-size: 12px; /* Reducir tamaño de la descripción */
+    margin: 10px 0;
+    font-style: italic;
+}
+
+
+.product-image {
+    max-width: 120px; /* Reducir el tamaño de las imágenes */
+    max-height: 120px; /* Reducir el tamaño de las imágenes */
+    margin: 0; /* Elimina el margen entre las imágenes */
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}

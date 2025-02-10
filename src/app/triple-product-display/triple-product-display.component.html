@@ -1,0 +1,20 @@
+<div class="triple-product-container">
+  <div class="product-grid">
+    @for (product of products; track product.id) {
+      @if (product.id <= 3) {
+        <div class="featured-product">
+          <div class="text-content">
+            <h2>Producto destacado</h2>
+            <h2>----></h2>
+            <p>Si te interesa, haz clic aquí.</p>
+          </div>
+          <div class="product-image">
+            <img [src]="product.src" [alt]="'Imagen del producto ' + product.id">
+          </div>
+        </div>
+      }
+    } @empty {
+      <p>No hay productos disponibles.</p>
+    }
+  </div>
+</div>
