@@ -17,6 +17,11 @@
   }
 }
 
+.nav-logo {
+  width: 30%;
+  height: 100%;
+}
+
 /* Parte del centro de la barra de navegación */
 .nav-center {
   display: flex;
