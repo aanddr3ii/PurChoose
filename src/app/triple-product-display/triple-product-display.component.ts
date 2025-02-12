@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../interfaces/product';
@@ -15,15 +16,15 @@ export class TripleProductDisplayComponent implements OnInit {
   products: Product[] = [
     {
       id: 1,
-      src: 'https://cdn-icons-png.flaticon.com/512/5705/5705135.png',
+      src: 'https://www.atophort.com/files/products/hl17/Multi-Bars-Grow-Lights-2.png',
     },
     {
       id: 2,
-      src: 'https://cdn-icons-png.flaticon.com/512/5994/5994279.png',
+      src: 'https://www.pcspecialist.es/images/misc/right-pc.png',
     },
     {
       id: 3,
-      src: 'https://cdn-icons-png.flaticon.com/512/1906/1906719.png',
+      src: 'https://file.aiquickdraw.com/imgcompressed/img/compressed_447e37f00d655ab667543fa7e7bd0401.webp',
     }
   ];
 
@@ -31,3 +32,6 @@ export class TripleProductDisplayComponent implements OnInit {
     console.log('Arreglo de productos:', this.products);
   }
 }
+
+
+
