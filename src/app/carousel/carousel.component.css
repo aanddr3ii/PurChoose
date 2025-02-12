@@ -1,24 +1,31 @@
 /* Contenedor principal del carrusel */
 .slider-container {
-  position: absolute; /* Cambiado de relative a absolute */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Centra el contenedor */
-  background-color: #ffffff; 
-  padding: 20px;
+  position: relative;
   width: 100%;
-  max-width: 1200px; /* Ancho máximo del carrusel */
-  overflow: hidden; /* Oculta contenido fuera del carrusel */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra para resaltar */
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
-
 
 /* Contenedor de las imágenes */
 .slider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px; /* Espaciado entre las imágenes */
+  gap: 20px;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Contenedor de imágenes dentro del carrusel */
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  transition: transform 0.5s ease-in-out;
+  width: max-content;
 }
 
 /* Imágenes */
@@ -27,20 +34,42 @@ img {
   height: 200px;
   object-fit: contain;
   border-radius: 10px;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* Imagen principal */
+.slider-image-current {
+  opacity: 1;
+}
+
+/* Imágenes secundarias (más pequeñas) */
+.slider-image-secondary {
+  width: 200px;
+  height: 133px;
+  opacity: 0.7;
+}
+
+/* Imágenes primarias (menos destacadas que la principal) */
+.slider-image-primary {
+  width: 250px;
+  height: 167px;
+  opacity: 0.8;
 }
 
 /* Botones de navegación */
 .slider-button {
-  position: absolute; /* Para posicionar los botones fuera del flujo */
-  top: 50%; /* Centrado vertical */
+  position: absolute;
+  top: 50%;
   transform: translateY(-50%);
   background-color: rgba(255, 255, 255, 0.5);
-  color: #999999b0;
-  border: 1px solid #cfcfcf88; 
+  color: #333;
+  border: 1px solid #ccc;
   padding: 10px;
   font-size: 48px;
   cursor: pointer;
-  border-radius: 5%;
+  border-radius: 50%;
   z-index: 10;
   transition: background-color 0.3s ease;
   box-shadow: 0 1px 3px #888;
@@ -48,15 +77,107 @@ img {
 
 /* Oscurecer el fondo al pasar el ratón */
 .slider-button:hover {
-  color: rgba(104, 104, 104, 0.918); /* Color del texto al pasar el ratón */ 
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
 }
 
 /* Botón izquierdo */
 .slider-button.prev {
-  left: 10px; /* Posición del botón izquierdo */
+  left: 10px;
 }
 
 /* Botón Derecho */
 .slider-button.next {
-  right: 10px; /* Posición del botón derecho */
+  right: 10px;
+}/* Contenedor principal del carrusel */
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor de las imágenes */
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Contenedor de imágenes dentro del carrusel */
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  transition: transform 0.5s ease-in-out;
+  width: max-content;
+}
+
+/* Imágenes */
+img {
+  width: 300px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* Imagen principal */
+.slider-image-current {
+  opacity: 1;
+}
+
+/* Imágenes secundarias (más pequeñas) */
+.slider-image-secondary {
+  width: 200px;
+  height: 133px;
+  opacity: 0.7;
+}
+
+/* Imágenes primarias (menos destacadas que la principal) */
+.slider-image-primary {
+  width: 250px;
+  height: 167px;
+  opacity: 0.8;
+}
+
+/* Botones de navegación */
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 48px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 1px 3px #888;
+}
+
+/* Oscurecer el fondo al pasar el ratón */
+.slider-button:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
+}
+
+/* Botón izquierdo */
+.slider-button.prev {
+  left: 10px;
+}
+
+/* Botón Derecho */
+.slider-button.next {
+  right: 10px;
 }
