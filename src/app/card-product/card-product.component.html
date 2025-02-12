@@ -1,0 +1,28 @@
+<div class="products-container">
+  <div class="products-grid">
+    @for (product of products; track product.title) {
+      <div class="product-card">
+        <div class="carousel-container">
+          <div class="carousel-wrapper" [style.transform]="'translateX(' + (-currentIndex[product.title] * 100) + '%)'">
+            @for (image of product.images; track image) {
+              <div class="carousel-slide">
+                <img [src]="image" alt="{{ product.title }}" />
+              </div>
+            }
+          </div>
+          <button class="carousel-btn prev" (click)="prevSlide(product.title)">&#10094;</button>
+          <button class="carousel-btn next" (click)="nextSlide(product.title)">&#10095;</button>
+        </div>
+
+        <div class="product-info">
+          <h3 class="product-title">{{ product.title }}</h3>
+          <p class="price">{{ product.price | currency: 'EUR':'symbol' }}</p>
+          <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ product.location }}</p>
+          <p class="description">{{ shortenDescription(product.description) }}</p>
+        </div>
+      </div>
+    } @empty {
+      <p>No products available at the moment.</p>
+    }
+  </div>
+</div>
