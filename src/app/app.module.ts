@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { CategoryProductComponent } from './category-product/category-product.component';
 
 @NgModule({
     imports: [
@@ -18,7 +19,10 @@ import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/
             }
         })
     ],
-    providers: [provideHttpClient(withInterceptorsFromDi())]
+    providers: [provideHttpClient(withInterceptorsFromDi())],
+   declarations: [
+    "CategoryProductComponent"
+  ]
 })
 export class AppModule { }
 

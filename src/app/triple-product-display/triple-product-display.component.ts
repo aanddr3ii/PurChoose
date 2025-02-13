@@ -17,14 +17,26 @@ export class TripleProductDisplayComponent implements OnInit {
     {
       id: 1,
       src: 'https://www.atophort.com/files/products/hl17/Multi-Bars-Grow-Lights-2.png',
+      price: 0,
+      location: "",
+      description: "",
+      title: ""
     },
     {
       id: 2,
       src: 'https://www.pcspecialist.es/images/misc/right-pc.png',
+      price: 0,
+      location: "",
+      description: "",
+      title: ""
     },
     {
       id: 3,
       src: 'https://file.aiquickdraw.com/imgcompressed/img/compressed_447e37f00d655ab667543fa7e7bd0401.webp',
+      price: 0,
+      location: "",
+      description: "",
+      title: ""
     }
   ];
 
