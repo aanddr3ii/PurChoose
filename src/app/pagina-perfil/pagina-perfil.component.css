@@ -1,0 +1,146 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Contenedor principal */
+  .profile-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Encabezado del perfil */
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .profile-avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .profile-info {
+    flex: 1;
+  }
+  
+  .profile-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-bio {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .profile-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .edit-profile-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-profile-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Sección de detalles */
+  .profile-details {
+    padding: 20px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .details-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .details-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  /* Publicaciones recientes */
+  .recent-posts {
+    padding: 20px;
+  }
+  
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .post-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  /* Botones de navegación */
+.profile-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .tab-button {
+    background-color: #f4f4f4;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tab-button.active,
+  .tab-button:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Contenido dinámico */
+  .profile-content {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+  }

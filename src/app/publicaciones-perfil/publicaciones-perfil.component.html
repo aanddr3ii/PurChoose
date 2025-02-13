@@ -1,0 +1,10 @@
+<section class="recent-posts">
+  <h2 class="section-title">Publicaciones Recientes</h2>
+  <div class="post-grid">
+    @for (post of posts; track post.id) {
+      <div class="post-item">
+        <img [src]="post.image" [alt]="'Publicación ' + post.id">
+      </div>
+    }
+  </div>
+</section>
