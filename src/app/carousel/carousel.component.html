@@ -2,7 +2,7 @@
   <!-- Botón para ir atrás -->
   <button class="slider-button prev" (click)="prevSlide()">&#8249;</button>
   <div class="slider">
-    <div #slider class="image-container" [style.transform]="'translateX(' + (-currentIndex * 300) + 'px)'">
+    <div #slider class="image-container" [style.transform]="'translateX(' + (-currentIndex * 160) + 'px)'">
       <!-- Repetir todas las imágenes -->
       @for (image of images; track image.id) {
         <img [src]="image.src" class="slider-image" />

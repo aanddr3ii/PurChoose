@@ -8,11 +8,22 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 })
 export class CarouselComponent implements OnInit {
   images = [
-    { id: 1, src: 'https://m.media-amazon.com/images/I/619NyX2WEPL._AC_SX679_.jpg' },
-    { id: 2, src: 'https://m.media-amazon.com/images/I/419IPMjp1+L._AC_SX679_.jpg' },
+    { id: 1, src: 'https://www.pngmart.com/files/15/JBL-Audio-Speakers-PNG-Background-Image.png' },
+    { id: 2, src: 'https://m.media-amazon.com/images/I/61Z9q1+EINL._AC_UL320_.jpg' },
     { id: 3, src: 'https://media.flixcar.com/webp/synd-asset/Asus-99809225-vbix8bxyatkzctly_setting_xxx_0_90_end_1000-zoom.png' },
-    { id: 4, src: 'https://raw.githubusercontent.com/hdpngworld/HPW/main/uploads/65038654434d0-iPhone%2015%20Pro%20Natural%20titanium%20png.png' },
-    { id: 5, src: 'https://m.media-amazon.com/images/I/41cmheUC41L._SY445_SX342_.jpg' }
+    { id: 4, src: 'https://m.media-amazon.com/images/I/41lixdqY0EL.__AC_SY300_SX300_QL70_ML2_.jpg' },
+    { id: 5, src: 'https://m.media-amazon.com/images/I/71+4c3udwZL._AC_UL320_.jpg' },
+    { id: 6, src: 'https://m.media-amazon.com/images/I/51Pc192A7rL._AC_SX679_.jpg' },
+    { id: 7, src: 'https://m.media-amazon.com/images/I/71iNwni9TsL._AC_UL320_.jpg' },
+
+    { id: 8, src: 'https://m.media-amazon.com/images/I/81DWnUaGM1L._AC_UL320_.jpg' },
+    { id: 9, src: 'https://m.media-amazon.com/images/I/71MQ73XNbML._AC_UL320_.jpg' },
+    { id: 10, src: 'https://m.media-amazon.com/images/I/515dcJmQ+iL._AC_UL320_.jpg' },
+    { id: 11, src: 'https://m.media-amazon.com/images/I/91VEhm3hwmL._AC_UL320_.jpg' },
+    { id: 12, src: 'https://m.media-amazon.com/images/I/61HQGlVncDL._AC_UL320_.jpg' },
+    { id: 13, src: 'https://m.media-amazon.com/images/I/71Sp+fuLymL._AC_UL320_.jpg' },
+    { id: 14, src: 'https://m.media-amazon.com/images/I/71o+VzKWCTL._AC_UL320_.jpg' },
+    { id: 15, src: 'https://m.media-amazon.com/images/I/51HQo7VApYL._AC_UL320_.jpg' },
   ];
 
   currentIndex = 0;
