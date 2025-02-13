@@ -1,0 +1,45 @@
+<app-nav-belt></app-nav-belt>
+<app-nav-categories></app-nav-categories>
+<div class="profile-container">
+  <!-- Encabezado del perfil -->
+  <header class="profile-header">
+    <app-info-perfil [user]="user"></app-info-perfil>
+    <button class="edit-profile-button" (click)="onEditProfile()">Editar Perfil</button>
+  </header>
+
+  <!-- Botones de navegación -->
+  <div class="profile-tabs">
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'info'"
+      (click)="activeTab = 'info'"
+    >
+      Info
+    </button>
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'publicaciones'"
+      (click)="activeTab = 'publicaciones'"
+    >
+      Publicaciones
+    </button>
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'reseñas'"
+      (click)="activeTab = 'reseñas'"
+    >
+      Reseñas
+    </button>
+  </div>
+
+  <!-- Contenido dinámico -->
+  <div class="profile-content">
+    @if (activeTab === 'info') {
+      <app-info-perfil [user]="user"></app-info-perfil>
+    } @else if (activeTab === 'publicaciones') {
+      <app-publicaciones-perfil [posts]="posts"></app-publicaciones-perfil>
+    } @else if (activeTab === 'reseñas') {
+  <app-resenas-perfil [reviews]="reviews"></app-resenas-perfil>
+    }
+  </div>
+</div>

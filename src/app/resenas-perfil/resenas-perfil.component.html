@@ -1,0 +1,11 @@
+<section class="reviews-section">
+    <h2 class="section-title">Reseñas</h2>
+    <ul class="reviews-list">
+      @for (review of reviews; track review.id) {
+        <li class="review-item">
+          <p>{{ review.text }}</p>
+          <strong>Calificación: {{ review.rating }}/5</strong>
+        </li>
+      }
+    </ul>
+  </section>
