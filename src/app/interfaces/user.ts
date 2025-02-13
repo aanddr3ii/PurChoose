@@ -8,5 +8,6 @@ export interface User {
     posts: number;
     followers: number;
     following: number;
+    rating: number;
   }
   
