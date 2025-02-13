@@ -28,7 +28,6 @@
 .featured-product {
     background-color: #3864CC; /* Fondo azul */
     color: white; /* Letras en blanco */
-    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px; /* Reducir padding para hacer el recuadro más pequeño */
     flex: 1 1 calc(30% - 20px); /* Hacer los recuadros un poco más pequeños */
@@ -63,5 +62,4 @@
 .product-image img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
 }
