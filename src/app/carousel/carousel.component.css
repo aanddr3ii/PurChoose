@@ -1,13 +1,13 @@
 /* Contenedor principal del carrusel */
 .slider-container {
   position: relative;
+  top: 60px; /* Desplaza el contenedor 40px hacia abajo */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   overflow: hidden;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
-
 /* Contenedor de las imágenes */
 .slider {
   display: flex;
@@ -175,4 +175,8 @@ img {
 /* Botón Derecho */
 .slider-button.next {
   right: 10px;
+}
+
+.slider-container-wrapper {
+  padding-top: 40px;
 }
