@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -6,9 +6,9 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent {
   images = [
-    { id: 1, src: 'https://www.pngmart.com/files/15/JBL-Audio-Speakers-PNG-Background-Image.png' },
+    { id: 1, src: 'https://m.media-amazon.com/images/I/81fkcBjZndL._AC_SX679_.jpg' },
     { id: 2, src: 'https://m.media-amazon.com/images/I/61Z9q1+EINL._AC_UL320_.jpg' },
     { id: 3, src: 'https://media.flixcar.com/webp/synd-asset/Asus-99809225-vbix8bxyatkzctly_setting_xxx_0_90_end_1000-zoom.png' },
     { id: 4, src: 'https://m.media-amazon.com/images/I/41lixdqY0EL.__AC_SY300_SX300_QL70_ML2_.jpg' },
@@ -27,11 +27,6 @@ export class CarouselComponent implements OnInit {
   ];
 
   currentIndex = 0;
-
-  ngOnInit() {
-    // Duplicar imágenes para crear un bucle infinito
-    this.images = [...this.images, ...this.images];
-  }
 
   prevSlide() {
     const maxIndex = this.images.length / 2 - 1; // Índice máximo (sin duplicados)
