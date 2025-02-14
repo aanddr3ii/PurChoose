@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -6,16 +6,15 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent {
   images = [
-    { id: 1, src: 'https://www.pngmart.com/files/15/JBL-Audio-Speakers-PNG-Background-Image.png' },
+    { id: 1, src: 'https://m.media-amazon.com/images/I/81fkcBjZndL._AC_SX679_.jpg' },
     { id: 2, src: 'https://m.media-amazon.com/images/I/61Z9q1+EINL._AC_UL320_.jpg' },
-    { id: 3, src: 'https://media.flixcar.com/webp/synd-asset/Asus-99809225-vbix8bxyatkzctly_setting_xxx_0_90_end_1000-zoom.png' },
+    { id: 3, src: 'https://m.media-amazon.com/images/I/81mQU3If8xL._AC_SX679_.jpg' },
     { id: 4, src: 'https://m.media-amazon.com/images/I/41lixdqY0EL.__AC_SY300_SX300_QL70_ML2_.jpg' },
     { id: 5, src: 'https://m.media-amazon.com/images/I/71+4c3udwZL._AC_UL320_.jpg' },
     { id: 6, src: 'https://m.media-amazon.com/images/I/51Pc192A7rL._AC_SX679_.jpg' },
     { id: 7, src: 'https://m.media-amazon.com/images/I/71iNwni9TsL._AC_UL320_.jpg' },
-
     { id: 8, src: 'https://m.media-amazon.com/images/I/81DWnUaGM1L._AC_UL320_.jpg' },
     { id: 9, src: 'https://m.media-amazon.com/images/I/71MQ73XNbML._AC_UL320_.jpg' },
     { id: 10, src: 'https://m.media-amazon.com/images/I/515dcJmQ+iL._AC_UL320_.jpg' },
@@ -27,11 +26,6 @@ export class CarouselComponent implements OnInit {
   ];
 
   currentIndex = 0;
-
-  ngOnInit() {
-    // Duplicar imágenes para crear un bucle infinito
-    this.images = [...this.images, ...this.images];
-  }
 
   prevSlide() {
     const maxIndex = this.images.length / 2 - 1; // Índice máximo (sin duplicados)
