@@ -19,7 +19,7 @@ export class TripleProductDisplayComponent implements OnInit {
       src: 'https://www.atophort.com/files/products/hl17/Multi-Bars-Grow-Lights-2.png',
       price: 0,
       location: "",
-      description: "",
+      description: "Luzes LED para plantas",
       title: ""
     },
     {
@@ -27,15 +27,15 @@ export class TripleProductDisplayComponent implements OnInit {
       src: 'https://www.pcspecialist.es/images/misc/right-pc.png',
       price: 0,
       location: "",
-      description: "",
+      description: "PC Gaming",
       title: ""
     },
     {
       id: 3,
-      src: 'https://file.aiquickdraw.com/imgcompressed/img/compressed_447e37f00d655ab667543fa7e7bd0401.webp',
+      src: 'https://cdn.pixabay.com/photo/2015/10/01/19/05/car-967470_640.png',
       price: 0,
       location: "",
-      description: "",
+      description: "Coches casi nuevos",
       title: ""
     }
   ];

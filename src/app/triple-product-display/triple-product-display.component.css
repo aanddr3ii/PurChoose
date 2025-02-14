@@ -2,15 +2,17 @@
     text-align: center;
     padding: 20px;
     font-family: Arial, sans-serif;
-    position: absolute; /* Cambiar a posición absoluta */
-    bottom: 0; /* Colocarlos en el borde inferior */
+    position: relative; /* Mantenemos la posición relativa */
     width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+    max-width: 1200px; /* Establecemos un ancho máximo */
+    margin: 0 auto; /* Centramos el contenedor */
+    box-sizing: 1   000px border-box; /* Incluye padding y border en el cálculo del ancho */
+
 }
 
 .triple-product-container h2 {
     font-size: 24px;
     color: #ffffff;
-    
 }
 
 .triple-product-container p {
@@ -19,49 +21,73 @@
     margin-bottom: 20px;
 }
 
+/* Contenedor de productos */
 .product-grid {
-    display: flex;
-    justify-content: space-between; /* Asegura que los recuadros estén separados uniformemente */
-    width: 1830px; /* Para que los recuadros ocupen todo el ancho disponible */
+    display: flex; /* Usamos flexbox para organizar los recuadros */
+    justify-content: space-between; /* Distribuye los recuadros uniformemente */
+    width: 100%; /* Ajusta al ancho del contenedor padre */
+    gap: 90px; /* Espacio entre los recuadros */
+    overflow-x: hidden; /* Evita el scroll horizontal */
+    flex-wrap: nowrap; /* No envolvemos los elementos */
 }
 
+/* Recuadro individual */
 .featured-product {
-    background-color: #3864CC; /* Fondo azul */
-    color: white; /* Letras en blanco */
+    background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #67b2e5 100%);
+    color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px; /* Reducir padding para hacer el recuadro más pequeño */
-    flex: 1 1 calc(30% - 20px); /* Hacer los recuadros un poco más pequeños */
-    max-width: calc(30% - 20px); /* Limita el ancho de cada recuadro */
-    text-align: left; /* Cambiar a izquierda */
-    display: flex; /* Usamos flexbox para organizar el contenido */
-    justify-content: space-between; /* Espacio entre texto y la imagen */
-    align-items: center; /* Alinea verticalmente el contenido */
-    font-size: 14px; /* Reducir tamaño de texto para que encaje mejor */
-    margin: 0; /* Eliminar márgenes para reducir el espacio entre recuadros */
+    padding: 20px;
+    flex: 1 1 calc(30% - 20px);
+    max-width: calc(30% - 20px);
+    height: 300px;
+    text-align: center; /* Centrar texto */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar contenido verticalmente */
+    align-items: center; /* Centrar contenido horizontalmente */
+    font-size: 14px;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .featured-product h3 {
-    font-size: 18px; /* Reducir el tamaño del título */
+    font-size: 18px;
     margin: 0;
     line-height: 1.2;
 }
 
 .featured-product p {
-    font-size: 12px; /* Reducir tamaño de la descripción */
+    font-size: 12px;
     margin: 10px 0;
     font-style: italic;
 }
 
-
+/* Imagen del producto */
 .product-image {
-    max-width: 120px; /* Reducir el tamaño de las imágenes */
-    max-height: 120px; /* Reducir el tamaño de las imágenes */
-    margin: 0; /* Elimina el margen entre las imágenes */
+    max-width: 160px;
+    max-height: 160px;
+    margin-top: 40px; /* Espacio entre el texto y la imagen */
 }
 
 .product-image img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+}
+
+
+/* Ajustes para pantallas pequeñas (responsive) */
+@media (max-width: 1200px) {
+    .featured-product {
+        flex: 1 1 calc(45% - 20px); /* En pantallas pequeñas, dos columnas */
+        max-width: calc(45% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-product {
+        flex: 1 1 100%; /* En dispositivos móviles, una columna */
+        max-width: 100%;
+    }
 }
