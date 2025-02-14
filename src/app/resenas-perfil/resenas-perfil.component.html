@@ -1,11 +1,32 @@
 <section class="reviews-section">
-    <h2 class="section-title">Reseñas</h2>
-    <ul class="reviews-list">
-      @for (review of reviews; track review.id) {
-        <li class="review-item">
-          <p>{{ review.text }}</p>
-          <strong>Calificación: {{ review.rating }}/5</strong>
-        </li>
-      }
-    </ul>
-  </section>
+  <ul class="reviews-list">
+    <!-- Usamos @for en lugar de *ngFor -->
+    @for (review of reviews; track review.id) {
+      <li class="review-item">
+        <!-- Sistema de calificación (antes del texto) -->
+        <div class="rating">
+          @for (star of getStars(review.rating); track $index) {
+            <label 
+              [class.active]="star === 'active'" 
+              title="{{ 5 - $index }} estrellas"
+            >
+              ★
+            </label>
+          }
+        </div>
+
+        <!-- Información del autor (simulada) -->
+        <div class="review-info">
+          <strong class="review-author">Usuario Anónimo</strong> <!-- Simulamos un nombre -->
+          <span class="review-date">Hace 1 semana</span> <!-- Simulamos una fecha -->
+        </div>
+
+        <!-- Texto de la reseña -->
+        <p class="review-text">{{ review.text }}</p>
+
+        <!-- Mostrar la calificación numérica -->
+        <strong class="review-rating">Calificación: {{ review.rating }}/5</strong>
+      </li>
+    }
+  </ul>
+</section>

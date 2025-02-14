@@ -1,0 +1,79 @@
+
+  
+  /* Título de la sección */
+  .section-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Lista de reseñas */
+  .reviews-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Elemento de reseña */
+  .review-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Sistema de calificación */
+  .rating {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .rating label {
+    font-size: 20px;
+    color: #ccc; /* Color gris para estrellas inactivas */
+    cursor: default; /* Deshabilitamos el cursor pointer */
+  }
+  
+  .rating label.active {
+    color: #ffa723; /* Color dorado para estrellas activas */
+  }
+  
+  /* Información del autor */
+  .review-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .review-author {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .review-date {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  /* Texto de la reseña */
+  .review-text {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  /* Mostrar la calificación numérica */
+  .review-rating {
+    font-size: 14px;
+    color: #555;
+  }

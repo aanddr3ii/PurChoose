@@ -1,14 +1,17 @@
 <div class="info-perfil">
-    <div class="profile-avatar">
-      <img [src]="user.avatar" alt="Foto de perfil" class="avatar">
+  <div class="profile-info">
+    <h1 class="profile-name">{{ user.name }}</h1>
+    <p class="profile-bio">{{ user.bio }}</p>
+    <div class="profile-stats">
+      <span><strong>Publicaciones:</strong> {{ user.posts }}</span>
+      <span><strong>Seguidores:</strong> {{ user.followers }}</span>
+      <span><strong>Seguidos:</strong> {{ user.following }}</span>
     </div>
-    <div class="profile-info">
-      <h1 class="profile-name">{{ user.name }}</h1>
-      <p class="profile-bio">{{ user.bio }}</p>
-      <div class="profile-stats">
-        <span><strong>Publicaciones:</strong> {{ user.posts }}</span>
-        <span><strong>Seguidores:</strong> {{ user.followers }}</span>
-        <span><strong>Seguidos:</strong> {{ user.following }}</span>
-      </div>
+    <div class="additional-info">
+      <span><strong>Email:</strong> {{ user.email }}</span>
+      <span><strong>Ubicación:</strong> {{ user.location }}</span>
+      <span><strong>Cumpleaños:</strong> {{ user.birthday }}</span>
+      <span><strong>Calificación:</strong> {{ user.rating }}/5</span>
     </div>
   </div>
+</div>

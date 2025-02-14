@@ -40,9 +40,11 @@ import { FormsModule } from '@angular/forms';
 
     reviews: Review[] = [
       { id: 1, text: 'Excelente usuario!', rating: 5 },
-      { id: 2, text: 'Muy recomendable.', rating: 4 }
+      { id: 2, text: 'Muy recomendable.', rating: 4 },
+      { id: 3, text: 'Podría mejorar.', rating: 3 },
+      { id: 4, text: 'No cumple con mis expectativas.', rating: 2 },
+      { id: 5, text: 'Pésima experiencia.', rating: 1 }
     ];
-
     onEditProfile() {
       alert('Funcionalidad de edición de perfil no implementada aún.');
     }

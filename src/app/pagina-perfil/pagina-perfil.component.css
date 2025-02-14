@@ -5,33 +5,45 @@
   box-sizing: border-box;
 }
 
-body {
+body {  
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #f9f9f9; /* Fondo global de la página */
   color: #333;
   line-height: 1.6;
+  display: flex; /* Centramos el perfil en la página */
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  min-height: 100vh; /* Aseguramos que ocupe toda la altura de la ventana */
 }
 
 /* Contenedor principal */
 .profile-container {
   max-width: 800px; /* Ancho máximo del perfil */
-  margin: 40px auto; /* Centrado horizontal */
+  width: 100%; /* Ajusta el ancho al contenido o al máximo permitido */
+  margin: 40px auto; /* Espacio exterior */
+  display: flex; /* Usamos Flexbox para centrar */
+  flex-direction: column; /* Organizamos los elementos verticalmente */
+  align-items: center; /* Centramos el contenido horizontalmente */
+  background-color: transparent; /* Fondo transparente */
 }
 
 /* Primer recuadro (encabezado) */
 .profile-header-container {
-  background-color: #fff;
+  background-color: #fff; /* Fondo blanco */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow: visible; /* Permitimos que el contenido se expanda */
   margin-bottom: 20px; /* Espacio entre los recuadros */
+  width: 100%; /* El contenedor ocupa todo el ancho disponible */
+  display: flex; /* Usamos Flexbox */
+  flex-direction: column; /* Organizamos el contenido verticalmente */
+  align-items: center; /* Centramos el contenido horizontalmente */
+  padding: 20px; /* Espaciado interno */
 }
 
 .profile-header {
-  display: flex;
-  flex-direction: column; /* Alinea verticalmente */
-  align-items: center;
-  padding: 20px;
+  text-align: center; /* Centramos el texto */
+  width: 100%; /* El contenido ocupa todo el ancho */
 }
 
 /* Foto de perfil */
@@ -55,51 +67,8 @@ body {
   transition: background-color 0.3s ease;
   margin-top: 10px;
 }
-
 .edit-profile-button:hover {
   background-color: #0056b3;
-}
-
-/* Botones de navegación */
-.profile-tabs {
-  display: flex;
-  justify-content: center; /* Centra los botones horizontalmente */
-  gap: 10px;
-  padding: 10px 0;
-  background: none; /* Eliminamos el fondo gris */
-  border: none; /* Eliminamos bordes */
-}
-
-.tab-button {
-  background-color: transparent; /* Fondo transparente */
-  color: #333;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border: 1px solid #ddd; /* Borde suave */
-}
-
-.tab-button.active,
-.tab-button:hover {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff; /* Cambiamos el color del borde */
-}
-
-/* Segundo recuadro (contenido dinámico) */
-.profile-content-container {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin-top: 20px; /* Espacio entre los botones y el segundo recuadro */
-}
-
-.profile-content {
-  padding: 20px;
 }
 
 /* Sistema de calificación */
@@ -147,4 +116,98 @@ body {
   font-size: 16px;
   color: #555;
   margin-top: 10px;
+}
+
+/* Botones de navegación (ahora texto decorado) */
+.profile-tabs {
+  display: flex;
+  justify-content: center; /* Centra los textos horizontalmente */
+  gap: 20px; /* Espacio entre los textos */
+  padding: 10px 0;
+  width: 100%; /* Ocupa todo el ancho */
+  border-bottom: 1px solid #ddd; /* Línea divisoria inferior */
+  position: relative; /* Para posicionar la línea activa */
+}
+
+.tab-button {
+  background-color: transparent; /* Sin fondo */
+  color: #666; /* Color de texto normal */
+  border: none; /* Sin bordes */
+  padding: 10px 0; /* Espaciado vertical */
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.3s ease; /* Transición suave para el cambio de color */
+  position: relative; /* Para posicionar la línea debajo */
+  text-decoration: none; /* Quitamos cualquier subrayado */
+  font-weight: 500; /* Peso de fuente ligeramente más grueso */
+}
+
+.tab-button.active,
+.tab-button:hover {
+  color: #007bff; /* Color de texto activo o al pasar el mouse */
+}
+
+/* Línea debajo del texto seleccionado */
+.tab-button::after {
+  content: ''; /* Crea un pseudoelemento */
+  display: block;
+  width: 0; /* Inicialmente no visible */
+  height: 3px; /* Grosor de la línea */
+  background-color: #007bff; /* Color de la línea */
+  position: absolute;
+  bottom: -10px; /* Posiciona la línea debajo del texto */
+  left: 50%; /* Centro inicial */
+  transform: translateX(-50%); /* Alinea la línea al centro */
+  transition: width 0.3s ease; /* Transición suave para el ancho */
+}
+
+.tab-button.active::after {
+  width: 100%; /* Muestra la línea completa cuando está activo */
+}
+
+/* Segundo recuadro (contenido dinámico) */
+.profile-content-container {
+  background-color: #fff; /* Fondo blanco */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: visible; /* Permitimos que el contenido se expanda */
+  margin-top: 20px; /* Espacio entre los botones y el segundo recuadro */
+  width: 100%; /* El contenedor ocupa todo el ancho disponible */
+  display: flex; /* Usamos Flexbox */
+  flex-direction: column; /* Organizamos el contenido verticalmente */
+  align-items: center; /* Centramos el contenido horizontalmente */
+  padding: 20px; /* Espaciado interno */
+}
+
+.profile-content {
+  width: 100%; /* Ajusta el ancho al contenido */
+  display: flex; /* Usamos Flexbox */
+  flex-direction: column; /* Organizamos el contenido verticalmente */
+  align-items: center; /* Centramos el contenido horizontalmente */
+}
+
+/* Componentes internos */
+app-info-perfil,
+app-publicaciones-perfil,
+app-resenas-perfil {
+  width: 100%; /* Ajusta el ancho al contenido */
+  padding: 20px; /* Espaciado interno */
+  margin-bottom: 20px; /* Espacio entre los componentes */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 10px; /* Reducimos el espaciado en pantallas pequeñas */
+  }
+
+  .profile-avatar img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .tab-button {
+    font-size: 14px; /* Reducimos el tamaño del texto */
+    padding: 8px 16px; /* Reducimos el padding */
+  }
 }
