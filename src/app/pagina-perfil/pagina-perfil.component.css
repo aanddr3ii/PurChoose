@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-body {  
+body {
   font-family: Arial, sans-serif;
   background-color: #f9f9f9; /* Fondo global de la página */
   color: #333;
@@ -35,46 +35,46 @@ body {
   overflow: visible; /* Permitimos que el contenido se expanda */
   margin-bottom: 20px; /* Espacio entre los recuadros */
   width: 100%; /* El contenedor ocupa todo el ancho disponible */
-  display: flex; /* Usamos Flexbox */
-  flex-direction: column; /* Organizamos el contenido verticalmente */
-  align-items: center; /* Centramos el contenido horizontalmente */
   padding: 20px; /* Espaciado interno */
+  position: relative; /* Para posicionar el botón de edición */
 }
 
-.profile-header {
-  text-align: center; /* Centramos el texto */
-  width: 100%; /* El contenido ocupa todo el ancho */
+/* Contenido del encabezado */
+.header-content {
+  display: flex; /* Usamos Flexbox */
+  flex-direction: row; /* Organizamos horizontalmente */
+  align-items: flex-start; /* Alineamos al inicio vertical */
 }
 
 /* Foto de perfil */
+.profile-avatar {
+  margin-right: 20px; /* Espaciado entre la foto y el texto */
+}
 .profile-avatar img {
   width: 150px;
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 10px;
 }
 
-/* Botón de edición */
-.edit-profile-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
+/* Información del perfil */
+.profile-info {
+  display: flex; /* Usamos Flexbox */
+  flex-direction: column; /* Organizamos verticalmente */
+  align-items: flex-start; /* Alineamos el contenido a la izquierda */
 }
-.edit-profile-button:hover {
-  background-color: #0056b3;
+
+/* Nombre del perfil */
+.profile-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 /* Sistema de calificación */
 .rating {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .rating:not(:checked) > input {
@@ -85,7 +85,7 @@ body {
 .rating:not(:checked) > label {
   float: right;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 24px; /* Tamaño de las estrellas */
   color: #666;
   line-height: 1; /* Ajusta la altura de línea para alinear las estrellas */
 }
@@ -94,31 +94,36 @@ body {
   content: '★';
 }
 
-.rating > input:checked + label:hover,
-.rating > input:checked + label:hover ~ label,
-.rating > input:checked ~ label:hover,
-.rating > input:checked ~ label:hover ~ label,
-.rating > label:hover ~ input:checked ~ label {
-  color: #e58e09;
-}
-
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
-  color: #ff9e0b;
-}
-
 .rating > input:checked ~ label {
-  color: #ffa723;
+  color: #ffa723; /* Color dorado para estrellas seleccionadas */
 }
 
 /* Mostrar la calificación promedio */
 .profile-rating {
   font-size: 16px;
   color: #555;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
-/* Botones de navegación (ahora texto decorado) */
+/* Botón de edición (en la esquina superior derecha) */
+.edit-profile-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  position: absolute; /* Posicionamos absolutamente */
+  top: 10px; /* Distancia desde arriba */
+  right: 20px; /* Distancia desde la derecha */
+}
+.edit-profile-button:hover {
+  background-color: #0056b3;
+}
+
+/* Botones de navegación */
 .profile-tabs {
   display: flex;
   justify-content: center; /* Centra los textos horizontalmente */
@@ -160,7 +165,6 @@ body {
   transform: translateX(-50%); /* Alinea la línea al centro */
   transition: width 0.3s ease; /* Transición suave para el ancho */
 }
-
 .tab-button.active::after {
   width: 100%; /* Muestra la línea completa cuando está activo */
 }
@@ -173,41 +177,31 @@ body {
   overflow: visible; /* Permitimos que el contenido se expanda */
   margin-top: 20px; /* Espacio entre los botones y el segundo recuadro */
   width: 100%; /* El contenedor ocupa todo el ancho disponible */
-  display: flex; /* Usamos Flexbox */
-  flex-direction: column; /* Organizamos el contenido verticalmente */
-  align-items: center; /* Centramos el contenido horizontalmente */
   padding: 20px; /* Espaciado interno */
-}
-
-.profile-content {
-  width: 100%; /* Ajusta el ancho al contenido */
-  display: flex; /* Usamos Flexbox */
-  flex-direction: column; /* Organizamos el contenido verticalmente */
-  align-items: center; /* Centramos el contenido horizontalmente */
-}
-
-/* Componentes internos */
-app-info-perfil,
-app-publicaciones-perfil,
-app-resenas-perfil {
-  width: 100%; /* Ajusta el ancho al contenido */
-  padding: 20px; /* Espaciado interno */
-  margin-bottom: 20px; /* Espacio entre los componentes */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .profile-container {
-    padding: 10px; /* Reducimos el espaciado en pantallas pequeñas */
-  }
-
   .profile-avatar img {
     width: 120px;
     height: 120px;
   }
 
+  .profile-name {
+    font-size: 20px;
+  }
+
+  .rating:not(:checked) > label {
+    font-size: 20px;
+  }
+
+  .edit-profile-button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
   .tab-button {
-    font-size: 14px; /* Reducimos el tamaño del texto */
-    padding: 8px 16px; /* Reducimos el padding */
+    font-size: 14px;
+    padding: 8px 16px;
   }
 }
