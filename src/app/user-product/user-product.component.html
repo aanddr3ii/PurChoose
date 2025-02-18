@@ -1,0 +1,74 @@
+<div class="user-product-card">
+  
+    <!-- User Header -->
+    <div class="user-header">
+      <div class="user-info">
+        <img class="user-avatar" [src]="user.avatar" alt="User Avatar">
+        <div class="user-details">
+          <h3>{{ user.name }}</h3>
+          <div class="rating">
+            @for (star of getStars(user.rating); track star) {
+              <svg class="star-icon">
+                <path fill-rule="evenodd" d="M21.148 6.75c1.45.002 2.4 1.03 2.716 2.067.315 1.03.112 2.384-1.007 3.23h-.002l-3.725 2.826a.5.5 0 0 0-.155.241l-.002.005a.4.4 0 0 0-.013.074 1.4 1.4 0 0 0 .011.414l.001.002 1.417 4.56v.003c.18.578.181 1.2.001 1.779a2.94 2.94 0 0 1-1.026 1.47 2.84 2.84 0 0 1-1.716.579 2.84 2.84 0 0 1-1.717-.58l-3.742-2.837a.34.34 0 0 0-.394.007l-3.732 2.83a2.84 2.84 0 0 1-1.716.58 2.84 2.84 0 0 1-1.717-.58 2.94 2.94 0 0 1-1.026-1.469c-.18-.58-.18-1.202.001-1.781l1.433-4.58a1.3 1.3 0 0 0-.004-.471l-.005-.02a.47.47 0 0 0-.17-.234l-.038-.029-3.68-2.79C.042 11.21-.18 9.869.126 8.835c.312-1.06 1.268-2.082 2.73-2.085h4.68a.4.4 0 0 0 .152-.076.5.5 0 0 0 .15-.205l1.439-4.46a2.93 2.93 0 0 1 1.03-1.442A2.83 2.83 0 0 1 12.003 0c.61 0 1.21.198 1.704.567.488.364.845.871 1.03 1.442l.002.005 1.437 4.456a.5.5 0 0 0 .15.204q.076.058.154.076z" clip-rule="evenodd"></path>
+              </svg>
+            } @empty {
+              <p>No reviews yet.</p>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="user-actions">
+        <button class="favorite-btn">
+          <svg class="heart-icon">
+            <path stroke-width="2" d="M14.2032834,0.000936228569 C17.9488199,0.000936228569 20.9944793,3.05761731 20.9999902,6.81784939 C21.007338,12.0880525 16.8916565,15.8767573 11.686665,18.3107131 L11.4809269,18.4053159 C11.1557871,18.543087 10.8618755,18.6055432 10.5183662,18.6055432 C10.2152698,18.6055432 9.91768431,18.5504348 9.58152287,18.4218484 C4.22682013,16.0182023 0.00643263948,12.2230682 3.32229851e-06,6.84632208 C-0.00367057323,3.07966068 3.04015187,0.012876389 6.79303616,0.0101209674 C8.10526384,0.0103698742 9.38897315,0.393056961 10.4871381,1.11137115 C11.5892791,0.383559644 12.8816019,-0.00301899423 14.202365,1.77546866e-05 L14.2032834,0.000936228569 Z" transform="translate(1 1)"></path>
+          </svg>
+        </button>
+        <button class="chat-btn">Chat</button>
+      </div>
+    </div>
+  
+    <!-- Product Image Carousel -->
+    <div class="product-carousel">
+      <button class="carousel-btn prev" (click)="prevSlide()">
+        <svg class="carousel-arrow"><path d="M10 15l-5-5 5-5"></path></svg>
+      </button>
+      <img class="product-image" [src]="product.images[currentImage]" alt="Product Image">
+      <button class="carousel-btn next" (click)="nextSlide()">
+        <svg class="carousel-arrow"><path d="M10 15l-5-5 5-5"></path></svg>
+      </button>
+    </div>
+  
+    <!-- Product Info -->
+    <div class="product-info">
+      <h2>{{ product.price }} €</h2>
+      <h3>{{ product.title }}</h3>
+      <p class="condition">Buen estado</p>
+      <p class="description">{{ product.description }}</p>
+    </div>
+  
+    <!-- Delivery & Location -->
+    <div class="delivery-info">
+      <h4>Entrega en 3 - 7 días</h4>
+      <div class="delivery-options">
+        @for (delivery of product.deliveryOptions; track delivery.type) {
+          <div class="delivery-method">
+            <img class="delivery-icon" [src]="delivery.icon" alt="Entrega">
+            <p>{{ delivery.text }}</p>
+          </div>
+        } @empty {
+          <p>No delivery options available.</p>
+        }
+      </div>
+    </div>
+  
+    <!-- Location -->
+    <div class="location">
+      <svg class="location-icon">
+        <path fill-rule="evenodd" d="M12 5.25a5.25 5.25 0 1 0 0 10.5 5.25 5.25 0 0 0 0-10.5M8.25 10.5a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0" clip-rule="evenodd"></path>
+        <path fill-rule="evenodd" d="m12.56 23.81.063-.033c4.982-2.532 9.865-7.337 9.877-13.28C22.512 4.79 17.75-.05 12 0 6.384.05 1.487 4.664 1.5 10.5c.021 7.863 8.235 12.44 9.883 13.279l.069.035c.174.09.361.186.549.186.19 0 .381-.099.559-.19M21 10.5c-.01 5.081-4.235 9.56-8.998 12-.816-.42-3.064-1.77-5.117-3.797C4.775 16.62 3.01 13.877 3 10.5c-.012-4.968 4.178-8.957 9.014-9 4.898-.043 8.996 4.112 8.986 9" clip-rule="evenodd"></path>
+      </svg>
+      <p>{{ product.location }}</p>
+    </div>
+  
+</div>
+  

@@ -35,7 +35,6 @@
 .featured-product {
     background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #67b2e5 100%);
     color: white;
-    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     flex: 1 1 calc(30% - 20px);

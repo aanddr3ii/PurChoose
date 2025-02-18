@@ -5,15 +5,18 @@ import { IndexComponent } from './index/index.component';
 
 import { CategoryProductComponent } from './category-product/category-product.component';
 import { PaginaPerfilComponent } from './pagina-perfil/pagina-perfil.component';
+import { UserProductComponent } from './user-product/user-product.component';
 
 
 
 export const routes: Routes = [
     { path: '', component: IndexComponent },
-    { path: 'perfil', component: PaginaPerfilComponent }, // Ruta para el perfil
+    { path: 'perfil', component: PaginaPerfilComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
+    
     { path: 'category-product', component: CategoryProductComponent },
+    { path: 'user-product', component: UserProductComponent },
 
 
 ];

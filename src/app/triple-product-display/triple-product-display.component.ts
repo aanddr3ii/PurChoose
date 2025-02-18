@@ -16,7 +16,7 @@ export class TripleProductDisplayComponent implements OnInit {
   products: Product[] = [
     {
       id: 1,
-      src: 'https://www.atophort.com/files/products/hl17/Multi-Bars-Grow-Lights-2.png',
+      src: 'https://static.vecteezy.com/system/resources/thumbnails/045/943/907/small_2x/shiny-metal-wrench-on-transparent-background-png.png',
       price: 0,
       location: "",
       description: "Luzes LED para plantas",
@@ -32,10 +32,10 @@ export class TripleProductDisplayComponent implements OnInit {
     },
     {
       id: 3,
-      src: 'https://cdn.pixabay.com/photo/2015/10/01/19/05/car-967470_640.png',
+      src: 'https://file.kelleybluebookimages.com/kbb/base/evox/CP/15275/2024-BMW-M3-front_15275_032_1852x744_X16_cropped.png',
       price: 0,
       location: "",
-      description: "Coches casi nuevos",
+      description: "Coches de segunda mano",
       title: ""
     }
   ];

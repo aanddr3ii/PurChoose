@@ -22,19 +22,24 @@
     "INDUSTRY_AND_AGRICULTURE": "Industria y agricultura",
     "MOTORBIKES": "Motos"
   },
-  
+
   "REGISTER": {
-    "TITLE": "Regístrate",
+    "TITLE": "Registro",
     "DESCRIPTION": "Crea tu cuenta abajo. Si ya tienes una cuenta, puedes",
-    "LINK": "Iniciar sesión aquí",
+    "LINK": "Inicia sesión aquí",
     "FULL_NAME": "Nombre completo",
     "EMAIL": "Correo electrónico",
     "DOB": "Fecha de nacimiento",
     "PHONE_NUMBER": "Número de teléfono",
-    "COUNTRY_CODE": "Código del país",
     "SET_PASSWORD": "Establecer contraseña",
     "CONFIRM_PASSWORD": "Confirmar contraseña",
-    "BUTTON": "Registrarse"
+    "BUTTON": "Registrarse",
+    "FULL_NAME_ERROR": "El nombre completo debe tener al menos 3 caracteres.",
+    "EMAIL_ERROR": "Introduce una dirección de correo válida.",
+    "DOB_ERROR": "La fecha de nacimiento es obligatoria.",
+    "PHONE_ERROR": "Introduce un número de teléfono válido de 10 dígitos.",
+    "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres.",
+    "PASSWORD_MISMATCH": "Las contraseñas no coinciden."
   },
 
   "LOGIN": {
@@ -44,7 +49,9 @@
     "EMAIL": "Correo electrónico",
     "PASSWORD": "Contraseña",
     "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
-    "BUTTON": "Iniciar sesión"
+    "BUTTON": "Iniciar sesión",
+    "EMAIL_ERROR": "Introduce una dirección de correo válida.",
+    "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres."
   },
 
   "BANNER": {

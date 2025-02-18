@@ -5,48 +5,63 @@
         <a routerLink="/login">{{ 'REGISTER.LINK' | translate }}</a>.
     </p>
   
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="fullName">{{ 'REGISTER.FULL_NAME' | translate }}</label>
-            <input type="text" id="fullName" name="fullName" required>
+            <input type="text" id="fullName" formControlName="fullName">
+            @if (registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched) {
+                <small>{{ 'REGISTER.FULL_NAME_ERROR' | translate }}</small>
+            }
         </div>
-  
+      
         <div class="form-group">
             <label for="email">{{ 'REGISTER.EMAIL' | translate }}</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" formControlName="email">
+            @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+                <small>{{ 'REGISTER.EMAIL_ERROR' | translate }}</small>
+            }
         </div>
-  
+      
         <div class="form-group">
             <label for="dob">{{ 'REGISTER.DOB' | translate }}</label>
-            <div class="dob-container">
-                <input type="date" id="dob" name="dob" required>
-            </div>
+            <input type="date" id="dob" formControlName="dob">
+            @if (registerForm.get('dob')?.invalid && registerForm.get('dob')?.touched) {
+                <small>{{ 'REGISTER.DOB_ERROR' | translate }}</small>
+            }
         </div>
-
+      
         <div class="form-group">
             <label for="phone">{{ 'REGISTER.PHONE_NUMBER' | translate }}</label>
             <div class="phone-container">
-                <select id="countryCode" name="countryCode">
-                <option value="+1" selected>🇺🇸 +1</option>
-                <option value="+44">🇬🇧 +44</option>
-                <option value="+34">🇪🇸 +34</option>
-                <option value="+40">🇷🇴 +40</option>
+                <select id="countryCode" formControlName="countryCode">
+                @for (code of countryCodes; track code) {
+                    <option [value]="code.value">{{ code.flag }} {{ code.value }}</option>
+                }
                 </select>
-                <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890" required>
+                <input type="tel" id="phone" formControlName="phone" placeholder="(123) 456-7890">
             </div>
+            @if (registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched) {
+                <small>{{ 'REGISTER.PHONE_ERROR' | translate }}</small>
+            }
         </div>
-  
+      
         <div class="form-group">
             <label for="password">{{ 'REGISTER.SET_PASSWORD' | translate }}</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" formControlName="password">
+            @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+                <small>{{ 'REGISTER.PASSWORD_ERROR' | translate }}</small>
+            }
         </div>
-
+      
         <div class="form-group">
             <label for="confirmPassword">{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <input type="password" id="confirmPassword" formControlName="confirmPassword">
+            @if (registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched) {
+                <small>{{ 'REGISTER.PASSWORD_MISMATCH' | translate }}</small>
+            }
         </div>
-  
-        <button type="submit" class="register-button">{{ 'REGISTER.BUTTON' | translate }}</button>
+    
+        <button type="submit" class="register-button" [disabled]="registerForm.invalid">{{ 'REGISTER.BUTTON' | translate }}</button>
     </form>
 </div>
   

@@ -22,30 +22,38 @@
     "INDUSTRY_AND_AGRICULTURE": "Industry and Agriculture",
     "MOTORBIKES": "Motorbikes"
   },
-
+  
   "REGISTER": {
     "TITLE": "Sign up",
     "DESCRIPTION": "Create your account below. If you already have an account, you can",
-    "LINK": "Log in here",
+    "LINK": "Login here",
     "FULL_NAME": "Full Name",
     "EMAIL": "Email",
-    "DOB": "Birth of Date",
+    "DOB": "Date of Birth",
     "PHONE_NUMBER": "Phone Number",
-    "COUNTRY_CODE": "Country Code",
     "SET_PASSWORD": "Set Password",
     "CONFIRM_PASSWORD": "Confirm Password",
-    "BUTTON": "Register"
+    "BUTTON": "Register",
+    "FULL_NAME_ERROR": "Full name must be at least 3 characters long.",
+    "EMAIL_ERROR": "Enter a valid email address.",
+    "DOB_ERROR": "Date of birth is required.",
+    "PHONE_ERROR": "Enter a valid 10-digit phone number.",
+    "PASSWORD_ERROR": "Password must be at least 6 characters long.",
+    "PASSWORD_MISMATCH": "Passwords do not match."
   },
 
   "LOGIN": {
     "TITLE": "Login",
     "DESCRIPTION": "Don't have an account?",
-    "LINK": "Sign Up",
+    "LINK": "Sign up",
     "EMAIL": "Email",
     "PASSWORD": "Password",
-    "FORGOT_PASSWORD": "Forgot Password?",
-    "BUTTON": "Log In"
+    "FORGOT_PASSWORD": "Forgot password?",
+    "BUTTON": "Log in",
+    "EMAIL_ERROR": "Enter a valid email address.",
+    "PASSWORD_ERROR": "Password must be at least 6 characters long."
   },
+  
 
   "BANNER": {
     "TITLE": "Multiple Products",
