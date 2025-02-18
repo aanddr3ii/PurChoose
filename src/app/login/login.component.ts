@@ -11,18 +11,20 @@ import {ReactiveFormsModule, FormGroup, FormBuilder, Validators} from '@angular/
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  // Variable para el formulario de inicio de sesión
   loginForm: FormGroup;
 
+  // Configuramos el formulario con los campos de correo electrónico y contraseña
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      email: ['', [Validators.required, Validators.email]], // Campo de correo electrónico con validación
+      password: ['', [Validators.required, Validators.minLength(6)]] // Campo de contraseña con validación y longitud mínima
     });
   }
-
+  // Función para manejar el envío del formulario y enseñarlo por consola
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Form Submitted:', this.loginForm.value);
+      console.log('Formulario enviado:', this.loginForm.value);
     }
   }
 }
