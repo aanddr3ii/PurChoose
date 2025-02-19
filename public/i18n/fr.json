@@ -1,0 +1,61 @@
+{
+  "NAV-BELT": {
+    "FAVORITES": "Favoris",
+    "INBOX": "Boîte de réception"
+  },
+
+  "NAV-CATEGORIES": {
+    "ALL_CATEGORIES": "Toutes les Catégories",
+    "TECHNOLOGY_AND_ELECTRONICS": "Technologie et Électronique",
+    "MOVIES_BOOKS_MUSIC": "Films, Livres et Musique",
+    "FASHION_AND_ACCESSORIES": "Mode et Accessoires",
+    "CARS": "Voitures",
+    "HOME_AND_GARDEN": "Maison et Jardin",
+    "MOTOR_AND_ACCESSORIES": "Moteur et Accessoires",
+    "REAL_ESTATE": "Immobilier",
+    "SPORTS_AND_LEISURE": "Sports et Loisirs",
+    "BICYCLES": "Vélos",
+    "APPLIANCES": "Appareils électroménagers",
+    "KIDS_AND_BABIES": "Enfants et Bébés",
+    "COLLECTIBLES": "Objets de collection",
+    "CONSTRUCTION_AND_RENOVATIONS": "Construction et Rénovations",
+    "INDUSTRY_AND_AGRICULTURE": "Industrie et Agriculture",
+    "MOTORBIKES": "Motos"
+  },
+  
+  "REGISTER": {
+    "TITLE": "S'inscrire",
+    "DESCRIPTION": "Créez votre compte ci-dessous. Si vous avez déjà un compte, vous pouvez",
+    "LINK": "Se connecter ici",
+    "FULL_NAME": "Nom Complet",
+    "EMAIL": "E-mail",
+    "DOB": "Date de Naissance",
+    "PHONE_NUMBER": "Numéro de Téléphone",
+    "SET_PASSWORD": "Définir un Mot de Passe",
+    "CONFIRM_PASSWORD": "Confirmer le Mot de Passe",
+    "BUTTON": "S'inscrire",
+    "FULL_NAME_ERROR": "Le nom complet doit comporter au moins 3 caractères.",
+    "EMAIL_ERROR": "Veuillez entrer une adresse e-mail valide.",
+    "DOB_ERROR": "La date de naissance est requise.",
+    "PHONE_ERROR": "Veuillez entrer un numéro de téléphone valide à 10 chiffres.",
+    "PASSWORD_ERROR": "Le mot de passe doit comporter au moins 6 caractères.",
+    "PASSWORD_MISMATCH": "Les mots de passe ne correspondent pas."
+  },
+
+  "LOGIN": {
+    "TITLE": "Connexion",
+    "DESCRIPTION": "Vous n'avez pas de compte ?",
+    "LINK": "S'inscrire",
+    "EMAIL": "E-mail",
+    "PASSWORD": "Mot de passe",
+    "FORGOT_PASSWORD": "Mot de passe oublié ?",
+    "BUTTON": "Se connecter",
+    "EMAIL_ERROR": "Veuillez entrer une adresse e-mail valide.",
+    "PASSWORD_ERROR": "Le mot de passe doit comporter au moins 6 caractères."
+  },
+  
+  "BANNER": {
+    "TITLE": "Produits Multiples",
+    "DESCRIPTION": "Sélection multiple avec une grande variété de produits"
+  }
+}

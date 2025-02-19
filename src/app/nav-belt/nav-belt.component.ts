@@ -17,9 +17,10 @@ export class NavBeltComponent {
   dropdownOpen = false;
 
   languages = [
-    { code: 'en', label: 'english - EN' },
+    { code: 'en', label: 'inglés - EN' },
+    { code: 'po', label: 'portugués - PO' },
     { code: 'es', label: 'español - ES' },
-    { code: 'ro', label: 'rumano - RO' }
+    { code: 'fr', label: 'francés - FR' }
   ];
 
   constructor(private translate: TranslateService, @Inject(PLATFORM_ID) private platformId: object) {}

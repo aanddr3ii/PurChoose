@@ -1,0 +1,62 @@
+{
+    "NAV-BELT": {
+      "FAVORITES": "Favoritos",
+      "INBOX": "Caixa de entrada"
+    },
+  
+    "NAV-CATEGORIES": {
+      "ALL_CATEGORIES": "Todas as Categorias",
+      "TECHNOLOGY_AND_ELECTRONICS": "Tecnologia e Eletrônicos",
+      "MOVIES_BOOKS_MUSIC": "Filmes, Livros e Música",
+      "FASHION_AND_ACCESSORIES": "Moda e Acessórios",
+      "CARS": "Carros",
+      "HOME_AND_GARDEN": "Casa e Jardim",
+      "MOTOR_AND_ACCESSORIES": "Motores e Acessórios",
+      "REAL_ESTATE": "Imóveis",
+      "SPORTS_AND_LEISURE": "Esportes e Lazer",
+      "BICYCLES": "Bicicletas",
+      "APPLIANCES": "Eletrodomésticos",
+      "KIDS_AND_BABIES": "Crianças e Bebês",
+      "COLLECTIBLES": "Colecionáveis",
+      "CONSTRUCTION_AND_RENOVATIONS": "Construção e Reformas",
+      "INDUSTRY_AND_AGRICULTURE": "Indústria e Agricultura",
+      "MOTORBIKES": "Motos"
+    },
+    
+    "REGISTER": {
+      "TITLE": "Cadastre-se",
+      "DESCRIPTION": "Crie sua conta abaixo. Se já tem uma conta, você pode",
+      "LINK": "Entrar aqui",
+      "FULL_NAME": "Nome Completo",
+      "EMAIL": "E-mail",
+      "DOB": "Data de Nascimento",
+      "PHONE_NUMBER": "Número de Telefone",
+      "SET_PASSWORD": "Definir Senha",
+      "CONFIRM_PASSWORD": "Confirmar Senha",
+      "BUTTON": "Registrar",
+      "FULL_NAME_ERROR": "O nome completo deve ter pelo menos 3 caracteres.",
+      "EMAIL_ERROR": "Insira um endereço de e-mail válido.",
+      "DOB_ERROR": "A data de nascimento é obrigatória.",
+      "PHONE_ERROR": "Insira um número de telefone válido de 10 dígitos.",
+      "PASSWORD_ERROR": "A senha deve ter pelo menos 6 caracteres.",
+      "PASSWORD_MISMATCH": "As senhas não coincidem."
+    },
+  
+    "LOGIN": {
+      "TITLE": "Entrar",
+      "DESCRIPTION": "Não tem uma conta?",
+      "LINK": "Cadastre-se",
+      "EMAIL": "E-mail",
+      "PASSWORD": "Senha",
+      "FORGOT_PASSWORD": "Esqueceu a senha?",
+      "BUTTON": "Entrar",
+      "EMAIL_ERROR": "Insira um endereço de e-mail válido.",
+      "PASSWORD_ERROR": "A senha deve ter pelo menos 6 caracteres."
+    },
+    
+    "BANNER": {
+      "TITLE": "Vários Produtos",
+      "DESCRIPTION": "Seleção múltipla com grande variedade de produtos"
+    }
+}
+  

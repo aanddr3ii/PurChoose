@@ -82,7 +82,7 @@
 
 /* Initially hide the dropdown */
 .language-dropdown {
-  width: 155px;
+  width: 160px;
   color: black;
   list-style: none;
   padding: 0;
@@ -141,7 +141,7 @@
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 800;
     transition: text-decoration 0.3s ease;
 
     &:hover {
