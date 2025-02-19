@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../interfaces/product';
 
@@ -10,7 +10,7 @@ import { Product } from '../interfaces/product';
   templateUrl: './triple-product-display.component.html',
   styleUrls: ['./triple-product-display.component.css']
 })
-export class TripleProductDisplayComponent implements OnInit {
+export class TripleProductDisplayComponent {
   title: string = 'Productos Destacados';
   description: string = 'Estos son productos increíbles que te pueden interesar.';
   products: Product[] = [
@@ -40,9 +40,6 @@ export class TripleProductDisplayComponent implements OnInit {
     }
   ];
 
-  ngOnInit(): void {
-    console.log('Arreglo de productos:', this.products);
-  }
 }
 
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import {ReactiveFormsModule, FormGroup, FormBuilder, Validators} from '@angular/forms';
 
@@ -7,7 +7,7 @@ import {ReactiveFormsModule, FormGroup, FormBuilder, Validators} from '@angular/
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, TranslateModule, ReactiveFormsModule],
+  imports: [RouterLink, TranslateModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -18,9 +18,9 @@ export class RegisterComponent {
   // Array de códigos de país con su bandera correspondiente
   countryCodes = [
     { value: '+1', flag: '🇺🇸' },
-    { value: '+44', flag: '🇬🇧' },
-    { value: '+34', flag: '🇪🇸' },
-    { value: '+40', flag: '🇷🇴' }
+    { value: '+351', flag: '🇵🇹' },
+    { value: '+33', flag: '🇫🇷' },
+    { value: '+34', flag: '🇪🇸' }
   ];
 
   // Configuración del formulario de registro
