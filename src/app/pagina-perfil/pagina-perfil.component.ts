@@ -8,14 +8,16 @@
   import { Post } from '../interfaces/post';
   import { Review } from '../interfaces/review';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
   @Component({
     selector: 'app-pagina-perfil',
     standalone: true,
     templateUrl: './pagina-perfil.component.html',
     styleUrls: ['./pagina-perfil.component.css'],
-    imports: [NavBeltComponent, NavCategoriesComponent, InfoPerfilComponent,PublicacionesPerfilComponent,ResenasPerfilComponent,FormsModule]
+    imports: [NavBeltComponent, NavCategoriesComponent, InfoPerfilComponent,PublicacionesPerfilComponent,ResenasPerfilComponent,FormsModule, RouterModule]
   })
+  
   export class PaginaPerfilComponent {
     // Datos del usuario
     activeTab: 'info' | 'publicaciones' | 'reseñas' = 'info'; // Tipo específico
