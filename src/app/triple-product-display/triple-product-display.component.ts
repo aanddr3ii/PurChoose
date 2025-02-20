@@ -20,7 +20,8 @@ export class TripleProductDisplayComponent {
       price: 0,
       location: "",
       description: "Luzes LED para plantas",
-      title: ""
+      title: "",
+      state: ''
     },
     {
       id: 2,
@@ -28,7 +29,8 @@ export class TripleProductDisplayComponent {
       price: 0,
       location: "",
       description: "PC Gaming",
-      title: ""
+      title: "",
+      state: ''
     },
     {
       id: 3,
@@ -36,7 +38,8 @@ export class TripleProductDisplayComponent {
       price: 0,
       location: "",
       description: "Coches de segunda mano",
-      title: ""
+      title: "",
+      state: ''
     }
   ];
 
