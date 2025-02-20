@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { IndexComponent } from './index/index.component';
-
+import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 import { CategoryProductComponent } from './category-product/category-product.component';
 import { PaginaPerfilComponent } from './pagina-perfil/pagina-perfil.component';
 import { UserProductComponent } from './user-product/user-product.component';
@@ -14,7 +14,7 @@ export const routes: Routes = [
     { path: 'perfil', component: PaginaPerfilComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
-    
+    { path: 'editarP', component: EditarPerfilComponent },
     { path: 'category-product', component: CategoryProductComponent },
     { path: 'user-product', component: UserProductComponent },
 
