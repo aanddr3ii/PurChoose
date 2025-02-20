@@ -115,3 +115,27 @@ input:focus, select:focus {
 .register-button:hover {
     background-color: #0056b3;
 }
+
+.register-button:focus {
+    outline: 2px solid #0056b3; /* Mejor visibilidad al navegar con teclado */
+}
+
+/* Estilos para elementos con error */
+small[role="alert"] {
+    color: #d9534f; /* Rojo accesible */
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Mejora en los inputs para navegabilidad */
+input:focus, select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+    outline: 2px solid #0056b3; /* Mejora el enfoque */
+}
+
+/* Mayor accesibilidad en el enlace de inicio de sesión */
+p a {
+    text-decoration: underline;
+    font-weight: bold;
+}
