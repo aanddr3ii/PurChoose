@@ -1,0 +1,154 @@
+/* Contenedor principal */
+.edit-profile-container {
+  background-color: #fff;
+  border-radius: 15px; /* Radio redondeado */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Sombra pronunciada */
+  padding: 25px 30px; /* Espaciado interno con más padding lateral */
+  width: 100%;
+  max-width: 600px; /* Mantenemos el ancho máximo */
+  margin: 50px auto; /* Espaciado exterior */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título */
+.section-title {
+  font-size: 28px; /* Tamaño del título */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px; /* Espacio después del título */
+  text-align: center;
+}
+
+/* Formulario */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alineamos los elementos al inicio */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  padding: 0 15px; /* Espaciado lateral adicional */
+}
+
+/* Grupo de formulario */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ocupa todo el ancho */
+  margin-bottom: 20px; /* Más espacio entre grupos */
+}
+
+/* Etiquetas */
+.form-group label {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 8px; /* Espacio después de la etiqueta */
+  font-weight: 500; /* Peso ligeramente más grueso */
+}
+
+/* Campos de entrada */
+.form-group input,
+.form-group textarea {
+  padding: 12px 15px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde suave */
+  border-radius: 8px; /* Bordes redondeados */
+  font-size: 15px; /* Tamaño del texto */
+  width: 100%; /* Ajustamos el ancho */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transición para hover */
+}
+
+/* Hover en campos de entrada */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #007bff; /* Borde azul al enfocar */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* Sombra al enfocar */
+  outline: none; /* Quitamos el contorno al enfocar */
+}
+
+/* Vista previa de la imagen */
+.avatar-preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; /* Espaciado después del contenedor */
+}
+
+.avatar-preview {
+  width: 150px; /* Ancho igual a la altura */
+  height: 150px; /* Altura igual al ancho */
+  border-radius: 50%; /* Círculo perfecto */
+  object-fit: cover; /* Ajuste de la imagen */
+  margin-top: 10px;
+  border: 2px solid #eaeaea; /* Borde suave */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Selector de archivo (subir imagen) */
+.file-input {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: 1px dashed #007bff; /* Borde discontinuo azul */
+  border-radius: 5px;
+  background-color: #f9f9f9; /* Fondo suave */
+  color: #007bff; /* Texto azul */
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.file-input:hover {
+  background-color: #eaf3ff; /* Fondo más claro al pasar el mouse */
+  color: #0056b3; /* Texto más oscuro al pasar el mouse */
+}
+
+/* Botón de guardar */
+.save-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 25px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600; /* Peso más fuerte */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transición para efecto */
+  width: 100%; /* Ocupa todo el ancho */
+  max-width: 250px; /* Ancho máximo */
+  margin-top: 25px; /* Espaciado antes del botón */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.03); /* Efecto de escala */
+}
+
+.save-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .edit-profile-container {
+    padding: 20px 25px; /* Reducimos el padding en pantallas pequeñas */
+  }
+
+  .section-title {
+    font-size: 24px; /* Reducimos el tamaño del título */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 14px; /* Reducimos el tamaño del texto */
+    padding: 10px 12px; /* Reducimos el padding */
+  }
+
+  .save-button {
+    font-size: 15px; /* Reducimos el tamaño del texto */
+    padding: 10px 20px; /* Reducimos el padding */
+    max-width: 200px; /* Reducimos el ancho máximo */
+  }
+}

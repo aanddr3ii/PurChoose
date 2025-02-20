@@ -16,17 +16,31 @@ export class EditarPerfilComponent {
   editForm!: FormGroup; // Formulario reactivo
   previewImage!: string | null; // Variable para mostrar una vista previa de la imagen
 
+  // Datos del usuario
+  user: User = {
+    name: 'El Presidente',
+    bio: 'soy un presidente naranja',
+    avatar: 'https://s.france24.com/media/display/b1bb448c-d51e-11ef-bb54-005056a90284/w:1280/p:4x3/Trumpretratooficial.jpg',
+    email: 'elpresi@elmuro.com',
+    location: 'Washington D.C, USA',
+    birthday: '01/01/1990',
+    posts: 123,
+    followers: 456,
+    following: 789,
+    rating: 3
+  };
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     // Inicializamos el formulario con los datos actuales del usuario
     this.editForm = this.fb.group({
-      name: ['El Presidente', Validators.required],
-      bio: ['soy un presidente naranja'],
+      name: [this.user.name, Validators.required],
+      bio: [this.user.bio],
       avatar: [''], // Campo para el archivo de imagen
-      email: ['elpresi@elmuro.com', [Validators.required, Validators.email]],
-      location: ['Washington D.C, USA'],
-      birthday: ['1990-01-01', Validators.required]
+      email: [this.user.email, [Validators.required, Validators.email]],
+      location: [this.user.location],
+      birthday: [this.user.birthday, Validators.required]
     });
   }
 
