@@ -18,7 +18,7 @@ export class NavBeltComponent {
 
   languages = [
     { code: 'en', label: 'inglés - EN' },
-    { code: 'po', label: 'portugués - PO' },
+    { code: 'pt', label: 'portugués - PT' },
     { code: 'es', label: 'español - ES' },
     { code: 'fr', label: 'francés - FR' }
   ];
