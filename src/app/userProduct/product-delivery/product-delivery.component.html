@@ -1,0 +1,35 @@
+<div class="product-delivery-container">
+    <div class="product-delivery-header">
+        <h1>{{ productTitle.estimatedTime }}</h1>
+        <button (click)="toggleInfo()">+ info</button>
+    </div>
+    <div class="product-delivery-options">
+        <div class="product-delivery-option">
+            <img [src]="productDelivery.pointPicture" alt="Recogida">
+            <p>{{ productDelivery.deliveryPointP }} <span>{{ productDelivery.deliveryPoint }}</span></p>
+        </div>
+        <div class="product-delivery-option">
+            <img [src]="productDelivery.homePicture" alt="Entrega a domicilio">
+            <p>{{ productDelivery.deliveryHomeP }} <span>{{ productDelivery.deliveryHome }}</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+@if (isInfoVisible) {
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-button" (click)="toggleInfo()">×</button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <h2>{{ productInfo.infoTitle }}</h2>
+                    <h3>{{ productInfo.infosubTitle }}</h3>
+                    <li>{{ productInfo.infoParagraph1 }}<b>{{ productInfo.infoParagraph1B }}</b>{{ productInfo.infoParagraph11 }}</li>
+                    <li>{{ productInfo.infoParagraph2 }}<b> {{ productInfo.infoParagraph2B }}</b> {{ productInfo.infoParagraph22 }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}

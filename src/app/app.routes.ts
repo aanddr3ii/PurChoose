@@ -5,7 +5,7 @@ import { IndexComponent } from './index/index.component';
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 import { CategoryProductComponent } from './category-product/category-product.component';
 import { PaginaPerfilComponent } from './pagina-perfil/pagina-perfil.component';
-import { UserProductComponent } from './user-product/user-product.component';
+import { UserProductComponent } from './userProduct/user-product/user-product.component';
 
 
 

@@ -1,11 +1,11 @@
 <div class="info-perfil">
   <div class="profile-info">
-    <h1 class="profile-name">{{ user.nombre }}</h1>
+    <h1 class="profile-name">{{ user.name }}</h1>
     <div class="profile-stats">
       <span><strong>Email:</strong> {{ user.email }}</span>
-      <span><strong>Ubicación:</strong> {{ user.ubicacion || 'No especificada' }}</span>
-      <span><strong>Teléfono:</strong> {{ user.telefono || 'No especificado' }}</span>
-      <span><strong>Fecha de registro:</strong> {{ user.fechaRegistro | date:'mediumDate' }}</span>
+      <span><strong>Ubicación:</strong> {{ user.location || 'No especificada' }}</span>
+      <span><strong>Teléfono:</strong> {{ user.phone || 'No especificado' }}</span>
+      <span><strong>Fecha de registro:</strong> {{ user.registrationDate | date:'mediumDate' }}</span>
     </div>
   </div>
 </div>

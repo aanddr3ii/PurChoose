@@ -26,11 +26,11 @@ export class EditarPerfilComponent {
 
     // Inicializamos el formulario con los datos actuales del usuario
     this.editForm = this.fb.group({
-      nombre: [this.user.nombre, Validators.required], // Campo obligatorio
-      ubicacion: [this.user.ubicacion || '', []], // Campo opcional
-      telefono: [this.user.telefono || null, [Validators.required, Validators.pattern(/^\d{10}$/)]], // Validación básica para teléfono (10 dígitos)
+      nombre: [this.user.name, Validators.required], // Campo obligatorio
+      ubicacion: [this.user.location || '', []], // Campo opcional
+      telefono: [this.user.phone || null, [Validators.required, Validators.pattern(/^\d{10}$/)]], // Validación básica para teléfono (10 dígitos)
       email: [this.user.email, [Validators.required, Validators.email]], // Campo obligatorio
-      fotoPerfil: [this.user.fotoPerfil || null], // Campo para el archivo de imagen
+      fotoPerfil: [this.user.profilePicture || null], // Campo para el archivo de imagen
     });
   }
 
@@ -56,7 +56,7 @@ export class EditarPerfilComponent {
       // Verificamos si el valor de fotoPerfil es un archivo válido
       const fotoPerfilValue = this.editForm.get('fotoPerfil')?.value;
       if (fotoPerfilValue && !(fotoPerfilValue instanceof File)) {
-        delete updatedUserData.fotoPerfil; // Eliminamos la propiedad si no es un archivo
+        delete updatedUserData.profilePicture; // Eliminamos la propiedad si no es un archivo
       }
 
       // Actualizamos el usuario en el servicio
@@ -81,7 +81,7 @@ export class EditarPerfilComponent {
     const reader = new FileReader();
     reader.onload = () => {
       const base64Image = reader.result as string;
-      this.userService.updateUser({ fotoPerfil: base64Image });
+      this.userService.updateUser({ profilePicture: base64Image });
     };
     reader.readAsDataURL(file);
   }

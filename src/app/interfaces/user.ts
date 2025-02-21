@@ -1,12 +1,12 @@
 export interface User {
-    id: number;
-    nombre: string;
-    email: string;
-    password: string;
-    role: string;
-    fechaRegistro: Date;
-    ubicacion: string;
-    telefono: number;
-    fotoPerfil: string;
-  }
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  registrationDate: Date;
+  location: string;
+  phone: number;
+  profilePicture: string;
+}
   

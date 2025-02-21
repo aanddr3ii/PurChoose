@@ -6,10 +6,10 @@
     <div class="profile-header-container">
       <header class="profile-header">
         <div class="profile-avatar">
-          <img [src]="user.fotoPerfil" alt="Foto de perfil" class="avatar">
+          <img [src]="user.profilePicture" alt="Foto de perfil" class="avatar">
         </div>
         <div class="profile-info">
-          <h1 class="profile-name">{{ user.nombre }}</h1>
+          <h1 class="profile-name">{{ user.name }}</h1>
           <a class="edit-profile-button" routerLink="/editarP" [routerLinkActive]="'active-button'"> Editar Perfil </a>
         </div>
       </header>

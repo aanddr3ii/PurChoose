@@ -1,0 +1,43 @@
+<div class="product-refund-container">
+    <div class="product-refund-header">
+      <h1>{{ refundTitle.title }}</h1>
+      <button class="info-button" (click)="toggleInfo()">+ info</button>
+    </div>
+  
+    <div class="product-refund-description">
+      <p>{{ refundTitle.descrptionPart1 }}</p>
+      <p>{{ refundTitle.descrptionPart2 }}</p>
+    </div>
+  
+    <!-- Modal -->
+    @if (isInfoVisible) {
+      <div class="modal-overlay">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>{{ refundTitle.title }}</h2>
+            <button class="close-button" (click)="toggleInfo()">×</button>
+          </div>
+          <div class="modal-body">
+            <ul>
+                <p>{{ refundInfo.subTitlePart1 }}</p>
+                <p>{{ refundInfo.subTitlePart2 }}</p>
+                <p>{{ refundInfo.subTitlePart3 }}</p>
+
+                <p>{{ refundInfo.ParagraphonePart1 }}</p>
+                <p>{{ refundInfo.ParagraphonePart2 }}</p>
+
+                <p>{{ refundInfo.ParagraphtwoPart1 }}</p>
+                <p>{{ refundInfo.ParagraphtwoPart2 }}</p>
+                <p>{{ refundInfo.ParagraphtwoPart3 }}</p>
+
+                <p>{{ refundInfo.ParagraphthreePart1 }}</p>
+                <p>{{ refundInfo.ParagraphthreePart2 }}</p>
+
+                <p>{{ refundInfo.ParagraphfourPart1 }}</p>
+            </ul>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  
