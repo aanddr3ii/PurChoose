@@ -6,48 +6,40 @@
  <div class="edit-profile-container">
   <h2 class="section-title">Editar Perfil</h2>
 
-  <!-- Formulario de edición -->
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="edit-form">
-    <!-- Foto de Perfil -->
-    <div class="form-group">
-      <label for="avatar">Foto de Perfil:</label>
-      <div class="avatar-preview-container">
-        <!-- Vista previa de la imagen actual o cargada -->
-        <img 
-          [src]="previewImage || user.avatar" 
-          alt="Foto de perfil" 
-          class="avatar-preview"
-        >
-      </div>
-      <input 
-        type="file" 
-        id="avatar" 
-        (change)="onFileSelected($event)" 
-        accept="image/*"
-      >
-    </div>
-
     <!-- Nombre -->
     <div class="form-group">
-      <label for="name">Nombre:</label>
+      <label for="nombre">Nombre:</label>
       <input 
         type="text" 
-        id="name" 
-        formControlName="name" 
+        id="nombre" 
+        formControlName="nombre" 
         placeholder="Ingresa tu nombre" 
         required
       >
     </div>
 
-    <!-- Biografía -->
+    <!-- Ubicación -->
     <div class="form-group">
-      <label for="bio">Biografía:</label>
-      <textarea 
-        id="bio" 
-        formControlName="bio" 
-        placeholder="Escribe algo sobre ti"
-        rows="4"
-      ></textarea>
+      <label for="ubicacion">Ubicación:</label>
+      <input 
+        type="text" 
+        id="ubicacion" 
+        formControlName="ubicacion" 
+        placeholder="Ingresa tu ubicación"
+      >
+    </div>
+
+    <!-- Teléfono -->
+    <div class="form-group">
+      <label for="telefono">Teléfono:</label>
+      <input 
+        type="tel" 
+        id="telefono" 
+        formControlName="telefono" 
+        placeholder="Ingresa tu número de teléfono" 
+        required
+      >
     </div>
 
     <!-- Email -->
@@ -62,24 +54,21 @@
       >
     </div>
 
-    <!-- Ubicación -->
+    <!-- Foto de Perfil -->
     <div class="form-group">
-      <label for="location">Ubicación:</label>
+      <label for="fotoPerfil">Foto de Perfil:</label>
+      <div class="avatar-preview-container">
+        <img 
+          [src]="previewImage || user.fotoPerfil" 
+          alt="Foto de perfil" 
+          class="avatar-preview"
+        >
+      </div>
       <input 
-        type="text" 
-        id="location" 
-        formControlName="location" 
-        placeholder="Ingresa tu ubicación"
-      >
-    </div>
-
-    <!-- Fecha de Nacimiento -->
-    <div class="form-group">
-      <label for="birthday">Fecha de Nacimiento:</label>
-      <input 
-        type="date" 
-        id="birthday" 
-        formControlName="birthday"
+        type="file" 
+        id="fotoPerfil" 
+        (change)="onFileSelected($event)" 
+        accept="image/*"
       >
     </div>
 

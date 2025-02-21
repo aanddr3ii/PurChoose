@@ -1,46 +1,36 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../interfaces/user';
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { User } from '../interfaces/user';
+import { UserService } from '../services/userService/user.service';
 import { NavBeltComponent } from "../nav-belt/nav-belt.component";
-import { NavCategoriesComponent } from '../nav-categories/nav-categories.component';
+import { NavCategoriesComponent } from "../nav-categories/nav-categories.component";
+
 @Component({
   selector: 'app-editar-perfil',
   templateUrl: './editar-perfil.component.html',
-  standalone  : true,
+  standalone: true,
   imports: [ReactiveFormsModule, RouterModule, NavBeltComponent, NavCategoriesComponent],
   styleUrls: ['./editar-perfil.component.css']
 })
 export class EditarPerfilComponent {
   editForm!: FormGroup; // Formulario reactivo
   previewImage!: string | null; // Variable para mostrar una vista previa de la imagen
+  user!: User; // Propiedad para almacenar el usuario actual
 
-  // Datos del usuario
-  user: User = {
-    name: 'El Presidente',
-    bio: 'soy un presidente naranja',
-    avatar: 'https://s.france24.com/media/display/b1bb448c-d51e-11ef-bb54-005056a90284/w:1280/p:4x3/Trumpretratooficial.jpg',
-    email: 'elpresi@elmuro.com',
-    location: 'Washington D.C, USA',
-    birthday: '01/01/1990',
-    posts: 123,
-    followers: 456,
-    following: 789,
-    rating: 3
-  };
-
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit() {
+    this.user = this.userService.getUser(); // Obtenemos el usuario actual desde el servicio
+
     // Inicializamos el formulario con los datos actuales del usuario
     this.editForm = this.fb.group({
-      name: [this.user.name, Validators.required],
-      bio: [this.user.bio],
-      avatar: [''], // Campo para el archivo de imagen
-      email: [this.user.email, [Validators.required, Validators.email]],
-      location: [this.user.location],
-      birthday: [this.user.birthday, Validators.required]
+      nombre: [this.user.nombre, Validators.required], // Campo obligatorio
+      ubicacion: [this.user.ubicacion || '', []], // Campo opcional
+      telefono: [this.user.telefono || null, [Validators.required, Validators.pattern(/^\d{10}$/)]], // Validación básica para teléfono (10 dígitos)
+      email: [this.user.email, [Validators.required, Validators.email]], // Campo obligatorio
+      fotoPerfil: [this.user.fotoPerfil || null], // Campo para el archivo de imagen
     });
   }
 
@@ -48,8 +38,8 @@ export class EditarPerfilComponent {
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.editForm.patchValue({ avatar: file }); // Actualizamos el campo "avatar"
-      this.editForm.get('avatar')?.updateValueAndValidity();
+      this.editForm.patchValue({ fotoPerfil: file }); // Actualizamos el campo "fotoPerfil"
+      this.editForm.get('fotoPerfil')?.updateValueAndValidity();
 
       // Mostramos una vista previa de la imagen
       const reader = new FileReader();
@@ -61,13 +51,38 @@ export class EditarPerfilComponent {
   // Método para guardar los cambios
   onSubmit(): void {
     if (this.editForm.valid) {
-      const updatedUser: User = this.editForm.value;
-      console.log('Datos actualizados:', updatedUser);
+      const updatedUserData: Partial<User> = this.editForm.value;
 
-      // Aquí puedes enviar los datos al servidor o actualizarlos localmente
+      // Verificamos si el valor de fotoPerfil es un archivo válido
+      const fotoPerfilValue = this.editForm.get('fotoPerfil')?.value;
+      if (fotoPerfilValue && !(fotoPerfilValue instanceof File)) {
+        delete updatedUserData.fotoPerfil; // Eliminamos la propiedad si no es un archivo
+      }
+
+      // Actualizamos el usuario en el servicio
+      this.userService.updateUser(updatedUserData);
+
+      // Si hay una imagen seleccionada, la manejamos por separado
+      if (fotoPerfilValue instanceof File) {
+        this.handleImageUpload(fotoPerfilValue as File);
+      }
+
       alert('Cambios guardados exitosamente.');
     } else {
       alert('Por favor, completa todos los campos obligatorios.');
     }
+  }
+
+  // Método para manejar la subida de la imagen (simulado)
+  handleImageUpload(file: File): void {
+    console.log('Subiendo nueva imagen:', file);
+
+    // Convertimos el archivo a base64 y actualizamos el servicio
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64Image = reader.result as string;
+      this.userService.updateUser({ fotoPerfil: base64Image });
+    };
+    reader.readAsDataURL(file);
   }
 }

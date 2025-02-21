@@ -1,13 +1,12 @@
 export interface User {
-    name: string;
-    bio: string;
-    avatar: string;
+    id: number;
+    nombre: string;
     email: string;
-    location: string;
-    birthday: string;
-    posts: number;
-    followers: number;
-    following: number;
-    rating: number;
+    password: string;
+    role: string;
+    fechaRegistro: Date;
+    ubicacion: string;
+    telefono: number;
+    fotoPerfil: string;
   }
   

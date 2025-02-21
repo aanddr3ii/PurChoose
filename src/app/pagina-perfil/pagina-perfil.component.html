@@ -1,76 +1,55 @@
-<app-nav-belt></app-nav-belt>
-<app-nav-categories></app-nav-categories>
-<div class="profile-container">
-  <!-- Primer recuadro (encabezado) -->
-  <div class="profile-header-container">
-    <header class="profile-header">
-      <!-- Contenedor principal del encabezado -->
-      <div class="header-content">
-        <!-- Foto de perfil (izquierda) -->
+  <app-nav-belt></app-nav-belt>
+  <app-nav-categories></app-nav-categories>
+
+  <div class="profile-container">
+    <!-- Primer recuadro (encabezado) -->
+    <div class="profile-header-container">
+      <header class="profile-header">
         <div class="profile-avatar">
-          <img [src]="user.avatar" alt="Foto de perfil" class="avatar">
+          <img [src]="user.fotoPerfil" alt="Foto de perfil" class="avatar">
         </div>
-
-        <!-- Información del perfil (centro) -->
         <div class="profile-info">
-          <h1 class="profile-name">{{ user.name }}</h1>
-
-          <!-- Sistema de calificación -->
-          <div class="rating">
-            <input value="5" name="rate" id="star5" type="radio" [(ngModel)]="user.rating" [value]="5">
-            <label title="Excelente" for="star5"></label>
-            <input value="4" name="rate" id="star4" type="radio" [(ngModel)]="user.rating" [value]="4">
-            <label title="Muy bueno" for="star4"></label>
-            <input value="3" name="rate" id="star3" type="radio" [(ngModel)]="user.rating" [value]="3" checked="">
-            <label title="Aceptable" for="star3"></label>
-            <input value="2" name="rate" id="star2" type="radio" [(ngModel)]="user.rating" [value]="2">
-            <label title="Regular" for="star2"></label>
-            <input value="1" name="rate" id="star1" type="radio" [(ngModel)]="user.rating" [value]="1">
-            <label title="Pobre" for="star1"></label>
-          </div>
-          <!-- Mostrar el promedio de la calificación -->
+          <h1 class="profile-name">{{ user.nombre }}</h1>
+          <a class="edit-profile-button" routerLink="/editarP" [routerLinkActive]="'active-button'"> Editar Perfil </a>
         </div>
-        <a class="edit-profile-button" routerLink="/editarP" [routerLinkActive]="'active-button'"> Editar Perfil </a>
-      </div>
-    </header>
-  </div>
+      </header>
+    </div>
 
-  <!-- Resto del contenido -->
-  <!-- Botones de navegación -->
-  <div class="profile-tabs">
-    <button
-      class="tab-button"
-      [class.active]="activeTab === 'info'"
-      (click)="activeTab = 'info'"
-    >
-      Info
-    </button>
-    <button
-      class="tab-button"
-      [class.active]="activeTab === 'publicaciones'"
-      (click)="activeTab = 'publicaciones'"
-    >
-      Publicaciones
-    </button>
-    <button
-      class="tab-button"
-      [class.active]="activeTab === 'reseñas'"
-      (click)="activeTab = 'reseñas'"
-    >
-      Reseñas
-    </button>
-  </div>
+    <!-- Botones de navegación -->
+    <div class="profile-tabs">
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'info'" 
+        (click)="activeTab = 'info'"
+      >
+        Info
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'publicaciones'" 
+        (click)="activeTab = 'publicaciones'"
+      >
+        Publicaciones
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'reseñas'" 
+        (click)="activeTab = 'reseñas'"
+      >
+        Reseñas
+      </button>
+    </div>
 
-  <!-- Segundo recuadro (contenido dinámico) -->
-  <div class="profile-content-container">
-    <div class="profile-content">
-      @if (activeTab === 'reseñas') {
-        <app-resenas-perfil [reviews]="reviews"></app-resenas-perfil>
-      } @else if (activeTab === 'publicaciones') {
-        <app-publicaciones-perfil [posts]="posts"></app-publicaciones-perfil>
-      } @else if (activeTab === 'info') {
+    <div class="profile-content-container">
+      <div class="profile-content">
+        @if (activeTab === 'info') {
+          <!-- Pasamos el usuario actual al componente hijo -->
           <app-info-perfil [user]="user"></app-info-perfil>
-      }
+        } @else if (activeTab === 'publicaciones') {
+          <app-card-product></app-card-product>
+        } @else if (activeTab === 'reseñas') {
+          <app-resenas-perfil [reviews]="reviews"></app-resenas-perfil>
+        }
+      </div>
     </div>
   </div>
-</div>

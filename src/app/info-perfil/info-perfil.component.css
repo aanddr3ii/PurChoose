@@ -27,14 +27,6 @@ body {
   font-weight: 600; /* Usamos un peso más moderno */
 }
 
-.profile-bio {
-  font-size: 16px;
-  color: #000000; /* Color de texto suave para la biografía */
-  margin-bottom: 15px;
-  line-height: 1.5; /* Mejoramos la legibilidad con más espacio entre líneas */
-  font-weight: 400; /* Peso ligero para la biografía */
-}
-
 .profile-stats {
   display: flex;
   flex-wrap: wrap; /* Permitimos que los elementos se envuelvan en pantallas pequeñas */
