@@ -14,4 +14,10 @@ export class ProductDeliveryComponent {
   toggleInfo(): void {
     this.isInfoVisible = !this.isInfoVisible;
   }
+
+  closeModal(event: Event): void {
+    if ((event.target as HTMLElement).classList.contains('modal-overlay')) {
+        this.isInfoVisible = false;
+    }
+  }
 }

@@ -13,8 +13,8 @@
 
   <!-- Modal -->
   @if (isInfoVisible) {
-      <div class="modal-overlay">
-          <div class="modal-content">
+      <div class="modal-overlay" (click)="closeModal($event)">
+          <div class="modal-content" (click)="$event.stopPropagation()">
               <div class="modal-header">
                   <h2>Protección PurChoose</h2>
                   <button class="close-button" (click)="toggleInfo()">×</button>
