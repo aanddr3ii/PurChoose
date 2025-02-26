@@ -1,0 +1,15 @@
+<div class="user-bar-container">
+    <img class="user-avatar" [src]="user.profilePicture" alt="User avatar">
+    <div class="user-info">
+        <span class="user-name">{{ user.name }}</span>
+        <div class="user-rating">
+            {{ review.rating }}
+        </div>
+    </div>
+    <div class="user-actions">
+        <button class="favorite-button">
+            <span class="favorites-button">Favorites</span>
+        </button>
+        <button class="chat-button">Chat</button>
+    </div>
+</div>

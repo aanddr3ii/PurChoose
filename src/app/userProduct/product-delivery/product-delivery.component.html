@@ -1,16 +1,16 @@
 <div class="product-delivery-container">
     <div class="product-delivery-header">
-        <h1>{{ productTitle.estimatedTime }}</h1>
+        <h1>Entrega en 4 - 8 días</h1>
         <button (click)="toggleInfo()">+ info</button>
     </div>
     <div class="product-delivery-options">
         <div class="product-delivery-option">
-            <img [src]="productDelivery.pointPicture" alt="Recogida">
-            <p>{{ productDelivery.deliveryPointP }} <span>{{ productDelivery.deliveryPoint }}</span></p>
+            <img src="https://prod-delivery-resources.wallapop.com/default_office_v2.png" alt="Recogida">
+            <p>En punto de recogida <span>desde 2.59 EUR</span></p>
         </div>
         <div class="product-delivery-option">
-            <img [src]="productDelivery.homePicture" alt="Entrega a domicilio">
-            <p>{{ productDelivery.deliveryHomeP }} <span>{{ productDelivery.deliveryHome }}</span></p>
+            <img src="https://prod-delivery-resources.wallapop.com/default_home_v2.png" alt="Entrega a domicilio">
+            <p>En mi dirección <span>desde 3.49 EUR</span></p>
         </div>
     </div>
 </div>
@@ -20,14 +20,19 @@
     <div class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
+                <h2>Entrega en 3 - 7 días</h2>
                 <button class="close-button" (click)="toggleInfo()">×</button>
             </div>
             <div class="modal-body">
+                <p>Calculamos la fecha de entrega teniendo en cuenta que:</p>
                 <ul>
-                    <h2>{{ productInfo.infoTitle }}</h2>
-                    <h3>{{ productInfo.infosubTitle }}</h3>
-                    <li>{{ productInfo.infoParagraph1 }}<b>{{ productInfo.infoParagraph1B }}</b>{{ productInfo.infoParagraph11 }}</li>
-                    <li>{{ productInfo.infoParagraph2 }}<b> {{ productInfo.infoParagraph2B }}</b> {{ productInfo.infoParagraph22 }}</li>
+                    <li>
+                        El tiempo que tiene el vendedor para entregar el paquete a la empresa de transporte 
+                        (<b>de 1 a 5 días</b>).
+                    </li>
+                    <li>
+                        Una vez que tengan el paquete, el <b>plazo de entrega</b> dependerá de la empresa de transporte seleccionada.
+                    </li>
                 </ul>
             </div>
         </div>

@@ -1,11 +1,8 @@
 .product-delivery-container {
-    border: 1px solid #d1d1d1;
-    border-radius: 10px;
     padding: 16px;
-    background-color: #fff;
-    font-family: Arial, sans-serif;
-    width: 100%;
-    max-width: 600px;
+    background-color: white;
+    font-family: Arial;
+    width: 568px; /* Adjust width */
 }
 
 .product-delivery-header {
@@ -20,13 +17,21 @@
     margin: 0;
 }
 
+
 .product-delivery-header button {
     background: none;
     border: none;
-    color: #00796b;
+    color: #007bff;
     font-weight: bold;
     cursor: pointer;
+    font-size: 14px;
 }
+
+.product-delivery-header button:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
 
 .product-delivery-options {
     margin-top: 12px;
@@ -54,6 +59,7 @@
 }
 
 /* Modal Styles */
+/* Modal Background Overlay */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -67,66 +73,65 @@
     z-index: 9999;
 }
 
+/* Modal Container */
 .modal-content {
     background: white;
     padding: 20px;
     border-radius: 12px;
-    width: 360px;
+    width: 340px;
     max-width: 90%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     text-align: left;
 }
 
+/* Modal Header */
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 12px;
 }
 
 .modal-header h2 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     margin: 0;
-    color: #333;
-}
-
-.close-button {
-    background: none;
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #666;
-}
-
-.close-button:hover {
     color: black;
 }
 
+/* Close Button */
+.close-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+}
+
+.close-button:hover {
+    color: #ff3b3b;
+}
+
+/* Modal Body */
 .modal-body {
     padding-top: 12px;
 }
 
-.modal-body h3 {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
+.modal-body p {
+    font-size: 14px;
+    color: black;
 }
 
 .modal-body ul {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: disc;
+    padding-left: 18px;
 }
 
 .modal-body ul li {
     font-size: 14px;
-    margin-bottom: 10px;
-    color: #555;
+    margin-bottom: 8px;
 }
 
 .modal-body ul li b {
     font-weight: bold;
-    color: #333;
 }

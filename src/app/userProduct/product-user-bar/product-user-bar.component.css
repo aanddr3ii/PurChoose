@@ -1,0 +1,66 @@
+.user-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    width: 568px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* Space between name and rating */
+}
+
+.user-name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.user-rating {
+    display: flex;
+}
+
+.star {
+    color: #FFA500;
+    font-size: 18px;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.favorite-button, .chat-button {
+    border: none;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.favorite-button {
+    padding: 8px 16px;
+    border: 1px solid #c0c0c0;
+    border-radius: 20px;
+    color: #cf1717;
+    background: transparent;
+    font-weight: bold;
+}
+
+.chat-button {
+    padding: 8px 16px;
+    border: 1px solid #17cfcf;
+    border-radius: 20px;
+    color: #17cfcf;
+    background: transparent;
+    font-weight: bold;
+}

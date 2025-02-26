@@ -1,43 +1,34 @@
 <div class="product-refund-container">
-    <div class="product-refund-header">
-      <h1>{{ refundTitle.title }}</h1>
+  <div class="product-refund-header">
+      <h1>Protección PurChoose</h1>
       <button class="info-button" (click)="toggleInfo()">+ info</button>
-    </div>
-  
-    <div class="product-refund-description">
-      <p>{{ refundTitle.descrptionPart1 }}</p>
-      <p>{{ refundTitle.descrptionPart2 }}</p>
-    </div>
-  
-    <!-- Modal -->
-    @if (isInfoVisible) {
-      <div class="modal-overlay">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2>{{ refundTitle.title }}</h2>
-            <button class="close-button" (click)="toggleInfo()">×</button>
-          </div>
-          <div class="modal-body">
-            <ul>
-                <p>{{ refundInfo.subTitlePart1 }}</p>
-                <p>{{ refundInfo.subTitlePart2 }}</p>
-                <p>{{ refundInfo.subTitlePart3 }}</p>
-
-                <p>{{ refundInfo.ParagraphonePart1 }}</p>
-                <p>{{ refundInfo.ParagraphonePart2 }}</p>
-
-                <p>{{ refundInfo.ParagraphtwoPart1 }}</p>
-                <p>{{ refundInfo.ParagraphtwoPart2 }}</p>
-                <p>{{ refundInfo.ParagraphtwoPart3 }}</p>
-
-                <p>{{ refundInfo.ParagraphthreePart1 }}</p>
-                <p>{{ refundInfo.ParagraphthreePart2 }}</p>
-
-                <p>{{ refundInfo.ParagraphfourPart1 }}</p>
-            </ul>
-          </div>
-        </div>
-      </div>
-    }
   </div>
-  
+
+  <div class="product-refund-content">
+      <div class="product-refund-item">
+      <span><p>Compra sin preocupaciones mediante nuestro servicio de envíos. Transacción
+      protegida con reembolso, pagos seguros y ayuda siempre que la necesites.</p></span>
+      </div>
+  </div>
+
+  <!-- Modal -->
+  @if (isInfoVisible) {
+      <div class="modal-overlay">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h2>Protección PurChoose</h2>
+                  <button class="close-button" (click)="toggleInfo()">×</button>
+              </div>
+              <div class="modal-body">
+                  <p>Cuando compras tu producto mediante nuestro servicio de envío, cobramos una tarifa por:</p>
+                  <ul>
+                      <li>✔ Proteger tu dinero hasta que compruebes que el producto está en orden.</li>
+                      <li>✔ Reembolsar el importe si el producto no es como se describía. Si necesitas devolverlo, es gratis.</li>
+                      <li>✔ Reembolsarte si el producto se pierde o resulta dañado durante el envío.</li>
+                      <li>✔ Asistencia cuando la necesites.</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  }
+</div>

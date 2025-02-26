@@ -1,6 +1,10 @@
-<div>
-    <h1>Detalles del producto</h1>
-    <p>{{ product.description }}</p>
-    <p>{{ product.state }}</p>
-    <p>{{ category.text }}</p>
+<div class="product-description">
+    <h2 class="product-title">Detalles del producto</h2>
+    <p class="product-text">{{ product.description }}</p>
+    
+    <p class="product-state">Estado: <span>{{ product.state }}</span></p>
+    
+    <div class="product-category">
+        <span>{{ category.text }}</span>
+    </div>
 </div>
