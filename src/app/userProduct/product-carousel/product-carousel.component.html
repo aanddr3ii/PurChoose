@@ -1,14 +1,37 @@
 <div class="slider-container">
-    <!-- Botón para ir atrás -->
-    <button class="slider-button prev" (click)="prevSlide()">&#8249;</button>
-    <div class="slider">
-      <div #slider class="image-container" [style.transform]="'translateX(' + (-currentIndex * 200) + 'px)'">
-        <!-- Repetir todas las imágenes -->
-        @for (image of images; track image.id) {
-          <img [src]="image.src" class="slider-image" />
-        }
+  <!-- Previous Button (Hidden at First Image) -->
+  <button 
+      class="slider-button prev" 
+      (click)="prevSlide()" 
+      [disabled]="currentIndex === 0"
+      [class.disabled]="currentIndex === 0"
+  >
+      &#8249;
+  </button>
+
+  <div class="slider">
+      <div class="image-container" 
+          [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
+          @for (image of products; track image.id) {
+              <img [src]="image.src" class="slider-image" />
+          }
       </div>
-    </div>
-    <!-- Botón para ir adelante -->
-    <button class="slider-button next" (click)="nextSlide()">&#8250;</button>
+  </div>
+
+  <!-- Next Button (Hidden at Last Image) -->
+  <button 
+      class="slider-button next" 
+      (click)="nextSlide()" 
+      [disabled]="currentIndex === products.length - 1"
+      [class.disabled]="currentIndex === products.length - 1"
+  >
+      &#8250;
+  </button>
+
+  <!-- Indicators -->
+  <div class="indicators">
+      @for (index of products; track $index) {
+          <span (click)="goToImage($index)" [class.active]="$index === currentIndex">•</span>
+      }
+  </div>
 </div>
