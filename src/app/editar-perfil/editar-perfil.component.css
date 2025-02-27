@@ -152,3 +152,27 @@
     max-width: 200px; /* Reducimos el ancho máximo */
   }
 }
+/* Estilo base para el enlace que parece un botón */
+.a-button {
+  display: inline-block; /* Hace que el enlace se comporte como un bloque */
+  padding: 10px 20px; /* Espaciado interior */
+  font-size: 16px; /* Tamaño de fuente */
+  color: #ffffff; /* Color del texto */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none; /* Quita el subrayado del enlace */
+  background-color: #007bff; /* Color de fondo */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+/* Efecto hover para cuando el usuario pasa el mouse sobre el "botón" */
+.a-button:hover {
+  background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
+}
+
+/* Opcional: efecto active para cuando el "botón" está siendo presionado */
+.a-button:active {
+  background-color: #004085; /* Cambia el color de fondo al hacer clic */
+}

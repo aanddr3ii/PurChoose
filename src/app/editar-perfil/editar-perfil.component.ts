@@ -28,7 +28,7 @@ export class EditarPerfilComponent {
     this.editForm = this.fb.group({
       nombre: [this.user.name, Validators.required], // Campo obligatorio
       ubicacion: [this.user.location || '', []], // Campo opcional
-      telefono: [this.user.phone || null, [Validators.required, Validators.pattern(/^\d{10}$/)]], // Validación básica para teléfono (10 dígitos)
+      telefono: [this.user.phone || null, [Validators.required, Validators.pattern(/^\d{11}$/)]], // Validación básica para teléfono (10 dígitos)
       email: [this.user.email, [Validators.required, Validators.email]], // Campo obligatorio
       fotoPerfil: [this.user.profilePicture || null], // Campo para el archivo de imagen
     });

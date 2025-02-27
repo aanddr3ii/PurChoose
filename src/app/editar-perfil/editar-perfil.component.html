@@ -5,7 +5,7 @@
 
  <div class="edit-profile-container">
   <h2 class="section-title">Editar Perfil</h2>
-
+  
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="edit-form">
     <!-- Nombre -->
     <div class="form-group">
@@ -75,6 +75,10 @@
     <!-- Botón de Guardar Cambios -->
     <button type="submit" class="save-button" [disabled]="!editForm.valid">
       Guardar Cambios
-    </button>
+    </button>    
+    <br>
+    <a routerLink="/perfil" class="a-button">
+      <i class="fas fa-arrow-left"></i> Volver a Perfil
+    </a>
   </form>
 </div>
