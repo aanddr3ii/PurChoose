@@ -19,12 +19,12 @@ export class ProductDescriptionComponent {
     title: 'Botas esqui tecnica',
     state: 'Nuevo',
     location: 'Madrid',
-    description: 'botas de esqui marca Nordica tamaño de la suela 295 mm, talla 25-25,5en buen estado.'
+    description: 'Botas de esqui marca Nordica tamaño de la suela 295 mm, talla 25-25,5en buen estado.'
   };
 
   category: Category = {
     id: 1,
-    text: 'Deportes y Fitness'
+    text: 'Montaña y esquí'
   };
   
 }
