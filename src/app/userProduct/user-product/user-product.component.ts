@@ -18,6 +18,7 @@ import { ProductLocationComponent } from "../product-location/product-location.c
   templateUrl: './user-product.component.html',
   styleUrl: './user-product.component.css'
 })
+
 export class UserProductComponent {
 
 }

@@ -1,7 +1,7 @@
 <div class="triple-product-container">
   <div class="product-grid">
     @for (product of products; track product.id) {
-      @if (product.id <= 3) {
+      @if (product.id != null) {
         <div class="featured-product">
           <div class="text-content">
             <h2>{{ product.description }}</h2>  <!-- 🔹 Se usa Interpolación -->
