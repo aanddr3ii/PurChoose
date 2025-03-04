@@ -13,7 +13,7 @@ export class ProductFooterComponent {
     id: 1,
     src: '',
     price: 51.29,
-    title: 'botas de esqui marca Nordica',
+    title: 'Botas de esqui marca Nordica',
     state: 'nuevo',
     location: '',
     description: 'botas de esqui marca Nordica tamaño de la suela 295 mm, talla 25-25,5en buen estado.'

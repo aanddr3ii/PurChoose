@@ -1,8 +1,9 @@
 .product-delivery-container {
-    padding: 16px;
+    padding: 0px;
     background-color: white;
     font-family: Arial;
-    width: 568px; /* Adjust width */
+    width: 568px;
+    margin-bottom: -2px;
 }
 
 .product-delivery-header {

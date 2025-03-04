@@ -6,32 +6,23 @@
     width: 568px;
 }
 
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .user-avatar {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 10px;
-}
-
-.user-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px; /* Space between name and rating */
 }
 
 .user-name {
     font-weight: bold;
     font-size: 18px;
-}
-
-.user-rating {
-    display: flex;
-}
-
-.star {
-    color: #FFA500;
-    font-size: 18px;
+    font-family: Arial;
 }
 
 .user-actions {
@@ -47,20 +38,41 @@
     cursor: pointer;
 }
 
+/* Favorite Button */
 .favorite-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 8px 16px;
-    border: 1px solid #c0c0c0;
-    border-radius: 20px;
-    color: #cf1717;
-    background: transparent;
+    border-radius: 16px;
+    color: black;
+    font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
+    background: #eceff1;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
 }
 
-.chat-button {
-    padding: 8px 16px;
-    border: 1px solid #17cfcf;
-    border-radius: 20px;
-    color: #17cfcf;
-    background: transparent;
-    font-weight: bold;
+.favorite-button:hover {
+    background-color: #fc6c64;
 }
+
+/* Chat Button */
+.chat-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 16px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #007bff;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.chat-button:hover {
+    background-color: #0056b3;
+}
+

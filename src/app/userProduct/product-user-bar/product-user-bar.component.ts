@@ -13,20 +13,15 @@ export class ProductUserBarComponent {
 
   user: User = {
     id: 1,
-    name: 'Paco',
+    name: 'Yassine Riahi El Kihal',
     email: 'paco@gmailcom',
     password: '1234',
     role: 'user',
     registrationDate: new Date(),
     location: 'New York',
     phone: 1234567890,
-    profilePicture: 'https://static01.nyt.com/images/2025/01/17/espanol/17dc-trump-photo-01-cpvw-ES-copy1/17dc-trump-photo-01-cpvw-ES-copy1-facebookJumbo-v2.jpg'
+    profilePicture: 'https://media.licdn.com/dms/image/v2/D5603AQHyYxdhP8mV2Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719498858263?e=1746662400&v=beta&t=xnDUsAahOKC7h71UEz88i_eXIP5gjH6s9jiTbPlGCzs'
   };
 
-  review: Review = {
-    id: 1,
-    text: 'Deportes y Fitness',
-    rating: 3
-  };
 };
 

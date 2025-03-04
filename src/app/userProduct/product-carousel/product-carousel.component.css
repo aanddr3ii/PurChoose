@@ -5,7 +5,6 @@
   max-width: 550px;
   max-height: 300px;
   margin: 0 auto;
-  overflow: hidden;
   border-radius: 10px;
   padding: 0.2rem;
   image-resolution: 100%;
@@ -67,18 +66,28 @@
 
 /* Indicadores */
 .indicators {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 16px;
 }
 
+/* Indicator Dots */
 .indicators span {
-  font-size: 24px;
+  font-size: 14px;
   cursor: pointer;
-  margin: 0 5px;
-  transition: color 0.3s ease;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s ease, transform 0.2s ease-in-out;
+  scale: 1.0;
 }
 
+/* Active Indicator */
 .indicators .active {
   color: #007bff;
+  transform: scale(2.6);
 }
