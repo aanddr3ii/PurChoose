@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { CardProductComponent } from "../../card-product/card-product.component";
 
 @Component({
   selector: 'app-product-refund',
   standalone: true,
-  imports: [CardProductComponent],
+  imports: [],
   templateUrl: './product-refund.component.html',
   styleUrl: './product-refund.component.css'
 })
