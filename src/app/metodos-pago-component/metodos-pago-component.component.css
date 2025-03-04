@@ -27,11 +27,11 @@
     margin-bottom: 10px;
   }
   
-  /* Botones de servicios de pago */
+  /* Botones de servicios de pago (usando tu CSS) */
   .payment-buttons {
     display: flex;
     gap: 15px;
-    flex-wrap: wrap; /* Permitimos que los botones se envuelvan en pantallas pequeñas */
+    margin-bottom: 20px;
     justify-content: center; /* Centramos los botones horizontalmente */
   }
   
@@ -39,13 +39,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 15px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 120px; /* Ancho fijo para los botones */
-    height: 60px; /* Altura fija para los botones */
+    width: 120px; /* Ancho fijo */
+    height: 60px; /* Altura fija */
   }
   
   .payment-button:hover {
@@ -55,16 +55,16 @@
   
   /* Estilo para cada servicio */
   .payment-button img {
-    max-width: 100%; /* Aseguramos que las imágenes se ajusten al tamaño del botón */
+    max-width: 100%; /* Ajustamos las imágenes al contenedor */
     height: auto;
   }
   
   .payment-button.paypal {
-    background-color: #003087; /* Azul oscuro de PayPal */
+    background-color: #b8cbee; /* Azul claro de PayPal */
   }
   
   .payment-button.stripe {
-    background-color: #69c; /* Morado claro de Stripe */
+    background-color: rgb(202, 200, 200); /* Gris claro de Stripe */
   }
   
   .payment-button.apple-pay {
@@ -201,6 +201,13 @@
   }
   
   /* Responsive Design */
-  @media (max-width: 768px){
-    
+  @media (max-width: 768px) {
+    .payment-button {
+      width: 100px; /* Reducimos el ancho en pantallas pequeñas */
+      height: 50px; /* Reducimos la altura en pantallas pequeñas */
+    }
+  
+    .popup-content {
+      max-width: 300px; /* Ajustamos el ancho del popup */
+    }
   }
