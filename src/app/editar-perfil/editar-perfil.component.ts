@@ -6,18 +6,26 @@ import { User } from '../interfaces/user';
 import { UserService } from '../services/userService/user.service';
 import { NavBeltComponent } from "../nav-belt/nav-belt.component";
 import { NavCategoriesComponent } from "../nav-categories/nav-categories.component";
+import { MetodosPagoComponentComponent } from '../metodos-pago-component/metodos-pago-component.component';
 
 @Component({
   selector: 'app-editar-perfil',
   templateUrl: './editar-perfil.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, NavBeltComponent, NavCategoriesComponent],
+  imports: [ReactiveFormsModule, RouterModule, NavBeltComponent, NavCategoriesComponent, MetodosPagoComponentComponent],
   styleUrls: ['./editar-perfil.component.css']
 })
 export class EditarPerfilComponent {
   editForm!: FormGroup; // Formulario reactivo
   previewImage!: string | null; // Variable para mostrar una vista previa de la imagen
+  prefixes = [
+    { value: '+1', flag: '🇺🇸' },
+    { value: '+351', flag: '🇵🇹' },
+    { value: '+33', flag: '🇫🇷' },
+    { value: '+34', flag: '🇪🇸' }
+  ]; // Lista de prefijos
   user!: User; // Propiedad para almacenar el usuario actual
+  activeTab: 'perfil' | 'metodos-pago' = 'perfil'; // Propiedad para gestionar las pestañas
 
   constructor(private fb: FormBuilder, private userService: UserService) {}
 
@@ -26,11 +34,13 @@ export class EditarPerfilComponent {
 
     // Inicializamos el formulario con los datos actuales del usuario
     this.editForm = this.fb.group({
-      nombre: [this.user.name, Validators.required], // Campo obligatorio
-      ubicacion: [this.user.location || '', []], // Campo opcional
-      telefono: [this.user.phone || null, [Validators.required, Validators.pattern(/^\d{11}$/)]], // Validación básica para teléfono (10 dígitos)
+      name: [this.user.name, Validators.required], // Campo obligatorio
+      location: [this.user.location || '', []], // Campo opcional
+      phone: [this.user.phone || null, [Validators.required, Validators.pattern(/^\d{9}$/)]], // Validación básica para teléfono (9 dígitos sin prefijo)
       email: [this.user.email, [Validators.required, Validators.email]], // Campo obligatorio
-      fotoPerfil: [this.user.profilePicture || null], // Campo para el archivo de imagen
+      profilePicture: [this.user.profilePicture || null], // Campo para el archivo de imagen
+      prefijo: ['+34', Validators.required], // Prefijo telefónico con validación
+      password: ['', []] // Campo para la contraseña (sin validación por ahora)
     });
   }
 
@@ -38,8 +48,8 @@ export class EditarPerfilComponent {
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.editForm.patchValue({ fotoPerfil: file }); // Actualizamos el campo "fotoPerfil"
-      this.editForm.get('fotoPerfil')?.updateValueAndValidity();
+      this.editForm.patchValue({ profilePicture: file }); // Actualizamos el campo "profilePicture"
+      this.editForm.get('profilePicture')?.updateValueAndValidity();
 
       // Mostramos una vista previa de la imagen
       const reader = new FileReader();
@@ -53,9 +63,13 @@ export class EditarPerfilComponent {
     if (this.editForm.valid) {
       const updatedUserData: Partial<User> = this.editForm.value;
 
-      // Verificamos si el valor de fotoPerfil es un archivo válido
-      const fotoPerfilValue = this.editForm.get('fotoPerfil')?.value;
-      if (fotoPerfilValue && !(fotoPerfilValue instanceof File)) {
+      // Concatenamos el prefijo y el número de teléfono antes de guardar
+      const fullPhoneNumber = `${this.editForm.value.prefijo}${this.editForm.value.phone}`;
+      updatedUserData.phone = parseInt(fullPhoneNumber, 10); // Guardamos el número completo
+
+      // Verificamos si el valor de profilePicture es un archivo válido
+      const profilePictureValue = this.editForm.get('profilePicture')?.value;
+      if (profilePictureValue && !(profilePictureValue instanceof File)) {
         delete updatedUserData.profilePicture; // Eliminamos la propiedad si no es un archivo
       }
 
@@ -63,8 +77,8 @@ export class EditarPerfilComponent {
       this.userService.updateUser(updatedUserData);
 
       // Si hay una imagen seleccionada, la manejamos por separado
-      if (fotoPerfilValue instanceof File) {
-        this.handleImageUpload(fotoPerfilValue as File);
+      if (profilePictureValue instanceof File) {
+        this.handleImageUpload(profilePictureValue as File);
       }
 
       alert('Cambios guardados exitosamente.');

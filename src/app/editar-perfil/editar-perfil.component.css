@@ -1,12 +1,19 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Contenedor principal */
 .edit-profile-container {
   background-color: #fff;
   border-radius: 15px; /* Radio redondeado */
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Sombra pronunciada */
-  padding: 25px 30px; /* Espaciado interno con más padding lateral */
+  padding: 25px 30px; /* Espaciado interno */
   width: 100%;
-  max-width: 600px; /* Mantenemos el ancho máximo */
-  margin: 50px auto; /* Espaciado exterior */
+  max-width: 600px; /* Ancho máximo */
+  margin: 50px auto; /* Centrado horizontal */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,25 +53,57 @@
   font-weight: 500; /* Peso ligeramente más grueso */
 }
 
-/* Campos de entrada */
+/* Campos de entrada (inputs y selects) */
 .form-group input,
-.form-group textarea {
-  padding: 12px 15px; /* Espaciado interno */
+.form-group select {
+  padding: 12px 15px; /* Espaciado interno consistente */
   border: 1px solid #ccc; /* Borde suave */
-  border-radius: 8px; /* Bordes redondeados */
-  font-size: 15px; /* Tamaño del texto */
-  width: 100%; /* Ajustamos el ancho */
+  border-radius: 6px; /* Bordes redondeados */
+  font-size: 14px; /* Tamaño del texto */
+  width: 100%; /* Todos los campos ocupan el mismo ancho */
   transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transición para hover */
 }
 
 /* Hover en campos de entrada */
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group select:focus {
   border-color: #007bff; /* Borde azul al enfocar */
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* Sombra al enfocar */
   outline: none; /* Quitamos el contorno al enfocar */
 }
 
+/* Contenedor para teléfono y prefijo */
+.phone-group .phone-container {
+  display: flex;
+  align-items: center; /* Alineamos verticalmente */
+  gap: 10px; /* Espaciado entre los elementos */
+  width: 100%; /* El contenedor ocupa todo el ancho */
+}
+
+/* Estilo para el desplegable de prefijos (reducimos el ancho) */
+.prefix-select {
+  padding: 12px 15px; /* Ajustamos el padding para que coincida con los demás campos */
+  border: 1px solid #ccc; /* Borde suave */
+  border-radius: 6px; /* Bordes redondeados */
+  font-size: 14px; /* Tamaño del texto */
+  width: 100px; /* Reducimos el ancho del desplegable */
+  appearance: none; /* Quitamos el estilo nativo del desplegable */
+  background-color: #fff; /* Fondo blanco */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M7%2010l5%205%205-5z%22%2F%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+/* Estilo para el campo de teléfono (ajustamos el ancho máximo) */
+.phone-input {
+  padding: 12px 15px; /* Ajustamos el padding para que coincida con los demás campos */
+  border: 1px solid #ccc; /* Borde suave */
+  border-radius: 6px; /* Bordes redondeados */
+  font-size: 14px; /* Tamaño del texto */
+  flex-grow: 1; /* El campo de teléfono ocupa el espacio restante */
+  max-width: calc(100% - 120px); /* Ajustamos el ancho máximo para dar espacio al prefijo */
+}
 /* Vista previa de la imagen */
 .avatar-preview-container {
   display: flex;
@@ -130,29 +169,7 @@
   box-shadow: none;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .edit-profile-container {
-    padding: 20px 25px; /* Reducimos el padding en pantallas pequeñas */
-  }
-
-  .section-title {
-    font-size: 24px; /* Reducimos el tamaño del título */
-  }
-
-  .form-group input,
-  .form-group textarea {
-    font-size: 14px; /* Reducimos el tamaño del texto */
-    padding: 10px 12px; /* Reducimos el padding */
-  }
-
-  .save-button {
-    font-size: 15px; /* Reducimos el tamaño del texto */
-    padding: 10px 20px; /* Reducimos el padding */
-    max-width: 200px; /* Reducimos el ancho máximo */
-  }
-}
-/* Estilo base para el enlace que parece un botón */
+/* Enlace "Volver a Perfil" */
 .a-button {
   display: inline-block; /* Hace que el enlace se comporte como un bloque */
   padding: 10px 20px; /* Espaciado interior */
@@ -167,12 +184,86 @@
   transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
 }
 
-/* Efecto hover para cuando el usuario pasa el mouse sobre el "botón" */
 .a-button:hover {
   background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
 }
 
-/* Opcional: efecto active para cuando el "botón" está siendo presionado */
 .a-button:active {
   background-color: #004085; /* Cambia el color de fondo al hacer clic */
+}
+/* Pestañas */
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  background-color: transparent;
+  color: #666;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+.tab-button.active,
+.tab-button:hover {
+  color: #007bff;
+}
+
+/* Línea debajo de la pestaña activa */
+.tab-button::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 3px;
+  background-color: #007bff;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.tab-button.active::after {
+  width: 100%;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .edit-profile-container {
+    padding: 20px 25px; /* Reducimos el padding en pantallas pequeñas */
+  }
+
+  .section-title {
+    font-size: 24px; /* Reducimos el tamaño del título */
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 14px; /* Reducimos el tamaño del texto */
+    padding: 10px 12px; /* Reducimos el padding */
+  }
+
+  .save-button {
+    font-size: 15px; /* Reducimos el tamaño del texto */
+    padding: 10px 20px; /* Reducimos el padding */
+    max-width: 200px; /* Reducimos el ancho máximo */
+  }
+
+  .phone-container {
+    flex-direction: column; /* Apilamos los campos en pantallas pequeñas */
+    align-items: flex-start; /* Alineamos a la izquierda */
+  }
+
+  .prefix-select,
+  .phone-input {
+    width: 30%; /* Ambos campos ocupan todo el ancho */
+    margin-bottom: 10px; /* Espacio entre los campos */
+  }
 }
