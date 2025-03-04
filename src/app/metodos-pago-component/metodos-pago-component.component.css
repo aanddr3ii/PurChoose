@@ -1,0 +1,213 @@
+/* Contenedor principal */
+.payment-methods-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título */
+  .section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Sección de métodos de pago */
+  .payment-section {
+    margin-bottom: 20px;
+  }
+  
+  .payment-section h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  /* Botones de servicios de pago (usando tu CSS) */
+  .payment-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: center; /* Centramos los botones horizontalmente */
+  }
+  
+  .payment-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 120px; /* Ancho fijo */
+    height: 60px; /* Altura fija */
+  }
+  
+  .payment-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo para cada servicio */
+  .payment-button img {
+    max-width: 100%; /* Ajustamos las imágenes al contenedor */
+    height: auto;
+  }
+  
+  .payment-button.paypal {
+    background-color: #b8cbee; /* Azul claro de PayPal */
+  }
+  
+  .payment-button.stripe {
+    background-color: rgb(202, 200, 200); /* Gris claro de Stripe */
+  }
+  
+  .payment-button.apple-pay {
+    background-color: #000; /* Negro de Apple Pay */
+  }
+  
+  .payment-button.apple-pay img {
+    filter: invert(1); /* Invertimos los colores de la imagen para que sea blanca */
+  }
+  
+  /* Overlay del popup */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Contenido del popup */
+  .popup-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px; /* Ancho máximo del popup */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Sombra pronunciada */
+    position: relative;
+  }
+  
+  /* Título del popup */
+  .popup-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  /* Formulario dentro del popup */
+  .add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  
+  .form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  /* Botones dentro del popup */
+  .save-button,
+  .cancel-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .save-button {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .save-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.03);
+  }
+  
+  .cancel-button {
+    background-color: #ccc;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  .cancel-button:hover {
+    background-color: #aaa;
+  }
+  
+  /* Lista de servicios de pago */
+  .servicios-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .servicio-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Botón de eliminar */
+  .delete-button {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-button:hover {
+    background-color: #e53935;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .payment-button {
+      width: 100px; /* Reducimos el ancho en pantallas pequeñas */
+      height: 50px; /* Reducimos la altura en pantallas pequeñas */
+    }
+  
+    .popup-content {
+      max-width: 300px; /* Ajustamos el ancho del popup */
+    }
+  }
