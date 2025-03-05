@@ -58,6 +58,38 @@
   "BANNER": {
     "TITLE": "Multiple Products",
     "DESCRIPTION": "Multiple selection with great variety of products"
+  },
+
+  "PRODUCT-USER-BAR": {
+    "FAVORITE-BUTTON": "Favorite",
+    "CHAT-BUTTON": "Chat"
+  },
+
+  "PRODUCT-DELIVERY": {
+    "HEADER": "Delivery in 3 - 6 days",
+    "INFO-BUTTON": "+ info",
+    "PICKUP-OPTION": "At pickup point",
+    "PICKUP-PRICE": "from 2.59 EUR",
+    "HOME-DELIVERY-OPTION": "At my address",
+    "HOME-DELIVERY-PRICE": "from 3.49 EUR",
+    "MODAL-DESCRIPTION": "We calculate the delivery date considering:",
+    "MODAL-POINT-1": "The time the seller has to hand over the package to the transport company (",
+    "MODAL-POINT-1.1": "1 to 5 days",
+    "MODAL-POINT-1.2": ").",
+    "MODAL-POINT-2": "Once they have the package, the",
+    "MODAL-POINT-2.1": "delivery time",
+    "MODAL-POINT-2.2": "will depend on the selected transport company."
+  },
+
+  "PRODUCT-REFUND": {
+    "HEADER": "PurChoose Protection",
+    "INFO-BUTTON": "+ info",
+    "DESCRIPTION": "Buy with peace of mind using our shipping service. Transaction protected with refund, secure payments, and assistance whenever you need it.",
+    "MODAL-DESCRIPTION": "When you purchase your product using our shipping service, we charge a fee for:",
+    "MODAL-POINT-1": "✔ Protecting your money until you verify that the product is in good condition.",
+    "MODAL-POINT-2": "✔ Refunding the amount if the product is not as described. If you need to return it, it's free.",
+    "MODAL-POINT-3": "✔ Refunding you if the product is lost or damaged during shipping.",
+    "MODAL-POINT-4": "✔ Assistance whenever you need it."
   }
   
 }

@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { User } from '../../interfaces/user';
-import { Review } from '../../interfaces/review'
-
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-product-user-bar',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './product-user-bar.component.html',
   styleUrl: './product-user-bar.component.css'
 })

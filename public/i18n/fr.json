@@ -57,5 +57,39 @@
   "BANNER": {
     "TITLE": "Produits Multiples",
     "DESCRIPTION": "Sélection multiple avec une grande variété de produits"
+  },
+
+  "PRODUCT-USER-BAR": {
+    "FAVORITE-BUTTON": "Favori",
+    "CHAT-BUTTON": "Discussion"
+  },
+
+  "PRODUCT-DELIVERY": {
+    "HEADER": "Livraison en 3 - 6 jours",
+    "INFO-BUTTON": "+ info",
+    "PICKUP-OPTION": "Point de retrait",
+    "PICKUP-PRICE": "à partir de 2,59 EUR",
+    "HOME-DELIVERY-OPTION": "À mon adresse",
+    "HOME-DELIVERY-PRICE": "à partir de 3,49 EUR",
+    "MODAL-TITLE": "Livraison en 3 - 7 jours",
+    "MODAL-DESCRIPTION": "Nous calculons la date de livraison en tenant compte de :",
+    "MODAL-POINT-1": "Le temps que le vendeur a pour remettre le colis à la société de transport (",
+    "MODAL-POINT-1.1": "de 1 à 5 jours",
+    "MODAL-POINT-1.2": ").",
+    "MODAL-POINT-2": "Une fois qu'ils ont le colis, le",
+    "MODAL-POINT-2.1": "délai de livraison",
+    "MODAL-POINT-2.2": "dépendra de la société de transport sélectionnée."
+  },
+
+  "PRODUCT-REFUND": {
+    "HEADER": "Protection PurChoose",
+    "INFO-BUTTON": "+ info",
+    "DESCRIPTION": "Achetez en toute tranquillité grâce à notre service d'expédition. Transaction protégée avec remboursement, paiements sécurisés et assistance quand vous en avez besoin.",
+    "MODAL-DESCRIPTION": "Lorsque vous achetez votre produit via notre service d'expédition, nous facturons des frais pour :",
+    "MODAL-POINT-1": "✔ Protéger votre argent jusqu'à ce que vous vérifiiez que le produit est en bon état.",
+    "MODAL-POINT-2": "✔ Vous rembourser si le produit ne correspond pas à la description. Si vous devez le retourner, c'est gratuit.",
+    "MODAL-POINT-3": "✔ Vous rembourser si le produit est perdu ou endommagé pendant l'expédition.",
+    "MODAL-POINT-4": "✔ Assistance lorsque vous en avez besoin."
   }
+  
 }

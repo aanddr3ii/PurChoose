@@ -1,13 +1,12 @@
 <div class="product-refund-container">
   <div class="product-refund-header">
-      <h1>Protección PurChoose</h1>
-      <button class="info-button" (click)="toggleInfo()">+ info</button>
+      <h1>{{ 'PRODUCT-REFUND.HEADER' | translate }}</h1>
+      <button class="info-button" (click)="toggleInfo()">{{ 'PRODUCT-REFUND.INFO-BUTTON' | translate }}</button>
   </div>
 
   <div class="product-refund-content">
       <div class="product-refund-item">
-      <span><p>Compra sin preocupaciones mediante nuestro servicio de envíos. Transacción
-      protegida con reembolso, pagos seguros y ayuda siempre que la necesites.</p></span>
+      <span><p>{{ 'PRODUCT-REFUND.DESCRIPTION' | translate }}</p></span>
       </div>
   </div>
 
@@ -16,16 +15,16 @@
       <div class="modal-overlay" (click)="closeModal($event)">
           <div class="modal-content" (click)="$event.stopPropagation()">
               <div class="modal-header">
-                  <h2>Protección PurChoose</h2>
+                  <h2>{{ 'PRODUCT-REFUND.HEADER' | translate }}</h2>
                   <button class="close-button" (click)="toggleInfo()">×</button>
               </div>
               <div class="modal-body">
-                  <p>Cuando compras tu producto mediante nuestro servicio de envío, cobramos una tarifa por:</p>
+                  <p>{{ 'PRODUCT-REFUND.MODAL-DESCRIPTION' | translate }}</p>
                   <ul>
-                      <p>✔ Proteger tu dinero hasta que compruebes que el producto está en orden.</p>
-                      <p>✔ Reembolsar el importe si el producto no es como se describía. Si necesitas devolverlo, es gratis.</p>
-                      <p>✔ Reembolsarte si el producto se pierde o resulta dañado durante el envío.</p>
-                      <p>✔ Asistencia cuando la necesites.</p>
+                      <p>{{ 'PRODUCT-REFUND.MODAL-POINT-1' | translate }}</p>
+                      <p>{{ 'PRODUCT-REFUND.MODAL-POINT-2' | translate }}</p>
+                      <p>{{ 'PRODUCT-REFUND.MODAL-POINT-3' | translate }}</p>
+                      <p>{{ 'PRODUCT-REFUND.MODAL-POINT-4' | translate }}</p>
                   </ul>
               </div>
           </div>

@@ -57,6 +57,39 @@
   "BANNER": {
     "TITLE": "Múltiples Productos",
     "DESCRIPTION": "Selección múltiple con gran variedad de productos"
-  }
+  },
+
+  "PRODUCT-USER-BAR": {
+    "FAVORITE-BUTTON": "Favorito",
+    "CHAT-BUTTON": "Chat"
+  },
+
+  "PRODUCT-DELIVERY": {
+    "HEADER": "Entrega en 3 - 6 días",
+    "INFO-BUTTON": "+ info",
+    "PICKUP-OPTION": "En punto de recogida",
+    "PICKUP-PRICE": "desde 2.59 EUR",
+    "HOME-DELIVERY-OPTION": "En mi dirección",
+    "HOME-DELIVERY-PRICE": "desde 3.49 EUR",
+    "MODAL-TITLE": "Entrega en 3 - 7 días",
+    "MODAL-DESCRIPTION": "Calculamos la fecha de entrega teniendo en cuenta:",
+    "MODAL-POINT-1": "El tiempo que tiene el vendedor para entregar el paquete a la empresa de transporte (",
+    "MODAL-POINT-1.1": "de 1 a 5 días",
+    "MODAL-POINT-1.2": ").",
+    "MODAL-POINT-2": "Una vez que tengan el paquete, el",
+    "MODAL-POINT-2.1": "plazo de entrega",
+    "MODAL-POINT-2.2": "dependerá de la empresa de transporte seleccionada."
+  },
+
+  "PRODUCT-REFUND": {
+    "HEADER": "Protección PurChoose",
+    "INFO-BUTTON": "+ info",
+    "DESCRIPTION": "Compra sin preocupaciones mediante nuestro servicio de envíos. Transacción protegida con reembolso, pagos seguros y ayuda siempre que la necesites.",
+    "MODAL-DESCRIPTION": "Cuando compras tu producto mediante nuestro servicio de envío, cobramos una tarifa por:",
+    "MODAL-POINT-1": "✔ Proteger tu dinero hasta que compruebes que el producto está en orden.",
+    "MODAL-POINT-2": "✔ Reembolsar el importe si el producto no es como se describía. Si necesitas devolverlo, es gratis.",
+    "MODAL-POINT-3": "✔ Reembolsarte si el producto se pierde o resulta dañado durante el envío.",
+    "MODAL-POINT-4": "✔ Asistencia cuando la necesites."
+  }  
   
 }

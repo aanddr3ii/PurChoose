@@ -1,62 +1,96 @@
 {
-    "NAV-BELT": {
-      "FAVORITES": "Favoritos",
-      "INBOX": "Caixa de entrada"
-    },
+  "NAV-BELT": {
+    "FAVORITES": "Favoritos",
+    "INBOX": "Caixa de entrada"
+  },
+
+  "NAV-CATEGORIES": {
+    "ALL_CATEGORIES": "Todas as Categorias",
+    "TECHNOLOGY_AND_ELECTRONICS": "Tecnologia e Eletrônicos",
+    "MOVIES_BOOKS_MUSIC": "Filmes, Livros e Música",
+    "FASHION_AND_ACCESSORIES": "Moda e Acessórios",
+    "CARS": "Carros",
+    "HOME_AND_GARDEN": "Casa e Jardim",
+    "MOTOR_AND_ACCESSORIES": "Motores e Acessórios",
+    "REAL_ESTATE": "Imóveis",
+    "SPORTS_AND_LEISURE": "Esportes e Lazer",
+    "BICYCLES": "Bicicletas",
+    "APPLIANCES": "Eletrodomésticos",
+    "KIDS_AND_BABIES": "Crianças e Bebês",
+    "COLLECTIBLES": "Colecionáveis",
+    "CONSTRUCTION_AND_RENOVATIONS": "Construção e Reformas",
+    "INDUSTRY_AND_AGRICULTURE": "Indústria e Agricultura",
+    "MOTORBIKES": "Motos"
+  },
   
-    "NAV-CATEGORIES": {
-      "ALL_CATEGORIES": "Todas as Categorias",
-      "TECHNOLOGY_AND_ELECTRONICS": "Tecnologia e Eletrônicos",
-      "MOVIES_BOOKS_MUSIC": "Filmes, Livros e Música",
-      "FASHION_AND_ACCESSORIES": "Moda e Acessórios",
-      "CARS": "Carros",
-      "HOME_AND_GARDEN": "Casa e Jardim",
-      "MOTOR_AND_ACCESSORIES": "Motores e Acessórios",
-      "REAL_ESTATE": "Imóveis",
-      "SPORTS_AND_LEISURE": "Esportes e Lazer",
-      "BICYCLES": "Bicicletas",
-      "APPLIANCES": "Eletrodomésticos",
-      "KIDS_AND_BABIES": "Crianças e Bebês",
-      "COLLECTIBLES": "Colecionáveis",
-      "CONSTRUCTION_AND_RENOVATIONS": "Construção e Reformas",
-      "INDUSTRY_AND_AGRICULTURE": "Indústria e Agricultura",
-      "MOTORBIKES": "Motos"
-    },
-    
-    "REGISTER": {
-      "TITLE": "Cadastre-se",
-      "DESCRIPTION": "Crie sua conta abaixo. Se já tem uma conta, você pode",
-      "LINK": "Entrar aqui",
-      "FULL_NAME": "Nome Completo",
-      "EMAIL": "E-mail",
-      "DOB": "Data de Nascimento",
-      "PHONE_NUMBER": "Número de Telefone",
-      "SET_PASSWORD": "Definir Senha",
-      "CONFIRM_PASSWORD": "Confirmar Senha",
-      "BUTTON": "Registrar",
-      "FULL_NAME_ERROR": "O nome completo deve ter pelo menos 3 caracteres.",
-      "EMAIL_ERROR": "Insira um endereço de e-mail válido.",
-      "DOB_ERROR": "A data de nascimento é obrigatória.",
-      "PHONE_ERROR": "Insira um número de telefone válido de 10 dígitos.",
-      "PASSWORD_ERROR": "A senha deve ter pelo menos 6 caracteres.",
-      "PASSWORD_MISMATCH": "As senhas não coincidem."
-    },
+  "REGISTER": {
+    "TITLE": "Cadastre-se",
+    "DESCRIPTION": "Crie sua conta abaixo. Se já tem uma conta, você pode",
+    "LINK": "Entrar aqui",
+    "FULL_NAME": "Nome Completo",
+    "EMAIL": "E-mail",
+    "DOB": "Data de Nascimento",
+    "PHONE_NUMBER": "Número de Telefone",
+    "SET_PASSWORD": "Definir Senha",
+    "CONFIRM_PASSWORD": "Confirmar Senha",
+    "BUTTON": "Registrar",
+    "FULL_NAME_ERROR": "O nome completo deve ter pelo menos 3 caracteres.",
+    "EMAIL_ERROR": "Insira um endereço de e-mail válido.",
+    "DOB_ERROR": "A data de nascimento é obrigatória.",
+    "PHONE_ERROR": "Insira um número de telefone válido de 10 dígitos.",
+    "PASSWORD_ERROR": "A senha deve ter pelo menos 6 caracteres.",
+    "PASSWORD_MISMATCH": "As senhas não coincidem."
+  },
+
+  "LOGIN": {
+    "TITLE": "Entrar",
+    "DESCRIPTION": "Não tem uma conta?",
+    "LINK": "Cadastre-se",
+    "EMAIL": "E-mail",
+    "PASSWORD": "Senha",
+    "FORGOT_PASSWORD": "Esqueceu a senha?",
+    "BUTTON": "Entrar",
+    "EMAIL_ERROR": "Insira um endereço de e-mail válido.",
+    "PASSWORD_ERROR": "A senha deve ter pelo menos 6 caracteres."
+  },
   
-    "LOGIN": {
-      "TITLE": "Entrar",
-      "DESCRIPTION": "Não tem uma conta?",
-      "LINK": "Cadastre-se",
-      "EMAIL": "E-mail",
-      "PASSWORD": "Senha",
-      "FORGOT_PASSWORD": "Esqueceu a senha?",
-      "BUTTON": "Entrar",
-      "EMAIL_ERROR": "Insira um endereço de e-mail válido.",
-      "PASSWORD_ERROR": "A senha deve ter pelo menos 6 caracteres."
-    },
-    
-    "BANNER": {
-      "TITLE": "Vários Produtos",
-      "DESCRIPTION": "Seleção múltipla com grande variedade de produtos"
-    }
+  "BANNER": {
+    "TITLE": "Vários Produtos",
+    "DESCRIPTION": "Seleção múltipla com grande variedade de produtos"
+  },
+
+  "PRODUCT-USER-BAR": {
+    "FAVORITE-BUTTON": "Favorito",
+    "CHAT-BUTTON": "Bate-papo"
+  },
+
+  "PRODUCT-DELIVERY": {
+    "HEADER": "Entrega em 3 - 6 dias",
+    "INFO-BUTTON": "+ info",
+    "PICKUP-OPTION": "No ponto de retirada",
+    "PICKUP-PRICE": "a partir de 2,59 EUR",
+    "HOME-DELIVERY-OPTION": "No meu endereço",
+    "HOME-DELIVERY-PRICE": "a partir de 3,49 EUR",
+    "MODAL-TITLE": "Entrega em 3 - 7 dias",
+    "MODAL-DESCRIPTION": "Calculamos a data de entrega levando em conta:",
+    "MODAL-POINT-1": "O tempo que o vendedor tem para entregar o pacote à transportadora (",
+    "MODAL-POINT-1.1": "de 1 a 5 dias",
+    "MODAL-POINT-1.2": ").",
+    "MODAL-POINT-2": "Uma vez que tenham o pacote, o",
+    "MODAL-POINT-2.1": "prazo de entrega",
+    "MODAL-POINT-2.2": "dependerá da empresa de transporte selecionada."
+  },
+
+  "PRODUCT-REFUND": {
+    "HEADER": "Proteção PurChoose",
+    "INFO-BUTTON": "+ info",
+    "DESCRIPTION": "Compre com tranquilidade usando nosso serviço de envio. Transação protegida com reembolso, pagamentos seguros e assistência sempre que precisar.",
+    "MODAL-DESCRIPTION": "Quando você compra seu produto pelo nosso serviço de envio, cobramos uma taxa para:",
+    "MODAL-POINT-1": "✔ Proteger seu dinheiro até que você verifique que o produto está em boas condições.",
+    "MODAL-POINT-2": "✔ Reembolsar o valor se o produto não for como descrito. Se precisar devolvê-lo, é grátis.",
+    "MODAL-POINT-3": "✔ Reembolsá-lo se o produto for perdido ou danificado durante o envio.",
+    "MODAL-POINT-4": "✔ Assistência sempre que precisar."
+  } 
+  
 }
   

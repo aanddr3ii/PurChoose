@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-refund',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './product-refund.component.html',
   styleUrl: './product-refund.component.css'
 })

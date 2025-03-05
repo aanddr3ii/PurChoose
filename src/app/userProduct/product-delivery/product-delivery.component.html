@@ -1,16 +1,16 @@
 <div class="product-delivery-container">
     <div class="product-delivery-header">
-        <h1>Entrega en 4 - 8 días</h1>
-        <button (click)="toggleInfo()">+ info</button>
+        <h1>{{ 'PRODUCT-DELIVERY.HEADER' | translate }}</h1>
+        <button (click)="toggleInfo()">{{ 'PRODUCT-DELIVERY.INFO-BUTTON' | translate }}</button>
     </div>
     <div class="product-delivery-options">
         <div class="product-delivery-option">
             <img src="https://prod-delivery-resources.wallapop.com/default_office_v2.png" alt="Recogida">
-            <p>En punto de recogida <span>desde 2.59 EUR</span></p>
+            <p>{{ 'PRODUCT-DELIVERY.PICKUP-OPTION' | translate }} <span>{{ 'PRODUCT-DELIVERY.PICKUP-PRICE' | translate }}</span></p>
         </div>
         <div class="product-delivery-option">
             <img src="https://prod-delivery-resources.wallapop.com/default_home_v2.png" alt="Entrega a domicilio">
-            <p>En mi dirección <span>desde 3.49 EUR</span></p>
+            <p>{{ 'PRODUCT-DELIVERY.HOME-DELIVERY-OPTION' | translate }} <span>{{ 'PRODUCT-DELIVERY.HOME-DELIVERY-PRICE' | translate }}</span></p>
         </div>
     </div>
 </div>
@@ -20,18 +20,21 @@
     <div class="modal-overlay" (click)="closeModal($event)">
         <div class="modal-content" (click)="$event.stopPropagation()">
             <div class="modal-header">
-                <h2>Entrega en 3 - 7 días</h2>
+                <h2>{{ 'PRODUCT-DELIVERY.HEADER' | translate }}</h2>
                 <button class="close-button" (click)="toggleInfo()">×</button>
             </div>
             <div class="modal-body">
-                <p>Calculamos la fecha de entrega teniendo en cuenta que:</p>
+                <p>{{ 'PRODUCT-DELIVERY.MODAL-DESCRIPTION' | translate }}</p>
                 <ul>
                     <li>
-                        El tiempo que tiene el vendedor para entregar el paquete a la empresa de transporte 
-                        (<b>de 1 a 5 días</b>).
+                        {{ 'PRODUCT-DELIVERY.MODAL-POINT-1' | translate }}
+                        <b>{{ 'PRODUCT-DELIVERY.MODAL-POINT-1.1' | translate }}</b>
+                        {{ 'PRODUCT-DELIVERY.MODAL-POINT-1.2' | translate }}
                     </li>
                     <li>
-                        Una vez que tengan el paquete, el <b>plazo de entrega</b> dependerá de la empresa de transporte seleccionada.
+                        {{ 'PRODUCT-DELIVERY.MODAL-POINT-2' | translate }}
+                        <b>{{ 'PRODUCT-DELIVERY.MODAL-POINT-2.1' | translate }}</b>
+                        {{ 'PRODUCT-DELIVERY.MODAL-POINT-2.2' | translate }}
                     </li>
                 </ul>
             </div>

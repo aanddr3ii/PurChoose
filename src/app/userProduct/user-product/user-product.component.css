@@ -75,6 +75,6 @@ app-nav-belt, app-nav-categories {
 }
 
 app-nav-categories {
-    top: 76px;
-    z-index: 15;
+    top: 77px;
+    z-index: 1;
 }
