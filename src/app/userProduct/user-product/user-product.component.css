@@ -8,56 +8,73 @@
     justify-content: flex-start;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
-    /* Fix spacing issues */
-    margin: 20px auto;  /* Space between navbar & footer */
-    padding: 15px;
-
-    /* Ensure it doesn't get cut off */
-    min-height: 830px;  /* Ensures it takes the full viewport height */
+    margin: 20px auto;
+    min-height: 830px;
 }
 
 .location {
-    display: flex;  /* Makes icon and text align horizontally */
-    align-items: center;  /* Ensures both elements align properly */
-    justify-content: flex-start;  /* Moves content to the left */
-    width: 100%;  /* Full width */
-    padding: 5px 10px; /* Adds spacing */
-    gap: 6px; /* Adds spacing between icon and text */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 5px 0px 15px 0px;
+    gap: 6px;
 }
 
 .simbolo svg {
-    width: 22px; /* Adjusts icon size */
+    width: 22px;
     height: 22px;
-    flex-shrink: 0; /* Prevents shrinking */
+    flex-shrink: 0;
 }
 
 .location-text {
     font-size: 14px;
-    color: #29363d; /* Ensures consistency */
-    white-space: nowrap; /* Prevents text from breaking */
+    color: #29363d;
+    white-space: nowrap;
     display: flex;
-    align-items: center; /* Aligns text vertically */
+    align-items: center;
 }
 
 body, html {
     height: 100%;
-    overflow-y: auto;  /* Enables scrolling */
-    background-color: #f5f5f5;  /* Matches Wallapop’s light gray */
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.hr {
+    border: none;           
+    height: 2px;           
+    background-color: #f5f5f5;  
+    width: 100%;           
+    margin: 15px 0;      
 }
 
 .app-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     min-height: 100vh;
+    padding-top: 12vh;
+    padding-bottom: 85px;
+    max-height: calc(100vh - 120px);
+    overflow-y: none;
 }
 
-.hr {
-    border: none;            /* Remove default border */
-    height: 2px;             /* Adjust thickness */
-    background-color: #f5f5f5;  /* Change the color */
-    width: 100%;             /* Ensure it spans the full width */
-    margin: 15px 0;          /* Add spacing */
+app-nav-belt {
+    z-index: 15;
+}
+
+app-nav-belt, app-nav-categories {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+app-nav-categories {
+    top: 76px;
+    z-index: 15;
 }
