@@ -2,10 +2,10 @@
     <p class="product-price">{{ product.price }}€</p>
     <h1 class="product-title">{{ product.title }}</h1>
     
-    <h2 class="section-title">Detalles del producto</h2>
+    <h2 class="section-title">{{ 'PRODUCT-DESCRIPTION.DETAILS' | translate }}</h2>
     <p class="product-text">{{ product.description }}</p>
     
-    <p class="product-state">Estado: <span>{{ product.state }}</span></p>
+    <p class="product-state">{{ 'PRODUCT-DESCRIPTION.STATE' | translate }} <span>{{ product.state }}</span></p>
     
     <div class="product-category">
         <span>{{ category.text }}</span>

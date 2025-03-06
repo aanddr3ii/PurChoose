@@ -65,6 +65,11 @@
     "CHAT-BUTTON": "Chat"
   },
 
+  "PRODUCT": {
+    "DETAILS": "Product Details",
+    "STATE": "Condition"
+  },
+  
   "PRODUCT-DELIVERY": {
     "HEADER": "Delivery in 3 - 6 days",
     "INFO-BUTTON": "+ info",
@@ -90,6 +95,15 @@
     "MODAL-POINT-2": "✔ Refunding the amount if the product is not as described. If you need to return it, it's free.",
     "MODAL-POINT-3": "✔ Refunding you if the product is lost or damaged during shipping.",
     "MODAL-POINT-4": "✔ Assistance whenever you need it."
+  },
+
+  "PRODUCT-DESCRIPTION": {
+    "DETAILS": "Product Details",
+    "STATE": "Condition:"
+  },
+
+  "PRODUCT-FOOTER": {
+    "BUY-BUTTON": "Buy"
   }
   
 }

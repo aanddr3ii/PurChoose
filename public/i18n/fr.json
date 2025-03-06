@@ -90,6 +90,15 @@
     "MODAL-POINT-2": "✔ Vous rembourser si le produit ne correspond pas à la description. Si vous devez le retourner, c'est gratuit.",
     "MODAL-POINT-3": "✔ Vous rembourser si le produit est perdu ou endommagé pendant l'expédition.",
     "MODAL-POINT-4": "✔ Assistance lorsque vous en avez besoin."
+  },
+
+  "PRODUCT-DESCRIPTION": {
+    "DETAILS": "Détails du produit",
+    "STATE": "État:"
+  },
+
+  "PRODUCT-FOOTER": {
+    "BUY-BUTTON": "Acheter"
   }
   
 }

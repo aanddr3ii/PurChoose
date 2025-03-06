@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Product } from '../../interfaces/product';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-footer',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './product-footer.component.html',
   styleUrl: './product-footer.component.css'
 })

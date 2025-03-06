@@ -90,6 +90,15 @@
     "MODAL-POINT-2": "✔ Reembolsar el importe si el producto no es como se describía. Si necesitas devolverlo, es gratis.",
     "MODAL-POINT-3": "✔ Reembolsarte si el producto se pierde o resulta dañado durante el envío.",
     "MODAL-POINT-4": "✔ Asistencia cuando la necesites."
-  }  
+  },
+
+  "PRODUCT-DESCRIPTION": {
+    "DETAILS": "Detalles del producto",
+    "STATE": "Estado:"
+  },
+
+  "PRODUCT-FOOTER": {
+    "BUY-BUTTON": "Comprar"
+  }
   
 }

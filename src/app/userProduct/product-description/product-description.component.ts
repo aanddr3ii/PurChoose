@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { Category } from '../../interfaces/category'
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-product-description',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './product-description.component.html',
   styleUrl: './product-description.component.css'
 })

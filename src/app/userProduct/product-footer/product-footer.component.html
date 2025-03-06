@@ -1,10 +1,12 @@
-<div class="product-footer-bar">
-    <div class="product-footer">
-        <div class="product-info">
-            <p class="product-title">{{ product.title }}</p>
-        <div class="product-space"></div>
-            <span class="product-price">{{ product.price }} €</span>
+<footer>
+    <div class="product-footer-bar" role="contentinfo">
+        <div class="product-footer">
+            <div class="product-info">
+                <p class="product-title">{{ product.title }}</p>
+            <div class="product-space"></div>
+                <span class="product-price">{{ product.price }} €</span>
+            </div>
+            <button class="purchase-button">{{ 'PRODUCT-FOOTER.BUY-BUTTON' | translate }}</button>
         </div>
-        <button class="purchase-button">Comprar</button>
     </div>
-</div>
+</footer>
