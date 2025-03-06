@@ -1,12 +1,12 @@
 export interface Product {
-    id?: number;
-    src?: string;
-    price?: number;
-    title?: string;
-    state?: string;
-    location?: string;
-    description?: string;
-    images?: string[];
-    popularity?: number; // Agregar si es necesario
-    dateAdded?: Date;    // Agregar si es necesario
-}
+    id?: number; // Identificador único
+    src?: string; // URL principal de la imagen (opcional)
+    price?: number; // Precio del producto
+    title?: string; // Título del producto
+    state?: string; // Estado del producto (nuevo/usado)
+    location?: string; // Ubicación del producto
+    description?: string; // Descripción del producto
+    images?: string[]; // Array de URLs de imágenes
+    popularity?: number; // Popularidad del producto (opcional)
+    dateAdded?: Date; // Fecha de publicación del producto (opcional)
+  }
