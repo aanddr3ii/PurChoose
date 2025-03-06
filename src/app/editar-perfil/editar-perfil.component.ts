@@ -12,7 +12,7 @@ import { MetodosPagoComponentComponent } from '../metodos-pago-component/metodos
   selector: 'app-editar-perfil',
   templateUrl: './editar-perfil.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, NavBeltComponent, NavCategoriesComponent, MetodosPagoComponentComponent],
+  imports: [ReactiveFormsModule, RouterModule, NavBeltComponent, NavCategoriesComponent,MetodosPagoComponentComponent],
   styleUrls: ['./editar-perfil.component.css']
 })
 export class EditarPerfilComponent {
@@ -25,7 +25,7 @@ export class EditarPerfilComponent {
     { value: '+34', flag: '🇪🇸' }
   ]; // Lista de prefijos
   user!: User; // Propiedad para almacenar el usuario actual
-  activeTab: 'perfil' | 'metodos-pago' = 'perfil'; // Propiedad para gestionar las pestañas
+  activeTab: 'perfil' | 'metodos-pago' = 'perfil'; // Pestaña activa por defecto
 
   constructor(private fb: FormBuilder, private userService: UserService) {}
 
@@ -35,7 +35,7 @@ export class EditarPerfilComponent {
     // Inicializamos el formulario con los datos actuales del usuario
     this.editForm = this.fb.group({
       name: [this.user.name, Validators.required], // Campo obligatorio
-      location: [this.user.location || '', []], // Campo opcional
+      location: [this.user.location || '', [Validators.required]], // Ahora es obligatorio (si lo deseas)
       phone: [this.user.phone || null, [Validators.required, Validators.pattern(/^\d{9}$/)]], // Validación básica para teléfono (9 dígitos sin prefijo)
       email: [this.user.email, [Validators.required, Validators.email]], // Campo obligatorio
       profilePicture: [this.user.profilePicture || null], // Campo para el archivo de imagen

@@ -1,115 +1,161 @@
 <div class="payment-methods-container">
-    <h3 class="section-title">Métodos de Pago</h3>
-  
-    <!-- Sección de Tarjetas Bancarias -->
-    <div class="payment-section">
-      <h4>Tarjetas Bancarias</h4>
-  
-      <!-- Lista de tarjetas -->
-      <ul class="tarjetas-list">
-        @if (tarjetas.length > 0) {
-          @for (tarjeta of tarjetas; track $index; let i = $index) {
-            <li class="tarjeta-item">
-              <span>{{ tarjeta.tipo }} - {{ tarjeta.numero }}</span>
-              <span>Expira: {{ tarjeta.fechaExpiracion }}</span>
-              <button class="delete-button" (click)="eliminarTarjeta(i)">Eliminar</button>
-            </li>
-          }
-        } @else {
-          <p>No hay tarjetas registradas.</p>
-        }
-      </ul>
-  
-      <!-- Formulario para agregar tarjetas -->
-      <form class="add-form" (submit)="agregarTarjeta(); $event.preventDefault()">
-        <div class="form-group">
-          <label for="numero-tarjeta">Número de Tarjeta:</label>
-          <input 
-            type="text" 
-            id="numero-tarjeta" 
-            [(ngModel)]="nuevaTarjeta.numero" 
-            placeholder="Ingresa el número de tarjeta" 
-            required
-          >
-        </div>
-  
-        <div class="form-group">
-          <label for="tipo-tarjeta">Tipo de Tarjeta:</label>
-          <select 
-            id="tipo-tarjeta" 
-            [(ngModel)]="nuevaTarjeta.tipo" 
-            required
-          >
-            <option value="" disabled selected>-- Selecciona un tipo --</option>
-            <option value="Visa">Visa</option>
-            <option value="Mastercard">Mastercard</option>
-            <option value="American Express">American Express</option>
-          </select>
-        </div>
-  
-        <div class="form-group">
-          <label for="fecha-expiracion">Fecha de Expiración (MM/YY):</label>
-          <input 
-            type="text" 
-            id="fecha-expiracion" 
-            [(ngModel)]="nuevaTarjeta.fechaExpiracion" 
-            placeholder="MM/YY" 
-            required
-          >
-        </div>
-  
-        <button type="submit" class="save-button">Agregar Tarjeta</button>
-      </form>
-    </div>
-  
-    <!-- Sección de Servicios de Pago -->
-    <div class="payment-section">
-      <h4>Servicios de Pago</h4>
-  
-      <!-- Botones visuales para servicios de pago -->
-      <div class="payment-buttons">
-        <!-- PayPal -->
-        <button class="payment-button paypal" (click)="abrirPopup('PayPal')">
-          <img src="https://www.mesadvocats.com/blog/wp-content/uploads/PayPal.png" alt="PayPal">
-        </button>
-  
-        <!-- Stripe -->
-        <button class="payment-button stripe" (click)="abrirPopup('Stripe')">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Stripe_Logo%402x.png" alt="Stripe">
-        </button>
-  
-        <!-- Apple Pay -->
-        <button class="payment-button apple-pay" (click)="abrirPopup('Apple Pay')">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_Pay_logo.svg/1280px-Apple_Pay_logo.svg.png" alt="Apple Pay">
-        </button>
-      </div>
-  
-      <!-- Mensaje si no hay servicios agregados -->
-      @if (serviciosPago.length === 0) {
-        <p>No has agregado ningún servicio de pago aún.</p>
+  <h3 class="section-title">Métodos de Pago</h3>
+
+  <!-- Sección de Tarjetas Bancarias -->
+  <div class="payment-section">
+    <h4>Tarjetas Bancarias</h4>
+
+    <!-- Lista de tarjetas -->
+    <ul class="tarjetas-list">
+      @for (tarjeta of tarjetas; track $index; let i = $index) {
+        <li class="tarjeta-item">
+          <span>{{ tarjeta.tipo }}</span>
+          <button class="edit-button" (click)="abrirPopupTarjeta(tarjeta.tipo, i)">Editar</button>
+          <button class="delete-button" (click)="eliminarTarjeta(i)">Eliminar</button>
+        </li>
       }
-  
-      <!-- Lista de servicios de pago agregados -->
-      <ul class="servicios-list">
-        @if (serviciosPago.length > 0) {
-          @for (servicio of serviciosPago; track $index; let i = $index) {
-            <li class="servicio-item">
-              <span>{{ servicio.nombre }} - {{ servicio.email }}</span>
-              <button class="delete-button" (click)="eliminarServicio(i)">Eliminar</button>
-            </li>
-          }
-        }
-      </ul>
-    </div>
-  
-    <!-- Popup para agregar detalles del servicio seleccionado -->
-    @if (mostrarPopup) {
+    </ul>
+
+    <!-- Mensaje si no hay tarjetas registradas -->
+    @if (tarjetas.length === 0) {
+      <p>No hay tarjetas registradas.</p>
+    }
+
+    <!-- Botón para agregar nuevas tarjetas -->
+    <button class="add-button" (click)="abrirPopupTarjeta()">Agregar Tarjeta</button>
+
+    <!-- Popup para agregar/editar tarjetas -->
+    @if (mostrarPopup && !servicioSeleccionado) {
       <div class="popup-overlay" (click)="cerrarPopup()" style="cursor: pointer;">
         <div class="popup-content" (click)="$event.stopPropagation()">
-          <h4 class="popup-title">Configura tu cuenta de {{ servicioSeleccionado }}</h4>
-  
-          <!-- Formulario para agregar detalles del servicio seleccionado -->
-          <form class="add-form" #form="ngForm" (ngSubmit)="form.valid && agregarServicio(); cerrarPopup()">
+          <h4 class="popup-title">
+            @if (nuevaTarjeta.index !== undefined) {
+              Editar {{ nuevaTarjeta.tipo }}
+            } @else {
+              Agregar Nueva Tarjeta
+            }
+          </h4>
+
+          <!-- Formulario para agregar/editar tarjetas -->
+          <form class="add-form" #form="ngForm" (ngSubmit)="form.valid && agregarOEditarTarjeta(); cerrarPopup()">
+            <div class="form-group">
+              <label for="tipo-tarjeta">Tipo de Tarjeta:</label>
+              <select 
+                id="tipo-tarjeta" 
+                [(ngModel)]="nuevaTarjeta.tipo" 
+                name="tipo"
+                required
+              >
+                <option value="" disabled selected>-- Selecciona un tipo --</option>
+                <option value="Visa">Visa</option>
+                <option value="Mastercard">Mastercard</option>
+                <option value="American Express">American Express</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="numero-tarjeta">Número de Tarjeta:</label>
+              <input 
+                type="text" 
+                id="numero-tarjeta" 
+                [(ngModel)]="nuevaTarjeta.numero" 
+                name="numero"
+                placeholder="Ingresa el número de tarjeta" 
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="fecha-expiracion">Fecha de Expiración (MM/YY):</label>
+              <input 
+                type="text" 
+                id="fecha-expiracion" 
+                [(ngModel)]="nuevaTarjeta.fechaExpiracion" 
+                name="fechaExpiracion"
+                placeholder="MM/YY" 
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="cvc">CVC (3 dígitos):</label>
+              <input 
+                type="text" 
+                id="cvc" 
+                [(ngModel)]="nuevaTarjeta.cvc" 
+                name="cvc"
+                placeholder="Ingresa el CVC" 
+                pattern="\d{3}" 
+                required
+              >
+            </div>
+
+            <button type="submit" class="save-button" [disabled]="!form.valid">
+              @if (nuevaTarjeta.index !== undefined) {
+                Actualizar
+              } @else {
+                Guardar
+              }
+            </button>
+            <button type="button" class="cancel-button" (click)="cerrarPopup()">Cancelar</button>
+          </form>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Sección de Servicios de Pago -->
+  <div class="payment-section">
+    <h4>Servicios de Pago</h4>
+
+    <!-- Botones visuales para servicios de pago -->
+    <div class="payment-buttons">
+      <!-- PayPal -->
+      <button class="payment-button paypal" (click)="abrirPopupServicio('PayPal')">
+        <img src="https://www.mesadvocats.com/blog/wp-content/uploads/PayPal.png" alt="PayPal">
+      </button>
+
+      <!-- Stripe -->
+      <button class="payment-button stripe" (click)="abrirPopupServicio('Stripe')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/1200px-Stripe_Logo%2C_revised_2016.svg.png" alt="Stripe">
+      </button>
+
+      <!-- Apple Pay -->
+      <button class="payment-button apple-pay" (click)="abrirPopupServicio('Apple Pay')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Apple_Pay_logo.svg/1280px-Apple_Pay_logo.svg.png" alt="Apple Pay">
+      </button>
+    </div>
+
+    <!-- Lista de servicios de pago agregados -->
+    <ul class="servicios-list">
+      @for (servicio of serviciosPago; track $index; let i = $index) {
+        <li class="servicio-item">
+          <span>{{ servicio.nombre }}</span>
+          <button class="edit-button" (click)="abrirPopupServicio(servicio.nombre, i)">Editar</button>
+          <button class="delete-button" (click)="eliminarServicio(i)">Eliminar</button>
+        </li>
+      }
+    </ul>
+
+    <!-- Mensaje si no hay servicios agregados -->
+    @if (serviciosPago.length === 0) {
+      <p>No has agregado ningún servicio de pago aún.</p>
+    }
+
+    <!-- Popup para agregar/editar servicios de pago -->
+    @if (mostrarPopup && servicioSeleccionado) {
+      <div class="popup-overlay" (click)="cerrarPopup()" style="cursor: pointer;">
+        <div class="popup-content" (click)="$event.stopPropagation()">
+          <h4 class="popup-title">
+            @if (nuevoServicio.index !== undefined) {
+              Editar {{ servicioSeleccionado }}
+            } @else {
+              Configura tu cuenta de {{ servicioSeleccionado }}
+            }
+          </h4>
+
+          <!-- Formulario para agregar/editar servicios -->
+          <form class="add-form" #form="ngForm" (ngSubmit)="form.valid && agregarOEditarServicio(); cerrarPopup()">
             <div class="form-group">
               <label for="email-servicio">Correo Electrónico:</label>
               <input 
@@ -121,11 +167,18 @@
                 required
               >
             </div>
-  
-            <button type="submit" class="save-button" [disabled]="!form.valid">Guardar</button>
+
+            <button type="submit" class="save-button" [disabled]="!form.valid">
+              @if (nuevoServicio.index !== undefined) {
+                Actualizar
+              } @else {
+                Guardar
+              }
+            </button>
             <button type="button" class="cancel-button" (click)="cerrarPopup()">Cancelar</button>
           </form>
         </div>
       </div>
     }
   </div>
+</div>

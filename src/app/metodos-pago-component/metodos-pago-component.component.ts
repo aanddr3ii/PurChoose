@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PaymentService } from '../services/paymentService/payment.service';
 
 @Component({
   selector: 'app-metodos-pago-component',
@@ -8,79 +9,105 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './metodos-pago-component.component.html',
   styleUrl: './metodos-pago-component.component.css'
 })
-export class MetodosPagoComponentComponent {
-  // Datos simulados de tarjetas bancarias
-  tarjetas: { numero: string; tipo: string; fechaExpiracion: string }[] = [
-    { numero: '**** **** **** 1234', tipo: 'Visa', fechaExpiracion: '12/25' },
-    { numero: '**** **** **** 5678', tipo: 'Mastercard', fechaExpiracion: '03/26' }
-  ];
+export class MetodosPagoComponentComponent implements OnInit {
+// Datos de tarjetas y servicios de pago
+tarjetas: { numero: string; tipo: string; fechaExpiracion: string; cvc: string }[] = [];
+serviciosPago: { nombre: string; email: string }[] = [];
 
-  // Datos simulados de servicios de pago
-  serviciosPago: { nombre: string; email: string }[] = [];
+// Estado del popup
+mostrarPopup = false;
 
-  // Formulario reactivo simple para agregar tarjetas
-  nuevaTarjeta: { numero?: string; tipo?: string; fechaExpiracion?: string } = {};
+// Datos para edición/agregación de tarjetas
+nuevaTarjeta: { tipo?: string; numero?: string; fechaExpiracion?: string; cvc?: string; index?: number } = {};
 
-  // Estado del popup de servicios de pago
-  mostrarPopup = false;
-  servicioSeleccionado: string | null = null;
+// Datos para edición/agregación de servicios
+nuevoServicio: { nombre?: string; email?: string; index?: number } = {};
 
-  // Formulario reactivo simple para agregar servicios de pago
-  nuevoServicio: { nombre?: string; email?: string } = {};
+// Servicio seleccionado en el popup
+servicioSeleccionado: string | null = null;
 
-  // Método para agregar una nueva tarjeta
-  agregarTarjeta() {
-    if (this.nuevaTarjeta.numero && this.nuevaTarjeta.tipo && this.nuevaTarjeta.fechaExpiracion) {
-      this.tarjetas.push({
-        numero: `**** **** **** ${this.nuevaTarjeta.numero.slice(-4)}`,
-        tipo: this.nuevaTarjeta.tipo,
-        fechaExpiracion: this.nuevaTarjeta.fechaExpiracion
-      });
-      this.nuevaTarjeta = {};
-      alert('Tarjeta agregada exitosamente.');
-    } else {
-      alert('Por favor, completa todos los campos de la tarjeta.');
-    }
+constructor(private paymentService: PaymentService) {}
+
+ngOnInit(): void {
+  // Cargamos los datos desde el servicio
+  this.tarjetas = this.paymentService.getTarjetas();
+  this.serviciosPago = this.paymentService.getServiciosPago();
+}
+
+// Método para agregar o editar una tarjeta
+agregarOEditarTarjeta() {
+  const { tipo, numero, fechaExpiracion, cvc, index } = this.nuevaTarjeta;
+
+  if (!tipo || !numero || !fechaExpiracion || !cvc || cvc.length !== 3) {
+    alert('Por favor, completa todos los campos correctamente. El CVC debe tener exactamente 3 dígitos.');
+    return;
   }
 
-  // Método para abrir el popup con el servicio seleccionado
-  abrirPopup(servicio: string) {
-    this.mostrarPopup = true;
-    this.servicioSeleccionado = servicio; // Guardamos el servicio seleccionado
-    this.nuevoServicio.email = ''; // Limpiamos el campo de correo electrónico
+  this.paymentService.addOrUpdateTarjeta({ tipo, numero, fechaExpiracion, cvc }, index);
+  this.tarjetas = this.paymentService.getTarjetas(); // Actualizamos la lista local
+  this.cerrarPopup();
+}
+
+// Método para abrir el popup para tarjetas
+abrirPopupTarjeta(tipo?: string, index?: number) {
+  this.mostrarPopup = true;
+
+  if (index !== undefined) {
+    // Si se proporciona un índice, estamos editando una tarjeta existente
+    const tarjetaExistente = this.tarjetas[index];
+    this.nuevaTarjeta = { ...tarjetaExistente, index }; // Cargamos los datos actuales
+  } else {
+    // Si no se proporciona un índice, estamos agregando una nueva tarjeta
+    this.nuevaTarjeta = { tipo: '', numero: '', fechaExpiracion: '', cvc: '', index: undefined };
+  }
+}
+
+// Método para eliminar una tarjeta
+eliminarTarjeta(index: number) {
+  this.paymentService.deleteTarjeta(index);
+  this.tarjetas = this.paymentService.getTarjetas(); // Actualizamos la lista local
+}
+
+// Método para agregar o editar un servicio de pago
+agregarOEditarServicio() {
+  const { nombre, email, index } = this.nuevoServicio;
+
+  if (!nombre || !email) {
+    alert('Por favor, completa todos los campos.');
+    return;
   }
 
-  // Método para cerrar el popup
-  cerrarPopup() {
-    this.mostrarPopup = false;
-    this.servicioSeleccionado = null; // Limpiamos el servicio seleccionado
-    this.nuevoServicio.email = ''; // Limpiamos el campo de correo electrónico
-  }
+  this.paymentService.addOrUpdateServicio({ nombre, email }, index);
+  this.serviciosPago = this.paymentService.getServiciosPago(); // Actualizamos la lista local
+  this.cerrarPopup();
+}
 
-  // Método para agregar un nuevo servicio de pago
-  agregarServicio() {
-    if (this.servicioSeleccionado && this.nuevoServicio.email) {
-      this.serviciosPago.push({
-        nombre: this.servicioSeleccionado,
-        email: this.nuevoServicio.email
-      });
-      this.cerrarPopup(); // Cerramos el popup después de agregar el servicio
-      this.nuevoServicio = {}; // Limpiamos el formulario
-      alert('Servicio de pago agregado exitosamente.');
-    } else {
-      alert('Por favor, selecciona un servicio y completa el correo electrónico.');
-    }
-  }
+// Método para abrir el popup para servicios de pago
+abrirPopupServicio(nombre: string, index?: number) {
+  this.mostrarPopup = true;
+  this.servicioSeleccionado = nombre;
 
-  // Método para eliminar una tarjeta
-  eliminarTarjeta(index: number) {
-    this.tarjetas.splice(index, 1);
-    alert('Tarjeta eliminada exitosamente.');
+  if (index !== undefined) {
+    // Si se proporciona un índice, estamos editando un servicio existente
+    const servicioExistente = this.serviciosPago[index];
+    this.nuevoServicio = { ...servicioExistente, index }; // Cargamos los datos actuales
+  } else {
+    // Si no se proporciona un índice, estamos agregando un nuevo servicio
+    this.nuevoServicio = { nombre, email: '', index: undefined };
   }
+}
 
-  // Método para eliminar un servicio de pago
-  eliminarServicio(index: number) {
-    this.serviciosPago.splice(index, 1);
-    alert('Servicio de pago eliminado exitosamente.');
-  }
+// Método para eliminar un servicio de pago
+eliminarServicio(index: number) {
+  this.paymentService.deleteServicio(index);
+  this.serviciosPago = this.paymentService.getServiciosPago(); // Actualizamos la lista local
+}
+
+// Método para cerrar el popup
+cerrarPopup() {
+  this.mostrarPopup = false;
+  this.nuevaTarjeta = {}; // Limpiamos el formulario de tarjetas
+  this.nuevoServicio = {}; // Limpiamos el formulario de servicios
+  this.servicioSeleccionado = null; // Limpiamos el servicio seleccionado
+}
 }
