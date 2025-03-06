@@ -6,4 +6,7 @@ export interface Product {
     state?: string;
     location?: string;
     description?: string;
+    images?: string[];
+    popularity?: number; // Agregar si es necesario
+    dateAdded?: Date;    // Agregar si es necesario
 }

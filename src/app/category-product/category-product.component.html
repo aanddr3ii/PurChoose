@@ -3,17 +3,29 @@
 
 <div class="category-products-container">
   <h2 class="category-title">Cars</h2>
-  <div class="products-grid">
-    <app-card-product></app-card-product>
-    <app-card-product></app-card-product>
-    <app-card-product></app-card-product>
-    <app-card-product></app-card-product>
-    <app-card-product></app-card-product>
 
-    <app-card-product></app-card-product>
-    <app-card-product></app-card-product>
-    <app-card-product></app-card-product>
-    <app-card-product></app-card-product>
-    <app-card-product></app-card-product>
+  <!-- Sección de filtros -->
+  <div class="filter-section">
+    <label for="filter-select">Filtrar por:</label>
+    <select 
+      id="filter-select" 
+      [(ngModel)]="selectedFilter" 
+      (change)="applyFilter()"
+    >
+      @for (option of filterOptions; track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- Grid de productos -->
+  <div class="products-grid">
+    @if (products.length > 0) {
+      @for (product of products; track product.id) {
+        <app-card-product [product]="product"></app-card-product>
+      }
+    } @else {
+      <p>No hay productos disponibles.</p>
+    }
   </div>
 </div>
