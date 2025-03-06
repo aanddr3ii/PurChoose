@@ -12,6 +12,7 @@ export class CardProductComponent {
 
   products = [
     {
+      id: 1,
       title: 'VOLKSWAGEN GOLF GTI 2.0 230cv 2015',
       price: 18400,
       location: 'Leganés',
@@ -25,6 +26,7 @@ export class CardProductComponent {
     },
 
     {
+      id: 2,
       title: 'CUPRA LEON 1.5 eTSI 150CV',
       price: 23500,
       location: 'Leganés',
@@ -38,6 +40,7 @@ export class CardProductComponent {
     },
 
     {
+      id: 3,
       title: 'Morgan 4/4 2006',
       price: 57000,
       location: 'Leganés',
@@ -51,6 +54,7 @@ export class CardProductComponent {
     },
 
     {
+      id: 4,
       title: 'Chevrolet GMC Apache 1959',
       price: 37500,
       location: 'Madrid',
@@ -64,6 +68,7 @@ export class CardProductComponent {
     },
 
     {
+      id: 5,
       title: 'Volkswagen Escarabajo 1975',
       price: 18400,
       location: 'Madrid',
