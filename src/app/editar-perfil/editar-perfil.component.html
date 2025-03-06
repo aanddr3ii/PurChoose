@@ -46,8 +46,13 @@
             type="text" 
             id="location" 
             formControlName="location" 
-            placeholder="Ingresa tu ubicación"
+            placeholder="Ciudad, país o dirección" 
+            required
           >
+          <!-- Mensaje de error si es obligatorio -->
+          @if (editForm.get('location')?.hasError('required') && editForm.get('location')?.touched) {
+            <div class="error-message">La ubicación es obligatoria.</div>
+          }
         </div>
 
         <!-- Prefijo Telefónico y Teléfono -->
@@ -129,7 +134,7 @@
       </form>
     } @else if (activeTab === 'metodos-pago') {
       <!-- Componente de Métodos de Pago -->
-  <app-metodos-pago-component></app-metodos-pago-component>
+      <app-metodos-pago-component></app-metodos-pago-component>
     }
   </div>
 </div>
