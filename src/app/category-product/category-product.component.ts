@@ -6,6 +6,7 @@ import { CardProductComponent } from '../card-product/card-product.component';
 import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-category-product',
   standalone: true,
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class CategoryProductComponent {
   // Datos simulados de productos
+  
   products: Product[] = [
     {
       id: 1,
@@ -93,47 +95,54 @@ export class CategoryProductComponent {
     }
   ];
 
-  // Opciones de filtro
-  filterOptions = [
-    { value: 'price_asc', label: 'Precio (Bajo a Alto)' },
-    { value: 'price_desc', label: 'Precio (Alto a Bajo)' },
-    { value: 'popularity_asc', label: 'Popularidad (Baja a Alta)' },
-    { value: 'popularity_desc', label: 'Popularidad (Alta a Baja)' },
-    { value: 'date_asc', label: 'Fecha (Antigua a Reciente)' },
-    { value: 'date_desc', label: 'Fecha (Reciente a Antigua)' }
-  ];
+  // Estado de los filtros (usamos union types para evitar errores)
+  filters = {
+    price: "" as 'asc' | 'desc' | '', // Solo puede ser 'asc', 'desc' o vacío
+    popularity: "" as 'asc' | 'desc' | '', // Solo puede ser 'asc', 'desc' o vacío
+    date: "" as 'asc' | 'desc' | '' // Solo puede ser 'asc', 'desc' o vacío
+  };
 
-  // Filtro seleccionado
-  selectedFilter: string = 'price_asc';
+  // Lista filtrada de productos
+  filteredProducts: Product[] = [...this.products];
 
-  // Método para aplicar el filtro
-  applyFilter() {
-    this.sortProducts();
+  // Método para aplicar los filtros
+  applyFilters(filterType: keyof typeof this.filters, order: 'asc' | 'desc' | '') {
+    // Actualizamos el filtro correspondiente
+    this.filters[filterType] = order;
+
+    // Reiniciamos la lista filtrada
+    this.filteredProducts = [...this.products];
+
+    // Aplicamos cada filtro activo
+    if (this.filters.price) this.sortByPrice(this.filters.price);
+    if (this.filters.popularity) this.sortByPopularity(this.filters.popularity);
+    if (this.filters.date) this.sortByDate(this.filters.date);
   }
 
-  // Método para ordenar los productos
-  sortProducts() {
-    switch (this.selectedFilter) {
-      case 'price_asc':
-        this.products.sort((a, b) => (a.price || 0) - (b.price || 0));
-        break;
-      case 'price_desc':
-        this.products.sort((a, b) => (b.price || 0) - (a.price || 0));
-        break;
-      case 'popularity_asc':
-        this.products.sort((a, b) => (a.popularity || 0) - (b.popularity || 0));
-        break;
-      case 'popularity_desc':
-        this.products.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
-        break;
-      case 'date_asc':
-        this.products.sort((a, b) => (a.dateAdded?.getTime() || 0) - (b.dateAdded?.getTime() || 0));
-        break;
-      case 'date_desc':
-        this.products.sort((a, b) => (b.dateAdded?.getTime() || 0) - (a.dateAdded?.getTime() || 0));
-        break;
-      default:
-        break;
-    }
+  // Método para ordenar por precio
+  sortByPrice(order: 'asc' | 'desc' | '') {
+    this.filteredProducts.sort((a, b) => {
+      const priceA = a.price || 0;
+      const priceB = b.price || 0;
+      return order === 'asc' ? priceA - priceB : priceB - priceA;
+    });
+  }
+
+  // Método para ordenar por popularidad
+  sortByPopularity(order: 'asc' | 'desc' | '') {
+    this.filteredProducts.sort((a, b) => {
+      const popularityA = a.popularity || 0;
+      const popularityB = b.popularity || 0;
+      return order === 'asc' ? popularityA - popularityB : popularityB - popularityA;
+    });
+  }
+
+  // Método para ordenar por fecha
+  sortByDate(order: 'asc' | 'desc' | '') {
+    this.filteredProducts.sort((a, b) => {
+      const dateA = a.dateAdded?.getTime() || 0;
+      const dateB = b.dateAdded?.getTime() || 0;
+      return order === 'asc' ? dateA - dateB : dateB - dateA;
+    });
   }
 }
