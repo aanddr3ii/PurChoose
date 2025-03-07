@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   templateUrl: './category-product.component.html',
   imports: [NavBeltComponent, NavCategoriesComponent, CardProductComponent, AsyncPipe, FormsModule],
-
   styleUrls: ['./category-product.component.css']
 })
 export class CategoryProductComponent {
@@ -28,7 +27,9 @@ export class CategoryProductComponent {
         'images/wgg2.0.png',
         'images/wgg2.3.png',
         'images/wgg2.2.png'
-      ]
+      ],
+      popularity: 4.5, // Popularidad (1-5)
+      dateAdded: new Date('2023-10-01') // Fecha de publicación
     },
     {
       id: 2,
@@ -41,7 +42,9 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i9/bt/__/c10420p1104058558/i5423511592.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/i9/bt/__/c10420p1104058558/i5423511656.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/i9/bt/__/c10420p1104058558/i5423511667.jpg?pictureSize=W640'
-      ]
+      ],
+      popularity: 4.2,
+      dateAdded: new Date('2023-09-25')
     },
     {
       id: 3,
@@ -54,7 +57,9 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932771.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932768.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932765.jpg?pictureSize=W640'
-      ]
+      ],
+      popularity: 5.0,
+      dateAdded: new Date('2023-08-15')
     },
     {
       id: 4,
@@ -67,7 +72,9 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932771.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932768.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932765.jpg?pictureSize=W640'
-      ]
+      ],
+      popularity: 3.8,
+      dateAdded: new Date('2023-07-10')
     },
     {
       id: 5,
@@ -80,14 +87,20 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934869.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934865.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
-      ]
+      ],
+      popularity: 4.0,
+      dateAdded: new Date('2023-06-01')
     }
   ];
 
   // Opciones de filtro
   filterOptions = [
     { value: 'price_asc', label: 'Precio (Bajo a Alto)' },
-    { value: 'price_desc', label: 'Precio (Alto a Bajo)' }
+    { value: 'price_desc', label: 'Precio (Alto a Bajo)' },
+    { value: 'popularity_asc', label: 'Popularidad (Baja a Alta)' },
+    { value: 'popularity_desc', label: 'Popularidad (Alta a Baja)' },
+    { value: 'date_asc', label: 'Fecha (Antigua a Reciente)' },
+    { value: 'date_desc', label: 'Fecha (Reciente a Antigua)' }
   ];
 
   // Filtro seleccionado
@@ -106,6 +119,18 @@ export class CategoryProductComponent {
         break;
       case 'price_desc':
         this.products.sort((a, b) => (b.price || 0) - (a.price || 0));
+        break;
+      case 'popularity_asc':
+        this.products.sort((a, b) => (a.popularity || 0) - (b.popularity || 0));
+        break;
+      case 'popularity_desc':
+        this.products.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+        break;
+      case 'date_asc':
+        this.products.sort((a, b) => (a.dateAdded?.getTime() || 0) - (b.dateAdded?.getTime() || 0));
+        break;
+      case 'date_desc':
+        this.products.sort((a, b) => (b.dateAdded?.getTime() || 0) - (a.dateAdded?.getTime() || 0));
         break;
       default:
         break;
