@@ -30,7 +30,7 @@ export class CategoryProductComponent {
         'images/wgg2.3.png',
         'images/wgg2.2.png'
       ],
-      popularity: 4.5, // Popularidad (1-5)
+      popularity: 1, // Popularidad (1-5)
       dateAdded: new Date('2023-10-01') // Fecha de publicación
     },
     {
@@ -45,7 +45,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i9/bt/__/c10420p1104058558/i5423511656.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/i9/bt/__/c10420p1104058558/i5423511667.jpg?pictureSize=W640'
       ],
-      popularity: 4.2,
+      popularity: 2,
       dateAdded: new Date('2023-09-25')
     },
     {
@@ -60,7 +60,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/gt/b4/__/c10420p1016687127/i4952895367.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/gt/b4/__/c10420p1016687127/i4952895447.jpg?pictureSize=W640'
       ],
-      popularity: 5.0,
+      popularity: 3,
       dateAdded: new Date('2023-08-15')
     },
     {
@@ -75,7 +75,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932768.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932765.jpg?pictureSize=W640'
       ],
-      popularity: 3.8,
+      popularity: 4,
       dateAdded: new Date('2023-07-10')
     },
     {
@@ -90,59 +90,81 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934865.jpg?pictureSize=W640',
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
       ],
-      popularity: 4.0,
+      popularity: 5,
       dateAdded: new Date('2023-06-01')
     }
   ];
 
-  // Estado de los filtros (usamos union types para evitar errores)
-  filters = {
-    price: "" as 'asc' | 'desc' | '', // Solo puede ser 'asc', 'desc' o vacío
-    popularity: "" as 'asc' | 'desc' | '', // Solo puede ser 'asc', 'desc' o vacío
-    date: "" as 'asc' | 'desc' | '' // Solo puede ser 'asc', 'desc' o vacío
-  };
-
-  // Lista filtrada de productos
-  filteredProducts: Product[] = [...this.products];
-
-  // Método para aplicar los filtros
-  applyFilters(filterType: keyof typeof this.filters, order: 'asc' | 'desc' | '') {
-    // Actualizamos el filtro correspondiente
-    this.filters[filterType] = order;
-
-    // Reiniciamos la lista filtrada
-    this.filteredProducts = [...this.products];
-
-    // Aplicamos cada filtro activo
-    if (this.filters.price) this.sortByPrice(this.filters.price);
-    if (this.filters.popularity) this.sortByPopularity(this.filters.popularity);
-    if (this.filters.date) this.sortByDate(this.filters.date);
+    // Estado de los filtros (usamos null para indicar que no hay filtro seleccionado)
+    filters = {
+      price: null as 'asc' | 'desc' | null,
+      popularity: null as 'asc' | 'desc' | null,
+      date: null as 'asc' | 'desc' | null
+    };
+  
+    // Lista filtrada de productos
+    filteredProducts: Product[] = [...this.products];
+  
+    // Método para aplicar los filtros
+    applyFilters(filterType: keyof typeof this.filters, order: 'asc' | 'desc' | null) {
+      // Actualizamos el filtro correspondiente
+      this.filters[filterType] = order;
+  
+      // Reiniciamos la lista filtrada
+      this.filteredProducts = [...this.products];
+  
+      // Aplicamos todos los filtros activos simultáneamente
+      this.applyAllFilters();
+    }
+  
+    // Método para aplicar todos los filtros activos
+    applyAllFilters() {
+      // Creamos una copia de los productos originales
+      let tempProducts = [...this.products];
+  
+      // Ordenamos por precio si está activado
+      if (this.filters.price) {
+        tempProducts = this.sortByPrice(tempProducts, this.filters.price);
+      }
+  
+      // Ordenamos por popularidad si está activado
+      if (this.filters.popularity) {
+        tempProducts = this.sortByPopularity(tempProducts, this.filters.popularity);
+      }
+  
+      // Ordenamos por fecha si está activado
+      if (this.filters.date) {
+        tempProducts = this.sortByDate(tempProducts, this.filters.date);
+      }
+  
+      // Actualizamos la lista filtrada
+      this.filteredProducts = tempProducts;
+    }
+  
+    // Método para ordenar por precio
+    sortByPrice(products: Product[], order: 'asc' | 'desc' | null): Product[] {
+      return products.sort((a, b) => {
+        const priceA = a.price || 0;
+        const priceB = b.price || 0;
+        return order === 'asc' ? priceA - priceB : priceB - priceA;
+      });
+    }
+  
+    // Método para ordenar por popularidad
+    sortByPopularity(products: Product[], order: 'asc' | 'desc' | null): Product[] {
+      return products.sort((a, b) => {
+        const popularityA = a.popularity || 0;
+        const popularityB = b.popularity || 0;
+        return order === 'asc' ? popularityA - popularityB : popularityB - popularityA;
+      });
+    }
+  
+    // Método para ordenar por fecha
+    sortByDate(products: Product[], order: 'asc' | 'desc' | null): Product[] {
+      return products.sort((a, b) => {
+        const dateA = a.dateAdded?.getTime() || 0;
+        const dateB = b.dateAdded?.getTime() || 0;
+        return order === 'asc' ? dateA - dateB : dateB - dateA;
+      });
+    }
   }
-
-  // Método para ordenar por precio
-  sortByPrice(order: 'asc' | 'desc' | '') {
-    this.filteredProducts.sort((a, b) => {
-      const priceA = a.price || 0;
-      const priceB = b.price || 0;
-      return order === 'asc' ? priceA - priceB : priceB - priceA;
-    });
-  }
-
-  // Método para ordenar por popularidad
-  sortByPopularity(order: 'asc' | 'desc' | '') {
-    this.filteredProducts.sort((a, b) => {
-      const popularityA = a.popularity || 0;
-      const popularityB = b.popularity || 0;
-      return order === 'asc' ? popularityA - popularityB : popularityB - popularityA;
-    });
-  }
-
-  // Método para ordenar por fecha
-  sortByDate(order: 'asc' | 'desc' | '') {
-    this.filteredProducts.sort((a, b) => {
-      const dateA = a.dateAdded?.getTime() || 0;
-      const dateB = b.dateAdded?.getTime() || 0;
-      return order === 'asc' ? dateA - dateB : dateB - dateA;
-    });
-  }
-}

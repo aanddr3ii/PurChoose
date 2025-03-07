@@ -1,207 +1,214 @@
 /* Contenedor principal */
 .category-products-container {
-  padding: 2rem;
-  background-color: #f5f5f5; /* Fondo claro */
-  font-family: Arial, sans-serif;
-  max-width: 1200px; /* Ancho máximo para centrar el contenido */
-  margin: 0 auto; /* Centramos horizontalmente */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Título de la categoría */
-.category-title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 1.5rem;
-  text-align: left;
-  font-variant: small-caps;
-  letter-spacing: 1px;
-}
-
-/* Sección de filtros */
-.filter-section {
-  display: flex;
-  justify-content: space-between; /* Alineamos filtro y otros elementos */
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-/* Etiqueta del filtro */
-.filter-section label {
-  font-size: 1rem;
-  color: #555;
-  font-weight: 500;
-  margin-right: 0.5rem;
-}
-
-/* Select del filtro */
-.filter-select {
-  padding: 0.6rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  appearance: none;
-  background-color: #fff;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M7%2010l5%205%205-5z%22%2F%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E');
-  background-repeat: no-repeat;
-  background-position: right 0.5rem center;
-  background-size: 1rem;
-}
-
-.filter-select:hover {
-  border-color: #888;
-}
-
-/* Cuadrícula de productos */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas adaptables */
-  gap: 1.5rem; /* Espaciado entre productos */
-}
-
-/* Tarjeta de producto */
-.product-card {
-  background-color: #fff; /* Fondo blanco */
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Carrusel de imágenes */
-.carousel-container {
-  position: relative;
-  height: 200px; /* Altura fija para evitar solapamientos */
-}
-
-.carousel-wrapper {
-  display: flex;
-  transition: transform 0.3s ease;
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Botones del carrusel */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  border: none;
-  padding: 0.5rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.carousel-btn.prev {
-  left: 0;
-}
-
-.carousel-btn.next {
-  right: 0;
-}
-
-/* Información del producto */
-.product-info {
-  padding: 1rem;
-  text-align: center;
-}
-
-.product-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
-.price {
-  font-size: 1rem;
-  color: #007bff;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.location {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.5rem;
-}
-
-.location-icon {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.5rem;
-  fill: #555;
-}
-
-.description {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 0.5rem;
-  white-space: pre-line; /* Mantenemos saltos de línea en la descripción */
-}
-
-/* Aseguramos alturas uniformes para todas las tarjetas */
-.product-card {
-  display: flex;
-  flex-direction: column; /* Organizamos el contenido verticalmente */
-}
-
-.product-info {
-  flex-grow: 1; /* El contenedor de información ocupa el espacio restante */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Distribuimos el contenido uniformemente */
-}
-
-/* Mensaje si no hay productos */
-.no-products-message {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #888;
-  margin-top: 1.5rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .category-products-container {
-    padding: 1rem;
+    display: flex; /* Usamos flexbox para organizar dos columnas */
+    flex-direction: column; /* Por defecto, una columna (para móviles) */
+    padding: 2rem;
+    background-color: #f5f5f5; /* Fondo claro */
+    font-family: Arial, sans-serif;
+    max-width: 1500px; /* Ancho máximo para centrar el contenido */
+    margin: 0 auto; /* Centramos horizontalmente */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
-
+  
+  /* Título de la categoría */
   .category-title {
-    font-size: 1.6rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    font-variant: small-caps;
+    letter-spacing: 1px;
   }
-
-  .products-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
+  
+  /* Contenedor con dos columnas (filtros + productos) */
+  .content-container {
+    display: flex; /* Usamos flexbox para dividir en dos columnas */
+    gap: 1.5rem; /* Espaciado entre columnas */
   }
-
-  .product-card {
-    height: auto; /* Ajustamos la altura */
+  
+  /* Columna de filtros (izquierda) */
+  .filters-column {
+    flex: 1; /* Ocupa una parte del contenedor */
+    background-color: #fff; /* Fondo blanco */
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-
-  .carousel-container {
-    height: 150px; /* Reducimos la altura del carrusel */
+  
+  .filters-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
   }
-
-  .carousel-btn {
-    padding: 0.4rem;
+  
+  .filter-group {
+    margin-bottom: 1rem;
+  }
+  
+  .filter-group label {
+    display: block; /* Cada etiqueta ocupa su propia línea */
     font-size: 1rem;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    cursor: pointer; /* Cambiamos el cursor al pasar por encima */
   }
-}
+  
+  .filter-group input[type="radio"] {
+    margin-right: 0.5rem;
+  }
+  
+  /* Columna de productos (centro/derecha) */
+  .products-column {
+    flex: 3; /* Ocupa tres partes del contenedor */
+    display: flex;
+    flex-direction: column; /* Organizamos los productos verticalmente */
+  }
+  
+  /* Cuadrícula de productos */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas adaptables */
+    gap: 1.5rem; /* Espaciado entre productos */
+    flex-grow: 1; /* La cuadrícula crece para ocupar todo el espacio disponible */
+  }
+  
+  /* Tarjeta de producto */
+  .product-card {
+    background-color: #fff; /* Fondo blanco */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Aseguramos alturas uniformes */
+  }
+  
+  .product-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Carrusel de imágenes */
+  .carousel-container {
+    position: relative;
+    height: 200px; /* Altura fija para evitar solapamientos */
+    flex: 0 0 auto; /* Mantenemos el carrusel con una altura constante */
+  }
+  
+  .carousel-wrapper {
+    display: flex;
+    transition: transform 0.3s ease;
+  }
+  
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Botones del carrusel */
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%; /* Redondeamos los botones */
+  }
+  
+  .carousel-btn.prev {
+    left: 0.5rem;
+  }
+  
+  .carousel-btn.next {
+    right: 0.5rem;
+  }
+  
+  /* Información del producto */
+  .product-info {
+    flex-grow: 1; /* El contenedor de información ocupa el espacio restante */
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuimos el contenido uniformemente */
+  }
+  
+  .product-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .price {
+    font-size: 1rem;
+    color: #007bff;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .location {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .location-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    fill: #555;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+    color: #666;
+    white-space: pre-line; /* Mantenemos saltos de línea en la descripción */
+  }
+  
+  /* Mensaje si no hay productos */
+  .no-products-message {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #888;
+    margin-top: 1.5rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    /* En pantallas pequeñas, mostramos una sola columna */
+    .content-container {
+      flex-direction: column; /* Convertimos en columna */
+    }
+  
+    .filters-column {
+      flex: unset; /* Quitamos el tamaño flexible */
+      width: 100%; /* Hacemos que los filtros ocupen todo el ancho */
+      margin-bottom: 1.5rem; /* Agregamos espacio después de los filtros */
+    }
+  
+    .products-column {
+      flex: unset; /* Quitamos el tamaño flexible */
+      width: 100%; /* Los productos ocupan todo el ancho */
+    }
+  
+    .carousel-container {
+      height: 150px; /* Reducimos la altura del carrusel */
+    }
+  
+    .carousel-btn {
+      padding: 0.4rem;
+      font-size: 1rem;
+    }
+  }
