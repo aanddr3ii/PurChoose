@@ -4,28 +4,98 @@
 <div class="category-products-container">
   <h2 class="category-title">Cars</h2>
 
-  <!-- Sección de filtros -->
-  <div class="filter-section">
-    <label for="filter-select">Filtrar por:</label>
-    <select 
-      id="filter-select" 
-      [(ngModel)]="selectedFilter" 
-      (change)="applyFilter()"
-    >
-      @for (option of filterOptions; track option.value) {
-        <option [value]="option.value">{{ option.label }}</option>
-      }
-    </select>
-  </div>
+  <!-- Contenedor principal con dos columnas -->
+  <div class="content-container">
+    <!-- Columna de filtros -->
+    <div class="filters-column">
+      <h3 class="filters-title">Filtros</h3>
 
-  <!-- Grid de productos -->
-  <div class="products-grid">
-    @if (products.length > 0) {
-      @for (product of products; track product.id) {
-        <app-card-product [product]="product"></app-card-product>
+      <!-- Filtro por precio (usando radio buttons) -->
+      <div class="filter-group">
+        <label>
+          <input 
+            type="radio" 
+            name="price" 
+            [(ngModel)]="filters.price" 
+            [value]="'asc'" 
+            (change)="applyFilters('price', filters.price)"
+          />
+          Precio (Bajo a Alto)
+        </label>
+        <label>
+          <input 
+            type="radio" 
+            name="price" 
+            [(ngModel)]="filters.price" 
+            [value]="'desc'" 
+            (change)="applyFilters('price', filters.price)"
+          />
+          Precio (Alto a Bajo)
+        </label>
+      </div>
+
+      <!-- Filtro por popularidad (usando radio buttons) -->
+      <div class="filter-group">
+        <label>
+          <input 
+            type="radio" 
+            name="popularity" 
+            [(ngModel)]="filters.popularity" 
+            [value]="'asc'" 
+            (change)="applyFilters('popularity', filters.popularity)"
+          />
+          Popularidad (Baja a Alta)
+        </label>
+        <label>
+          <input 
+            type="radio" 
+            name="popularity" 
+            [(ngModel)]="filters.popularity" 
+            [value]="'desc'" 
+            (change)="applyFilters('popularity', filters.popularity)"
+          />
+          Popularidad (Alta a Baja)
+        </label>
+      </div>
+
+      <!-- Filtro por fecha (usando radio buttons) -->
+      <div class="filter-group">
+        <label>
+          <input 
+            type="radio" 
+            name="date" 
+            [(ngModel)]="filters.date" 
+            [value]="'asc'" 
+            (change)="applyFilters('date', filters.date)"
+          />
+          Fecha (Antigua a Reciente)
+        </label>
+        <label>
+          <input 
+            type="radio" 
+            name="date" 
+            [(ngModel)]="filters.date" 
+            [value]="'desc'" 
+            (change)="applyFilters('date', filters.date)"
+          />
+          Fecha (Reciente a Antigua)
+        </label>
+      </div>
+    </div>
+
+    <!-- Columna de productos -->
+    <div class="products-column">
+      <!-- Mensaje si no hay productos -->
+      @if (filteredProducts.length === 0) {
+        <p class="no-products-message">No hay productos disponibles.</p>
+      } @else {
+        <!-- Grid de productos -->
+        <div class="products-grid">
+          @for (product of filteredProducts; track product.id) {
+            <app-card-product [product]="product"></app-card-product>
+          }
+        </div>
       }
-    } @else {
-      <p>No hay productos disponibles.</p>
-    }
+    </div>
   </div>
 </div>
