@@ -31,7 +31,7 @@ export class CategoryProductComponent {
         'images/wgg2.2.png'
       ],
       popularity: 1, // Popularidad (1-5)
-      dateAdded: new Date('2023-10-01') // Fecha de publicación
+      dateAdded: new Date('2004-10-01') // Fecha de publicación
     },
     {
       id: 2,
@@ -46,7 +46,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i9/bt/__/c10420p1104058558/i5423511667.jpg?pictureSize=W640'
       ],
       popularity: 2,
-      dateAdded: new Date('2023-09-25')
+      dateAdded: new Date('2011-09-25')
     },
     {
       id: 3,
@@ -61,7 +61,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/gt/b4/__/c10420p1016687127/i4952895447.jpg?pictureSize=W640'
       ],
       popularity: 3,
-      dateAdded: new Date('2023-08-15')
+      dateAdded: new Date('2019-08-15')
     },
     {
       id: 4,
@@ -76,7 +76,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932765.jpg?pictureSize=W640'
       ],
       popularity: 4,
-      dateAdded: new Date('2023-07-10')
+      dateAdded: new Date('2001-07-10')
     },
     {
       id: 5,
@@ -91,7 +91,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
       ],
       popularity: 5,
-      dateAdded: new Date('2023-06-01')
+      dateAdded: new Date('2022-06-01')
     }
   ];
 

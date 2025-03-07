@@ -10,15 +10,25 @@
     <div class="filters-column">
       <h3 class="filters-title">Filtros</h3>
 
-      <!-- Filtro por precio (usando radio buttons) -->
+      <!-- Filtro por precio -->
       <div class="filter-group">
         <label>
           <input 
             type="radio" 
             name="price" 
             [(ngModel)]="filters.price" 
+            [value]="null" 
+            (change)="applyFilters('price', null)"
+          />
+          Ninguno
+        </label>
+        <label>
+          <input 
+            type="radio" 
+            name="price" 
+            [(ngModel)]="filters.price" 
             [value]="'asc'" 
-            (change)="applyFilters('price', filters.price)"
+            (change)="applyFilters('price', 'asc')"
           />
           Precio (Bajo a Alto)
         </label>
@@ -28,21 +38,31 @@
             name="price" 
             [(ngModel)]="filters.price" 
             [value]="'desc'" 
-            (change)="applyFilters('price', filters.price)"
+            (change)="applyFilters('price', 'desc')"
           />
           Precio (Alto a Bajo)
         </label>
       </div>
 
-      <!-- Filtro por popularidad (usando radio buttons) -->
+      <!-- Filtro por popularidad -->
       <div class="filter-group">
         <label>
           <input 
             type="radio" 
             name="popularity" 
             [(ngModel)]="filters.popularity" 
+            [value]="null" 
+            (change)="applyFilters('popularity', null)"
+          />
+          Ninguno
+        </label>
+        <label>
+          <input 
+            type="radio" 
+            name="popularity" 
+            [(ngModel)]="filters.popularity" 
             [value]="'asc'" 
-            (change)="applyFilters('popularity', filters.popularity)"
+            (change)="applyFilters('popularity', 'asc')"
           />
           Popularidad (Baja a Alta)
         </label>
@@ -52,21 +72,31 @@
             name="popularity" 
             [(ngModel)]="filters.popularity" 
             [value]="'desc'" 
-            (change)="applyFilters('popularity', filters.popularity)"
+            (change)="applyFilters('popularity', 'desc')"
           />
           Popularidad (Alta a Baja)
         </label>
       </div>
 
-      <!-- Filtro por fecha (usando radio buttons) -->
+      <!-- Filtro por fecha -->
       <div class="filter-group">
         <label>
           <input 
             type="radio" 
             name="date" 
             [(ngModel)]="filters.date" 
+            [value]="null" 
+            (change)="applyFilters('date', null)"
+          />
+          Ninguno
+        </label>
+        <label>
+          <input 
+            type="radio" 
+            name="date" 
+            [(ngModel)]="filters.date" 
             [value]="'asc'" 
-            (change)="applyFilters('date', filters.date)"
+            (change)="applyFilters('date', 'asc')"
           />
           Fecha (Antigua a Reciente)
         </label>
@@ -76,7 +106,7 @@
             name="date" 
             [(ngModel)]="filters.date" 
             [value]="'desc'" 
-            (change)="applyFilters('date', filters.date)"
+            (change)="applyFilters('date', 'desc')"
           />
           Fecha (Reciente a Antigua)
         </label>
