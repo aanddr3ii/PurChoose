@@ -53,10 +53,10 @@ export class CategoryProductComponent {
       location: 'Madrid',
       description: 'Impresionante Morgan 4/4 2006 totalmente restaurada.',
       images: [
-        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932761.jpg?pictureSize=W640',
-        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932771.jpg?pictureSize=W640',
-        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932768.jpg?pictureSize=W640',
-        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932765.jpg?pictureSize=W640'
+        'https://cdn.wallapop.com/images/10420/gt/b4/__/c10420p1016687127/i4952895348.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/gt/b4/__/c10420p1016687127/i4952895411.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/gt/b4/__/c10420p1016687127/i4952895367.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/gt/b4/__/c10420p1016687127/i4952895447.jpg?pictureSize=W640'
       ],
       popularity: 5.0,
       dateAdded: new Date('2023-08-15')
