@@ -101,70 +101,45 @@ export class CategoryProductComponent {
       popularity: null as 'asc' | 'desc' | null,
       date: null as 'asc' | 'desc' | null
     };
-  
-    // Lista filtrada de productos
-    filteredProducts: Product[] = [...this.products];
-  
-    // Método para aplicar los filtros
-    applyFilters(filterType: keyof typeof this.filters, order: 'asc' | 'desc' | null) {
-      // Actualizamos el filtro correspondiente
-      this.filters[filterType] = order;
-  
-      // Reiniciamos la lista filtrada
-      this.filteredProducts = [...this.products];
-  
-      // Aplicamos todos los filtros activos simultáneamente
-      this.applyAllFilters();
-    }
-  
-    // Método para aplicar todos los filtros activos
-    applyAllFilters() {
-      // Creamos una copia de los productos originales
-      let tempProducts = [...this.products];
-  
-      // Ordenamos por precio si está activado
-      if (this.filters.price) {
-        tempProducts = this.sortByPrice(tempProducts, this.filters.price);
-      }
-  
-      // Ordenamos por popularidad si está activado
-      if (this.filters.popularity) {
-        tempProducts = this.sortByPopularity(tempProducts, this.filters.popularity);
-      }
-  
-      // Ordenamos por fecha si está activado
-      if (this.filters.date) {
-        tempProducts = this.sortByDate(tempProducts, this.filters.date);
-      }
-  
-      // Actualizamos la lista filtrada
-      this.filteredProducts = tempProducts;
-    }
-  
-    // Método para ordenar por precio
-    sortByPrice(products: Product[], order: 'asc' | 'desc' | null): Product[] {
-      return products.sort((a, b) => {
-        const priceA = a.price || 0;
-        const priceB = b.price || 0;
-        return order === 'asc' ? priceA - priceB : priceB - priceA;
-      });
-    }
-  
-    // Método para ordenar por popularidad
-    sortByPopularity(products: Product[], order: 'asc' | 'desc' | null): Product[] {
-      return products.sort((a, b) => {
-        const popularityA = a.popularity || 0;
-        const popularityB = b.popularity || 0;
-        return order === 'asc' ? popularityA - popularityB : popularityB - popularityA;
-      });
-    }
-  
-    // Método para ordenar por fecha
-    sortByDate(products: Product[], order: 'asc' | 'desc' | null): Product[] {
-      return products.sort((a, b) => {
-        const dateA = a.dateAdded?.getTime() || 0;
-        const dateB = b.dateAdded?.getTime() || 0;
-        return order === 'asc' ? dateA - dateB : dateB - dateA;
-      });
-    }
+
+  // Lista filtrada de productos
+  filteredProducts: Product[] = [...this.products];
+
+  // Método para aplicar los filtros
+  applyFilters(filterType: keyof typeof this.filters, order: 'asc' | 'desc' | null) {
+    // Actualizamos el filtro correspondiente
+    this.filters[filterType] = order;
+
+    // Aplicamos todos los filtros activos simultáneamente
+    this.filteredProducts = [...this.products].sort(this.getCombinedComparator());
   }
+ // Método para obtener un comparador combinado
+ getCombinedComparator(): (a: Product, b: Product) => number {
+  return (a: Product, b: Product): number => {
+    let result = 0;
+
+    // Aplicamos el filtro de precio si está activado
+    if (this.filters.price) {
+      const priceA = a.price || 0;
+      const priceB = b.price || 0;
+      result = this.filters.price === 'asc' ? priceA - priceB : priceB - priceA;
+    }
+
+    // Aplicamos el filtro de popularidad si está activado
+    if (this.filters.popularity && result === 0) {
+      const popularityA = a.popularity || 0;
+      const popularityB = b.popularity || 0;
+      result = this.filters.popularity === 'asc' ? popularityA - popularityB : popularityB - popularityA;
+    }
+
+    // Aplicamos el filtro de fecha si está activado
+    if (this.filters.date && result === 0) {
+      const dateA = a.dateAdded?.getTime() || 0;
+      const dateB = b.dateAdded?.getTime() || 0;
+      result = this.filters.date === 'asc' ? dateA - dateB : dateB - dateA;
+    }
+
+    return result;
+  };
+}
+}
