@@ -1,33 +1,37 @@
-<div class="product-refund-container">
-  <div class="product-refund-header">
-      <h1>{{ 'PRODUCT-REFUND.HEADER' | translate }}</h1>
-      <button class="info-button" (click)="toggleInfo()">{{ 'PRODUCT-REFUND.INFO-BUTTON' | translate }}</button>
-  </div>
+<div class="product-refund-container" aria-labelledby="refund-heading">
+    <div class="product-refund-header">
+        <h1 id="refund-heading">{{ 'PRODUCT-REFUND.HEADER' | translate }}</h1>
+        <button class="info-button" (click)="toggleInfo()" aria-controls="refund-info-dialog" [attr.aria-expanded]="isInfoVisible">{{ 'PRODUCT-REFUND.INFO-BUTTON' | translate }}</button>
+    </div>
 
-  <div class="product-refund-content">
-      <div class="product-refund-item">
-      <span><p>{{ 'PRODUCT-REFUND.DESCRIPTION' | translate }}</p></span>
-      </div>
-  </div>
+    <div class="product-refund-content">
+        <div class="product-refund-item">
+            <span><p>{{ 'PRODUCT-REFUND.DESCRIPTION' | translate }}</p></span>
+        </div>
+    </div>
 
-  <!-- Modal -->
-  @if (isInfoVisible) {
-      <div class="modal-overlay" (click)="closeModal($event)">
-          <div class="modal-content" (click)="$event.stopPropagation()">
-              <div class="modal-header">
-                  <h2>{{ 'PRODUCT-REFUND.HEADER' | translate }}</h2>
-                  <button class="close-button" (click)="toggleInfo()">×</button>
-              </div>
-              <div class="modal-body">
-                  <p>{{ 'PRODUCT-REFUND.MODAL-DESCRIPTION' | translate }}</p>
-                  <ul>
-                      <p>{{ 'PRODUCT-REFUND.MODAL-POINT-1' | translate }}</p>
-                      <p>{{ 'PRODUCT-REFUND.MODAL-POINT-2' | translate }}</p>
-                      <p>{{ 'PRODUCT-REFUND.MODAL-POINT-3' | translate }}</p>
-                      <p>{{ 'PRODUCT-REFUND.MODAL-POINT-4' | translate }}</p>
-                  </ul>
-              </div>
-          </div>
-      </div>
-  }
+    <!-- Container que se abre -->
+    @if (isInfoVisible) {
+        <div class="modal-overlay" (click)="closeModal($event)" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description"aria-modal="true" id="refund-info-dialog">
+            <div class="modal-content" (click)="$event.stopPropagation()">
+                <div>
+                    <div class="modal-header">
+                        <h2 id="dialog-title">{{ 'PRODUCT-REFUND.HEADER' | translate }}</h2>
+                        <button class="close-button" (click)="toggleInfo()" aria-label="Close">×</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="dialog-body">
+                        <p id="dialog-description">{{ 'PRODUCT-REFUND.MODAL-DESCRIPTION' | translate }}</p>
+                        <ul>
+                            <p>{{ 'PRODUCT-REFUND.MODAL-POINT-1' | translate }}</p>
+                            <p>{{ 'PRODUCT-REFUND.MODAL-POINT-2' | translate }}</p>
+                            <p>{{ 'PRODUCT-REFUND.MODAL-POINT-3' | translate }}</p>
+                            <p>{{ 'PRODUCT-REFUND.MODAL-POINT-4' | translate }}</p>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
