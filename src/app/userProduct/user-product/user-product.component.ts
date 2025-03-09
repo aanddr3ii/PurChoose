@@ -7,14 +7,15 @@ import { ProductDescriptionComponent } from '../product-description/product-desc
 import { ProductDeliveryComponent } from '../product-delivery/product-delivery.component';
 import { ProductRefundComponent } from '../product-refund/product-refund.component';
 import { ProductLocationComponent } from "../product-location/product-location.component";
+import { ProductUserBarReviewComponent } from "../product-user-bar-review/product-user-bar-review.component";
 import { UsersReviewComponent } from "../users-review/users-review.component";
-
 import { ProductFooterComponent } from '../product-footer/product-footer.component';
+
 
 @Component({
   selector: 'app-user-product',
   standalone: true,
-  imports: [ProductFooterComponent, ProductDeliveryComponent, ProductRefundComponent, ProductDescriptionComponent, ProductUserBarComponent, ProductCarouselComponent, NavBeltComponent, NavCategoriesComponent, ProductLocationComponent, UsersReviewComponent],
+  imports: [ProductFooterComponent, ProductDeliveryComponent, ProductRefundComponent, ProductDescriptionComponent, ProductUserBarComponent, ProductCarouselComponent, NavBeltComponent, NavCategoriesComponent, ProductLocationComponent, ProductUserBarReviewComponent, UsersReviewComponent],
   templateUrl: './user-product.component.html',
   styleUrl: './user-product.component.css'
 })

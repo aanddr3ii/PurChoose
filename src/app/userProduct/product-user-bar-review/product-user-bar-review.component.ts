@@ -3,13 +3,13 @@ import { User } from '../../interfaces/user';
 import { Review } from '../../interfaces/review';
 
 @Component({
-  selector: 'app-users-review',
+  selector: 'app-product-user-bar-review',
   standalone: true,
   imports: [],
-  templateUrl: './users-review.component.html',
-  styleUrl: './users-review.component.css'
+  templateUrl: './product-user-bar-review.component.html',
+  styleUrl: './product-user-bar-review.component.css'
 })
-export class UsersReviewComponent {
+export class ProductUserBarReviewComponent {
   user: User = {
     id: 1,
     name: 'Paco'
