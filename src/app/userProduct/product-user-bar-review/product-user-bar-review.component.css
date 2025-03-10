@@ -1,10 +1,12 @@
 .user-review-container {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
     font-size: 14px;
     color: #29363d;
     font-weight: normal;
     font-family: Arial;
+    padding-left: 14px;
 }
 
 .user-review-container svg {

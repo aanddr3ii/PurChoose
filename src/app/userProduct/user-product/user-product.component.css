@@ -9,7 +9,7 @@
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
-    min-height: 1830px;
+    min-height: 1430px;
 }
 
 .location {
@@ -19,6 +19,16 @@
     width: 100%;
     padding: 5px 0px 15px 0px;
     gap: 6px;
+}
+
+.user-bar-review {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 5px 0px 15px 0px;
+    gap: 6px;
+    margin-left: 0;  
 }
 
 .simbolo svg {
