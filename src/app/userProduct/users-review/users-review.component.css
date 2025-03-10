@@ -9,6 +9,7 @@
     padding: 15px;
     width: 100%;
     max-width: 500px;
+    font-family: Arial
 }
 
 .user-review-header {
@@ -16,6 +17,7 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
+    font-family: Arial
 }
 
 .profile-picture {
