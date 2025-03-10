@@ -37,7 +37,7 @@
     "FULL_NAME_ERROR": "Le nom complet doit comporter au moins 3 caractères.",
     "EMAIL_ERROR": "Veuillez entrer une adresse e-mail valide.",
     "DOB_ERROR": "La date de naissance est requise.",
-    "PHONE_ERROR": "Veuillez entrer un numéro de téléphone valide à 10 chiffres.",
+    "PHONE_ERROR": "Veuillez entrer un numéro de téléphone valide à 9 chiffres.",
     "PASSWORD_ERROR": "Le mot de passe doit comporter au moins 6 caractères.",
     "PASSWORD_MISMATCH": "Les mots de passe ne correspondent pas."
   },
