@@ -10,21 +10,14 @@ import { Review } from '../../interfaces/review';
   styleUrl: './users-review.component.css'
 })
 export class UsersReviewComponent {
-  user: User = {
-    id: 1,
-    name: 'paco',
-    email: '',
-    password: '',
-    role: '',
-    registrationDate: new Date(),
-    location: '',
-    phone: 0,
-    profilePicture: 'https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/5aed/live/909f0fe0-ea63-11ef-a819-277e390a7a08.jpg.webp'
-  };
 
-  review: Review = {
-    id: 1,
-    text: 'un vendedor amable y',
-    rating: 3.4,
-  };
+  users: User[] = [
+    {id:1, name: 'Aleix', profilePicture: 'https://media.licdn.com/dms/image/v2/D4D03AQHZUtDMwvW49w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1696004719195?e=2147483647&v=beta&t=zYv2c3HUsY1n9gSlk-ll0MoWictwpiixi-5nEce20H0'},
+    {id:2, name: 'Juan', profilePicture: 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/002.png'}
+  ];
+  reviews: (Review & { user?: User })[] = [
+    { id: 1, rating: 5.8, text: 'Great service!', user: this.users[0] },
+    { id: 2, rating: 3.0, text: 'It was okay.', user: this.users[1] }
+  ];
+
 }

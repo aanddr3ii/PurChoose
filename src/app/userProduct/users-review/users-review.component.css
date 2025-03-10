@@ -1,0 +1,52 @@
+.user-review-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+.user-review-card {
+    padding: 15px;
+    width: 100%;
+    max-width: 500px;
+    font-family: Arial
+}
+
+.user-review-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-family: Arial
+}
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-review-name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.user-review-rating {
+    font-size: 14px;
+    color: #f39c12;
+}
+
+.user-review-text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.no-reviews {
+    font-size: 16px;
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
