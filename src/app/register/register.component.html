@@ -1,171 +1,89 @@
 <main class="register-container">
-  <h1 id="register-title">{{ 'REGISTER.TITLE' | translate }}</h1>
-  <p>
-    {{ 'REGISTER.DESCRIPTION' | translate }}
-    <a routerLink="/login">{{ 'REGISTER.LINK' | translate }}</a>
-  </p>
-
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" aria-labelledby="register-title">
-    
-    <!-- Nombre completo -->
-    <div class="form-group">
-      <label for="fullName">{{ 'REGISTER.FULL_NAME' | translate }}</label>
-      <input 
-        type="text" 
-        id="fullName" 
-        formControlName="fullName"
-        aria-required="true"
-        aria-describedby="fullNameError"
-      >
-      @if (registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched) {
-        <small id="fullNameError" class="error-message">
-          {{ 'REGISTER.FULL_NAME_ERROR' | translate }}
-        </small>
-      }
-    </div>
-
-    <!-- Correo electrónico -->
-    <div class="form-group">
-      <label for="email">{{ 'REGISTER.EMAIL' | translate }}</label>
-      <input 
-        type="email" 
-        id="email" 
-        formControlName="email"
-        aria-required="true"
-        aria-describedby="emailError"
-      >
-      @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
-        <small id="emailError" class="error-message">
-          {{ 'REGISTER.EMAIL_ERROR' | translate }}
-        </small>
-      }
-      @if (registerForm.get('email')?.hasError('duplicate')) {
-        <small class="error-message">
-          {{ 'REGISTER.EMAIL_EXISTS' | translate }}
-        </small>
-      }
-    </div>
-
-    <!-- Fecha de nacimiento -->
-    <div class="form-group">
-      <label for="dob">{{ 'REGISTER.DOB' | translate }}</label>
-      <input 
-        type="date" 
-        id="dob" 
-        formControlName="dob"
-        aria-required="true"
-        aria-describedby="dobError"
-      >
-      @if (registerForm.get('dob')?.invalid && registerForm.get('dob')?.touched) {
-        <small id="dobError" class="error-message">
-          {{ 'REGISTER.DOB_ERROR' | translate }}
-        </small>
-      }
-    </div>
-
-    <!-- Teléfono -->
-    <div class="form-group">
-      <label>{{ 'REGISTER.PHONE_NUMBER' | translate }}</label>
-      <div class="phone-container">
-        <select formControlName="countryCode" aria-label="Country Code">
-          @for (code of countryCodes; track code) {
-            <option [value]="code.value">{{ code.flag }} {{ code.value }}</option>
-          }
-        </select>
-        <input 
-          type="tel" 
-          formControlName="phone"
-          placeholder="{{ 'REGISTER.PHONE_PLACEHOLDER' | translate }}"
-          aria-describedby="phoneError"
-        >
+    <h1>{{ 'REGISTER.TITLE' | translate }}</h1>
+    <p>
+      {{ 'REGISTER.DESCRIPTION' | translate }}
+      <a routerLink="/login">{{ 'REGISTER.LINK' | translate }}</a>.
+      <a routerLink="/register">{{ 'REGISTER.DELETE' | translate }}</a>.
+    </p>
+  
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" aria-labelledby="register-title">
+      
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="fullName">{{ 'REGISTER.FULL_NAME' | translate }}</label>
+        <input type="text" id="fullName" formControlName="fullName" aria-required="true" aria-describedby="fullNameError">
+        @if (registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched) {
+          <small id="fullNameError" role="alert">{{ 'REGISTER.FULL_NAME_ERROR' | translate }}</small>
+        }
       </div>
-      @if (registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched) {
-        <small id="phoneError" class="error-message">
-          {{ 'REGISTER.PHONE_ERROR' | translate }}
-        </small>
-      }
-    </div>
-
-    <!-- Tipo de cuenta -->
-    <div class="form-group">
-      <label>{{ 'REGISTER.ACCOUNT_TYPE' | translate }}</label>
-      <div class="radio-group">
-        <label>
-          <input type="radio" value="client" formControlName="role">
-          {{ 'REGISTER.CLIENT' | translate }}
-        </label>
-        <label>
-          <input type="radio" value="seller" formControlName="role">
-          {{ 'REGISTER.SELLER' | translate }}
-        </label>
+  
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">{{ 'REGISTER.EMAIL' | translate }}</label>
+        <input type="email" id="email" formControlName="email" aria-required="true" aria-describedby="emailError">
+        @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+          <small id="emailError" role="alert">{{ 'REGISTER.EMAIL_ERROR' | translate }}</small>
+        }
       </div>
-      @if (registerForm.get('role')?.invalid && registerForm.get('role')?.touched) {
-        <small class="error-message">
-          {{ 'REGISTER.ACCOUNT_TYPE_ERROR' | translate }}
-        </small>
-      }
-    </div>
-
-    <!-- Contraseña -->
-    <div class="form-group">
-      <label for="password">{{ 'REGISTER.SET_PASSWORD' | translate }}</label>
-      <input 
-        type="password" 
-        id="password" 
-        formControlName="password"
-        aria-required="true"
-        aria-describedby="passwordError"
-      >
-      @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
-        <small id="passwordError" class="error-message">
-          {{ 'REGISTER.PASSWORD_ERROR' | translate }}
-        </small>
-      }
-    </div>
-
-    <!-- Confirmar contraseña -->
-    <div class="form-group">
-      <label for="confirmPassword">{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</label>
-      <input 
-        type="password" 
-        id="confirmPassword" 
-        formControlName="confirmPassword"
-        aria-required="true"
-        aria-describedby="confirmPasswordError"
-      >
-      @if (registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched) {
-        <small id="confirmPasswordError" class="error-message">
-          {{ 'REGISTER.PASSWORD_MISMATCH' | translate }}
-        </small>
-      }
-    </div>
-
-    <!-- Términos y condiciones -->
-    <div class="form-group terms">
-      <input 
-        type="checkbox" 
-        id="terms" 
-        formControlName="terms"
-        aria-describedby="termsError"
-      >
-      <label for="terms">
-        {{ 'REGISTER.ACCEPT' | translate }}
-        <a href="#">{{ 'REGISTER.TERMS' | translate }}</a>
-      </label>
-      @if (registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched) {
-        <small id="termsError" class="error-message">
-          {{ 'REGISTER.TERMS_ERROR' | translate }}
-        </small>
-      }
-    </div>
-
-    <button 
-    type="submit" 
-    class="register-button" 
-    [disabled]="registerForm.invalid"
-    [attr.aria-label]="'REGISTER.BUTTON' | translate"
-  >
-    {{ 'REGISTER.BUTTON' | translate }}
-  </button>
-  </form>
+  
+      <!-- Date of Birth -->
+      <div class="form-group">
+        <label for="dob">{{ 'REGISTER.DOB' | translate }}</label>
+        <input type="date" id="dob" formControlName="dob" aria-required="true" aria-describedby="dobError">
+        @if (registerForm.get('dob')?.invalid && registerForm.get('dob')?.touched) {
+          <small id="dobError" role="alert">{{ 'REGISTER.DOB_ERROR' | translate }}</small>
+        }
+      </div>
+  
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="phone">{{ 'REGISTER.PHONE_NUMBER' | translate }}</label>
+        <div class="phone-container">
+          <select id="countryCode" formControlName="countryCode" aria-label="Country Code">
+            @for (code of countryCodes; track code) {
+              <option [value]="code.value">{{ code.flag }} {{ code.value }}</option>
+            }
+          </select>
+          <input type="tel" id="phone" formControlName="phone" placeholder="(123) 456-7890" 
+                 aria-required="true" aria-describedby="phoneError">
+        </div>
+        @if (registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched) {
+          <small id="phoneError" role="alert">{{ 'REGISTER.PHONE_ERROR' | translate }}</small>
+        }
+      </div>
+  
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">{{ 'REGISTER.SET_PASSWORD' | translate }}</label>
+        <input type="password" id="password" formControlName="password" 
+               aria-required="true" aria-describedby="passwordError">
+        @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+          <small id="passwordError" role="alert">{{ 'REGISTER.PASSWORD_ERROR' | translate }}</small>
+        }
+      </div>
+  
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword">{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword"
+               aria-required="true" aria-describedby="confirmPasswordError">
+        @if (registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched) {
+          <small id="confirmPasswordError" role="alert">{{ 'REGISTER.PASSWORD_MISMATCH' | translate }}</small>
+        }
+      </div>
+      <div class="form-group">
+        <input type="checkbox" id="terms" formControlName="terms">
+        <label for="terms">
+          Acepto los <a routerLink="/terms">términos y condiciones</a>
+        </label>
+        @if (registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched) {
+          <small role="alert">Debes aceptar los términos</small>
+        }
+      </div>
+      
+      <!-- Submit Button -->
+      <button type="submit" class="register-button" [disabled]="registerForm.invalid" aria-label="Register">
+        {{ 'REGISTER.BUTTON' | translate }}
+      </button>
+    </form>
 </main>
