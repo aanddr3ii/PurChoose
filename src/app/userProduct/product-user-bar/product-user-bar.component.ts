@@ -11,12 +11,12 @@ import { UserService } from '../../services/userService/user.service';
   styleUrl: './product-user-bar.component.css'
 })
 export class ProductUserBarComponent {
-  user: User | null = null; // Define a product object
+  user: User | null = null;
   
-  constructor(private userService: UserService) {} // Inject the service
+  constructor(private userService: UserService) {} 
   
   ngOnInit(): void {
-    this.user = this.userService.getUser(); // Get user from service
+    this.user = this.userService.getUser(); 
   }
 };
 

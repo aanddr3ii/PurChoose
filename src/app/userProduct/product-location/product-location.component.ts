@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from '../../interfaces/user';
+import { UserService } from '../../services/userService/user.service';
 
 @Component({
   selector: 'app-product-location',
@@ -9,9 +10,11 @@ import { User } from '../../interfaces/user';
   styleUrl: './product-location.component.css'
 })
 export class ProductLocationComponent {
-
-  locationUser: User[] = [
-    { id: 1, location: 'Madrid' },
-  ];
-
+  user: User | null = null;
+  
+  constructor(private userService: UserService) {} 
+  
+  ngOnInit(): void {
+    this.user = this.userService.getUser(); 
+  }
 }

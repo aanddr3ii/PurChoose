@@ -13,7 +13,7 @@ export class UserService {
     password: '123456789',
     role: 'usuario',
     registrationDate: new Date(), // Usamos 'fechaRegistro' en lugar de 'registrationDate'
-    location: 'Washington D.C, USA', // Usamos 'ubicacion' en lugar de 'location'
+    location: 'Barcelona', // Usamos 'ubicacion' en lugar de 'location'
     phone: 12345678901, // Usamos 'telefono' en lugar de 'phone'
     profilePicture: 'https://media.licdn.com/dms/image/v2/D5603AQHyYxdhP8mV2Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719498858263?e=1746662400&v=beta&t=xnDUsAahOKC7h71UEz88i_eXIP5gjH6s9jiTbPlGCzs', // Usamos 'fotoPerfil' en lugar de 'profilePicture'
   };
