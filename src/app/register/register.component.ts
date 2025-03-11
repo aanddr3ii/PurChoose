@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import {ReactiveFormsModule, FormGroup, FormBuilder, Validators} from '@angular/forms';
 
-
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -12,6 +11,8 @@ import {ReactiveFormsModule, FormGroup, FormBuilder, Validators} from '@angular/
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  terms: any; // Checkbox must be checked
+
   // Variable para el formulario de registro
   registerForm: FormGroup;
 
@@ -34,6 +35,7 @@ export class RegisterComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
     }, { validators: this.passwordsMatchValidator });
+    this.terms = [false, Validators.requiredTrue];
   }
 
   // Función para validar que las contraseñas coincidan
