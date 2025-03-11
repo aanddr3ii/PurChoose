@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { User } from '../../interfaces/user';
 import { TranslateModule } from '@ngx-translate/core';
+import { User } from '../../interfaces/user';
+import { UserService } from '../../services/userService/user.service';
+
 @Component({
   selector: 'app-product-user-bar',
   standalone: true,
@@ -9,18 +11,12 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './product-user-bar.component.css'
 })
 export class ProductUserBarComponent {
-
-  user: User = {
-    id: 1,
-    name: 'Yassine Riahi El Kihal',
-    email: 'paco@gmailcom',
-    password: '1234',
-    role: 'user',
-    registrationDate: new Date(),
-    location: 'New York',
-    phone: 1234567890,
-    profilePicture: 'https://media.licdn.com/dms/image/v2/D5603AQHyYxdhP8mV2Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719498858263?e=1746662400&v=beta&t=xnDUsAahOKC7h71UEz88i_eXIP5gjH6s9jiTbPlGCzs'
-  };
-
+  user: User | null = null; // Define a product object
+  
+  constructor(private userService: UserService) {} // Inject the service
+  
+  ngOnInit(): void {
+    this.user = this.userService.getUser(); // Get user from service
+  }
 };
 
