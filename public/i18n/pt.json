@@ -23,10 +23,11 @@
     "MOTORBIKES": "Motos"
   },
   
-  "REGISTER": {
+"REGISTER": {
     "TITLE": "Cadastre-se",
     "DESCRIPTION": "Crie sua conta abaixo. Se já tem uma conta, você pode",
     "LINK": "Entrar aqui",
+    "DELETE": "Cadastro de Vendedor",
     "FULL_NAME": "Nome Completo",
     "EMAIL": "E-mail",
     "DOB": "Data de Nascimento",
@@ -39,8 +40,16 @@
     "DOB_ERROR": "A data de nascimento é obrigatória.",
     "PHONE_ERROR": "Insira um número de telefone válido de 9 dígitos.",
     "PASSWORD_ERROR": "A senha deve ter pelo menos 6 caracteres.",
-    "PASSWORD_MISMATCH": "As senhas não coincidem."
-  },
+    "PASSWORD_MISMATCH": "As senhas não coincidem.",
+    "ACCOUNT_TYPE": "Tipo de Conta",
+    "CLIENT": "Cliente",
+    "SELLER": "Vendedor",
+    "ACCEPT": "Aceito os",
+    "TERMS": "Termos e Condições",
+    "TERMS_ERROR": "Você deve aceitar os termos",
+    "PHONE_PLACEHOLDER": "123456789",
+    "ACCOUNT_TYPE_ERROR": "Selecione um tipo de conta"
+  },  
 
   "LOGIN": {
     "TITLE": "Entrar",

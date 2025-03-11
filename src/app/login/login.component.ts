@@ -20,7 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class LoginComponent {
   loginForm: FormGroup;
   isPasswordVisible = false;
-  invalidCredentials = false; // Nueva propiedad para errores
+  invalidCredentials = false;
 
   @ViewChild('passwordInput') passwordInput!: ElementRef<HTMLInputElement>;
 
@@ -49,7 +49,7 @@ export class LoginComponent {
       const { email, password } = this.loginForm.value;
       
       if (this.auth.login(email, password)) {
-        this.router.navigate(['/']); // Redirige a home
+        this.router.navigate(['/']);
       } else {
         this.invalidCredentials = true;
         setTimeout(() => this.invalidCredentials = false, 3000);

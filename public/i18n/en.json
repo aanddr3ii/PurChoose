@@ -27,7 +27,7 @@
     "TITLE": "Sign up",
     "DESCRIPTION": "Create your account below. If you already have an account, you can",
     "LINK": "Login here",
-    "DELETE": "Seller Reigstration",
+    "DELETE": "Seller Registration",
     "FULL_NAME": "Full Name",
     "EMAIL": "Email",
     "DOB": "Date of Birth",
@@ -40,9 +40,16 @@
     "DOB_ERROR": "Date of birth is required.",
     "PHONE_ERROR": "Enter a valid 9-digit phone number.",
     "PASSWORD_ERROR": "Password must be at least 6 characters long.",
-    "PASSWORD_MISMATCH": "Passwords do not match."
+    "PASSWORD_MISMATCH": "Passwords do not match.",
+    "ACCOUNT_TYPE": "Account Type",
+    "CLIENT": "Client",
+    "SELLER": "Seller",
+    "ACCEPT": "I accept the",
+    "TERMS": "Terms and Conditions",
+    "TERMS_ERROR": "You must accept the terms",
+    "PHONE_PLACEHOLDER": "123456789",
+    "ACCOUNT_TYPE_ERROR": "Please select account type"
   },
-
   "LOGIN": {
     "TITLE": "Login",
     "DESCRIPTION": "Don't have an account?",

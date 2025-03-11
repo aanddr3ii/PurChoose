@@ -27,6 +27,7 @@
     "TITLE": "Registro",
     "DESCRIPTION": "Crea tu cuenta abajo. Si ya tienes una cuenta, puedes",
     "LINK": "Inicia sesión aquí",
+    "DELETE": "Registro de Vendedor",
     "FULL_NAME": "Nombre completo",
     "EMAIL": "Correo electrónico",
     "DOB": "Fecha de nacimiento",
@@ -39,7 +40,15 @@
     "DOB_ERROR": "La fecha de nacimiento es obligatoria.",
     "PHONE_ERROR": "Introduce un número de teléfono válido de 9 dígitos.",
     "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres.",
-    "PASSWORD_MISMATCH": "Las contraseñas no coinciden."
+    "PASSWORD_MISMATCH": "Las contraseñas no coinciden.",
+    "ACCOUNT_TYPE": "Tipo de cuenta",
+    "CLIENT": "Cliente",
+    "SELLER": "Vendedor",
+    "ACCEPT": "Acepto los",
+    "TERMS": "Términos y Condiciones",
+    "TERMS_ERROR": "Debes aceptar los términos",
+    "PHONE_PLACEHOLDER": "123456789",
+    "ACCOUNT_TYPE_ERROR": "Selecciona un tipo de cuenta"
   },
 
   "LOGIN": {

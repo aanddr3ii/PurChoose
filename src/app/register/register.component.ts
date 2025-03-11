@@ -1,55 +1,63 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../services/authService/auth.service';
 import { TranslateModule } from '@ngx-translate/core';
-import {ReactiveFormsModule, FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [RouterLink, TranslateModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  terms: any; // Checkbox must be checked
-
-  // Variable para el formulario de registro
   registerForm: FormGroup;
-
-  // Array de códigos de país con su bandera correspondiente
   countryCodes = [
     { value: '+1', flag: '🇺🇸' },
+    { value: '+34', flag: '🇪🇸' },
     { value: '+351', flag: '🇵🇹' },
-    { value: '+33', flag: '🇫🇷' },
-    { value: '+34', flag: '🇪🇸' }
+    { value: '+33', flag: '🇫🇷' }
   ];
 
-  // Configuración del formulario de registro
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.registerForm = this.fb.group({
       fullName: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]], 
-      dob: ['', [Validators.required]], 
-      countryCode: ['+1', [Validators.required]], 
+      email: ['', [Validators.required, Validators.email]],
+      dob: ['', [Validators.required]],
+      countryCode: ['+34', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]],
-    }, { validators: this.passwordsMatchValidator });
-    this.terms = [false, Validators.requiredTrue];
+      confirmPassword: ['', Validators.required],
+      role: ['client', Validators.required], // Nuevo campo
+      terms: [false, Validators.requiredTrue]
+    }, { validators: this.passwordMatchValidator });
   }
 
-  // Función para validar que las contraseñas coincidan
-  private passwordsMatchValidator(form: FormGroup) {
+  // Validador personalizado para contraseñas
+  private passwordMatchValidator(form: FormGroup) {
     const password = form.get('password')?.value;
     const confirmPassword = form.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { passwordMismatch: true };
+    return password === confirmPassword ? null : { mismatch: true };
   }
 
-  // Función para manejar el envío del formulario y enseñarlo por consola
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log('Form Submitted:', this.registerForm.value);
+      const userData = this.registerForm.value;
+      
+      if (this.auth.register({
+        ...userData,
+        phone: userData.countryCode + userData.phone
+      })) {
+        this.router.navigate(['/login']);
+      } else {
+        // Mostrar error de email duplicado
+        this.registerForm.get('email')?.setErrors({ duplicate: true });
+      }
     }
   }
-
 }
