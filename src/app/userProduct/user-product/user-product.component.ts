@@ -10,12 +10,13 @@ import { ProductLocationComponent } from "../product-location/product-location.c
 import { ProductUserBarReviewComponent } from "../product-user-bar-review/product-user-bar-review.component";
 import { UsersReviewComponent } from "../users-review/users-review.component";
 import { ProductFooterComponent } from '../product-footer/product-footer.component';
+import { PrductReviewButtonComponent } from "../prduct-review-button/prduct-review-button.component";
 
 
 @Component({
   selector: 'app-user-product',
   standalone: true,
-  imports: [ProductFooterComponent, ProductDeliveryComponent, ProductRefundComponent, ProductDescriptionComponent, ProductUserBarComponent, ProductCarouselComponent, NavBeltComponent, NavCategoriesComponent, ProductLocationComponent, ProductUserBarReviewComponent, UsersReviewComponent],
+  imports: [ProductFooterComponent, ProductDeliveryComponent, ProductRefundComponent, ProductDescriptionComponent, ProductUserBarComponent, ProductCarouselComponent, NavBeltComponent, NavCategoriesComponent, ProductLocationComponent, ProductUserBarReviewComponent, UsersReviewComponent, PrductReviewButtonComponent],
   templateUrl: './user-product.component.html',
   styleUrl: './user-product.component.css'
 })

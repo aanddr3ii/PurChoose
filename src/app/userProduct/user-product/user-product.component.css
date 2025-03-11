@@ -8,8 +8,10 @@
     justify-content: flex-start;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    min-height: 1280px;
+    margin: 2rem auto;
+    min-height: auto; /* Let content define height */
+    height: auto;
+
 }
 
 .location {
@@ -34,12 +36,12 @@
 .users-review {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     width: 100%;
-    margin-top: 10px; /* Adjust spacing */
-    padding: 0 15px;
+    margin-top: -20px;  /* Remove extra spacing */
+    padding: 0;  /* Remove unnecessary padding */
 }
-
 
 
 .simbolo svg {
@@ -57,9 +59,8 @@
 }
 
 body, html {
-    height: 100%;
-    overflow: hidden;
-    background-color: #f5f5f5;
+    height: auto;
+    overflow-y: auto;
 }
 
 .hr {
@@ -78,8 +79,17 @@ body, html {
     min-height: 100vh;
     padding-top: 12vh;
     padding-bottom: 85px;
-    max-height: calc(100vh - 120px);
-    overflow-y: none;
+    max-height: none; 
+    overflow-y: visible;
+}
+
+.fkng-button {
+    display: flex;
+    justify-content: center; /* Ensure it is centered */
+    width: 100%;
+    margin-top: 0; /* Remove unnecessary negative spacing */
+    padding: 20px 0; /* Keep a little space */
+    font-family: Arial;
 }
 
 app-nav-belt {

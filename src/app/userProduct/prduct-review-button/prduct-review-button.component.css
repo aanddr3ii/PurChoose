@@ -1,0 +1,23 @@
+.see-reviews {
+    display: inline-flex; /* Prevents full width stretching */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background: white;
+    border: 1px solid #007bff;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.see-reviews:hover {
+    background-color: #0056b3;
+    color: white;
+    border: 1px solid #0056b3;
+}
+
