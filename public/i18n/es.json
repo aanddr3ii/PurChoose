@@ -28,6 +28,7 @@
     "DESCRIPTION": "Crea tu cuenta abajo. Si ya tienes una cuenta, puedes",
     "LINK": "Inicia sesión aquí",
     "DELETE": "Registro de Vendedor",
+    "DELETE2": "Registro de Usuario",
     "FULL_NAME": "Nombre completo",
     "EMAIL": "Correo electrónico",
     "DOB": "Fecha de nacimiento",
