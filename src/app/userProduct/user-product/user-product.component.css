@@ -31,14 +31,16 @@
     margin-left: 0;  
 }
 
-.users-review{
+.users-review {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;  /* Align to the left */
-    justify-content: flex-start;
+    align-items: center;
     width: 100%;
-    padding-left: 10px; /* Adjust if needed */
+    margin-top: 10px; /* Adjust spacing */
+    padding: 0 15px;
 }
+
+
 
 .simbolo svg {
     width: 22px;

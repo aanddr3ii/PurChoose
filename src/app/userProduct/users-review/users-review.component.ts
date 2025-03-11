@@ -16,7 +16,7 @@ export class UsersReviewComponent {
     {id:2, name: 'Juan', profilePicture: 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/002.png'}
   ];
   reviews: (Review & { user?: User })[] = [
-    { id: 1, rating: 5.8, text: 'Great service!', user: this.users[0] },
+    { id: 1, rating: 5.8, text: 'gracias crack por el 5.8 a la proxima review negativa pal linkedin', user: this.users[0] },
     { id: 2, rating: 3.0, text: 'It was okay.', user: this.users[1] }
   ];
 

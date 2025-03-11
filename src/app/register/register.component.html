@@ -3,7 +3,7 @@
     <p>
       {{ 'REGISTER.DESCRIPTION' | translate }}
       <a routerLink="/login">{{ 'REGISTER.LINK' | translate }}</a>.
-      <a routerLink="/login">{{ 'REGISTER.DELETE' | translate }}</a>.
+      <a routerLink="/register">{{ 'REGISTER.DELETE' | translate }}</a>.
     </p>
   
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" aria-labelledby="register-title">
