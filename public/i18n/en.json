@@ -37,7 +37,7 @@
     "FULL_NAME_ERROR": "Full name must be at least 3 characters long.",
     "EMAIL_ERROR": "Enter a valid email address.",
     "DOB_ERROR": "Date of birth is required.",
-    "PHONE_ERROR": "Enter a valid 10-digit phone number.",
+    "PHONE_ERROR": "Enter a valid 9-digit phone number.",
     "PASSWORD_ERROR": "Password must be at least 6 characters long.",
     "PASSWORD_MISMATCH": "Passwords do not match."
   },

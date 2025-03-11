@@ -34,7 +34,6 @@ export class LoginComponent {
       password: ['', [
         Validators.required,
         Validators.minLength(6),
-        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/)
       ]]
     });
   }
