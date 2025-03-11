@@ -31,7 +31,7 @@ export class RegisterComponent {
       email: ['', [Validators.required, Validators.email]], 
       dob: ['', [Validators.required]], 
       countryCode: ['+1', [Validators.required]], 
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
     }, { validators: this.passwordsMatchValidator });
