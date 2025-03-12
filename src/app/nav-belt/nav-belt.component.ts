@@ -2,17 +2,19 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
+import { AuthService } from '../services/authService/auth.service'; // Importa el servicio de autenticación
 
 @Component({
   selector: 'app-nav-belt',
   standalone: true,
-  imports: [RouterModule, TranslateModule], // Ensure RouterModule is imported
+  imports: [RouterModule, TranslateModule],
   templateUrl: './nav-belt.component.html',
   styleUrl: './nav-belt.component.css'
 })
 export class NavBeltComponent {
   currentLang: string = 'en';
   dropdownOpen = false;
+  isUserAdmin = false; // Propiedad para verificar si el usuario es admin
 
   languages = [
     { code: 'en', label: 'inglés - EN' },
@@ -25,7 +27,8 @@ export class NavBeltComponent {
     private translate: TranslateService,
     private router: Router,
     private route: ActivatedRoute,
-    @Inject(PLATFORM_ID) private platformId: object
+    @Inject(PLATFORM_ID) private platformId: object,
+    private authService: AuthService // Inyecta el servicio de autenticación
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +36,9 @@ export class NavBeltComponent {
       const savedLang = localStorage.getItem('selectedLanguage');
       this.currentLang = savedLang || this.translate.getBrowserLang() || 'en';
       this.translate.use(this.currentLang);
+
+      // Verifica si el usuario es admin
+      this.isUserAdmin = this.authService.getUserRole() === 'admin';
     }
   }
 
@@ -46,17 +52,19 @@ export class NavBeltComponent {
       this.translate.use(lang);
       localStorage.setItem('selectedLanguage', lang);
       this.dropdownOpen = false;
-  
-      // Get the current route path without query parameters
-      const currentUrl = this.router.url.split('?')[0]; 
-  
-      // Navigate to the same page with updated language parameter
+
+      const currentUrl = this.router.url.split('?')[0];
       this.router.navigate([currentUrl], {
         queryParams: { lang },
         queryParamsHandling: 'merge'
       }).then(() => {
-        window.location.reload(); // Ensures full translation reload
+        window.location.reload();
       });
     }
+  }
+
+  navigateToAdmin(): void {
+    // Redirige al panel de administración
+    this.router.navigate(['/admin']);
   }
 }

@@ -5,6 +5,14 @@
       </a>
     </div>
   
+       <!-- Botón Admin -->
+       @if (isUserAdmin) {
+        <button class="admin-button" (click)="navigateToAdmin()">
+          {{ 'NAV-BELT.ADMIN' | translate }}
+        </button>
+      }
+
+
     <div class="nav-center">
       <input type="text" placeholder="Search for products, brands and more" class="search-input" />
       <button aria-label="Search" class="search-button">

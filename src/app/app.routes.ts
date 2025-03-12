@@ -9,6 +9,8 @@ import { UserProductComponent } from './userProduct/user-product/user-product.co
 import { RegisterSellerComponent } from './register-seller/register-seller.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AdminComponent } from './admin/admin.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 
 
@@ -23,5 +25,9 @@ export const routes: Routes = [
     { path: 'user-product', component: UserProductComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'reset-password', component: ResetPasswordComponent },
+    { path: 'admin', component: AdminComponent }, 
+    { path: 'admin/manage-users', component: ManageUsersComponent }, // Gestionar usuarios
+
+
 
 ];
