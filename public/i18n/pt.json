@@ -1,7 +1,28 @@
 {
   "NAV-BELT": {
     "FAVORITES": "Favoritos",
-    "INBOX": "Caixa de entrada"
+    "INBOX": "Caixa de entrada",
+    "ADMIN": "Admin"
+
+
+  },
+
+  "ADMIN": {
+    "TITLE": "Painel de Administração",
+    "DESCRIPTION": "Bem-vindo ao painel de administração.",
+    "MANAGE_USERS": "Gerenciar Usuários",
+    "VIEW_ANALYTICS": "Ver Análises"
+  },
+  "MANAGE_USERS": {
+    "TITLE": "Gestão de Usuários",
+    "ADD_USER": "Adicionar Usuário",
+    "EDIT_USER": "Editar Usuário",
+    "SAVE_CHANGES": "Salvar Alterações",
+    "CANCEL": "Cancelar",
+    "USER_LIST": "Lista de Usuários",
+    "EDIT": "Editar",
+    "DELETE": "Excluir",
+    "BACK_TO_ADMIN": "Voltar ao Menu de Admin"
   },
 
   "NAV-CATEGORIES": {
@@ -31,6 +52,7 @@
     "DELETE2": "Registro de Usuário",
     "FULL_NAME": "Nome Completo",
     "EMAIL": "E-mail",
+    "ROLE": "Função",
     "DOB": "Data de Nascimento",
     "PHONE_NUMBER": "Número de Telefone",
     "SET_PASSWORD": "Definir Senha",

@@ -1,7 +1,27 @@
 {
   "NAV-BELT": {
     "FAVORITES": "Favoris",
-    "INBOX": "Boîte de réception"
+    "INBOX": "Boîte de réception",
+    "ADMIN": "Admin"
+
+  },
+
+  "ADMIN": {
+    "TITLE": "Tableau de Bord Admin",
+    "DESCRIPTION": "Bienvenue dans le tableau de bord admin.",
+    "MANAGE_USERS": "Gérer les Utilisateurs",
+    "VIEW_ANALYTICS": "Voir les Analyses"
+  },
+  "MANAGE_USERS": {
+    "TITLE": "Gestion des Utilisateurs",
+    "ADD_USER": "Ajouter un Utilisateur",
+    "EDIT_USER": "Modifier l'Utilisateur",
+    "SAVE_CHANGES": "Enregistrer les Modifications",
+    "CANCEL": "Annuler",
+    "USER_LIST": "Liste des Utilisateurs",
+    "EDIT": "Modifier",
+    "DELETE": "Supprimer",
+    "BACK_TO_ADMIN": "Retour au Menu Admin"
   },
 
   "NAV-CATEGORIES": {
@@ -36,6 +56,7 @@
     "SET_PASSWORD": "Définir un Mot de Passe",
     "CONFIRM_PASSWORD": "Confirmer le Mot de Passe",
     "BUTTON": "S'inscrire",
+    "ROLE": "Rôle",
     "FULL_NAME_ERROR": "Le nom complet doit comporter au moins 3 caractères.",
     "EMAIL_ERROR": "Veuillez entrer une adresse e-mail valide.",
     "DOB_ERROR": "La date de naissance est requise.",

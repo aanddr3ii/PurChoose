@@ -1,7 +1,26 @@
 {
   "NAV-BELT": {
     "FAVORITES": "Favorites",
-    "INBOX": "Inbox"
+    "INBOX": "Inbox",
+    "ADMIN": "Admin"
+
+  },
+  "ADMIN": {
+    "TITLE": "Admin Panel",
+    "DESCRIPTION": "Welcome to the admin panel.",
+    "MANAGE_USERS": "Manage Users",
+    "VIEW_ANALYTICS": "View Analytics"
+  },
+  "MANAGE_USERS": {
+    "TITLE": "User Management",
+    "ADD_USER": "Add User",
+    "EDIT_USER": "Edit User",
+    "SAVE_CHANGES": "Save Changes",
+    "CANCEL": "Cancel",
+    "USER_LIST": "User List",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "BACK_TO_ADMIN": "Back to Admin Menu"
   },
 
   "NAV-CATEGORIES": {
@@ -31,6 +50,7 @@
     "DELETE2": "User Registration",
     "FULL_NAME": "Full Name",
     "EMAIL": "Email",
+    "ROLE": "Role",
     "DOB": "Date of Birth",
     "PHONE_NUMBER": "Phone Number",
     "SET_PASSWORD": "Set Password",

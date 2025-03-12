@@ -1,8 +1,29 @@
 {
   "NAV-BELT": {
     "FAVORITES": "Favoritos",
-    "INBOX": "Buzón"
+    "INBOX": "Buzón",
+    "ADMIN": "Admin"
   },
+
+  
+    "ADMIN": {
+      "TITLE": "Panel de Administración",
+      "DESCRIPTION": "Bienvenido al panel de administración.",
+      "MANAGE_USERS": "Gestionar Usuarios",
+      "VIEW_ANALYTICS": "Ver Análisis"
+    },
+    "MANAGE_USERS": {
+      "TITLE": "Gestión de Usuarios",
+      "ADD_USER": "Añadir Usuario",
+      "EDIT_USER": "Editar Usuario",
+      "SAVE_CHANGES": "Guardar Cambios",
+      "CANCEL": "Cancelar",
+      "USER_LIST": "Lista de Usuarios",
+      "EDIT": "Editar",
+      "DELETE": "Eliminar",
+      "BACK_TO_ADMIN": "Volver al Menú de Admin"
+    },
+  
   
   "NAV-CATEGORIES": {
     "ALL_CATEGORIES": "Todas las categorías",
@@ -30,6 +51,7 @@
     "DELETE": "Registro de Vendedor",
     "DELETE2": "Registro de Usuario",
     "FULL_NAME": "Nombre completo",
+    "ROLE": "Rol",
     "EMAIL": "Correo electrónico",
     "DOB": "Fecha de nacimiento",
     "PHONE_NUMBER": "Número de teléfono",
