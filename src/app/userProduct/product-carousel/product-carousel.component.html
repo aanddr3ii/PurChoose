@@ -1,37 +1,40 @@
 <div class="slider-container">
-  <!-- Previous Button (Hidden at First Image) -->
-  <button 
-      class="slider-button prev" 
-      (click)="prevSlide()" 
-      [disabled]="currentIndex === 0"
-      [class.disabled]="currentIndex === 0"
-  >
-      &#8249;
-  </button>
-
-  <div class="slider">
-      <div class="image-container" 
-          [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
-          @for (image of products; track image.id) {
-              <img [src]="image.src" class="slider-image" />
-          }
-      </div>
+    <!-- Previous Button (Hidden at First Image) -->
+    <button 
+        class="slider-button prev" 
+        (click)="prevSlide()" 
+        [disabled]="currentIndex === 0"
+    >
+        &#8249;
+    </button>
+  
+    <div class="slider">
+        <div class="image-container" 
+            [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
+            
+            <!-- ✅ Loop over `product?.images` instead of `product` -->
+            @for (image of product?.images ?? []; track $index) {
+                @if (image) {
+                    <img [src]="image" class="slider-image" />
+                }
+            }
+        </div>
+    </div>
+  
+    <!-- Next Button (Hidden at Last Image) -->
+    <button 
+        class="slider-button next" 
+        (click)="nextSlide()" 
+        [disabled]="currentIndex === (product?.images?.length ?? 0) - 1"
+    >
+        &#8250;
+    </button>
+  
+    <!-- Indicators -->
+    <div class="indicators">
+        @for (index of product?.images ?? []; track $index) {
+            <span (click)="goToImage($index)" [class.active]="$index === currentIndex">•</span>
+        }
+    </div>
   </div>
-
-  <!-- Next Button (Hidden at Last Image) -->
-  <button 
-      class="slider-button next" 
-      (click)="nextSlide()" 
-      [disabled]="currentIndex === products.length - 1"
-      [class.disabled]="currentIndex === products.length - 1"
-  >
-      &#8250;
-  </button>
-
-  <!-- Indicators -->
-  <div class="indicators">
-      @for (index of products; track $index) {
-          <span (click)="goToImage($index)" [class.active]="$index === currentIndex">•</span>
-      }
-  </div>
-</div>
+  

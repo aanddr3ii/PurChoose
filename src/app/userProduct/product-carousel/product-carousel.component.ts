@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductService } from '../../services/product/product.service';
 import { Product } from '../../interfaces/product';
 
 @Component({
@@ -9,17 +10,22 @@ import { Product } from '../../interfaces/product';
   styleUrl: './product-carousel.component.css'
 })
 export class ProductCarouselComponent {
-  
-  products: Product[] = [
-    { id: 1, src: 'https://cdn.wallapop.com/images/10420/ia/rg/__/c10420p1106468713/i5438087286.jpg?pictureSize=W640' },
-    { id: 2, src: 'https://cdn.wallapop.com/images/10420/ia/rg/__/c10420p1106468713/i5438087372.jpg?pictureSize=W640' },
-    { id: 3, src: 'https://cdn.wallapop.com/images/10420/ia/rg/__/c10420p1106468713/i5438087391.jpg?pictureSize=W640' }
-  ];
-
+  product: Product | null = null;
+  images: string[] = []; 
   currentIndex: number = 0;
+  
+  constructor(private productService: ProductService) {}
+  
+  ngOnInit(): void {
+    const products = this.productService.getProducts();
+    if (products.length > 0) {
+      this.product = products[0];
+      this.images = this.product.images ?? [];
+    }
+  }
 
   nextSlide(): void {
-    if (this.currentIndex < this.products.length - 1) {
+    if (this.product && this.product.images && this.currentIndex < this.product.images.length - 1) {
       this.currentIndex++;
     }
   }
@@ -33,6 +39,4 @@ export class ProductCarouselComponent {
   goToImage(index: number): void {
     this.currentIndex = index;
   }
-
-
 }
