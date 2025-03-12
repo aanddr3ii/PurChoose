@@ -51,6 +51,26 @@
     "PHONE_PLACEHOLDER": "123456789",
     "ACCOUNT_TYPE_ERROR": "Selecciona un tipo de cuenta"
   },
+  "FORGOT_PASSWORD": {
+    "TITLE": "¿Olvidaste tu contraseña?",
+    "DESCRIPTION": "Ingresa tu correo electrónico para restablecer tu contraseña.",
+    "EMAIL": "Correo electrónico",
+    "BUTTON": "Enviar enlace de restablecimiento",
+    "EMAIL_ERROR": "Por favor, introduce un correo electrónico válido.",
+    "SECURITY_QUESTION": "¿Cuál es tu color favorito?",
+    "SECURITY_ANSWER_ERROR": "La respuesta es obligatoria."
+    
+  },
+  "RESET_PASSWORD": {
+    "TITLE": "Restablecer contraseña",
+    "DESCRIPTION": "Ingresa tu nueva contraseña.",
+    "NEW_PASSWORD": "Nueva contraseña",
+    "CONFIRM_PASSWORD": "Confirmar contraseña",
+    "BUTTON": "Restablecer contraseña",
+    "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres.",
+    "PASSWORD_MISMATCH": "Las contraseñas no coinciden."
+  },
+
 
   "LOGIN": {
     "TITLE": "Iniciar sesión",

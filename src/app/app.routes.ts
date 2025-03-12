@@ -7,6 +7,8 @@ import { CategoryProductComponent } from './category-product/category-product.co
 import { PaginaPerfilComponent } from './pagina-perfil/pagina-perfil.component';
 import { UserProductComponent } from './userProduct/user-product/user-product.component';
 import { RegisterSellerComponent } from './register-seller/register-seller.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 
@@ -19,6 +21,7 @@ export const routes: Routes = [
     { path: 'editarP', component: EditarPerfilComponent },
     { path: 'category-product', component: CategoryProductComponent },
     { path: 'user-product', component: UserProductComponent },
-
+    { path: 'forgot-password', component: ForgotPasswordComponent },
+    { path: 'reset-password', component: ResetPasswordComponent },
 
 ];

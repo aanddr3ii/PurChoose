@@ -52,6 +52,25 @@
     "ACCOUNT_TYPE_ERROR": "Selecione um tipo de conta"
   },  
 
+  "FORGOT_PASSWORD": {
+    "TITLE": "Esqueceu sua senha?",
+    "DESCRIPTION": "Insira seu e-mail para redefinir sua senha.",
+    "EMAIL": "E-mail",
+    "BUTTON": "Enviar link de redefinição",
+    "EMAIL_ERROR": "Por favor, insira um endereço de e-mail válido.",
+    "SECURITY_QUESTION": "Qual é a sua cor favorita?",
+    "SECURITY_ANSWER_ERROR": "A resposta é obrigatória."
+  },
+  "RESET_PASSWORD": {
+    "TITLE": "Redefinir Senha",
+    "DESCRIPTION": "Insira sua nova senha.",
+    "NEW_PASSWORD": "Nova Senha",
+    "CONFIRM_PASSWORD": "Confirmar Senha",
+    "BUTTON": "Redefinir Senha",
+    "PASSWORD_ERROR": "A senha deve ter pelo menos 6 caracteres.",
+    "PASSWORD_MISMATCH": "As senhas não coincidem."
+  },
+
   "LOGIN": {
     "TITLE": "Entrar",
     "DESCRIPTION": "Não tem uma conta?",

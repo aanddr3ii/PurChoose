@@ -51,6 +51,24 @@
     "PHONE_PLACEHOLDER": "123456789",
     "ACCOUNT_TYPE_ERROR": "Please select account type"
   },
+  "FORGOT_PASSWORD": {
+    "TITLE": "Forgot Password?",
+    "DESCRIPTION": "Enter your email to reset your password.",
+    "EMAIL": "Email",
+    "BUTTON": "Send Reset Link",
+    "EMAIL_ERROR": "Please enter a valid email address.",
+    "SECURITY_QUESTION": "What is your favorite color?",
+    "SECURITY_ANSWER_ERROR": "The answer is required."
+  },
+  "RESET_PASSWORD": {
+    "TITLE": "Reset Password",
+    "DESCRIPTION": "Enter your new password.",
+    "NEW_PASSWORD": "New Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "BUTTON": "Reset Password",
+    "PASSWORD_ERROR": "Password must be at least 6 characters long.",
+    "PASSWORD_MISMATCH": "Passwords do not match."
+  },
   "LOGIN": {
     "TITLE": "Login",
     "DESCRIPTION": "Don't have an account?",

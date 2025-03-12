@@ -52,6 +52,24 @@
     "ACCOUNT_TYPE_ERROR": "Veuillez sélectionner un type de compte"
   },
 
+  "FORGOT_PASSWORD": {
+    "TITLE": "Mot de passe oublié ?",
+    "DESCRIPTION": "Entrez votre e-mail pour réinitialiser votre mot de passe.",
+    "EMAIL": "E-mail",
+    "BUTTON": "Envoyer le lien de réinitialisation",
+    "EMAIL_ERROR": "Veuillez entrer une adresse e-mail valide.",
+    "SECURITY_QUESTION": "Quelle est ta couleur préférée ?",
+    "SECURITY_ANSWER_ERROR": "La réponse est obligatoire."
+  },
+  "RESET_PASSWORD": {
+    "TITLE": "Réinitialiser le mot de passe",
+    "DESCRIPTION": "Entrez votre nouveau mot de passe.",
+    "NEW_PASSWORD": "Nouveau mot de passe",
+    "CONFIRM_PASSWORD": "Confirmer le mot de passe",
+    "BUTTON": "Réinitialiser le mot de passe",
+    "PASSWORD_ERROR": "Le mot de passe doit comporter au moins 6 caractères.",
+    "PASSWORD_MISMATCH": "Les mots de passe ne correspondent pas."
+  },
   "LOGIN": {
     "TITLE": "Connexion",
     "DESCRIPTION": "Vous n'avez pas de compte ?",
