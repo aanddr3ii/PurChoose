@@ -5,7 +5,7 @@ export interface User {
   fullName?: string;
   email: string;
   password: string;
-  role: 'client' | 'seller';
+  role: 'client' | 'seller' | 'admin';
   dob?: string;
   phone?: string;
 }
@@ -25,8 +25,8 @@ export class AuthService {
 
   // Usuarios mock iniciales
   private mockUsers: User[] = [
-    { email: 'cliente@ejemplo.com', password: 'Cliente123', role: 'client' },
-    { email: 'vendedor@ejemplo.com', password: 'Vendedor456', role: 'seller' }
+    { email: 'cliente@ejemplo.com', password: '123456', role: 'client' },
+    { email: 'admin@admin.com', password: '123456', role: 'admin' }
   ];
 
   validateSecurityQuestion(email: string, answer: string): boolean {

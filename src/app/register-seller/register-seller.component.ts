@@ -33,7 +33,7 @@ export class RegisterSellerComponent {
       phone: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
-      role: ['client', Validators.required], // Nuevo campo
+      role: ['seller', Validators.required], // Nuevo campo
       terms: [false, Validators.requiredTrue]
     }, { validators: this.passwordMatchValidator });
   }
