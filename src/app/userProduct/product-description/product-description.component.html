@@ -1,13 +1,25 @@
 <div class="product-description">
-    <p class="product-price">{{ product.price }}€</p>
-    <h1 class="product-title">{{ product.title }}</h1>
+    @for (product of products; track product.id) {
+        <div class="product-card">
+            <p class="product-price">{{ product.price }}€</p>
+            <h1 class="product-title">{{ product.title }}</h1>
     
-    <h2 class="section-title">{{ 'PRODUCT-DESCRIPTION.DETAILS' | translate }}</h2>
-    <p class="product-text">{{ product.description }}</p>
+            <h2 class="section-title">{{ 'PRODUCT-DESCRIPTION.DETAILS' | translate }}</h2>
+            <p class="product-text">{{ product.description }}</p>
     
-    <p class="product-state">{{ 'PRODUCT-DESCRIPTION.STATE' | translate }} <span>{{ product.state }}</span></p>
+            <p class="product-state">{{ 'PRODUCT-DESCRIPTION.STATE' | translate }} <span>{{ product.state }}</span></p>
+        </div>
+    } @empty {
+        <li>No products available.</li>
+    }
     
-    <div class="product-category">
-        <span>{{ category.text }}</span>
-    </div>
+    @for (category of categories; track category.id) {
+        <div class="product-category">
+            <span>{{ category.text }}</span>
+        </div>
+    } @empty {
+        <li>There are no categories.</li>
+    }
+    
+
 </div>

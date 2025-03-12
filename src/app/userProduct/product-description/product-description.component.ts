@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { ProductService } from '../../services/product/product.service';
+import { ProductCategoryService } from '../../services/productCategory/product-category.service';
 import { Product } from '../../interfaces/product';
 import { Category } from '../../interfaces/category'
 import { TranslateModule } from '@ngx-translate/core';
+
 
 
 @Component({
@@ -12,20 +15,13 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './product-description.component.css'
 })
 export class ProductDescriptionComponent {
+  products: Product[] = [];
+  categories: Category[] = [];
 
-  product: Product = {
-    id: 1,
-    src: 'https://cdn.wallapop.com/images/10420/ia/qw/__/c10420p1106442857/i5437885982.jpg?pictureSize=W640',
-    price: 196,
-    title: 'Botas esqui tecnica',
-    state: 'Nuevo',
-    location: 'Madrid',
-    description: 'Botas de esqui marca Nordica tamaño de la suela 295 mm, talla 25-25,5en buen estado.'
-  };
+  constructor(private productService: ProductService, private categoryService: ProductCategoryService) {}
 
-  category: Category = {
-    id: 1,
-    text: 'Montaña y esquí'
-  };
-  
+  ngOnInit(): void {
+    this.products = this.productService.getProducts() ?? [];
+    this.categories = this.categoryService.getCategories() ?? []; 
+  }
 }
