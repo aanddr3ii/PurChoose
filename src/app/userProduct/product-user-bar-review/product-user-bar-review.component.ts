@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../services/userService/user.service';
+import { UserService } from '../../services/user/user.service';
 import { UserReviewService } from '../../services/userReview/user-review.service';
-import { User } from '../../interfaces/user';
-import { Review } from '../../interfaces/review';
 
 @Component({
   selector: 'app-product-user-bar-review',
@@ -12,8 +10,8 @@ import { Review } from '../../interfaces/review';
   styleUrl: './product-user-bar-review.component.css'
 })
 export class ProductUserBarReviewComponent {
-  user: User | null = null;
-  reviews:Review[] | null = null;
+  user: any[] = [];
+  reviews: any[] = [];
 
   constructor(private userService: UserService, private userReviewService: UserReviewService) {}
 

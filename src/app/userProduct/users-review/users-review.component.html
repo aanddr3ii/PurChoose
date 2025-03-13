@@ -3,11 +3,11 @@
         <div class="user-review-card">
             <div class="user-review-header">
                 <img class="profile-picture"
-                    [src]="review.user?.profilePicture ?? 'assets/default-user.png'"
+                    [src]="review.user?.profilePicture"
                     alt="User profile">
                 <div>
                     <p class="user-review-name">
-                        {{ review.user?.name ?? 'Unknown User' }}
+                        {{ user[0].name }}
                     </p>
                     <p class="user-review-rating">⭐ <strong>{{ review.rating.toFixed(1) }}</strong></p>
                 </div>
