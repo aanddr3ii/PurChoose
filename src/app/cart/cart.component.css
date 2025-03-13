@@ -1,43 +1,222 @@
+/* Contenedor principal */
 .cart-container {
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 28px;
-    color: #333;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f4f4f4;
-  }
-  
-  .delete-button {
-    padding: 5px 10px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .delete-button:hover {
-    background-color: #bb2d3b;
-  }
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 32px; /* Aumentamos el tamaño del título */
+  color: #333;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Filas */
+tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centramos verticalmente el contenido de toda la fila */
+  padding: 20px;
+  border: 1px solid #ddd; /* Recuadro alrededor de cada producto */
+  border-radius: 8px;
+  margin-bottom: 20px;
+  position: relative; /* Para posicionar el botón de eliminar */
+  background-color: #fafafa; /* Fondo claro para cada producto */
+}
+
+/* Columna de Información del Producto */
+.product-info {
+  display: flex;
+  align-items: center; /* Centramos verticalmente el contenido */
+  gap: 20px; /* Espacio entre la imagen y los detalles */
+  flex: 2; /* Ocupa 2/3 del ancho */
+}
+
+/* Contenedor de la Imagen */
+.product-image-container {
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.no-image {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  color: #999;
+  font-size: 14px;
+}
+
+/* Detalles del Producto */
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-title {
+  font-size: 22px; /* Aumentamos el tamaño del título */
+  font-weight: bold;
+  color: #333;
+}
+
+.product-price {
+  font-size: 20px; /* Aumentamos el tamaño del precio */
+  color: #e67e22; /* Color naranja para el precio */
+  font-weight: bold;
+}
+
+/* Columna de Acciones */
+.product-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+  flex: 1; /* Ocupa 1/3 del ancho */
+}
+
+/* Botón Eliminar en la Esquina Superior Derecha */
+.delete-button-top {
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Mantenemos el botón en su posición actual */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px; /* Reducimos ligeramente el tamaño del ícono */
+  color: #dc3545;
+  z-index: 10; /* Asegura que esté encima de otros elementos */
+}
+
+.trash-icon {
+  font-size: 24px;
+}
+
+/* Controles de Cantidad (movidos más abajo) */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px; /* Bajamos los controles de cantidad */
+}
+
+.quantity-button {
+  display: inline-block;
+  width: 40px; /* Mantenemos el tamaño de los botones */
+  height: 40px; /* Mantenemos el tamaño de los botones */
+  font-size: 20px; /* Mantenemos el tamaño del texto */
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quantity-button:hover {
+  background-color: #0056b3;
+}
+
+.quantity-input {
+  width: 80px; /* Mantenemos el ancho del input */
+  padding: 8px;
+  text-align: center;
+  font-size: 18px; /* Mantenemos el tamaño del texto */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.quantity-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Barra de Progreso (REDUCIDA EN UN 35%) */
+.progress-container {
+  margin-top: 40px; /* Bajamos la barra de progreso */
+}
+
+.progress-bar {
+  width: 405px; /* Reducimos el ancho en un 35% (de 600px a 405px) */
+  height: 30px; /* Grosor ligeramente mayor */
+  background-color: #e9ecef;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #1a73e8; /* Azul más suave pero oscuro */
+  transition: width 0.3s ease;
+}
+
+/* Checkpoints (RECTÁNGULOS MÁS ALTOS Y CENTRADOS PERFECTAMENTE) */
+.progress-checkpoints {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: -15px; /* Ajustamos para que estén centrados con la barra */
+}
+
+.checkpoint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px; /* Ancho del rectángulo */
+  height: 40px; /* Más alto para mejorar la visibilidad */
+  background-color: #ddd;
+  border-radius: 20px; /* Bordes redondeados */
+  font-size: 12px; /* Texto más pequeño para centrarlo mejor */
+  line-height: 1; /* Aseguramos que el texto esté centrado verticalmente */
+  color: #fff;
+  cursor: default;
+  transition: background-color 0.3s ease;
+  z-index: 2; /* Aseguramos que estén encima de la barra */
+  position: relative; /* Para ajustar la posición precisa */
+  top: 50%; /* Desplazamos hacia abajo para centrar con la barra */
+  transform: translateY(-50%); /* Corregimos el desplazamiento */
+}
+
+.checkpoint.active {
+  background-color: #1a73e8; /* Azul más suave pero oscuro */
+}
+
+/* Etiquetas de los Checkpoints */
+.progress-checkpoints div {
+  position: relative;
+}
+
+.progress-checkpoints div::after {
+  content: attr(data-status);
+  position: absolute;
+  top: 50px; /* Ajustamos la posición del texto */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px; /* Texto más pequeño para centrarlo mejor */
+  color: #333;
+  white-space: nowrap;
+}
