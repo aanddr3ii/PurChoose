@@ -1,14 +1,10 @@
-<div class="grid-container">
-<app-card-product> </app-card-product>
-<app-card-product> </app-card-product>
-<app-card-product> </app-card-product>
-<app-card-product> </app-card-product>
-<app-card-product> </app-card-product>
-<app-card-product> </app-card-product>
-<app-card-product> </app-card-product>
-<app-card-product> </app-card-product>
-<app-card-product> </app-card-product>
-<app-card-product> </app-card-product>
-<app-card-product> </app-card-product>
-<app-card-product> </app-card-product>
-</div>
+<div class="publicaciones-container">
+    <h1>Mis Publicaciones</h1>
+  
+    <!-- Lista de productos -->
+    <div class="products-grid">
+      @for (product of products; track product.id) {
+        <app-card-product [product]="product"></app-card-product>
+      }
+    </div>
+  </div>

@@ -1,0 +1,40 @@
+<div class="cart-container">
+    <h1>Mi Carrito</h1>
+  
+    <!-- Lista de productos en el carrito -->
+    <div class="cart-items">
+      @if (cartItems.length > 0) {
+        <table>
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of cartItems; track $index) {
+              <tr>
+                <td>{{ item.product.title }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>
+                  <select [(ngModel)]="item.status" (change)="changeStatus($index, item.status)">
+                    <option value="Pagado">Pagado</option>
+                    <option value="Enviado">Enviado</option>
+                    <option value="Recibido">Recibido</option>
+                  </select>
+                </td>
+                <td>
+                  <button class="delete-button" (click)="removeItem($index)">Eliminar</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      } @else {
+        <p>No hay productos en el carrito.</p>
+      }
+    </div>
+  </div>

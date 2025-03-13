@@ -186,3 +186,41 @@
 .admin-button:focus {
   outline: 2px solid #000; /* Mejora la accesibilidad */
 }
+
+/* Estilos generales del botón del carrito */
+.cart-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  font-size: 16px; /* Tamaño del emoji */
+  color: #fff;
+  background-color: #007bff; /* Color azul */
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cart-button:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+}
+
+/* Indicador de cantidad de productos en el carrito */
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #dc3545; /* Rojo para destacar */
+  border-radius: 50%; /* Círculo */
+}

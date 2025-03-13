@@ -13,6 +13,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -31,6 +32,7 @@ export const routes: Routes = [
     { path: 'admin/manage-users', component: ManageUsersComponent }, // Gestionar usuarios
     { path: 'admin/manage-categories', component: ManageCategoriesComponent }, // Gestionar categorías
     { path: 'admin/manage-products', component: ManageProductsComponent }, // Gestionar productos
+    { path: 'cart', component: CartComponent }, // Ruta para el carrito
 
 
 
