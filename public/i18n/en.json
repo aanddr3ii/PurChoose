@@ -180,6 +180,13 @@
 
   "PRODUCT-FOOTER": {
     "BUY-BUTTON": "Buy"
+  },
+
+  "LEFT-BAR": {
+    "PURCHASES": "Purchases",
+    "SALES": "Sales",
+    "INBOX": "Inbox",
+    "FAVORITES": "Favorites"
   }
   
 }

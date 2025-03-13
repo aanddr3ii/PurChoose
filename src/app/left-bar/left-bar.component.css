@@ -1,0 +1,77 @@
+/* El menu desplegable */
+.side-menu {
+    position: fixed;
+    top: 121px; 
+    left: -340px;
+    width: 300px;
+    height: calc(100% - 121px);
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: left 0.3s ease;
+    padding: 30px 20px;
+    z-index: 1000;
+    font-family: 'Arial';
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.side-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.side-menu-header h3 {
+    color: black;
+    font-size: 22px;
+    margin: 0;
+}
+
+.close-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.side-menu ul li a {
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 0;
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.side-menu ul li a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Para el fondo negro de categorias cuando abres el desplegable */
+.overlay {
+    position: fixed;
+    top: 121px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 121px);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999;
+}
+
+.overlay.show {
+    display: block;
+}

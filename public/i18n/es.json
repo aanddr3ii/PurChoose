@@ -183,6 +183,13 @@
 
   "PRODUCT-FOOTER": {
     "BUY-BUTTON": "Comprar"
+  },
+
+  "LEFT-BAR": {
+    "PURCHASES": "Compras",
+    "SALES": "Ventas",
+    "INBOX": "Buzón",
+    "FAVORITES": "Favoritos"
   }
   
 }
