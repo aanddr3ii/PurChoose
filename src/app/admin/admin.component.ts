@@ -30,14 +30,19 @@ export class AdminComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   }
-  // Método para gestionar usuarios
-  manageUsers(): void {
+  // Método para navegar a la gestión de usuarios
+  navigateToManageUsers(): void {
     this.router.navigate(['/admin/manage-users']);
   }
-  // Método para ver análisis
-  viewAnalytics(): void {
-    alert('Viendo análisis...');
-    // Aquí puedes redirigir a una página específica para ver análisis
-    // Ejemplo: this.router.navigate(['/admin/analytics']);
+
+  // Método para navegar a la gestión de categorías
+  navigateToManageCategories(): void {
+    this.router.navigate(['/admin/manage-categories']);
+  }
+
+  // Método para navegar a la gestión de productos
+  navigateToManageProducts(): void {
+    this.router.navigate(['/admin/manage-products']);
+  
   }
 }

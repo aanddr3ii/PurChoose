@@ -2,16 +2,19 @@
 <app-nav-categories></app-nav-categories>
 
 <div class="admin-container">
-    <h1>{{ 'ADMIN.TITLE' | translate }}</h1>
-    <p>{{ 'ADMIN.DESCRIPTION' | translate }}</p>
-  
-    <!-- Ejemplo de contenido del panel de administración -->
-    <div class="admin-actions">
-      <button class="admin-action-button" (click)="manageUsers()">
-        {{ 'ADMIN.MANAGE_USERS' | translate }}
-      </button>
-      <button class="admin-action-button" (click)="viewAnalytics()">
-        {{ 'ADMIN.VIEW_ANALYTICS' | translate }}
-      </button>
-    </div>
+  <h1>{{ 'ADMIN.TITLE' | translate }}</h1>
+  <p>{{ 'ADMIN.DESCRIPTION' | translate }}</p>
+
+  <!-- Botones de acciones del admin -->
+  <div class="admin-actions">
+    <button class="admin-action-button" (click)="navigateToManageUsers()">
+      {{ 'ADMIN.MANAGE_USERS' | translate }}
+    </button>
+    <button class="admin-action-button" (click)="navigateToManageCategories()">
+      {{ 'ADMIN.MANAGE_CATEGORIES' | translate }}
+    </button>
+    <button class="admin-action-button" (click)="navigateToManageProducts()">
+      {{ 'ADMIN.MANAGE_PRODUCTS' | translate }}
+    </button>
   </div>
+</div>

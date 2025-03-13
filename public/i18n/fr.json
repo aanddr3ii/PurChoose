@@ -7,10 +7,42 @@
   },
 
   "ADMIN": {
-    "TITLE": "Tableau de Bord Admin",
-    "DESCRIPTION": "Bienvenue dans le tableau de bord admin.",
-    "MANAGE_USERS": "Gérer les Utilisateurs",
-    "VIEW_ANALYTICS": "Voir les Analyses"
+    "TITLE": "Painel de Administração",
+    "DESCRIPTION": "Bem-vindo ao painel de administração.",
+    "MANAGE_USERS": "Gerenciar Usuários",
+    "MANAGE_CATEGORIES": "Gerenciar Categorias",
+    "MANAGE_PRODUCTS": "Gerenciar Produtos",
+    "VIEW_ANALYTICS": "Ver Análises",
+    "CATEGORIES": {
+      "TITLE": "Gestion des Catégories",
+      "ADD_CATEGORY": "Ajouter une Catégorie",
+      "EDIT_CATEGORY": "Modifier la Catégorie",
+      "SAVE_CHANGES": "Enregistrer les Modifications",
+      "CANCEL": "Annuler",
+      "LIST_TITLE": "Liste des Catégories",
+      "NAME": "Nom",
+      "DESCRIPTION": "Description",
+      "NAME_PLACEHOLDER": "Ex. Électronique",
+      "DESCRIPTION_PLACEHOLDER": "Ex. Appareils électroniques et accessoires.",
+      "EDIT": "Modifier",
+      "DELETE": "Supprimer"
+    },
+    "PRODUCTS": {
+      "TITLE": "Gestion des Produits",
+      "ADD_PRODUCT": "Ajouter un Produit",
+      "EDIT_PRODUCT": "Modifier le Produit",
+      "SAVE_CHANGES": "Enregistrer les Modifications",
+      "CANCEL": "Annuler",
+      "LIST_TITLE": "Liste des Produits",
+      "NAME": "Nom",
+      "PRICE": "Prix",
+      "CATEGORY": "Catégorie",
+      "SELECT_CATEGORY": "Sélectionnez une catégorie",
+      "NAME_PLACEHOLDER": "Ex. Ordinateur portable",
+      "PRICE_PLACEHOLDER": "Ex. 999",
+      "EDIT": "Modifier",
+      "DELETE": "Supprimer"
+    }
   },
   "MANAGE_USERS": {
     "TITLE": "Gestion des Utilisateurs",

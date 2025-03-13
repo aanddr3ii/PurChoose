@@ -9,8 +9,42 @@
     "TITLE": "Admin Panel",
     "DESCRIPTION": "Welcome to the admin panel.",
     "MANAGE_USERS": "Manage Users",
-    "VIEW_ANALYTICS": "View Analytics"
+    "MANAGE_CATEGORIES": "Manage Categories",
+    "MANAGE_PRODUCTS": "Manage Products",
+    "VIEW_ANALYTICS": "View Analytics",
+    "CATEGORIES": {
+      "TITLE": "Category Management",
+      "ADD_CATEGORY": "Add Category",
+      "EDIT_CATEGORY": "Edit Category",
+      "SAVE_CHANGES": "Save Changes",
+      "CANCEL": "Cancel",
+      "LIST_TITLE": "Category List",
+      "NAME": "Name",
+      "DESCRIPTION": "Description",
+      "NAME_PLACEHOLDER": "E.g., Electronics",
+      "DESCRIPTION_PLACEHOLDER": "E.g., Electronic devices and accessories.",
+      "EDIT": "Edit",
+      "DELETE": "Delete"
+    },
+    "PRODUCTS": {
+      "TITLE": "Product Management",
+      "ADD_PRODUCT": "Add Product",
+      "EDIT_PRODUCT": "Edit Product",
+      "SAVE_CHANGES": "Save Changes",
+      "CANCEL": "Cancel",
+      "LIST_TITLE": "Product List",
+      "NAME": "Name",
+      "PRICE": "Price",
+      "CATEGORY": "Category",
+      "SELECT_CATEGORY": "Select a category",
+      "NAME_PLACEHOLDER": "E.g., Laptop",
+      "PRICE_PLACEHOLDER": "E.g., 999",
+      "EDIT": "Edit",
+      "DELETE": "Delete"
+    }
   },
+
+  
   "MANAGE_USERS": {
     "TITLE": "User Management",
     "ADD_USER": "Add User",

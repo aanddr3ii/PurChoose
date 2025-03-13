@@ -8,10 +8,42 @@
   },
 
   "ADMIN": {
-    "TITLE": "Painel de Administração",
-    "DESCRIPTION": "Bem-vindo ao painel de administração.",
-    "MANAGE_USERS": "Gerenciar Usuários",
-    "VIEW_ANALYTICS": "Ver Análises"
+    "TITLE": "Tableau de Bord Admin",
+    "DESCRIPTION": "Bienvenue dans le tableau de bord admin.",
+    "MANAGE_USERS": "Gérer les Utilisateurs",
+    "MANAGE_CATEGORIES": "Gérer les Catégories",
+    "MANAGE_PRODUCTS": "Gérer les Produits",
+    "VIEW_ANALYTICS": "Voir les Analyses",
+    "CATEGORIES": {
+      "TITLE": "Gestão de Categorias",
+      "ADD_CATEGORY": "Adicionar Categoria",
+      "EDIT_CATEGORY": "Editar Categoria",
+      "SAVE_CHANGES": "Salvar Alterações",
+      "CANCEL": "Cancelar",
+      "LIST_TITLE": "Lista de Categorias",
+      "NAME": "Nome",
+      "DESCRIPTION": "Descrição",
+      "NAME_PLACEHOLDER": "Ex.: Eletrônicos",
+      "DESCRIPTION_PLACEHOLDER": "Ex.: Dispositivos eletrônicos e acessórios.",
+      "EDIT": "Editar",
+      "DELETE": "Excluir"
+    },
+    "PRODUCTS": {
+      "TITLE": "Gestão de Produtos",
+      "ADD_PRODUCT": "Adicionar Produto",
+      "EDIT_PRODUCT": "Editar Produto",
+      "SAVE_CHANGES": "Salvar Alterações",
+      "CANCEL": "Cancelar",
+      "LIST_TITLE": "Lista de Produtos",
+      "NAME": "Nome",
+      "PRICE": "Preço",
+      "CATEGORY": "Categoria",
+      "SELECT_CATEGORY": "Selecione uma categoria",
+      "NAME_PLACEHOLDER": "Ex.: Notebook",
+      "PRICE_PLACEHOLDER": "Ex.: 999",
+      "EDIT": "Editar",
+      "DELETE": "Excluir"
+    }
   },
   "MANAGE_USERS": {
     "TITLE": "Gestão de Usuários",

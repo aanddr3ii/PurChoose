@@ -11,6 +11,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AdminComponent } from './admin/admin.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 
 
 
@@ -27,6 +29,8 @@ export const routes: Routes = [
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'admin', component: AdminComponent }, 
     { path: 'admin/manage-users', component: ManageUsersComponent }, // Gestionar usuarios
+    { path: 'admin/manage-categories', component: ManageCategoriesComponent }, // Gestionar categorías
+    { path: 'admin/manage-products', component: ManageProductsComponent }, // Gestionar productos
 
 
 

@@ -6,12 +6,44 @@
   },
 
   
-    "ADMIN": {
-      "TITLE": "Panel de Administración",
-      "DESCRIPTION": "Bienvenido al panel de administración.",
-      "MANAGE_USERS": "Gestionar Usuarios",
-      "VIEW_ANALYTICS": "Ver Análisis"
+  "ADMIN": {
+    "TITLE": "Panel de Administración",
+    "DESCRIPTION": "Bienvenido al panel de administración.",
+    "MANAGE_USERS": "Gestionar Usuarios",
+    "MANAGE_CATEGORIES": "Gestionar Categorías",
+    "MANAGE_PRODUCTS": "Gestionar Productos",
+    "VIEW_ANALYTICS": "Ver Análisis",
+    "CATEGORIES": {
+      "TITLE": "Gestión de Categorías",
+      "ADD_CATEGORY": "Añadir Categoría",
+      "EDIT_CATEGORY": "Editar Categoría",
+      "SAVE_CHANGES": "Guardar Cambios",
+      "CANCEL": "Cancelar",
+      "LIST_TITLE": "Lista de Categorías",
+      "NAME": "Nombre",
+      "DESCRIPTION": "Descripción",
+      "NAME_PLACEHOLDER": "Ej. Electrónica",
+      "DESCRIPTION_PLACEHOLDER": "Ej. Dispositivos electrónicos y accesorios.",
+      "EDIT": "Editar",
+      "DELETE": "Eliminar"
     },
+    "PRODUCTS": {
+      "TITLE": "Gestión de Productos",
+      "ADD_PRODUCT": "Añadir Producto",
+      "EDIT_PRODUCT": "Editar Producto",
+      "SAVE_CHANGES": "Guardar Cambios",
+      "CANCEL": "Cancelar",
+      "LIST_TITLE": "Lista de Productos",
+      "NAME": "Nombre",
+      "PRICE": "Precio",
+      "CATEGORY": "Categoría",
+      "SELECT_CATEGORY": "Selecciona una categoría",
+      "NAME_PLACEHOLDER": "Ej. Laptop",
+      "PRICE_PLACEHOLDER": "Ej. 999",
+      "EDIT": "Editar",
+      "DELETE": "Eliminar"
+    }
+  },
     "MANAGE_USERS": {
       "TITLE": "Gestión de Usuarios",
       "ADD_USER": "Añadir Usuario",
