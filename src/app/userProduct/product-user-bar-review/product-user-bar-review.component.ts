@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../services/userService/user.service';
+import { UserReviewService } from '../../services/userReview/user-review.service';
 import { User } from '../../interfaces/user';
 import { Review } from '../../interfaces/review';
 
@@ -10,14 +12,13 @@ import { Review } from '../../interfaces/review';
   styleUrl: './product-user-bar-review.component.css'
 })
 export class ProductUserBarReviewComponent {
-  user: User = {
-    id: 1,
-    name: 'Paco'
-  };
+  user: User | null = null;
+  reviews:Review[] | null = null;
 
-  review: Review = {
-    id: 1,
-    rating: 3.4,
-    text: 'Excelente vendedor! Gracias'
-  };
+  constructor(private userService: UserService, private userReviewService: UserReviewService) {}
+
+  ngOnInit(): void {
+    this.user = this.userService.getUser(); 
+    this.reviews = this.userReviewService.getReviews();
+  }
 }

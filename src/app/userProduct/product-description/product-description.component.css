@@ -9,9 +9,9 @@
     padding: 0px 0;
     text-align: left;
     margin-bottom: -5px;
-    display: flex; /* ✅ Needed for `gap` to work */
-    flex-wrap: wrap; /* ✅ Allows wrapping */
-    gap: 1rem; /* ✅ Now it works! */
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 1rem; 
 }
 
 /* Price Styling */

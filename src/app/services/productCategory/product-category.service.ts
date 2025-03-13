@@ -4,6 +4,7 @@ import { Category } from '../../interfaces/category';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductCategoryService {
   private categories: Category[] = [
     {id: 1, text: "Montaña y esquí"},
