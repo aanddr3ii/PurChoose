@@ -75,6 +75,11 @@ export class NavBeltComponent {
     this.router.navigate(['/admin']);
   }
 
+  goToCart(): void {
+    // Redirige al carrito
+    this.router.navigate(['/cart']);
+  }
+  
   // Actualizar la cantidad de productos en el carrito
   updateCartCount(): void {
     const userId = 1; // Suponemos que esta es la ID del usuario actual
