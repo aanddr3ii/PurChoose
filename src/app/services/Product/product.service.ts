@@ -24,8 +24,8 @@ export class ProductService {
     {
       id: 2,
       images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg"
+        "https://cdn.wallapop.com/images/10420/ie/kr/__/c10420p1112875012/i5485839981.jpg?pictureSize=W640",
+        "https://cdn.wallapop.com/images/10420/ie/kr/__/c10420p1112875012/i5485840017.jpg?pictureSize=W640"
       ],
       price: 49,
       title: "Lámpara de escritorio",

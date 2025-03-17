@@ -1,77 +1,80 @@
-/* El menu desplegable */
+/* Sidebar Menu */
 .side-menu {
     position: fixed;
     top: 121px; 
-    left: -340px;
-    width: 300px;
-    height: calc(100% - 121px);
+    left: 0; /* Ensure it's visible */
+    width: 200px; /* Slightly wider for better text visibility */
+    height: 100vh;
     background-color: white;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    transition: left 0.3s ease;
-    padding: 30px 20px;
-    z-index: 1000;
-    font-family: 'Arial';
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    font-family: Arial;
+    z-index: 900;
 }
 
-.side-menu.open {
-    left: 0;
-}
-
-.side-menu-header {
+/* Ensure user info is aligned */
+.user-info {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
-.side-menu-header h3 {
-    color: black;
-    font-size: 22px;
-    margin: 0;
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.close-btn {
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
+.user-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2E2E2E;
 }
 
+/* Menu List */
 .side-menu ul {
     list-style: none;
     padding: 0;
-    margin-top: 20px;
+    margin: 0;
 }
 
+.side-menu ul li {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px; 
+    cursor: pointer;
+    margin-bottom: 3px; 
+}
+
+.side-menu ul li:hover {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+/* Ensure icons and text are aligned */
+.side-menu ul li svg {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+}
+
+/* Text spacing */
 .side-menu ul li a {
-    color: black;
-    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #2E2E2E;
     text-decoration: none;
-    padding: 10px 0;
-    display: block;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    transition: background-color 0.3s ease;
 }
 
-.side-menu ul li a:hover {
-    color: #ffffff;
-    text-decoration: underline;
+.side-menu ul li.active {
+    background-color: #F2F2F2;
+    border-radius: 10px;
 }
 
-/* Para el fondo negro de categorias cuando abres el desplegable */
-.overlay {
-    position: fixed;
-    top: 121px;
-    left: 0;
-    width: 100%;
-    height: calc(100% - 121px);
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    z-index: 999;
-}
-
-.overlay.show {
-    display: block;
+.side-menu ul li.active a {
+    font-weight: 600;
+    color: #0078D4;
 }

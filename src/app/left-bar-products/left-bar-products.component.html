@@ -1,0 +1,10 @@
+<div class="side-menu">
+    <p class="inbox-title">Bandeja de Entrada</p>
+    <hr class="hr">
+    @for (product of products ?? []; track product.id) {
+        <div class="product-card">
+            <img [src]="product.images?.[0] ?? 'assets/default-image.jpg'" class="slider-image" />
+            <p class="product-name">{{ product.title }}</p>
+        </div>
+    }
+</div>

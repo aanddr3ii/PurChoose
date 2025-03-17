@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
+import { User } from '../interfaces/user';
+import { UserService } from '../services/userService/user.service';
 
 @Component({
   selector: 'app-left-bar',
@@ -10,16 +12,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './left-bar.component.css'
 })
 export class LeftBarComponent {
-  isSidenavOpen = true;
+  user: User | null = null; // Define a product object
+  constructor(private userService: UserService) {} // Inject the service
 
-  toggleSidenav(event: Event) {
-    event.preventDefault(); // previene que cargue la pg acutal
-    this.isSidenavOpen = !this.isSidenavOpen;
-
-    if (this.isSidenavOpen) {
-        document.body.classList.add('no-scroll'); // no puedes hacer scroll
-    } else {
-        document.body.classList.remove('no-scroll'); // vuelves a poder hacer scroll
-    }
+  ngOnInit(): void {
+    this.user = this.userService.getUser(); 
   }
 }
