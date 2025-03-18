@@ -15,11 +15,13 @@ import { ManageProductsComponent } from './manage-products/manage-products.compo
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 import { InboxComponent } from './Inboxx/inbox/inbox.component';
 import { CartComponent } from './cart/cart.component';
+import { ShoppingProductComponent } from './shopping-products/shopping-product/shopping-product.component';
 
 export const routes: Routes = [
     { path: '', component: IndexComponent },
     { path: 'perfil', component: PaginaPerfilComponent },
     { path: 'inbox', component: InboxComponent },
+    { path: 'shopping', component: ShoppingProductComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'register-seller', component: RegisterSellerComponent },
     { path: 'login', component: LoginComponent },
