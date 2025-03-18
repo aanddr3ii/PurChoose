@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { CartItem } from '../../interfaces/cart-item';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,10 +25,10 @@ export class CartService {
       }));
   }
 
-  // Guardar productos en el carrito de un usuario específico
-  private saveCartItems(userId: number, cartItems: CartItem[]): void {
-    localStorage.setItem(`${this.cartKey}_${userId}`, JSON.stringify(cartItems));
-  }
+// Guardar productos en el carrito de un usuario específico
+public saveCartItems(userId: number, cartItems: CartItem[]): void {
+  localStorage.setItem(`${this.cartKey}_${userId}`, JSON.stringify(cartItems));
+}
 
   // Cambiar el estado de un producto en el carrito de un usuario específico
   changeStatus(userId: number, index: number, newStatus: 'No pagado' | 'Pagado' | 'Enviado' | 'Recibido'): void {
@@ -42,7 +43,12 @@ export class CartService {
   }
 
   // Añadir un producto al carrito de un usuario específico
-  addToCart(userId: number, product: Product, quantity: number = 1): void {
+  addToCart(
+    userId: number,
+    product: Product,
+    quantity: number = 1,
+    status: 'No pagado' | 'Pagado' | 'Enviado' | 'Recibido' = 'No pagado' // Estado predeterminado: No pagado
+  ): void {
     const cartItems = this.getCartItems(userId);
     const existingItem = cartItems.find(item => item.product?.id === product.id);
 
@@ -53,7 +59,7 @@ export class CartService {
         product,
         quantity,
         price: Number(product.price) || 0, // Usa el precio del producto
-        status: 'No pagado' // Estado inicial: No pagado
+        status // Estado inicial (predeterminado: No pagado)
       });
     }
 

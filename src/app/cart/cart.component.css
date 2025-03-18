@@ -1,9 +1,17 @@
-/* Contenedor principal */
-.cart-container {
+/* Contenedor global de la página */
+.cart-page {
   max-width: 1200px;
   margin: 50px auto;
-  padding: 20px;
+  display: flex; /* Flexbox para colocar el carrito y el resumen lado a lado */
+  gap: 40px; /* Espacio ampliado entre el carrito y el resumen */
+  justify-content: space-between; /* Distribuye el espacio entre ambos elementos */
+}
+
+/* Contenedor principal del carrito */
+.cart-container {
+  width: calc(75% - 60px); /* Aumentamos el ancho del carrito al 75% */
   background-color: #ffffff;
+  padding: 20px;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
@@ -40,7 +48,8 @@ tr {
   display: flex;
   align-items: center; /* Centramos verticalmente el contenido */
   gap: 20px; /* Espacio entre la imagen y los detalles */
-  flex: 2; /* Ocupa 2/3 del ancho */
+  flex: 3; /* Ocupa 3/5 del ancho (más espacio para los detalles del producto) */
+  min-width: 0; /* Evita que el contenido se desborde */
 }
 
 /* Contenedor de la Imagen */
@@ -48,6 +57,7 @@ tr {
   width: 150px;
   height: 150px;
   position: relative;
+  flex-shrink: 0; /* Evita que la imagen se reduzca */
 }
 
 .product-image {
@@ -74,12 +84,16 @@ tr {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  overflow: hidden; /* Evita que el texto se desborde */
 }
 
 .product-title {
   font-size: 22px; /* Aumentamos el tamaño del título */
   font-weight: bold;
   color: #333;
+  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+  overflow: hidden; /* Oculta el texto que sobresale */
+  text-overflow: ellipsis; /* Agrega puntos suspensivos (...) si el texto es demasiado largo */
 }
 
 .product-price {
@@ -88,40 +102,17 @@ tr {
   font-weight: bold;
 }
 
-/* Columna de Acciones */
-.product-actions {
+/* Columna de Cantidad */
+td.quantity-controls {
+  flex: 1; /* Ocupa 1/5 del ancho */
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 15px;
-  flex: 1; /* Ocupa 1/3 del ancho */
-}
-
-/* Botón Eliminar en la Esquina Superior Derecha */
-.delete-button-top {
-  position: absolute;
-  top: 10px;
-  right: 10px; /* Mantenemos el botón en su posición actual */
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 24px; /* Reducimos ligeramente el tamaño del ícono */
-  color: #dc3545;
-  z-index: 10; /* Asegura que esté encima de otros elementos */
-}
-
-.trash-icon {
-  font-size: 24px;
-}
-
-/* Controles de Cantidad (movidos más abajo) */
-.quantity-controls {
-  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  margin-top: 40px; /* Bajamos los controles de cantidad */
 }
 
+/* Botones de Cantidad */
 .quantity-button {
   display: inline-block;
   width: 40px; /* Mantenemos el tamaño de los botones */
@@ -154,18 +145,43 @@ tr {
   border-color: #007bff;
 }
 
-/* Barra de Progreso (REDUCIDA EN UN 35%) */
+/* Columna de Acciones */
+.product-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+  flex: 1; /* Ocupa 1/5 del ancho */
+}
+
+/* Botón Eliminar en la Esquina Superior Derecha */
+.delete-button-top {
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Mantenemos el botón en su posición actual */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px; /* Reducimos ligeramente el tamaño del ícono */
+  color: #dc3545;
+  z-index: 10; /* Asegura que esté encima de otros elementos */
+}
+
+.trash-icon {
+  font-size: 24px;
+}
+
+/* Barra de Progreso */
 .progress-container {
   margin-top: 40px; /* Bajamos la barra de progreso */
 }
 
 .progress-bar {
-  width: 405px; /* Reducimos el ancho en un 35% (de 600px a 405px) */
-  height: 30px; /* Grosor ligeramente mayor */
+  width: 100%; /* Usamos el ancho completo del contenedor */
+  height: 10px; /* Grosor reducido */
   background-color: #e9ecef;
-  border-radius: 15px;
+  border-radius: 5px;
   overflow: hidden;
-  position: relative;
 }
 
 .progress-fill {
@@ -174,86 +190,81 @@ tr {
   transition: width 0.3s ease;
 }
 
-/* Checkpoints (RECTÁNGULOS MÁS ALTOS Y CENTRADOS PERFECTAMENTE) */
+/* Checkpoints */
 .progress-checkpoints {
   display: flex;
   justify-content: space-between;
-  position: relative;
-  margin-top: -15px; /* Ajustamos para que estén centrados con la barra */
+  margin-top: 10px;
 }
 
 .checkpoint {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px; /* Ancho del rectángulo */
-  height: 40px; /* Más alto para mejorar la visibilidad */
+  width: 60px;
+  height: 30px;
   background-color: #ddd;
-  border-radius: 20px; /* Bordes redondeados */
-  font-size: 12px; /* Texto más pequeño para centrarlo mejor */
-  line-height: 1; /* Aseguramos que el texto esté centrado verticalmente */
+  border-radius: 15px;
+  font-size: 12px;
   color: #fff;
   cursor: default;
   transition: background-color 0.3s ease;
-  z-index: 2; /* Aseguramos que estén encima de la barra */
-  position: relative; /* Para ajustar la posición precisa */
-  top: 50%; /* Desplazamos hacia abajo para centrar con la barra */
-  transform: translateY(-50%); /* Corregimos el desplazamiento */
 }
 
 .checkpoint.active {
-  background-color: #1a73e8; /* Azul más suave pero oscuro */
+  background-color: #1a73e8;
 }
 
-/* Etiquetas de los Checkpoints */
-.progress-checkpoints div {
-  position: relative;
-}
-
-.progress-checkpoints div::after {
-  content: attr(data-status);
-  position: absolute;
-  top: 50px; /* Ajustamos la posición del texto */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 12px; /* Texto más pequeño para centrarlo mejor */
-  color: #333;
-  white-space: nowrap;
-}
-/* Estilos generales del botón del carrito */
-.cart-button {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 12px;
-  font-size: 20px; /* Tamaño del emoji */
-  color: #fff; /* Color del texto/emoji */
-  background-color: #007bff; /* Color azul */
-  border: none;
-  border-radius: 4px; /* Bordes redondeados */
-  text-decoration: none; /* Sin subrayado */
-  cursor: pointer; /* Cursor de puntero */
-  transition: background-color 0.3s ease; /* Transición suave */
-}
-
-.cart-button:hover {
-  background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
-}
-
-/* Indicador de cantidad de productos en el carrito */
-.cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
+/* Resumen de Compra */
+.summary-container {
+  width: calc(25% - 20px); /* Reducimos el ancho del resumen al 25% */
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.summary-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  font-size: 12px;
+  font-size: 16px;
+  color: #555;
+}
+
+.summary-total {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e67e22;
+  margin-top: 10px;
+}
+
+.summary-action-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
   font-weight: bold;
   color: #fff;
-  background-color: #dc3545; /* Rojo para destacar */
-  border-radius: 50%; /* Círculo */
+  background-color: #1a73e8;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.summary-action-button:hover {
+  background-color: #1152c7;
 }
