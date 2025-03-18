@@ -4,13 +4,12 @@ import { CartItem } from '../interfaces/cart-item';
 import { Product } from '../interfaces/product';
 import { AuthService } from '../services/authService/auth.service'; // Importamos el servicio de autenticación
 import { NavBeltComponent } from '../nav-belt/nav-belt.component';
-import { NavigationCancel } from '@angular/router';
 import { NavCategoriesComponent } from '../nav-categories/nav-categories.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [NavBeltComponent,NavCategoriesComponent], // Importamos el servicio de autenticación
+  imports: [NavBeltComponent, NavCategoriesComponent], // Asegúrate de importar solo los componentes necesarios aquí
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
@@ -66,20 +65,21 @@ export class CartComponent implements OnInit {
     return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }
 
-// Calcular el costo de envío (ejemplo: envío gratis si el subtotal supera 500€)
-calculateShipping(): number {
-  if (this.cartItems.length === 0) {
-    return 0; // Si no hay productos en el carrito, el envío es 0€
+  // Calcular el costo de envío (ejemplo: envío gratis si el subtotal supera 500€)
+  calculateShipping(): number {
+    if (this.cartItems.length === 0) {
+      return 0; // Si no hay productos en el carrito, el envío es 0€
+    }
+
+    const subtotal = this.calculateSubtotal();
+    return subtotal >= 500 ? 0 : 10; // Envío gratis si el subtotal es mayor o igual a 500€
   }
 
-  const subtotal = this.calculateSubtotal();
-  return subtotal >= 500 ? 0 : 10; // Envío gratis si el subtotal es mayor o igual a 500€
-}
+  // Verificar si el carrito está vacío
+  isCartEmpty(): boolean {
+    return this.cartItems.length === 0;
+  }
 
-// Verificar si el carrito está vacío
-isCartEmpty(): boolean {
-  return this.cartItems.length === 0;
-}
   // Calcular el total a pagar (subtotal + envío)
   calculateTotal(): number {
     return this.calculateSubtotal() + this.calculateShipping();
@@ -204,9 +204,12 @@ isCartEmpty(): boolean {
 
   // Añadir productos predeterminados al carrito
   addDefaultItems(): void {
+    // Limpiar datos residuales antes de añadir productos predeterminados
+    this.clearHistoryData();
+
     const defaultProducts: Product[] = [
       {
-        id: 1,
+        id: Date.now() + 1, // Genera un ID único
         images: [
           "https://cdn.wallapop.com/images/10420/ia/rg/__/c10420p1106468713/i5438087286.jpg?pictureSize=W640"
         ],
@@ -219,7 +222,7 @@ isCartEmpty(): boolean {
         dateAdded: new Date("2024-03-11")
       },
       {
-        id: 2,
+        id: Date.now() + 2, // Genera un ID único
         images: [
           "https://www.barcelonaled.com/20510-large_default/lampara-mono-de-mesa-de-resina-rila.jpg",
         ],
@@ -240,5 +243,7 @@ isCartEmpty(): boolean {
 
     // Recargar los productos del carrito
     this.loadCartItems();
+
+    alert('Productos predeterminados añadidos correctamente.');
   }
 }

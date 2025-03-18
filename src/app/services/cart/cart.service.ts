@@ -42,29 +42,29 @@ public saveCartItems(userId: number, cartItems: CartItem[]): void {
     this.saveCartItems(userId, cartItems); // Guarda los cambios en localStorage
   }
 
-  // Añadir un producto al carrito de un usuario específico
-  addToCart(
-    userId: number,
-    product: Product,
-    quantity: number = 1,
-    status: 'No pagado' | 'Pagado' | 'Enviado' | 'Recibido' = 'No pagado' // Estado predeterminado: No pagado
-  ): void {
-    const cartItems = this.getCartItems(userId);
-    const existingItem = cartItems.find(item => item.product?.id === product.id);
+// Añadir un producto al carrito de un usuario específico
+addToCart(
+  userId: number,
+  product: Product,
+  quantity: number = 1,
+  status: 'No pagado' | 'Pagado' | 'Enviado' | 'Recibido' = 'No pagado' // Estado predeterminado: No pagado
+): void {
+  const cartItems = this.getCartItems(userId);
+  const existingItem = cartItems.find(item => item.product?.id === product.id);
 
-    if (existingItem) {
-      existingItem.quantity += quantity; // Incrementa la cantidad si ya existe
-    } else {
-      cartItems.push({
-        product,
-        quantity,
-        price: Number(product.price) || 0, // Usa el precio del producto
-        status // Estado inicial (predeterminado: No pagado)
-      });
-    }
-
-    this.saveCartItems(userId, cartItems);
+  if (existingItem) {
+    existingItem.quantity += quantity; // Incrementa la cantidad si ya existe
+  } else {
+    cartItems.push({
+      product,
+      quantity,
+      price: Number(product.price) || 0, // Usa el precio del producto
+      status // Estado inicial (predeterminado: No pagado)
+    });
   }
+
+  this.saveCartItems(userId, cartItems);
+}
 
   // Actualizar la cantidad o el estado de un producto en el carrito de un usuario específico
   updateCartItem(userId: number, index: number, updatedItem: Partial<CartItem>): void {
