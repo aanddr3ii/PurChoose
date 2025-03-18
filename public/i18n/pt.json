@@ -185,10 +185,18 @@
   },
 
   "LEFT-BAR": {
-    "PURCHASES": "Compras",
+    "SHOPPING": "Compras",
     "SALES": "Vendas",
     "INBOX": "Caixa de entrada",
     "FAVORITES": "Favoritos"
+  },
+
+  "LEFT-BAR-PRODUCT": {
+    "INBOX": "Caixa de entrada"
+  },
+
+  "BAR-CHAT": {
+    "PLACEHOLDER": "Escreva uma mensagem.."
   }
 
 }

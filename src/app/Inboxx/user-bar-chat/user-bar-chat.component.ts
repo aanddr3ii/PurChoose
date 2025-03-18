@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from '../interfaces/user';
-import { UserService } from '../services/userService/user.service';
+import { User } from '../../interfaces/user';
+import { UserService } from '../../services/userService/user.service';
 
 @Component({
   selector: 'app-user-bar-chat',

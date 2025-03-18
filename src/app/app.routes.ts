@@ -13,7 +13,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
-import { InboxComponent } from './inbox/inbox.component';
+import { InboxComponent } from './Inboxx/inbox/inbox.component';
 import { CartComponent } from './cart/cart.component';
 
 export const routes: Routes = [

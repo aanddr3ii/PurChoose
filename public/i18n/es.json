@@ -186,10 +186,18 @@
   },
 
   "LEFT-BAR": {
-    "PURCHASES": "Compras",
+    "SHOPPING": "Compras",
     "SALES": "Ventas",
     "INBOX": "Buzón",
     "FAVORITES": "Favoritos"
+  },
+
+  "LEFT-BAR-PRODUCT": {
+    "INBOX": "Bandeja de Entrada"
+  },
+
+  "BAR-CHAT": {
+    "PLACEHOLDER": "Escribe un mensaje.."
   }
-  
+
 }
