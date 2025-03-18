@@ -6,16 +6,15 @@
   <div class="cart-container">
     <h1>Carrito de Compras</h1>
 
-    <!-- Botón para Añadir Productos Predeterminados -->
-    <button class="add-default-items-button" (click)="addDefaultItems()">
-      Añadir Productos Predeterminados
-    </button>
+<!-- Botón para Añadir Productos Predeterminados -->
+<button class="admin-action-button add-default-items-button" (click)="addDefaultItems()">
+  <span class="admin-icon">🔒</span> Añadir Productos Predeterminados
+</button>
 
-    <!-- Botón para Limpiar Datos Residuales del Historial -->
-    <button class="clear-history-button" (click)="clearHistoryData()">
-      Limpiar Datos Residuales del Historial
-    </button>
-
+<!-- Botón para Limpiar Datos Residuales del Historial -->
+<button class="admin-action-button clear-history-button" (click)="clearHistoryData()">
+  <span class="admin-icon">🔒</span> Limpiar Datos Residuales del Historial
+</button>
     <!-- Lista de Carrito (Productos No Pagados) -->
     <h2>Productos en el Carrito</h2>
     @if (cartItems.length > 0) {
@@ -47,18 +46,22 @@
               </td>
 
               <!-- Columna 2: Cantidad -->
-              <td class="quantity-controls">
-                <button class="quantity-button" (click)="decreaseQuantity($index)">-</button>
-                <input
-                  type="number"
-                  min="1"
-                  [value]="item.quantity"
-                  (input)="updateQuantity($index, $event)"
-                  class="quantity-input"
-                />
-                <button class="quantity-button" (click)="increaseQuantity($index)">+</button>
-              </td>
+<td class="quantity-controls">
+  <!-- Botón Incrementar (+) -->
+  <button class="quantity-button" (click)="increaseQuantity($index)">+</button>
 
+  <!-- Campo de Entrada Numérica -->
+  <input
+    type="number"
+    min="1"
+    [value]="item.quantity"
+    (input)="updateQuantity($index, $event)"
+    class="quantity-input"
+  />
+
+  <!-- Botón Decrementar (-) -->
+  <button class="quantity-button" (click)="decreaseQuantity($index)">-</button>
+</td>
               <!-- Columna 3: Total -->
               <td>{{ item.price * item.quantity }} €</td>
 
@@ -78,7 +81,7 @@
                       [style.width]="calculateProgress(item.status)"
                     ></div>
                   </div>
-                  
+
                   <!-- Checkpoints -->
                   <div class="progress-checkpoints">
                     <div

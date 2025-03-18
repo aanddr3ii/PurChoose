@@ -47,14 +47,16 @@ addToCart(
   userId: number,
   product: Product,
   quantity: number = 1,
-  status: 'No pagado' | 'Pagado' | 'Enviado' | 'Recibido' = 'No pagado' // Estado predeterminado: No pagado
+  status: 'No pagado' | 'Pagado' | 'Enviado' | 'Recibido' = 'No pagado'
 ): void {
   const cartItems = this.getCartItems(userId);
   const existingItem = cartItems.find(item => item.product?.id === product.id);
 
   if (existingItem) {
-    existingItem.quantity += quantity; // Incrementa la cantidad si ya existe
+    // Si el producto ya existe, incrementa la cantidad
+    existingItem.quantity += quantity;
   } else {
+    // Si el producto no existe, añádelo al carrito
     cartItems.push({
       product,
       quantity,
@@ -63,6 +65,7 @@ addToCart(
     });
   }
 
+  // Guardar los cambios en localStorage
   this.saveCartItems(userId, cartItems);
 }
 
