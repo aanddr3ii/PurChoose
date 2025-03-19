@@ -1,1 +1,23 @@
-<p>shopping-box works!</p>
+<div class="shopping-box-container">
+    <h2 class="title">Compras</h2>
+    <div class="shopping-tabs">
+        <button class="tab active">En curso</button>
+        <button class="tab">Finalizadas</button>
+    </div>
+
+    @if (products.length > 0) {
+        <div class="products-grid">
+            @for (product of products; track product.id) {  
+                <app-card-product [product]="product"></app-card-product>
+            }
+        </div>
+    } @else {
+        <div class="empty-state">
+            <img src="/images/pop-exp-nothing-for-sale-Photoroom.png" alt="No purchases" class="empty-image">
+            <h3 class="empty-title">Sin compras en curso todavía</h3>
+            <p class="empty-description">
+                Cuando compres algo, aquí podrás estar al día del estado de la compra.
+            </p>
+        </div>
+    }
+</div>

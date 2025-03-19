@@ -1,0 +1,109 @@
+/* Container styling */
+.shopping-box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea a la izquierda */
+    justify-content: center;
+    width: 100%;
+    max-width: 1600px; /* Más ancho */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    font-family: Arial;
+    position: relative;
+    left: 22px; /* Asegura que no lo esté moviendo */
+}
+
+
+/* Title styling */
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Tabs container */
+.shopping-tabs {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Tabs buttons */
+.tab {
+    padding: 10px 20px;
+    border: none;
+    background-color: white;
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    background-color: #252b3a;
+    color: white;
+}
+
+/* Empty state */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    width: 100%;
+}
+
+/* Empty state image */
+.empty-image {
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+/* Empty state title */
+.empty-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* Empty state description */
+.empty-description {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Container styling */
+.shopping-box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1350px; /* Increased width for better layout */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    font-family: Arial;
+    left: 30px;
+}
+
+/* Grid layout for products */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 products per row */
+    gap: 15px; /* Space between products */
+    width: 100%;
+    justify-items: center; /* Center items */
+}
+

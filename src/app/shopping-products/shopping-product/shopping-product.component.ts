@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { ShoppingBoxComponent } from "../shopping-box/shopping-box.component";
 import { NavBeltComponent } from "../../nav-belt/nav-belt.component";
 import { NavCategoriesComponent } from "../../nav-categories/nav-categories.component";

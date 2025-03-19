@@ -4,7 +4,7 @@
     top: 121px; 
     left: 0; /* Ensure it's visible */
     width: 200px; /* Slightly wider for better text visibility */
-    height: 100vh;
+    height:100vh;
     background-color: white;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
     padding: 20px;
