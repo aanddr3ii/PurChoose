@@ -15,13 +15,15 @@ import { ManageProductsComponent } from './manage-products/manage-products.compo
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 import { InboxComponent } from './Inboxx/inbox/inbox.component';
 import { CartComponent } from './cart/cart.component';
-import { ShoppingProductComponent } from './shopping-products/shopping-product/shopping-product.component';
+import { ShoppingInProgressComponent } from './shopping-products/shopping-in-progress/shopping-in-progress.component';
+import { ShoppingFinalizedComponent } from './shopping-products/shopping-finalized/shopping-finalized.component';
 
 export const routes: Routes = [
     { path: '', component: IndexComponent },
     { path: 'perfil', component: PaginaPerfilComponent },
     { path: 'inbox', component: InboxComponent },
-    { path: 'shopping', component: ShoppingProductComponent },
+    { path: 'shopping-InProgress', component: ShoppingInProgressComponent },
+    { path: 'shopping-Finalized', component: ShoppingFinalizedComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'register-seller', component: RegisterSellerComponent },
     { path: 'login', component: LoginComponent },

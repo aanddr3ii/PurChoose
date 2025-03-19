@@ -45,6 +45,7 @@
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none;
 }
 
 .tab.active {

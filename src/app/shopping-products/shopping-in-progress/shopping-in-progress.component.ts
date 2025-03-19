@@ -5,12 +5,12 @@ import { NavCategoriesComponent } from "../../nav-categories/nav-categories.comp
 import { LeftBarComponent } from "../../Inboxx/left-bar/left-bar.component";
 
 @Component({
-  selector: 'app-shopping-product',
+  selector: 'app-shopping-in-progress',
   standalone: true,
   imports: [ShoppingBoxComponent, NavBeltComponent, NavCategoriesComponent, LeftBarComponent],
-  templateUrl: './shopping-product.component.html',
-  styleUrl: './shopping-product.component.css'
+  templateUrl: './shopping-in-progress.component.html',
+  styleUrl: './shopping-in-progress.component.css'
 })
-export class ShoppingProductComponent {
+export class ShoppingInProgressComponent {
 
 }

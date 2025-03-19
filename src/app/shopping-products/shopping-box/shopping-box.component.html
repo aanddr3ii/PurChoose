@@ -1,8 +1,8 @@
 <div class="shopping-box-container">
     <h2 class="title">Compras</h2>
     <div class="shopping-tabs">
-        <button class="tab active">En curso</button>
-        <button class="tab">Finalizadas</button>
+        <a routerLink="/shopping-InProgress" class="tab active" routerLinkActive="active">En curso</a>
+        <a routerLink="/shopping-Finalized" class="tab" routerLinkActive="active">Finalizadas</a>
     </div>
 
     @if (products.length > 0) {
