@@ -189,61 +189,54 @@ export class CartComponent implements OnInit {
         this.cartService.changeStatus(this.userId, index, 'Pagado');
       });
 
-      /*
-       * NOTA: Aquí podrías mover los productos pagados a una lista de historial.
-       * Ejemplo:
-       * this.historyItems = allItems.filter(item => item.status !== 'No pagado');
-       */
-
       // Recargar los productos del carrito
       this.loadCartItems();
 
       alert('Pago completado. Todos los productos han sido marcados como "Pagado".');
     }
   }
+// Añadir productos predeterminados al carrito
+addDefaultItems(): void {
+  // Limpiar datos residuales antes de añadir productos predeterminados
+  this.clearHistoryData();
+
+  const defaultProducts: Product[] = [
+    {
+      id: 1, // ID fijo para pruebas
+      images: [
+        "https://cdn.wallapop.com/images/10420/ia/rg/__/c10420p1106468713/i5438087286.jpg?pictureSize=W640"
+      ],
+      price: 196,
+      title: "Botas esqui tecnica",
+      state: "Nuevo",
+      location: "Barcelona",
+      description: "Botas de esquí marca Nordica tamaño de la suela 295 mm, talla 25-25,5 en buen estado.",
+      popularity: 4.8,
+      dateAdded: new Date("2024-03-11")
+    },
+    {
+      id: 2, // ID fijo para pruebas
+      images: [
+        "https://www.barcelonaled.com/20510-large_default/lampara-mono-de-mesa-de-resina-rila.jpg",
+      ],
+      price: 49,
+      title: "Lámpara de escritorio",
+      state: "Usado",
+      location: "Madrid",
+      description: "Lámpara de escritorio en buen estado, perfecta para estudiar.",
+      popularity: 4.5,
+      dateAdded: new Date("2024-02-15")
+    }
+  ];
 
   // Añadir productos predeterminados al carrito
-  addDefaultItems(): void {
-    // Limpiar datos residuales antes de añadir productos predeterminados
-    this.clearHistoryData();
+  defaultProducts.forEach(product => {
+    this.cartService.addToCart(this.userId, product, 1, 'No pagado'); // Estado inicial: No pagado
+  });
 
-    const defaultProducts: Product[] = [
-      {
-        id: Date.now() + 1, // Genera un ID único
-        images: [
-          "https://cdn.wallapop.com/images/10420/ia/rg/__/c10420p1106468713/i5438087286.jpg?pictureSize=W640"
-        ],
-        price: 196,
-        title: "Botas esqui tecnica",
-        state: "Nuevo",
-        location: "Barcelona",
-        description: "Botas de esquí marca Nordica tamaño de la suela 295 mm, talla 25-25,5 en buen estado.",
-        popularity: 4.8,
-        dateAdded: new Date("2024-03-11")
-      },
-      {
-        id: Date.now() + 2, // Genera un ID único
-        images: [
-          "https://www.barcelonaled.com/20510-large_default/lampara-mono-de-mesa-de-resina-rila.jpg",
-        ],
-        price: 49,
-        title: "Lámpara de escritorio",
-        state: "Usado",
-        location: "Madrid",
-        description: "Lámpara de escritorio en buen estado, perfecta para estudiar.",
-        popularity: 4.5,
-        dateAdded: new Date("2024-02-15")
-      }
-    ];
+  // Recargar los productos del carrito
+  this.loadCartItems();
 
-    // Añadir productos predeterminados al carrito
-    defaultProducts.forEach(product => {
-      this.cartService.addToCart(this.userId, product, 1, 'No pagado'); // Estado inicial: No pagado
-    });
-
-    // Recargar los productos del carrito
-    this.loadCartItems();
-
-    alert('Productos predeterminados añadidos correctamente.');
-  }
+  alert('Productos predeterminados añadidos correctamente.');
+}
 }

@@ -112,37 +112,45 @@ td.quantity-controls {
   gap: 10px;
 }
 
-/* Botones de Cantidad */
+/* Controles de Cantidad */
+.quantity-controls {
+  display: flex;
+  flex-direction: column; /* Alineación vertical */
+  align-items: center; /* Centra los elementos horizontalmente */
+  gap: 5px; /* Espacio entre los botones y el campo de entrada */
+}
+
+
 .quantity-button {
   display: inline-block;
-  width: 40px; /* Mantenemos el tamaño de los botones */
-  height: 40px; /* Mantenemos el tamaño de los botones */
-  font-size: 20px; /* Mantenemos el tamaño del texto */
+  width: 30px; /* Ancho fijo para los botones */
+  height: 30px; /* Alto fijo para los botones */
+  font-size: 20px; /* Tamaño del texto */
   font-weight: bold;
-  color: #fff;
-  background-color: #007bff;
+  color: #fff; /* Color del texto */
+  background-color: #007bff; /* Color azul */
   border: none;
-  border-radius: 4px;
+  border-radius: 4px; /* Bordes redondeados */
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease; /* Transición suave */
 }
 
 .quantity-button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
 }
 
 .quantity-input {
-  width: 80px; /* Mantenemos el ancho del input */
-  padding: 8px;
+  width: 50px; /* Ancho del campo de entrada */
+  padding: 5px;
   text-align: center;
-  font-size: 18px; /* Mantenemos el tamaño del texto */
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  font-size: 16px; /* Tamaño del texto */
+  border: 1px solid #ddd; /* Borde claro */
+  border-radius: 4px; /* Bordes redondeados */
 }
 
 .quantity-input:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #007bff; /* Resalta el borde al enfocar */
 }
 
 /* Columna de Acciones */
@@ -267,4 +275,84 @@ td.quantity-controls {
 
 .summary-action-button:hover {
   background-color: #1152c7;
+}
+
+/* Estilo base para los botones de acción */
+.action-button {
+  display: inline-block;
+  padding: 12px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño del texto */
+  font-weight: bold; /* Texto en negrita */
+  color: #fff; /* Color del texto */
+  text-align: center;
+  text-decoration: none; /* Sin subrayado */
+  border: none; /* Sin bordes */
+  border-radius: 8px; /* Bordes redondeados */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave */
+  margin-bottom: 15px; /* Espacio entre los botones */
+}
+
+/* Estilo específico para el botón "Añadir Productos Predeterminados" */
+.add-default-items-button {
+  background-color: #28a745; /* Verde para acciones positivas */
+}
+
+.add-default-items-button:hover {
+  background-color: #218838; /* Verde más oscuro al pasar el ratón */
+  transform: scale(1.05); /* Efecto de escala al pasar el ratón */
+}
+
+/* Estilo específico para el botón "Limpiar Datos Residuales del Historial" */
+.clear-history-button {
+  background-color: #dc3545; /* Rojo para acciones de eliminación */
+}
+
+.clear-history-button:hover {
+  background-color: #c82333; /* Rojo más oscuro al pasar el ratón */
+  transform: scale(1.05); /* Efecto de escala al pasar el ratón */
+}
+
+/* Estilo base para los botones de acción de administrador */
+.admin-action-button {
+  display: inline-block;
+  padding: 8px 15px; /* Espaciado interno reducido */
+  font-size: 14px; /* Tamaño del texto más pequeño */
+  font-weight: bold; /* Texto en negrita */
+  color: #fff; /* Color del texto */
+  text-align: center;
+  text-decoration: none; /* Sin subrayado */
+  border: none; /* Sin bordes */
+  border-radius: 6px; /* Bordes redondeados más pequeños */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave */
+  margin-bottom: 10px; /* Espacio entre los botones */
+  position: relative; /* Para posicionar el ícono */
+}
+
+/* Ícono de administrador */
+.admin-icon {
+  font-size: 16px; /* Tamaño del ícono */
+  margin-right: 8px; /* Espacio entre el ícono y el texto */
+  color: #f8f9fa; /* Color del ícono */
+}
+
+/* Estilo específico para el botón "Añadir Productos Predeterminados" */
+.add-default-items-button {
+  background-color: #28a745; /* Verde para acciones positivas */
+}
+
+.add-default-items-button:hover {
+  background-color: #218838; /* Verde más oscuro al pasar el ratón */
+  transform: scale(1.03); /* Efecto de escala más sutil */
+}
+
+/* Estilo específico para el botón "Limpiar Datos Residuales del Historial" */
+.clear-history-button {
+  background-color: #dc3545; /* Rojo para acciones de eliminación */
+}
+
+.clear-history-button:hover {
+  background-color: #c82333; /* Rojo más oscuro al pasar el ratón */
+  transform: scale(1.03); /* Efecto de escala más sutil */
 }
