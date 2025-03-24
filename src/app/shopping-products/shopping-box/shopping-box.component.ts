@@ -170,8 +170,23 @@ export class ShoppingBoxComponent {
     ],
     popularity: 4,
     dateAdded: new Date('2011-09-25')
-  }
+  },
 
+  {
+    id: 11,
+    title: 'CUPRA LEON 1.5 eTSI 150CV',
+    price: 23500,
+    location: 'Leganés',
+    description: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
+    images: [
+      'images/wgg2.1.png',
+      'images/wgg2.0.png',
+      'images/wgg2.3.png',
+      'images/wgg2.2.png'
+    ],
+    popularity: 4,
+    dateAdded: new Date('2011-09-25')
+  }
   ];
 
   trackByProductId(index: number, product: any): number {
