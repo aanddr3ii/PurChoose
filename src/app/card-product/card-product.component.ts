@@ -24,7 +24,7 @@ export class CardProductComponent {
   }
 
   /* Acortar descripción */
-  shortenDescription(description: string | undefined, limit: number = 50): string {
+  shortenDescription(description: string | undefined, limit: number = 23): string {
     if (!description) return ''; // Si no hay descripción, devolvemos una cadena vacía
     return description.length > limit ? description.substring(0, limit) + '...' : description;
   }

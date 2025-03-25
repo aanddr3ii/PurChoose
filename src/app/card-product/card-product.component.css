@@ -1,134 +1,102 @@
-/* Contenedor principal de los productos */
-.products-container {
-    padding: 0rem;
-    background-color: #f5f5f5; /* Fondo gris claro para contraste */
-    font-family: 'Arial';
-}
-
-/* Grid para organizar los productos de manera adaptable */
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajusta el número de columnas automáticamente */
-    gap: 1.5rem; /* Espaciado entre los productos */
-    justify-items: center; /* Centra los productos en la cuadrícula */
-}
-
-/* Tarjeta individual de producto */
 .product-card {
-    background: #ffffff; /* Fondo blanco para mejor visualización */
-    border-radius: 16px; /* Bordes redondeados */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    overflow: hidden; /* Evita que el contenido sobresalga */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación suave al pasar el mouse */
-}
-
-/* Efecto al pasar el mouse sobre la tarjeta */
-.product-card:hover {
-    transform: translateY(-5px); /* Levanta la tarjeta ligeramente */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
-}
-
-/* Contenedor del carrusel dentro de la tarjeta */
-.carousel-container {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 240px;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Carrusel */
+  .carousel-container {
     position: relative;
     width: 100%;
-    height: 220px;
-    overflow: hidden; /* Oculta el contenido desbordado */
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-}
-
-/* Contenedor que agrupa todas las imágenes del carrusel */
-.carousel-wrapper {
+    height: 160px;
+    overflow: hidden;
+  }
+  
+  .carousel-wrapper {
     display: flex;
-    transition: transform 0.5s ease-in-out; /* Transición suave entre imágenes */
-}
-
-/* Cada diapositiva del carrusel */
-.carousel-slide {
+    transition: transform 0.3s ease-in-out;
+    height: 100%;
+  }
+  
+  .carousel-slide {
     min-width: 100%;
     height: 100%;
-}
-
-/* Ajuste de las imágenes dentro del carrusel */
-.carousel-slide img {
+  }
+  
+  .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Mantiene la proporción de la imagen y la ajusta al espacio */
-}
-
-/* Botones de navegación del carrusel */
-.carousel-btn {
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  /* Botones carrusel */
+  .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.4);
     color: white;
     border: none;
-    padding: 0.3rem;
-    cursor: pointer;
     border-radius: 50%;
-    transition: background 0.3s ease;
-}
-
-/* Cambio de color al pasar el ratón sobre los botones del carrusel */
-.carousel-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Posición del botón izquierdo */
-.prev {
-    left: 12px;
-}
-
-/* Posición del botón derecho */
-.next {
-    right: 12px;
-}
-
-/* Contenedor de la información del producto */
-.product-info {
-    padding: 0.4rem;
-    text-align: left;
-}
-
-/* Adjust title spacing */
-.product-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #222;
-    margin: 0; /* Remove margin */
-    padding-bottom: 0.2rem; /* Reduce padding */
-}
-
-/* Adjust price spacing */
-.price {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #000;
-    margin: 0.2rem 0; /* Reduce margin */
-}
-
-/* Adjust description spacing */
-.description {
-    font-size: 0.85rem;
-    color: #616161;
-    margin-top: 0.2rem; /* Reduce top margin */
-    text-align: left;
-}
-
-/* Contenedor de la ubicación */
-.location {
-    font-size: 0.9rem;
-    color: #757575;
+    width: 26px;
+    height: 26px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
     display: flex;
     align-items: center;
-    gap: 5px;
-}
-
-/* Icono de ubicación */
-.location-icon {
-    width: 16px;
-    height: 16px;
-    fill: #757575;
-}
+    justify-content: center;
+  }
+  .carousel-btn.prev {
+    left: 8px;
+  }
+  .carousel-btn.next {
+    right: 8px;
+  }
+  
+  /* Info del producto */
+  .product-info {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .product-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    color: #1c1c1e;
+  }
+  
+  .price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #111;
+    margin: 0;
+  }
+  
+  /* Mensaje si no hay imágenes */
+  .no-image {
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  

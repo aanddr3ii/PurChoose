@@ -32,14 +32,7 @@
 
   <!-- Información del producto -->
   <div class="product-info">
-    <h3 class="product-title">{{ product.title || 'Sin título' }}</h3>
+    <h3 class="product-title">{{ shortenDescription(product.title) || 'Sin título' }}</h3>
     <p class="price">{{ product.price || 0 }} €</p>
-    <div class="location">
-      <svg class="location-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M12 2.083c-4.08 0-7.5 3.42-7.5 7.5s3.42 7.5 7.5 7.5 7.5-3.42 7.5-7.5-3.42-7.5-7.5-7.5zM12 15.583c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" />
-      </svg>
-      <span>{{ product.location || 'Ubicación no disponible' }}</span>
-    </div>
-    <p class="description">{{ shortenDescription(product.description) }}</p>
   </div>
 </div>
