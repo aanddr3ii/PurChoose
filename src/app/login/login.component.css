@@ -130,10 +130,12 @@ input:focus {
 .login-button:hover {
   background-color: #0056b3;
 }
+
 .error-message {
-  color: #dc3545;
+  font-size: 0.8em;
+  color: #f44336;
+  margin-top: 6px;
   display: block;
-  margin-top: 4px;
 }
 
 /* Estilos para estados deshabilitados */
@@ -175,12 +177,4 @@ input:focus-visible {
 
 .password-toggle:focus {
   outline: 2px solid #4CAF50;
-}
-
-.error-message {
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  font-size: 0.8em;
-  color: #f44336;
 }

@@ -59,11 +59,6 @@ Ocultar
   }
 </div>
 
-  @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-    <small id="password-error" class="error-message">
-      {{ 'LOGIN.PASSWORD_ERROR' | translate }}
-    </small>
-  }
 <!-- Enlace de contraseña olvidada -->
 <div class="form-remember">
   <a routerLink="/forgot-password" tabindex="0">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</a>
