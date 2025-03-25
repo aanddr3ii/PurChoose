@@ -77,7 +77,7 @@
           Acepto los <a routerLink="/terms">términos y condiciones</a>
         </label>
         @if (registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched) {
-          <small role="alert">Debes aceptar los términos</small>
+          <small role="alert">{{ 'REGISTER.TERMS_ERROR' | translate }}</small>
         }
       </div>
       

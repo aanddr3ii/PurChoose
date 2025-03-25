@@ -33,6 +33,7 @@ export class CategoryProductComponent {
       popularity: 2, // Popularidad (1-5)
       dateAdded: new Date('2004-10-01') // Fecha de publicación
     },
+
     {
       id: 2,
       title: 'CUPRA LEON 1.5 eTSI 150CV',
@@ -48,6 +49,7 @@ export class CategoryProductComponent {
       popularity: 4,
       dateAdded: new Date('2011-09-25')
     },
+
     {
       id: 3,
       title: 'Morgan 4/4 2006',
@@ -63,6 +65,7 @@ export class CategoryProductComponent {
       popularity: 1,
       dateAdded: new Date('2019-08-15')
     },
+
     {
       id: 4,
       title: 'Chevrolet GMC Apache 1959',
@@ -78,8 +81,105 @@ export class CategoryProductComponent {
       popularity: 5,
       dateAdded: new Date('2001-07-10')
     },
+
     {
       id: 5,
+      title: 'Volkswagen Escarabajo 1975',
+      price: 18400,
+      location: 'Madrid',
+      description: 'TOTALMENTE RESTAURADO Y TERMINADO EN 2023, CARROCERÍA, MOTOR, FRENOS.',
+      images: [
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934862.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934869.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934865.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
+      ],
+      popularity: 3,
+      dateAdded: new Date('2022-06-01')
+    },
+
+    {
+      id: 6,
+      title: 'Volkswagen Escarabajo 1975',
+      price: 18400,
+      location: 'Madrid',
+      description: 'TOTALMENTE RESTAURADO Y TERMINADO EN 2023, CARROCERÍA, MOTOR, FRENOS.',
+      images: [
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934862.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934869.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934865.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
+      ],
+      popularity: 3,
+      dateAdded: new Date('2022-06-01')
+    },
+
+    {
+      id: 7,
+      title: 'Volkswagen Escarabajo 1975',
+      price: 18400,
+      location: 'Madrid',
+      description: 'TOTALMENTE RESTAURADO Y TERMINADO EN 2023, CARROCERÍA, MOTOR, FRENOS.',
+      images: [
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934862.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934869.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934865.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
+      ],
+      popularity: 3,
+      dateAdded: new Date('2022-06-01')
+    },
+
+    {
+      id: 8,
+      title: 'Volkswagen Escarabajo 1975',
+      price: 18400,
+      location: 'Madrid',
+      description: 'TOTALMENTE RESTAURADO Y TERMINADO EN 2023, CARROCERÍA, MOTOR, FRENOS.',
+      images: [
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934862.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934869.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934865.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
+      ],
+      popularity: 3,
+      dateAdded: new Date('2022-06-01')
+    },
+
+    {
+      id: 9,
+      title: 'Volkswagen Escarabajo 1975',
+      price: 18400,
+      location: 'Madrid',
+      description: 'TOTALMENTE RESTAURADO Y TERMINADO EN 2023, CARROCERÍA, MOTOR, FRENOS.',
+      images: [
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934862.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934869.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934865.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
+      ],
+      popularity: 3,
+      dateAdded: new Date('2022-06-01')
+    },
+
+    {
+      id: 10,
+      title: 'Volkswagen Escarabajo 1975',
+      price: 18400,
+      location: 'Madrid',
+      description: 'TOTALMENTE RESTAURADO Y TERMINADO EN 2023, CARROCERÍA, MOTOR, FRENOS.',
+      images: [
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934862.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934869.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934865.jpg?pictureSize=W640',
+        'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
+      ],
+      popularity: 3,
+      dateAdded: new Date('2022-06-01')
+    },
+    
+    {
+      id: 11,
       title: 'Volkswagen Escarabajo 1975',
       price: 18400,
       location: 'Madrid',
