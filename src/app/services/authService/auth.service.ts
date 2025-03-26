@@ -55,8 +55,9 @@ export class AuthService {
     const user = this.getCurrentUser();
     return user ? user.role : '';
   }
-   // Validar pregunta de seguridad
-   validateSecurityQuestion(email: string, answer: string): Observable<any> {
+
+  // Validar pregunta de seguridad
+  validateSecurityQuestion(email: string, answer: string): Observable<any> {
     return this.http.post(`${ApiUrls.BASE_URL}/validate-security-question`, { email, answer });
   }
 
