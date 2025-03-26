@@ -35,10 +35,10 @@ export class EditarPerfilComponent {
     // Inicializamos el formulario con los datos actuales del usuario
     this.editForm = this.fb.group({
       name: [this.user.name, Validators.required], // Campo obligatorio
-      location: [this.user.location || '', [Validators.required]], // Ahora es obligatorio (si lo deseas)
-      phone: [this.user.phone || null, [Validators.required, Validators.pattern(/^\d{9}$/)]], // Validación básica para teléfono (9 dígitos sin prefijo)
+      location: [this.user.ubicacion || '', [Validators.required]], // Ahora es obligatorio (si lo deseas)
+      phone: [this.user.telefono || null, [Validators.required, Validators.pattern(/^\d{9}$/)]], // Validación básica para teléfono (9 dígitos sin prefijo)
       email: [this.user.email, [Validators.required, Validators.email]], // Campo obligatorio
-      profilePicture: [this.user.profilePicture || null], // Campo para el archivo de imagen
+      profilePicture: [this.user.fotoPerfil || null], // Campo para el archivo de imagen
       prefijo: ['+34', Validators.required], // Prefijo telefónico con validación
       password: ['', []] // Campo para la contraseña (sin validación por ahora)
     });
@@ -65,12 +65,12 @@ export class EditarPerfilComponent {
 
       // Concatenamos el prefijo y el número de teléfono antes de guardar
       const fullPhoneNumber = `${this.editForm.value.prefijo}${this.editForm.value.phone}`;
-      updatedUserData.phone = parseInt(fullPhoneNumber, 10); // Guardamos el número completo
+      updatedUserData.telefono = parseInt(fullPhoneNumber, 10); // Guardamos el número completo
 
       // Verificamos si el valor de profilePicture es un archivo válido
       const profilePictureValue = this.editForm.get('profilePicture')?.value;
       if (profilePictureValue && !(profilePictureValue instanceof File)) {
-        delete updatedUserData.profilePicture; // Eliminamos la propiedad si no es un archivo
+        delete updatedUserData.fotoPerfil; // Eliminamos la propiedad si no es un archivo
       }
 
       // Actualizamos el usuario en el servicio
@@ -95,7 +95,7 @@ export class EditarPerfilComponent {
     const reader = new FileReader();
     reader.onload = () => {
       const base64Image = reader.result as string;
-      this.userService.updateUser({ profilePicture: base64Image });
+      this.userService.updateUser({ fotoPerfil: base64Image });
     };
     reader.readAsDataURL(file);
   }

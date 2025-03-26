@@ -1,3 +1,6 @@
+<app-nav-belt></app-nav-belt>
+<app-nav-categories></app-nav-categories>
+
 <div class="admin-container">
   <h1>{{ 'ADMIN.CATEGORIES.TITLE' | translate }}</h1>
 
@@ -12,17 +15,30 @@
     <form>
       <div class="form-group">
         <label for="categoryName">{{ 'ADMIN.CATEGORIES.NAME' | translate }}</label>
-        <input type="text" id="categoryName" placeholder="{{ 'ADMIN.CATEGORIES.NAME_PLACEHOLDER' | translate }}" disabled />
+        <input
+          type="text"
+          id="categoryName"
+          [(ngModel)]="newCategory.name"
+          placeholder="{{ 'ADMIN.CATEGORIES.NAME_PLACEHOLDER' | translate }}"
+        />
       </div>
       <div class="form-group">
         <label for="categoryDescription">{{ 'ADMIN.CATEGORIES.DESCRIPTION' | translate }}</label>
-        <textarea id="categoryDescription" placeholder="{{ 'ADMIN.CATEGORIES.DESCRIPTION_PLACEHOLDER' | translate }}" disabled></textarea>
+        <textarea
+          id="categoryDescription"
+          [(ngModel)]="newCategory.description"
+          placeholder="{{ 'ADMIN.CATEGORIES.DESCRIPTION_PLACEHOLDER' | translate }}"
+        ></textarea>
       </div>
-      <button type="submit" class="action-button" disabled>
+      <button
+        type="button"
+        class="action-button"
+        (click)="editingCategoryIndex !== null ? saveEdit() : addCategory()"
+      >
         {{ editingCategoryIndex !== null ? 'ADMIN.CATEGORIES.SAVE_CHANGES' : 'ADMIN.CATEGORIES.ADD_CATEGORY' | translate }}
       </button>
       @if (editingCategoryIndex !== null) {
-        <button type="button" class="cancel-button" disabled>
+        <button type="button" class="cancel-button" (click)="cancelEdit()">
           {{ 'ADMIN.CATEGORIES.CANCEL' | translate }}
         </button>
       }
@@ -46,10 +62,10 @@
             <td>{{ category.name }}</td>
             <td>{{ category.description }}</td>
             <td>
-              <button class="edit-button" disabled>
+              <button class="edit-button" (click)="startEdit($index)">
                 {{ 'ADMIN.CATEGORIES.EDIT' | translate }}
               </button>
-              <button class="delete-button" disabled>
+              <button class="delete-button" (click)="deleteCategory($index)">
                 {{ 'ADMIN.CATEGORIES.DELETE' | translate }}
               </button>
             </td>

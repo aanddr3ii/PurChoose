@@ -1,74 +1,40 @@
 <div class="login-container">
-  <!-- Añadido id para referencia aria-labelledby -->
-  <h1 id="login-title">{{ 'LOGIN.TITLE' | translate }}</h1>
-  
-  <p>
-    {{ 'LOGIN.DESCRIPTION' | translate }}
-    <a routerLink="/register">{{ 'LOGIN.LINK' | translate }}</a>
-  </p>
+  <h1>{{ 'LOGIN.TITLE' | translate }}</h1>
 
-  <!-- Añadidos role y aria-labelledby -->
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" 
-        role="form" aria-labelledby="login-title">
-        
-    <!-- Grupo de email -->
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" aria-labelledby="login-title">
+
+    <!-- Email -->
     <div class="form-group">
       <label for="email">{{ 'LOGIN.EMAIL' | translate }}</label>
-      <input type="email" 
-       id="email" 
-       formControlName="email"
-       aria-required="true"
-       [attr.aria-describedby]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched ? 'email-error' : null">
-             
+      <input type="email" id="email" formControlName="email" aria-required="true" aria-describedby="emailError">
       @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-        <!-- Añadido id para referencia aria-describedby -->
-        <small id="email-error" class="error-message">
-          {{ 'LOGIN.EMAIL_ERROR' | translate }}
-        </small>
+        <small id="emailError" role="alert">{{ 'LOGIN.EMAIL_ERROR' | translate }}</small>
       }
     </div>
-  
-<!-- Grupo de contraseña -->
-<div class="form-group password-group">
-  <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
-  
-  <div class="input-with-button">
-    <input type="password" 
-           id="password" 
-           formControlName="password"
-           aria-required="true"
-           aria-describedby="password-error"
-           #passwordInput>
-    
-    <!-- Botón de visibilidad con @if -->
-    <button type="button" 
-    class="password-toggle"
-    (click)="togglePasswordVisibility()">
-@if (!isPasswordVisible) {
-Mostrar
-} @else {
-Ocultar
-}
-</button>
-  </div>
 
-  @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-    <small id="password-error" class="error-message">
-      {{ 'LOGIN.PASSWORD_ERROR' | translate }}
-    </small>
-  }
-</div>
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
+      <div class="password-input">
+        <input [type]="isPasswordVisible ? 'text' : 'password'" id="password" formControlName="password"
+               aria-required="true" aria-describedby="passwordError">
+        <button type="button" (click)="togglePasswordVisibility()">
+          {{ isPasswordVisible ? 'Ocultar' : 'Mostrar' }}
+        </button>
+      </div>
+      @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <small id="passwordError" role="alert">{{ 'LOGIN.PASSWORD_ERROR' | translate }}</small>
+      }
+    </div>
 
-<!-- Enlace de contraseña olvidada -->
-<div class="form-remember">
-  <a routerLink="/forgot-password" tabindex="0">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</a>
-</div>
-<!-- Por esto: -->
-<button type="submit" 
-        class="login-button" 
-        [disabled]="loginForm.invalid"
-        [attr.aria-disabled]="loginForm.invalid ? 'true' : 'false'">
-  {{ 'LOGIN.BUTTON' | translate }}
-</button>
+    <!-- Error de credenciales -->
+    @if (invalidCredentials) {
+      <small role="alert">{{ 'LOGIN.INVALID_CREDENTIALS' | translate }}</small>
+    }
+
+    <!-- Submit Button -->
+    <button type="submit" class="login-button" [disabled]="loginForm.invalid" aria-label="Login">
+      {{ 'LOGIN.BUTTON' | translate }}
+    </button>
   </form>
 </div>
