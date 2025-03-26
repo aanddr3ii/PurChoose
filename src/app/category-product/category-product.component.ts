@@ -15,8 +15,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./category-product.component.css']
 })
 export class CategoryProductComponent {
+
   // Datos simulados de productos
-  
   products: Product[] = [
     {
       id: 1,
@@ -212,7 +212,10 @@ export class CategoryProductComponent {
 
     // Aplicamos todos los filtros activos simultáneamente
     this.filteredProducts = [...this.products].sort(this.getCombinedComparator());
+  
+    // Apply sorting and other filters here if needed...
   }
+  
  // Método para obtener un comparador combinado
  getCombinedComparator(): (a: Product, b: Product) => number {
   return (a: Product, b: Product): number => {
