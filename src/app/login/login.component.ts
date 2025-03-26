@@ -13,7 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  isPasswordVisible = false;
+  isPasswordVisible = false; // Variable para controlar la visibilidad de la contraseña
   invalidCredentials = false;
 
   constructor(
@@ -27,6 +27,7 @@ export class LoginComponent {
     });
   }
 
+  // Función para alternar la visibilidad de la contraseña
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
@@ -35,21 +36,12 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
 
+      console.log('Enviando credenciales:', { email, password });
+
       // Llamar al servicio para iniciar sesión
       this.auth.login(email, password).subscribe({
         next: (response) => {
-          console.log('Inicio de sesión exitoso:', response);
-
-          // Guardar el usuario y el token en localStorage
-          this.auth.setCurrentUser(response.user, response.token);
-
-          // Redirigir según el rol del usuario
-          const role = this.auth.getUserRole();
-          if (role === 'admin') {
-            this.router.navigate(['/admin']);
-          } else {
-            this.router.navigate(['/dashboard']);
-          }
+          this.router.navigate(['/']); // Redirigir al dashboard o página principal
         },
         error: (error) => {
           console.error('Error al iniciar sesión:', error);
@@ -57,6 +49,9 @@ export class LoginComponent {
           setTimeout(() => (this.invalidCredentials = false), 3000); // Mostrar mensaje de error durante 3 segundos
         }
       });
+    } else {
+      console.error('El formulario no es válido:', this.loginForm.errors);
+      alert('Por favor, completa todos los campos correctamente.');
     }
   }
 }

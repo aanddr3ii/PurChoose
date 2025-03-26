@@ -53,7 +53,7 @@ export class AuthService {
   // Obtener el rol del usuario actual
   getUserRole(): string {
     const user = this.getCurrentUser();
-    return user ? user.role : '';
+    return user?.role || ''; // Si no hay rol, devuelve una cadena vacía
   }
 
   // Validar pregunta de seguridad
