@@ -55,6 +55,7 @@
 
 .product-footer .purchase-button {
     background-color: #007bff;
+    text-decoration: none;
     color: white;
     border: none;
     padding: 12px 24px;
