@@ -29,7 +29,7 @@ export class EditarPerfilComponent {
 
   constructor(private fb: FormBuilder, private userService: UserService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.user = this.userService.getUser(); // Obtenemos el usuario actual desde el servicio
 
     // Inicializamos el formulario con los datos actuales del usuario
@@ -42,6 +42,16 @@ export class EditarPerfilComponent {
       prefijo: ['+34', Validators.required], // Prefijo telefónico con validación
       password: ['', []], // Campo para la contraseña (opcional)
       password_confirmation: ['', []] // Confirmación de contraseña (opcional)
+    });
+
+    // Validación condicional para password_confirmation
+    this.editForm.get('password')?.valueChanges.subscribe((value) => {
+      if (value) {
+        this.editForm.get('password_confirmation')?.setValidators([Validators.required]);
+      } else {
+        this.editForm.get('password_confirmation')?.clearValidators();
+      }
+      this.editForm.get('password_confirmation')?.updateValueAndValidity();
     });
   }
 
@@ -59,7 +69,6 @@ export class EditarPerfilComponent {
     }
   }
 
-  // Método para guardar los cambios
   onSubmit(): void {
     if (this.editForm.valid) {
       // Verificamos que el ID del usuario exista
@@ -68,10 +77,10 @@ export class EditarPerfilComponent {
         return;
       }
 
-      const formData = new FormData(); // Usamos FormData para manejar archivos
+      const formData = new FormData();
       const formValues = this.editForm.value;
 
-      // Agregamos los datos al FormData
+      // Agregamos los datos obligatorios
       formData.append('name', formValues.name);
       formData.append('email', formValues.email);
       formData.append('prefijo', formValues.prefijo);
@@ -85,11 +94,18 @@ export class EditarPerfilComponent {
 
       // Agregamos la contraseña solo si se proporciona
       if (formValues.password) {
+        if (!formValues.password_confirmation || formValues.password !== formValues.password_confirmation) {
+          this.showErrorPopup('Las contraseñas no coinciden.');
+          return;
+        }
         formData.append('password', formValues.password);
         formData.append('password_confirmation', formValues.password_confirmation);
       }
 
-      console.log('Datos enviados al backend:', formData);
+      console.log('Datos enviados al backend:');
+      for (const [key, value] of this.getFormDataEntries(formData)) {
+        console.log(`${key}: ${value}`);
+      }
 
       // Enviamos los datos al backend
       this.userService.editUserInApi(this.user.id, formData).subscribe({
@@ -100,7 +116,7 @@ export class EditarPerfilComponent {
         error: (error) => {
           console.error('Error al actualizar el perfil:', error);
           if (error.error && error.error.message) {
-            this.showErrorPopup(error.error.message); // Mostrar mensaje detallado del backend
+            this.showErrorPopup(error.error.message);
           } else {
             this.showErrorPopup('Ocurrió un error inesperado.');
           }
@@ -109,6 +125,15 @@ export class EditarPerfilComponent {
     } else {
       this.showErrorPopup('Por favor, completa todos los campos obligatorios.');
     }
+  }
+
+  // Método auxiliar para obtener las entradas de FormData
+  private getFormDataEntries(formData: FormData): Array<[string, string]> {
+    const entries: Array<[string, string]> = [];
+    formData.forEach((value, key) => {
+      entries.push([key, value.toString()]);
+    });
+    return entries;
   }
 
   // Método para mostrar un popup de éxito

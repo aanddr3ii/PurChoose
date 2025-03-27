@@ -105,6 +105,23 @@
           >
         </div>
 
+        <!-- Confirmación de Contraseña -->
+        <div class="form-group">
+          @if (editForm.get('password')?.value) {
+            <label for="password_confirmation">Confirmar Contraseña:</label>
+            <input 
+              type="password" 
+              id="password_confirmation" 
+              formControlName="password_confirmation" 
+              placeholder="Confirma tu nueva contraseña"
+            >
+            <!-- Mensaje de error si no coincide -->
+            @if (editForm.get('password_confirmation')?.hasError('required') && editForm.get('password_confirmation')?.touched) {
+              <div class="error-message">La confirmación de contraseña es obligatoria.</div>
+            }
+          }
+        </div>
+
         <!-- Foto de Perfil -->
         <div class="form-group">
           <label for="profilePicture">Foto de Perfil:</label>

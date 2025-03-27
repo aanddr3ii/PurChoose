@@ -4,7 +4,7 @@ export class ApiUrls {
     // Base URL de la API
     public static readonly BASE_URL = 'http://localhost:8000/api';
   
-    // Endpoints de autenticación
+    // Endpoints de autenticación 
     public static readonly AUTH = {
         REGISTER: `${ApiUrls.BASE_URL}/register`,
         LOGIN: `${ApiUrls.BASE_URL}/login`,

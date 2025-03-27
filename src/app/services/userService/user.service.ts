@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from '../../interfaces/user'; // Importa la interfaz User
 import { AuthService } from '../../services/authService/auth.service'; // Importamos el servicio Auth
+import { ApiUrls } from '../../Shared/api-urls'; // Importamos las URLs de la API
+
 
 @Injectable({
   providedIn: 'root',
@@ -65,9 +67,9 @@ updateUser(updatedUser: Partial<User>): void {
   }
 
   // Editar un usuario existente a través de la API
-editUserInApi(id: number, updatedUser: FormData): Observable<any> {
-  return this.http.put(`${this.apiUrl}/${id}`, updatedUser);
-}
+  editUserInApi(id: number, updatedUser: FormData): Observable<any> {
+    return this.http.put(ApiUrls.USUARIO.UPDATE(id), updatedUser);
+  }
 
   // Eliminar un usuario a través de la API
   deleteUserFromApi(id: number): Observable<void> {
