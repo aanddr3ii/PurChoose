@@ -41,7 +41,16 @@ export class LoginComponent {
       // Llamar al servicio para iniciar sesión
       this.auth.login(email, password).subscribe({
         next: (response) => {
-          this.router.navigate(['/']); // Redirigir al dashboard o página principal
+          console.log('Inicio de sesión exitoso:', response);
+
+          // Imprimir los datos del usuario en la consola
+          console.log('Datos del usuario obtenidos:', response.user);
+
+          // Guardar el usuario y el token en localStorage
+          this.auth.setCurrentUser(response.user, response.token);
+
+          // Redirigir al dashboard o página principal
+          this.router.navigate(['/']);
         },
         error: (error) => {
           console.error('Error al iniciar sesión:', error);
