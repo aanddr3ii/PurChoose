@@ -76,13 +76,14 @@
     font-size: 0.9rem;
     font-weight: 600;
     margin: 0 0 0.25rem;
-    color: #1c1c1e;
+    color: #253238;
+    
   }
   
   .price {
     font-size: 1rem;
     font-weight: bold;
-    color: #111;
+    color: black;
     margin: 0;
   }
   

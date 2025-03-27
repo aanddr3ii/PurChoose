@@ -78,54 +78,75 @@
         </label>
       </div>
 
-      <!-- Filtro por fecha -->
-      <div class="filter-group">
-        <label>
-          <input 
-            type="radio" 
-            name="date" 
-            [(ngModel)]="filters.date" 
-            [value]="null" 
-            (change)="applyFilters('date', null)"
-          />
-          Ninguno
-        </label>
-        <label>
-          <input 
-            type="radio" 
-            name="date" 
-            [(ngModel)]="filters.date" 
-            [value]="'asc'" 
-            (change)="applyFilters('date', 'asc')"
-          />
-          Fecha (Antigua a Reciente)
-        </label>
-        <label>
-          <input 
-            type="radio" 
-            name="date" 
-            [(ngModel)]="filters.date" 
-            [value]="'desc'" 
-            (change)="applyFilters('date', 'desc')"
-          />
-          Fecha (Reciente a Antigua)
-        </label>
+      <!-- Filtro por estado del producto -->
+      <hr class="filter-divider"/>
+
+      <div class="filter-accordion">
+        <div class="filter-header" (click)="toggleFilter('state')">
+          <span class="filter-title">Estado del producto</span>
+          <svg class="filter-icon" [class.rotate]="openFilter === 'state'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </div>
+      
+        @if (openFilter === 'state') {
+          <div class="filter-options">
+            @for (option of productStates; track option.value) {
+              <label class="checkbox-label">
+                <input 
+                  type="checkbox"
+                  [checked]="selectedStates.includes(option.value)"
+                  (change)="toggleStateFilter(option.value)"
+                />
+                <div class="checkbox-texts">
+                  <span class="main-text">{{ option.label }}</span>
+                  <span class="sub-text">{{ option.description }}</span>
+                </div>
+              </label>
+            }
+          </div>
+        }
       </div>
-    </div>
+
+      <!-- Filtro por publicación reciente -->
+      <div class="filter-accordion">
+        <div class="filter-header" (click)="toggleFilter('dateRange')">
+          <span class="filter-title">Publicado hace</span>
+          <svg class="filter-icon" [class.rotate]="openFilter === 'dateRange'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </div>
+
+        @if (openFilter === 'dateRange') {
+          <div class="filter-options">
+            @for (option of dateOptions; track option.value) {
+              <label>
+                <input 
+                  type="radio" 
+                  name="dateRange" 
+                  [(ngModel)]="filters.dateRange" 
+                  [value]="option.value" 
+                  (change)="applyFilters('dateRange', option.value)"
+                />
+                {{ option.label }}
+              </label>
+            }
+          </div>
+        }
+      </div>
+    </div> <!-- Fin de columna filtros -->
 
     <!-- Columna de productos -->
     <div class="products-column">
-      <!-- Mensaje si no hay productos -->
       @if (filteredProducts.length === 0) {
         <p class="no-products-message">No hay productos disponibles.</p>
       } @else {
-        <!-- Grid de productos -->
         <div class="products-grid">
           @for (product of filteredProducts; track product.id) {
             <app-card-product [product]="product"></app-card-product>
           }
         </div>
       }
-    </div>
+    </div> <!-- Fin de columna productos -->
   </div>
 </div>
