@@ -20,7 +20,7 @@ export class UserService {
     fechaRegistro: new Date(),
     ubicacion: '',
     telefono: 100200300, // Número de teléfono genérico
-    fotoPerfil: 'https://via.placeholder.com/150', // Imagen genérica para invitados
+    fotoPerfil: 'public\images\defaultpic.jpg', // Imagen genérica para invitados
   };
 
   // Usuario actual (por defecto es el invitado)
@@ -66,9 +66,9 @@ export class UserService {
   }
 
   // Editar un usuario existente a través de la API
-  editUserInApi(id: number, updatedUser: Partial<User>): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/${id}`, updatedUser);
-  }
+editUserInApi(id: number, updatedUser: FormData): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${id}`, updatedUser);
+}
 
   // Eliminar un usuario a través de la API
   deleteUserFromApi(id: number): Observable<void> {
