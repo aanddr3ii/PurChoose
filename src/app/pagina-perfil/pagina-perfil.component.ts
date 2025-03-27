@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -26,15 +26,25 @@ import { CardProductComponent } from "../card-product/card-product.component";
   templateUrl: './pagina-perfil.component.html',
   styleUrls: ['./pagina-perfil.component.css']
 })
-export class PaginaPerfilComponent {
+export class PaginaPerfilComponent implements OnInit {
   
   activeTab: 'info' | 'publicaciones' | 'reseñas' = 'info'; // Tipo específico
 
   constructor(private userService: UserService) {}
 
+  ngOnInit(): void {
+    // Cargar el usuario autenticado desde la API
+    this.userService.setCurrentUserFromApi();
+  }
+
   // Obtenemos el usuario actual desde el servicio
   get user(): User {
     return this.userService.getUser(); // Usamos el método del servicio
+  }
+
+  // Verificar si el usuario actual es un invitado
+  get isGuest(): boolean {
+    return this.user.role === 'guest'; // Verificamos si el rol es 'guest'
   }
 
   // Datos de reseñas (simulados)
@@ -48,6 +58,10 @@ export class PaginaPerfilComponent {
 
   // Método para editar el perfil
   onEditProfile() {
+    if (this.isGuest) {
+      alert('Debes iniciar sesión para editar tu perfil.');
+      return;
+    }
     alert('Redirigiendo a la página de edición...');
     // Redirigimos al usuario a la página de edición
   }

@@ -1,85 +1,77 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { User } from '../../interfaces/user'; // Importa la interfaz User
+import { AuthService } from '../../services/authService/auth.service'; // Importamos el servicio Auth
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private usersKey = 'registeredUsers'; // Clave para almacenar usuarios en localStorage
+  private apiUrl = '/api/users'; // URL base de la API (ajusta según tu backend)
 
-  constructor() {
-    // Inicializamos los usuarios en localStorage si no existen
-    const storedUsers = this.getUsers();
-    if (!storedUsers.length) {
-      this.addUser(this.user); // Agregamos el usuario predeterminado
-    }
-  }
-
-  private user: User = {
-    id: 1,
-    name: 'Yassine Riahi El Kihal',
-    email: 'elpresi@elmuro.com',
-    password: '123456789',
-    role: 'usuario',
+  // Usuario invitado predeterminado
+  private guestUser: User = {
+    id: 0, // ID especial para el usuario invitado
+    name: 'Invitado',
+    email: 'invitado@example.com',
+    password: '', // No tiene contraseña
+    role: 'guest', // Rol específico para invitados
     fechaRegistro: new Date(),
-    ubicacion: 'Barcelona',
-    telefono: 12345678901,
-    fotoPerfil: 'https://media.licdn.com/...',
+    ubicacion: '',
+    telefono: 100200300, // Número de teléfono genérico
+    fotoPerfil: 'https://via.placeholder.com/150', // Imagen genérica para invitados
   };
 
-  // Obtener todos los usuarios registrados
-  getUsers(): User[] {
-    const storedUsers = localStorage.getItem(this.usersKey);
-    return storedUsers ? JSON.parse(storedUsers) : [];
-  }
+  // Usuario actual (por defecto es el invitado)
+  private currentUser: User = this.guestUser;
 
-  // Guardar usuarios en localStorage
-  private saveUsers(users: User[]): void {
-    localStorage.setItem(this.usersKey, JSON.stringify(users));
-  }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  // Añadir un nuevo usuario
-  addUser(newUser: User): void {
-    const users = this.getUsers();
-    users.push(newUser);
-    this.saveUsers(users);
-  }
-
-  // Editar un usuario existente
-  editUser(index: number, updatedUser: Partial<User>): void {
-    const users = this.getUsers();
-    users[index] = { ...users[index], ...updatedUser };
-    this.saveUsers(users);
-  }
-
-  // Eliminar un usuario
-  deleteUser(index: number): void {
-    const users = this.getUsers();
-    users.splice(index, 1);
-    this.saveUsers(users);
-  }
-
-  // Obtener el usuario actual (renombrado de getUser)
+  // Obtener el usuario actual (puede ser el invitado o el usuario autenticado)
   getUser(): User {
-    return this.user;
+    const authUser = this.authService.getCurrentUser();
+    return authUser ? authUser : this.guestUser;
   }
 
-  // Verificar si un usuario es administrador
-  isAdmin(email: string, password: string): boolean {
-    const admin = this.getUsers().find(
-      user => user.email === email && user.password === password && user.role === 'admin'
-    );
-    return !!admin; // Retorna true si el usuario es admin
-  }
-
-  // Obtener un usuario por su email
-  getUserByEmail(email: string): User | undefined {
-    return this.getUsers().find(user => user.email === email);
+  // Establecer el usuario actual desde la API
+  setCurrentUserFromApi(): void {
+    this.authService.getCurrentUser().subscribe({
+      next: (user: User) => {
+        this.currentUser = user; // Sobrescribe el usuario invitado con el usuario autenticado
+      },
+      error: (error: any) => {
+        console.error('Error al obtener el usuario actual:', error);
+        this.currentUser = this.guestUser; // Si falla, mantenemos al usuario invitado
+      }
+    });
   }
 
   // Actualizar el usuario actual
   updateUser(updatedUser: Partial<User>): void {
-    this.user = { ...this.user, ...updatedUser }; // Actualizamos solo las propiedades proporcionadas
-    console.log('Usuario actualizado:', this.user);
+    this.currentUser = { ...this.currentUser, ...updatedUser }; // Actualiza solo las propiedades proporcionadas
+    console.log('Usuario actualizado:', this.currentUser);
+  }
+
+  // ------------------- Métodos de la API -------------------
+
+  // Obtener todos los usuarios desde la API
+  getUsersFromApi(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl);
+  }
+
+  // Obtener un usuario por su ID desde la API
+  getUserByIdFromApi(id: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${id}`);
+  }
+
+  // Editar un usuario existente a través de la API
+  editUserInApi(id: number, updatedUser: Partial<User>): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/${id}`, updatedUser);
+  }
+
+  // Eliminar un usuario a través de la API
+  deleteUserFromApi(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

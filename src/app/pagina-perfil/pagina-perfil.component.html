@@ -1,55 +1,61 @@
-  <app-nav-belt></app-nav-belt>
-  <app-nav-categories></app-nav-categories>
+<app-nav-belt></app-nav-belt>
+<app-nav-categories></app-nav-categories>
 
-  <div class="profile-container">
-    <!-- Primer recuadro (encabezado) -->
-    <div class="profile-header-container">
-      <header class="profile-header">
-        <div class="profile-avatar">
-          <img [src]="user.fotoPerfil" alt="Foto de perfil" class="avatar">
-        </div>
-        <div class="profile-info">
-          <h1 class="profile-name">{{ user.name }}</h1>
+<div class="profile-container">
+  <!-- Primer recuadro (encabezado) -->
+  <div class="profile-header-container">
+    <header class="profile-header">
+      <div class="profile-avatar">
+        <img [src]="user.fotoPerfil" alt="Foto de perfil" class="avatar">
+      </div>
+      <div class="profile-info">
+        <h1 class="profile-name">{{ user.name }}</h1>
+
+        <!-- Mostrar mensaje si es un invitado -->
+        @if (isGuest) {
+          <p class="guest-message">Invitado</p>
+        } @else {
           <a class="edit-profile-button" routerLink="/editarP" [routerLinkActive]="'active-button'"> Editar Perfil </a>
-        </div>
-      </header>
-    </div>
-
-    <!-- Botones de navegación -->
-    <div class="profile-tabs">
-      <button 
-        class="tab-button" 
-        [class.active]="activeTab === 'info'" 
-        (click)="activeTab = 'info'"
-      >
-        Info
-      </button>
-      <button 
-        class="tab-button" 
-        [class.active]="activeTab === 'publicaciones'" 
-        (click)="activeTab = 'publicaciones'"
-      >
-        Publicaciones
-      </button>
-      <button 
-        class="tab-button" 
-        [class.active]="activeTab === 'reseñas'" 
-        (click)="activeTab = 'reseñas'"
-      >
-        Reseñas
-      </button>
-    </div>
-
-    <div class="profile-content-container">
-      <div class="profile-content">
-        @if (activeTab === 'info') {
-          <!-- Pasamos el usuario actual al componente hijo -->
-          <app-info-perfil [user]="user"></app-info-perfil>
-        } @else if (activeTab === 'publicaciones') {
-          <app-card-product></app-card-product>
-        } @else if (activeTab === 'reseñas') {
-          <app-resenas-perfil [reviews]="reviews"></app-resenas-perfil>
         }
       </div>
+    </header>
+  </div>
+
+  <!-- Botones de navegación -->
+  <div class="profile-tabs">
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 'info'" 
+      (click)="activeTab = 'info'"
+    >
+      Info
+    </button>
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 'publicaciones'" 
+      (click)="activeTab = 'publicaciones'"
+    >
+      Publicaciones
+    </button>
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 'reseñas'" 
+      (click)="activeTab = 'reseñas'"
+    >
+      Reseñas
+    </button>
+  </div>
+
+  <div class="profile-content-container">
+    <div class="profile-content">
+      @if (activeTab === 'info') {
+        <!-- Pasamos el usuario actual al componente hijo -->
+        <app-info-perfil [user]="user"></app-info-perfil>
+      } @else if (activeTab === 'publicaciones') {
+        <app-card-product></app-card-product>
+      } @else if (activeTab === 'reseñas') {
+        <app-resenas-perfil [reviews]="reviews"></app-resenas-perfil>
+      }
     </div>
   </div>
+</div>

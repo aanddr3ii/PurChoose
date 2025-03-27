@@ -7,8 +7,8 @@ import { ApiUrls } from '../../Shared/api-urls'; // Importamos las URLs de la AP
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserKey = 'currentUser';
-  private tokenKey = 'authToken';
+  private currentUserKey = 'currentUser'; // Clave para almacenar el usuario en localStorage
+  private tokenKey = 'authToken'; // Clave para almacenar el token en localStorage
 
   constructor(private http: HttpClient) {}
 
