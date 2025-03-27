@@ -1,4 +1,4 @@
-/* === Global Container === */
+/* === GLOBAL === */
 .category-products-container {
   max-width: 1440px;
   margin: 0 auto;
@@ -6,7 +6,6 @@
   padding-bottom: 1.5rem;
 }
 
-/* Eliminado el título global para moverlo dentro */
 .category-title {
   font-size: 1.6rem;
   font-weight: 600;
@@ -17,19 +16,18 @@
   text-transform: uppercase;
 }
 
-/* === Flex Layout: Filters + Products === */
+/* === LAYOUT GENERAL === */
 .content-container {
   display: flex;
   gap: 1rem;
 }
 
-/* === Filters Sidebar === */
+/* === FILTROS (SIDEBAR) === */
 .filters-column {
   width: 250px;
   padding: 1.5rem;
- 
+  padding-right: 0.5rem;
   overflow-y: auto;
-  padding-right: 0.5rem; /* espacio para no tapar con scroll */
 }
 
 .filters-title {
@@ -39,6 +37,7 @@
   color: #333;
 }
 
+/* === GRUPOS DE FILTROS (precio / popularidad) === */
 .filter-group {
   margin-bottom: 1.25rem;
 }
@@ -55,14 +54,95 @@
   margin-right: 0.4rem;
 }
 
-/* === Products Grid === */
+/* === ACORDEÓN DE FILTROS (Publicación reciente) === */
+.filter-accordion {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1rem;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  color: #1a1a1a;
+}
+
+.filter-title {
+  text-transform: capitalize;
+}
+
+.filter-icon {
+  transition: transform 0.3s ease;
+}
+
+.filter-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.filter-options {
+  padding: 0.5rem 0 0.5rem 0.5rem;
+}
+
+.filter-options label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+  color: #444;
+}
+
+/* === LÍNEA DIVISORIA FINAL === */
+.filter-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 1rem 0;
+}
+
+/* === RADIO PERSONALIZADO === */
+/* Piensa en esto como decorar un botón para que luzca como un control elegante de coche deportivo */
+.filter-options input[type='radio'] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #1a1a1a;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  margin-right: 8px;
+  background-color: #fff;
+}
+
+.filter-options input[type='radio']::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.filter-options input[type='radio']:checked::before {
+  opacity: 1;
+}
+
+/* === GRID DE PRODUCTOS === */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
-/* === No Products Message === */
+/* === MENSAJE CUANDO NO HAY PRODUCTOS === */
 .no-products-message {
   text-align: center;
   font-size: 1.2rem;
@@ -70,7 +150,9 @@
   color: #888;
 }
 
-/* === Responsive === */
+/* === RESPONSIVE DESIGN === */
+/* Como si reorganizaras los muebles de una habitación para que quepan mejor cuando entra más gente */
+
 @media (max-width: 1024px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);

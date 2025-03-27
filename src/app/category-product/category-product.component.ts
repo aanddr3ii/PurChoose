@@ -31,7 +31,7 @@ export class CategoryProductComponent {
         'images/wgg2.2.png'
       ],
       popularity: 2, // Popularidad (1-5)
-      dateAdded: new Date('2004-10-01') // Fecha de publicación
+      dateAdded: new Date('2022-06-01') // Fecha de publicación
     },
 
     {
@@ -47,7 +47,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i9/bt/__/c10420p1104058558/i5423511667.jpg?pictureSize=W640'
       ],
       popularity: 4,
-      dateAdded: new Date('2011-09-25')
+      dateAdded: new Date('2023-12-25')
     },
 
     {
@@ -63,7 +63,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/gt/b4/__/c10420p1016687127/i4952895447.jpg?pictureSize=W640'
       ],
       popularity: 1,
-      dateAdded: new Date('2019-08-15')
+      dateAdded: new Date('2024-11-15')
     },
 
     {
@@ -79,7 +79,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300343/i5414932765.jpg?pictureSize=W640'
       ],
       popularity: 5,
-      dateAdded: new Date('2001-07-10')
+      dateAdded: new Date('2025-02-28') 
     },
 
     {
@@ -95,7 +95,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
       ],
       popularity: 3,
-      dateAdded: new Date('2022-06-01')
+      dateAdded: new Date('2025-03-05') 
     },
 
     {
@@ -111,7 +111,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
       ],
       popularity: 3,
-      dateAdded: new Date('2022-06-01')
+      dateAdded: new Date('2025-03-20')
     },
 
     {
@@ -127,7 +127,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
       ],
       popularity: 3,
-      dateAdded: new Date('2022-06-01')
+      dateAdded: new Date('2025-03-21')
     },
 
     {
@@ -143,7 +143,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
       ],
       popularity: 3,
-      dateAdded: new Date('2022-06-01')
+      dateAdded: new Date('2025-03-24')
     },
 
     {
@@ -159,7 +159,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
       ],
       popularity: 3,
-      dateAdded: new Date('2022-06-01')
+      dateAdded: new Date('2025-03-26') 
     },
 
     {
@@ -175,7 +175,7 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
       ],
       popularity: 3,
-      dateAdded: new Date('2022-06-01')
+      dateAdded: new Date('2025-03-26T15:30:00')
     },
     
     {
@@ -191,33 +191,95 @@ export class CategoryProductComponent {
         'https://cdn.wallapop.com/images/10420/i8/a4/__/c10420p1102300864/i5414934872.jpg?pictureSize=W640'
       ],
       popularity: 3,
-      dateAdded: new Date('2022-06-01')
+      dateAdded: new Date('2025-03-27T08:00:00')
     }
   ];
 
-    // Estado de los filtros (usamos null para indicar que no hay filtro seleccionado)
-    filters = {
-      price: null as 'asc' | 'desc' | null,
-      popularity: null as 'asc' | 'desc' | null,
-      date: null as 'asc' | 'desc' | null
-    };
+  openFilter: string | null = 'dateRange';
 
+  toggleFilter(name: string): void {
+    this.openFilter = this.openFilter === name ? null : name;
+  }
+  
+
+
+  // Estado de los filtros (usamos null para indicar que no hay filtro seleccionado)
+  filters = {
+    price: null,
+    popularity: null,
+    date: null,
+    dateRange: null
+  };
+
+  dateOptions = [
+    { label: 'Todos', value: null },
+    { label: '24 horas', value: '24h' },
+    { label: '7 días', value: '7d' },
+    { label: '30 días', value: '30d' }
+  ];
+  
   // Lista filtrada de productos
   filteredProducts: Product[] = [...this.products];
 
   // Método para aplicar los filtros
-  applyFilters(filterType: keyof typeof this.filters, order: 'asc' | 'desc' | null) {
-    // Actualizamos el filtro correspondiente
-    this.filters[filterType] = order;
-
-    // Aplicamos todos los filtros activos simultáneamente
-    this.filteredProducts = [...this.products].sort(this.getCombinedComparator());
+  applyFilters(type: string, value: any): void {
+    this.filteredProducts = [...this.products];
   
-    // Apply sorting and other filters here if needed...
+    // Ordenar por precio
+    if (this.filters.price) {
+      this.filteredProducts.sort((a, b) => 
+        this.filters.price === 'asc'
+          ? a.price! - b.price!
+          : b.price! - a.price!
+      );
+    }
+  
+    // Ordenar por popularidad
+    if (this.filters.popularity) {
+      this.filteredProducts.sort((a, b) => 
+        this.filters.popularity === 'asc'
+          ? (a.popularity || 0) - (b.popularity || 0)
+          : (b.popularity || 0) - (a.popularity || 0)
+      );
+    }
+  
+    // Ordenar por fecha
+    if (this.filters.date) {
+      this.filteredProducts.sort((a, b) =>
+        this.filters.date === 'asc'
+          ? new Date(a.dateAdded!).getTime() - new Date(b.dateAdded!).getTime()
+          : new Date(b.dateAdded!).getTime() - new Date(a.dateAdded!).getTime()
+      );
+    }
+  
+    // Filtro por rango de fecha (24h, 7d, 30d)
+    if (this.filters.dateRange) {
+      const now = new Date();
+      let threshold: number;
+  
+      switch (this.filters.dateRange) {
+        case '24h':
+          threshold = now.getTime() - 24 * 60 * 60 * 1000;
+          break;
+        case '7d':
+          threshold = now.getTime() - 7 * 24 * 60 * 60 * 1000;
+          break;
+        case '30d':
+          threshold = now.getTime() - 30 * 24 * 60 * 60 * 1000;
+          break;
+        default:
+          threshold = 0;
+      }
+  
+      this.filteredProducts = this.filteredProducts.filter(product =>
+        product.dateAdded && new Date(product.dateAdded).getTime() >= threshold
+      );
+    }
   }
   
+  
  // Método para obtener un comparador combinado
- getCombinedComparator(): (a: Product, b: Product) => number {
+  getCombinedComparator(): (a: Product, b: Product) => number {
   return (a: Product, b: Product): number => {
     let result = 0;
 
@@ -245,4 +307,5 @@ export class CategoryProductComponent {
     return result;
   };
 }
+
 }
