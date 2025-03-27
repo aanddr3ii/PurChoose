@@ -20,7 +20,7 @@ export class UserService {
     fechaRegistro: new Date(),
     ubicacion: '',
     telefono: 100200300, // Número de teléfono genérico
-    fotoPerfil: 'public\images\defaultpic.jpg', // Imagen genérica para invitados
+    fotoPerfil: 'images/defaultpic.jpg', // Imagen genérica para invitados
   };
 
   // Usuario actual (por defecto es el invitado)
@@ -34,24 +34,23 @@ export class UserService {
     return authUser ? authUser : this.guestUser;
   }
 
-  // Establecer el usuario actual desde la API
-  setCurrentUserFromApi(): void {
-    this.authService.getCurrentUser().subscribe({
-      next: (user: User) => {
-        this.currentUser = user; // Sobrescribe el usuario invitado con el usuario autenticado
-      },
-      error: (error: any) => {
-        console.error('Error al obtener el usuario actual:', error);
-        this.currentUser = this.guestUser; // Si falla, mantenemos al usuario invitado
-      }
-    });
+// Establecer el usuario actual desde la API
+async setCurrentUserFromApi(): Promise<void> {
+  try {
+    const user = await this.authService.getCurrentUser().toPromise();
+    this.currentUser = user || this.guestUser; // Sobrescribe el usuario invitado con el usuario autenticado
+  } catch (error) {
+    console.error('Error al obtener el usuario actual:', error);
+    this.currentUser = this.guestUser; // Si falla, mantenemos al usuario invitado
   }
+}
 
-  // Actualizar el usuario actual
-  updateUser(updatedUser: Partial<User>): void {
-    this.currentUser = { ...this.currentUser, ...updatedUser }; // Actualiza solo las propiedades proporcionadas
-    console.log('Usuario actualizado:', this.currentUser);
-  }
+// Actualizar el usuario actual
+updateUser(updatedUser: Partial<User>): void {
+  this.currentUser = { ...this.currentUser, ...updatedUser };
+  console.log('Usuario actualizado:', this.currentUser);
+}
+
 
   // ------------------- Métodos de la API -------------------
 

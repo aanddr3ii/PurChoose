@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
+import{AuthService} from '../services/authService/auth.service';
 // Importamos los componentes necesarios
 import { NavBeltComponent } from "../nav-belt/nav-belt.component";
 import { NavCategoriesComponent } from "../nav-categories/nav-categories.component";
@@ -27,37 +27,43 @@ import { CardProductComponent } from "../card-product/card-product.component";
   styleUrls: ['./pagina-perfil.component.css']
 })
 export class PaginaPerfilComponent implements OnInit {
-  
   activeTab: 'info' | 'publicaciones' | 'reseñas' = 'info'; // Tipo específico
+  user!: User; // Propiedad para almacenar el usuario actual
+  isGuest: boolean = false; // Indica si el usuario es un invitado
+  reviews: Review[] = []; // Datos de reseñas (simulados)
 
-  constructor(private userService: UserService) {}
+  constructor(private authService: AuthService, private userService: UserService) {}
 
-  ngOnInit(): void {
-    // Cargar el usuario autenticado desde la API
-    this.userService.setCurrentUserFromApi();
+  async ngOnInit(): Promise<void> {
+    try {
+      // Cargar el usuario autenticado desde la API
+      await this.userService.setCurrentUserFromApi();
+
+      // Obtener el usuario actual
+      this.user = this.userService.getUser();
+      this.isGuest = this.user.role === 'guest'; // Verificar si el rol es 'guest'
+
+      // Inicializar las reseñas simuladas
+      this.reviews = [
+        { id: 1, text: 'Excelente usuario!', rating: 5 },
+        { id: 2, text: 'Muy recomendable.', rating: 4 },
+        { id: 3, text: 'Podría mejorar.', rating: 3 },
+        { id: 4, text: 'No cumple con mis expectativas.', rating: 2 },
+        { id: 5, text: 'Pésima experiencia.', rating: 1 }
+      ];
+    } catch (error) {
+      console.error('Error al cargar el usuario:', error);
+      alert('Ocurrió un error al cargar el usuario. Por favor, inténtalo más tarde.');
+    }
   }
 
-  // Obtenemos el usuario actual desde el servicio
-  get user(): User {
-    return this.userService.getUser(); // Usamos el método del servicio
+  // Método para cerrar sesión
+  onLogout(): void {
+    this.authService.logout(); // Llamamos al método logout del AuthService
   }
-
-  // Verificar si el usuario actual es un invitado
-  get isGuest(): boolean {
-    return this.user.role === 'guest'; // Verificamos si el rol es 'guest'
-  }
-
-  // Datos de reseñas (simulados)
-  reviews: Review[] = [
-    { id: 1, text: 'Excelente usuario!', rating: 5 },
-    { id: 2, text: 'Muy recomendable.', rating: 4 },
-    { id: 3, text: 'Podría mejorar.', rating: 3 },
-    { id: 4, text: 'No cumple con mis expectativas.', rating: 2 },
-    { id: 5, text: 'Pésima experiencia.', rating: 1 }
-  ];
 
   // Método para editar el perfil
-  onEditProfile() {
+  onEditProfile(): void {
     if (this.isGuest) {
       alert('Debes iniciar sesión para editar tu perfil.');
       return;

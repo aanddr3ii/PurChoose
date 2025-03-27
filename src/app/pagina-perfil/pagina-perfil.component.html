@@ -16,6 +16,7 @@
           <p class="guest-message">Invitado</p>
         } @else {
           <a class="edit-profile-button" routerLink="/editarP" [routerLinkActive]="'active-button'"> Editar Perfil </a>
+          <button class="logout-button" (click)="onLogout()">Cerrar Sesión</button>
         }
       </div>
     </header>
@@ -46,6 +47,8 @@
     </button>
   </div>
 
+  <!-- Botón de logout -->
+  
   <div class="profile-content-container">
     <div class="profile-content">
       @if (activeTab === 'info') {

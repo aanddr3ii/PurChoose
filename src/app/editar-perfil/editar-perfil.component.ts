@@ -35,12 +35,13 @@ export class EditarPerfilComponent {
     // Inicializamos el formulario con los datos actuales del usuario
     this.editForm = this.fb.group({
       name: [this.user.name, Validators.required], // Campo obligatorio
-      location: [this.user.ubicacion || '', [Validators.required]], // Ahora es obligatorio (si lo deseas)
-      phone: [this.user.telefono || null, [Validators.required, Validators.pattern(/^\d{9}$/)]], // Validación básica para teléfono (9 dígitos sin prefijo)
-      email: [this.user.email, [Validators.required, Validators.email]], // Campo obligatorio
+      location: [this.user.ubicacion || '', [Validators.required]], // Ubicación (obligatoria)
+      phone: [this.user.telefono?.toString().slice(3) || null, [Validators.required, Validators.pattern(/^\d{9}$/)]], // Teléfono sin prefijo
+      email: [this.user.email, [Validators.required, Validators.email]], // Email (obligatorio)
       profilePicture: [this.user.fotoPerfil || null], // Campo para el archivo de imagen
       prefijo: ['+34', Validators.required], // Prefijo telefónico con validación
-      password: ['', []] // Campo para la contraseña (sin validación por ahora)
+      password: ['', []], // Campo para la contraseña (opcional)
+      password_confirmation: ['', []] // Confirmación de contraseña (opcional)
     });
   }
 
@@ -61,42 +62,62 @@ export class EditarPerfilComponent {
   // Método para guardar los cambios
   onSubmit(): void {
     if (this.editForm.valid) {
-      const updatedUserData: Partial<User> = this.editForm.value;
-
-      // Concatenamos el prefijo y el número de teléfono antes de guardar
-      const fullPhoneNumber = `${this.editForm.value.prefijo}${this.editForm.value.phone}`;
-      updatedUserData.telefono = parseInt(fullPhoneNumber, 10); // Guardamos el número completo
-
-      // Verificamos si el valor de profilePicture es un archivo válido
-      const profilePictureValue = this.editForm.get('profilePicture')?.value;
-      if (profilePictureValue && !(profilePictureValue instanceof File)) {
-        delete updatedUserData.fotoPerfil; // Eliminamos la propiedad si no es un archivo
+      // Verificamos que el ID del usuario exista
+      if (!this.user.id) {
+        this.showErrorPopup('Error: No se encontró el ID del usuario.');
+        return;
       }
 
-      // Actualizamos el usuario en el servicio
-      this.userService.updateUser(updatedUserData);
+      const formData = new FormData(); // Usamos FormData para manejar archivos
+      const formValues = this.editForm.value;
 
-      // Si hay una imagen seleccionada, la manejamos por separado
-      if (profilePictureValue instanceof File) {
-        this.handleImageUpload(profilePictureValue as File);
+      // Agregamos los datos al FormData
+      formData.append('name', formValues.name);
+      formData.append('email', formValues.email);
+      formData.append('prefijo', formValues.prefijo);
+      formData.append('telefono', formValues.phone); // Solo el número sin prefijo
+      formData.append('ubicacion', formValues.location);
+
+      // Agregamos la imagen si está presente
+      if (formValues.profilePicture instanceof File) {
+        formData.append('fotoPerfil', formValues.profilePicture);
       }
 
-      alert('Cambios guardados exitosamente.');
+      // Agregamos la contraseña solo si se proporciona
+      if (formValues.password) {
+        formData.append('password', formValues.password);
+        formData.append('password_confirmation', formValues.password_confirmation);
+      }
+
+      console.log('Datos enviados al backend:', formData);
+
+      // Enviamos los datos al backend
+      this.userService.editUserInApi(this.user.id, formData).subscribe({
+        next: (response) => {
+          console.log('Respuesta del servidor:', response);
+          this.showSuccessPopup('¡Cambios guardados exitosamente!');
+        },
+        error: (error) => {
+          console.error('Error al actualizar el perfil:', error);
+          if (error.error && error.error.message) {
+            this.showErrorPopup(error.error.message); // Mostrar mensaje detallado del backend
+          } else {
+            this.showErrorPopup('Ocurrió un error inesperado.');
+          }
+        }
+      });
     } else {
-      alert('Por favor, completa todos los campos obligatorios.');
+      this.showErrorPopup('Por favor, completa todos los campos obligatorios.');
     }
   }
 
-  // Método para manejar la subida de la imagen (simulado)
-  handleImageUpload(file: File): void {
-    console.log('Subiendo nueva imagen:', file);
+  // Método para mostrar un popup de éxito
+  showSuccessPopup(message: string): void {
+    alert(message); // Puedes reemplazar esto con un componente de popup personalizado
+  }
 
-    // Convertimos el archivo a base64 y actualizamos el servicio
-    const reader = new FileReader();
-    reader.onload = () => {
-      const base64Image = reader.result as string;
-      this.userService.updateUser({ fotoPerfil: base64Image });
-    };
-    reader.readAsDataURL(file);
+  // Método para mostrar un popup de error
+  showErrorPopup(message: string): void {
+    alert(message); // Puedes reemplazar esto con un componente de popup personalizado
   }
 }

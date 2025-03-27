@@ -22,10 +22,12 @@ export class AuthService {
     return this.http.post(ApiUrls.AUTH.LOGIN, { email, password });
   }
 
-  // Cerrar sesión
-  logout(): void {
+   // Cerrar sesión
+   logout(): void {
+    // Eliminamos el usuario y el token del localStorage
     localStorage.removeItem(this.currentUserKey);
     localStorage.removeItem(this.tokenKey);
+
   }
 
   // Guardar el usuario y el token en localStorage
