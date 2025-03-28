@@ -29,7 +29,7 @@ export class UserService {
   private currentUser: User = this.guestUser;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
-
+  
   // Obtener el usuario actual (puede ser el invitado o el usuario autenticado)
   getUser(): User {
     const authUser = this.authService.getCurrentUser();
@@ -61,15 +61,21 @@ updateUser(updatedUser: Partial<User>): void {
     return this.http.get<User[]>(this.apiUrl);
   }
 
+  // Actualizar el usuario actual en el servicio
+updateCurrentUser(updatedUser: User): void {
+  this.currentUser = { ...this.currentUser, ...updatedUser };
+}
   // Obtener un usuario por su ID desde la API
   getUserByIdFromApi(id: number): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
 
-  // Editar un usuario existente a través de la API
-  editUserInApi(id: number, updatedUser: FormData): Observable<any> {
-    return this.http.put(ApiUrls.USUARIO.UPDATE(id), updatedUser);
-  }
+// Editar un usuario existente a través de la API
+editUserInApi(id: number, updatedUser: any): Observable<any> {
+  return this.http.put(ApiUrls.USUARIO.UPDATE(id), updatedUser, {
+    headers: { 'Content-Type': 'application/json' } // Especifica que enviamos JSON
+  });
+}
 
   // Eliminar un usuario a través de la API
   deleteUserFromApi(id: number): Observable<void> {

@@ -22,8 +22,8 @@ export class EditarPerfilComponent {
     { value: '+1', flag: '🇺🇸' },
     { value: '+351', flag: '🇵🇹' },
     { value: '+33', flag: '🇫🇷' },
-    { value: '+34', flag: '🇪🇸' }
-  ]; // Lista de prefijos
+    { value: '+34', flag: '🇪🇸' },
+  ]; // Lista de prefijos telefónicos
   user!: User; // Propiedad para almacenar el usuario actual
   activeTab: 'perfil' | 'metodos-pago' = 'perfil'; // Pestaña activa por defecto
 
@@ -35,13 +35,13 @@ export class EditarPerfilComponent {
     // Inicializamos el formulario con los datos actuales del usuario
     this.editForm = this.fb.group({
       name: [this.user.name, Validators.required], // Campo obligatorio
-      location: [this.user.ubicacion || '', [Validators.required]], // Ubicación (obligatoria)
+      location: [this.user.ubicacion || '', Validators.required], // Ubicación (obligatoria)
       phone: [this.user.telefono?.toString().slice(3) || null, [Validators.required, Validators.pattern(/^\d{9}$/)]], // Teléfono sin prefijo
       email: [this.user.email, [Validators.required, Validators.email]], // Email (obligatorio)
       profilePicture: [this.user.fotoPerfil || null], // Campo para el archivo de imagen
       prefijo: ['+34', Validators.required], // Prefijo telefónico con validación
-      password: ['', []], // Campo para la contraseña (opcional)
-      password_confirmation: ['', []] // Confirmación de contraseña (opcional)
+      password: [''], // Campo para la contraseña (opcional)
+      password_confirmation: [''], // Confirmación de contraseña (opcional)
     });
 
     // Validación condicional para password_confirmation
@@ -69,6 +69,7 @@ export class EditarPerfilComponent {
     }
   }
 
+  // Método para guardar los cambios
   onSubmit(): void {
     if (this.editForm.valid) {
       // Verificamos que el ID del usuario exista
@@ -77,63 +78,45 @@ export class EditarPerfilComponent {
         return;
       }
 
-      const formData = new FormData();
       const formValues = this.editForm.value;
 
-      // Agregamos los datos obligatorios
-      formData.append('name', formValues.name);
-      formData.append('email', formValues.email);
-      formData.append('prefijo', formValues.prefijo);
-      formData.append('telefono', formValues.phone); // Solo el número sin prefijo
-      formData.append('ubicacion', formValues.location);
+      // Construir el objeto JSON con los datos a enviar
+      const updatedUserData = {
+        name: formValues.name,
+        email: formValues.email,
+        prefijo: formValues.prefijo,
+        telefono: formValues.phone ? `${formValues.prefijo}${formValues.phone}` : null, // Concatenar prefijo y teléfono
+        ubicacion: formValues.location,
+        password: formValues.password || null, // Solo incluir si se proporciona
+        password_confirmation: formValues.password_confirmation || null, // Solo incluir si se proporciona
+      };
 
-      // Agregamos la imagen si está presente
-      if (formValues.profilePicture instanceof File) {
-        formData.append('fotoPerfil', formValues.profilePicture);
-      }
+      console.log('Datos enviados al backend:', updatedUserData);
 
-      // Agregamos la contraseña solo si se proporciona
-      if (formValues.password) {
-        if (!formValues.password_confirmation || formValues.password !== formValues.password_confirmation) {
-          this.showErrorPopup('Las contraseñas no coinciden.');
-          return;
-        }
-        formData.append('password', formValues.password);
-        formData.append('password_confirmation', formValues.password_confirmation);
-      }
-
-      console.log('Datos enviados al backend:');
-      for (const [key, value] of this.getFormDataEntries(formData)) {
-        console.log(`${key}: ${value}`);
-      }
-
-      // Enviamos los datos al backend
-      this.userService.editUserInApi(this.user.id, formData).subscribe({
+      // Enviamos los datos al backend como JSON
+      this.userService.editUserInApi(this.user.id, updatedUserData).subscribe({
         next: (response) => {
           console.log('Respuesta del servidor:', response);
+
+          // Actualizar el usuario actual en localStorage
+          const updatedUser = response.user; // Asegúrate de que el backend devuelve los datos actualizados
+          this.userService.updateCurrentUser(updatedUser);
+
+          // Mostrar mensaje de éxito
           this.showSuccessPopup('¡Cambios guardados exitosamente!');
         },
         error: (error) => {
           console.error('Error al actualizar el perfil:', error);
           if (error.error && error.error.message) {
-            this.showErrorPopup(error.error.message);
+            this.showErrorPopup(error.error.message); // Mostrar mensaje detallado del backend
           } else {
             this.showErrorPopup('Ocurrió un error inesperado.');
           }
-        }
+        },
       });
     } else {
       this.showErrorPopup('Por favor, completa todos los campos obligatorios.');
     }
-  }
-
-  // Método auxiliar para obtener las entradas de FormData
-  private getFormDataEntries(formData: FormData): Array<[string, string]> {
-    const entries: Array<[string, string]> = [];
-    formData.forEach((value, key) => {
-      entries.push([key, value.toString()]);
-    });
-    return entries;
   }
 
   // Método para mostrar un popup de éxito
