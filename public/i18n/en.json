@@ -2,9 +2,11 @@
   "NAV-BELT": {
     "FAVORITES": "Favorites",
     "INBOX": "Inbox",
+    "SELL-PRODUCT": "Sell",
     "ADMIN": "Admin"
 
   },
+  
   "ADMIN": {
     "TITLE": "Admin Panel",
     "DESCRIPTION": "Welcome to the admin panel.",

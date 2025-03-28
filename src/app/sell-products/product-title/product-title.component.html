@@ -1,0 +1,69 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" role="form" aria-labelledby="login-title">
+
+    <!-- Grupo de email -->
+    <div class="form-group">
+      <label for="email">{{ 'LOGIN.EMAIL' | translate }}</label>
+      <input type="email" 
+             id="email" 
+             formControlName="email"
+             aria-required="true"
+             [attr.aria-describedby]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched ? 'email-error' : null">
+             
+      @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+        <small id="email-error" class="error-message">
+          {{ 'LOGIN.EMAIL_ERROR' | translate }}
+        </small>
+      }
+    </div>
+
+    <!-- Grupo de contraseña -->
+    <div class="form-group password-group">
+      <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
+      
+      <div class="input-with-button">
+        <input 
+          [type]="isPasswordVisible ? 'text' : 'password'" 
+          id="password" 
+          formControlName="password"
+          aria-required="true"
+          aria-describedby="password-error">
+        
+        <!-- Botón para mostrar/ocultar contraseña -->
+        <button type="button" 
+                class="password-toggle"
+                (click)="togglePasswordVisibility()">
+          @if (!isPasswordVisible) {
+            Mostrar
+          } @else {
+            Ocultar
+          }
+        </button>
+      </div>
+
+      @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <small id="password-error" class="error-message">
+          {{ 'LOGIN.PASSWORD_ERROR' | translate }}
+        </small>
+      }
+    </div>
+
+    <!-- Enlace para recuperar contraseña -->
+    <div class="form-remember">
+      <a routerLink="/forgot-password" tabindex="0">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</a>
+    </div>
+
+    <!-- Mensaje de credenciales inválidas -->
+    @if (invalidCredentials) {
+      <small role="alert" class="error-message">
+        {{ 'LOGIN.INVALID_CREDENTIALS' | translate }}
+      </small>
+    }
+
+    <!-- Botón de envío -->
+    <button type="submit" 
+            class="login-button" 
+            [disabled]="loginForm.invalid"
+            [attr.aria-disabled]="loginForm.invalid ? 'true' : 'false'">
+      {{ 'LOGIN.BUTTON' | translate }}
+    </button>
+  </form>

@@ -1,0 +1,22 @@
+.sell-product-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+  
+.sell-product-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
+    text-align: center;
+}
+  
+.sell-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+  
