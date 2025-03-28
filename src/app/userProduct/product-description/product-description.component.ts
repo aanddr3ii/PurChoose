@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ProductService } from '../../services/Product/product.service';
 import { ProductCategoryService } from '../../services/productCategory/product-category.service';
 import { Product } from '../../interfaces/product';
-import { Category } from '../../interfaces/category'
+import { Category } from '../../interfaces/category';
 import { TranslateModule } from '@ngx-translate/core';
 
 

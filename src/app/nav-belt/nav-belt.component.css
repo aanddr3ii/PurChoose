@@ -137,6 +137,35 @@
       text-decoration: underline;
     }
   }
+
+  .nav-sell-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    transition: text-decoration 0.3s ease;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  .nav-sell-link .sell-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+  
+  .nav-sell-link .nav-sell-text {
+    text-decoration: none;
+  }
+  
+  .nav-sell-link:hover .nav-sell-text {
+    text-decoration: underline;
+  }
+  
   .nav-lang {
     text-decoration: none;
     color: rgb(255, 255, 255);
