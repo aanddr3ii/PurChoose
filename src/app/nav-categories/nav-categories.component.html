@@ -1,41 +1,32 @@
 <nav class="nav-categories">
-    <ul>
+  <ul>
+    <li>
+      <span>
+        <a href="#" (click)="toggleSidenav($event)">☰ {{ 'NAV-CATEGORIES.ALL_CATEGORIES' | translate }}</a>
+      </span>
+    </li>
+    @for (category of mainCategories; track category.id) {
       <li>
-        <span>
-          <a href="#" (click)="toggleSidenav($event)">☰ {{ 'NAV-CATEGORIES.ALL_CATEGORIES' | translate }}</a>
-        </span>
+        <a [routerLink]="['/category-product', category.id]">{{ category.nombre }}</a>
       </li>
-      <li><a href="#">{{ 'NAV-CATEGORIES.TECHNOLOGY_AND_ELECTRONICS' | translate }}</a></li>
-      <li><a href="#">{{ 'NAV-CATEGORIES.MOVIES_BOOKS_MUSIC' | translate }}</a></li>
-      <li><a href="#">{{ 'NAV-CATEGORIES.FASHION_AND_ACCESSORIES' | translate }}</a></li>
-      <li><a routerLink="/category-product">{{ 'NAV-CATEGORIES.CARS' | translate }}</a></li>
-      <li><a routerLink="/user-product">{{ 'NAV-CATEGORIES.HOME_AND_GARDEN' | translate }}</a></li>
-    </ul>
+    }
+  </ul>
 </nav>
-  
+
 <!-- Sidenav que se abrirá -->
 <div class="side-menu" [class.open]="isSidenavOpen">
-<div class="side-menu-header">
+  <div class="side-menu-header">
     <h3>{{ 'NAV-CATEGORIES.ALL_CATEGORIES' | translate }}</h3>
     <button class="close-btn" (click)="toggleSidenav($event)">X</button>
-</div>
-<ul>
-    <li><a routerLink="/category-product">{{ 'NAV-CATEGORIES.CARS' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.MOTORBIKES' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.MOTOR_AND_ACCESSORIES' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.FASHION_AND_ACCESSORIES' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.REAL_ESTATE' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.TECHNOLOGY_AND_ELECTRONICS' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.SPORTS_AND_LEISURE' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.BICYCLES' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.HOME_AND_GARDEN' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.APPLIANCES' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.MOVIES_BOOKS_MUSIC' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.KIDS_AND_BABIES' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.COLLECTIBLES' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.CONSTRUCTION_AND_RENOVATIONS' | translate }}</a></li>
-    <li><a href="#">{{ 'NAV-CATEGORIES.INDUSTRY_AND_AGRICULTURE' | translate }}</a></li>
-</ul>
+  </div>
+  <ul>
+    @for (category of allCategories; track category.id) {
+      <li>
+        <img [src]="category.imagen" alt="{{ category.nombre }}" class="category-image" />
+        <a [routerLink]="['/category-product', category.id]">{{ category.nombre }}</a>
+      </li>
+    }
+  </ul>
 </div>
 
 <!-- Oscurece el fondo cuando se abre el menú -->
