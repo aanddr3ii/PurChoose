@@ -234,6 +234,7 @@
 .cart-icon {
   width: 24px;
   height: 24px;
+  fill: white;
 }
 
 .cart-label {
@@ -246,7 +247,7 @@
 .cart-count {
   position: absolute;
   top: -10px;
-  right: 48px; /* Ajusta aquí según el icono */
+  right: -8px; /* Ajusta aquí según el icono */
   display: flex;
   align-items: center;
   justify-content: center;
