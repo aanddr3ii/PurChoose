@@ -1,0 +1,136 @@
+<app-nav-belt></app-nav-belt>
+<app-nav-categories></app-nav-categories>
+
+<div class="sell-product-container">
+  <form
+    class="sell-product-form"
+    [formGroup]="productForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <!-- Nombre -->
+    <div class="sell-product-form-group">
+      <label for="nombre" class="sell-product-label">Nombre</label>
+      <input
+        id="nombre"
+        class="sell-product-input"
+        type="text"
+        formControlName="nombre"
+      />
+    </div>
+
+    <!-- Descripción -->
+    <div class="sell-product-form-group">
+      <label for="descripcion" class="sell-product-label">Descripción</label>
+      <textarea
+        id="descripcion"
+        class="sell-product-textarea"
+        formControlName="descripcion"
+      ></textarea>
+    </div>
+
+    <!-- Precio -->
+    <div class="sell-product-form-group">
+      <label for="precio" class="sell-product-label">Precio</label>
+      <input
+        id="precio"
+        class="sell-product-input"
+        type="number"
+        formControlName="precio"
+      />
+    </div>
+
+    <!-- Estado -->
+    <div class="sell-product-form-group">
+      <label for="estado" class="sell-product-label">Estado</label>
+      <select
+        id="estado"
+        class="sell-product-select"
+        formControlName="estado"
+      >
+        <option value="nuevo">Nuevo</option>
+        <option value="usado">Usado</option>
+      </select>
+    </div>
+
+    <!-- Oferta Checkbox -->
+    <div class="sell-product-form-group sell-product-checkbox-wrapper">
+      <label for="oferta" class="sell-product-label">En oferta</label>
+      <input
+        id="oferta"
+        class="sell-product-checkbox"
+        type="checkbox"
+        formControlName="oferta"
+      />
+    </div>
+
+    <!-- Ubicación -->
+    <div class="sell-product-form-group">
+      <label for="ubicacion" class="sell-product-label">Ubicación</label>
+      <input
+        id="ubicacion"
+        class="sell-product-input"
+        type="text"
+        formControlName="ubicacion"
+      />
+    </div>
+
+    <!-- Category & Plus Button on the Same Row -->
+    <div class="sell-product-form-group cat-row">
+      <div class="cat-row-left">
+        <label for="categoria" class="sell-product-label">Categoría</label>
+        <select
+          id="categoria"
+          class="sell-product-select"
+          formControlName="categoria"
+        >
+          @for (cat of categories; track cat) {
+            <option [value]="cat">{{ cat }}</option>
+          }
+        </select>
+      </div>
+
+      <!-- Plus (+) button to show/hide the new category form on the same row -->
+      <button
+        type="button"
+        class="plus-button"
+        (click)="toggleAddCategory()"
+      >
+        +
+      </button>
+    </div>
+
+    <!-- Show the 'Add New Category' form only if showAddCategory is true -->
+    @if (showAddCategory) {
+      <div class="sell-product-form-group sell-product-add-category">
+        <label for="newCategoria" class="sell-product-label">
+          Agregar nueva categoría
+        </label>
+        <input
+          id="newCategoria"
+          class="sell-product-input"
+          type="text"
+          [(ngModel)]="newCategory"
+        />
+        <button
+          type="button"
+          class="sell-product-add-cat-button"
+          (click)="addCategory()"
+        >
+          Añadir
+        </button>
+      </div>
+    }
+
+    <!-- Picture component or image upload area: ensure it's only declared once -->
+    <div class="sell-product-form-group">
+      <app-sell-product-picture></app-sell-product-picture>
+    </div>
+
+    <!-- Hidden if you retrieve user from Auth context -->
+    <input type="hidden" formControlName="user_id" />
+
+    <button type="submit" class="sell-product-submit">
+      Crear producto
+    </button>
+  </form>
+</div>

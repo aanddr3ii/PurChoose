@@ -1,0 +1,111 @@
+/* Parent Container */
+.sell-product-container {
+    display: block;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+  
+  /* Form Container */
+.sell-product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+  
+  /* Form Groups */
+.sell-product-form-group {
+    display: flex;
+    flex-direction: column;
+}
+  
+  /* Labels */
+.sell-product-label {
+    display: inline-block;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+  
+  /* Inputs, Textarea, Select */
+.sell-product-input,
+.sell-product-textarea,
+.sell-product-select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    width: 100%;
+}
+  
+  /* Checkbox + Label Row */
+.sell-product-checkbox {
+    width: auto;
+    margin-right: 0.5rem;
+}
+  
+.sell-product-checkbox-wrapper {
+    flex-direction: row;
+    align-items: center;
+}
+  
+.sell-product-checkbox-wrapper .sell-product-label {
+    margin-right: 0.5rem;
+    margin-bottom: 0; /* override default if needed */
+}
+  
+  /* Category Row */
+.cat-row {
+    flex-direction: row;
+    align-items: flex-end; /* or 'center' */
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+  
+.cat-row-left {
+    display: flex;
+    flex-direction: column;
+}
+  
+  /* Button for toggling category form */
+.plus-button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-bottom: 0.25rem;
+}
+  
+.plus-button:hover {
+    background-color: #218838;
+}
+  
+  /* Optional: style the "Add Category" form row */
+.sell-product-add-category {
+    flex-direction: column;
+    gap: 0.5rem;
+}
+  
+  /* Submit Button */
+.sell-product-submit {
+    align-self: flex-end;
+    padding: 0.75rem 1.5rem;
+    background-color: #0077cc;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+  
+.sell-product-submit:hover {
+    background-color: #005fa3;
+}
+  

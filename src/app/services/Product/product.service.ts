@@ -1,10 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../interfaces/product';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+  constructor(private http: HttpClient) {}
+
+
+
+
+
+
+
+
+
+
+
+
+
   private products: Product[] = [
     {
       id: 1,
@@ -39,5 +55,11 @@ export class ProductService {
 
   getProducts(): Product[] {
     return this.products;
+  }
+
+  createProduct(product: Product): Observable<any> {
+    // Replace the URL with your API endpoint
+    const apiUrl = 'https://your-api-endpoint.com/products';
+    return this.http.post(apiUrl, product);
   }
 }

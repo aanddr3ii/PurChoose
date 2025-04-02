@@ -17,6 +17,7 @@ import { InboxComponent } from './Inboxx/inbox/inbox.component';
 import { CartComponent } from './cart/cart.component';
 import { ShoppingInProgressComponent } from './shopping-products/shopping-in-progress/shopping-in-progress.component';
 import { ShoppingFinalizedComponent } from './shopping-products/shopping-finalized/shopping-finalized.component';
+import { SellProductComponent } from './sell-product/sell-product.component';
 
 export const routes: Routes = [
     { path: '', component: IndexComponent },
@@ -27,6 +28,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'register-seller', component: RegisterSellerComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'sell-product', component: SellProductComponent },
     { path: 'editarP', component: EditarPerfilComponent },
     { path: 'category-product', component: CategoryProductComponent },
     { path: 'user-product', component: UserProductComponent },

@@ -1,0 +1,20 @@
+<div class="picture-container">
+
+  <div class="picture-container">
+      <label class="picture-label" for="pictureInput">Elige una imagen</label>
+      <input
+        id="pictureInput"
+        type="file"
+        accept="image/*"
+        (change)="onFileSelect($event)"
+      />
+    
+      @if (imagePreviewUrl) {
+        <div class="picture-preview">
+          <img [src]="imagePreviewUrl" alt="Preview" />
+        </div>
+      }
+  </div>
+      
+</div>
+  

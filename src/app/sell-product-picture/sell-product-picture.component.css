@@ -1,0 +1,7 @@
+.picture-preview img {
+    max-width: 200px;  /* never exceed 400px in width */
+    max-height: 200px; /* never exceed 300px in height */
+    object-fit: contain; /* keeps the entire image visible within the box */
+    border: 1px solid #ccc;
+}
+  

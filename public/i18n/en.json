@@ -102,8 +102,7 @@
     "ACCOUNT_TYPE": "Account Type",
     "CLIENT": "Client",
     "SELLER": "Seller",
-    "ACCEPT": "I accept the",
-    "TERMS": "Terms and Conditions",
+    "ACCEPT_TERMS": "I accept the terms and conditions",
     "TERMS_ERROR": "You must accept the terms",
     "PHONE_PLACEHOLDER": "123456789",
     "ACCOUNT_TYPE_ERROR": "Please select account type"

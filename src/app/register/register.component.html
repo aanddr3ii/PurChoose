@@ -66,16 +66,21 @@
     </div>
 
     <!-- Terms and Conditions -->
-    <div class="form-group">
-      <input type="checkbox" id="terms" formControlName="terms">
-      <label for="terms">
-        Acepto los <a routerLink="/terms">términos y condiciones</a>
+    <div class="form-group checkbox-group">
+      <label class="checkbox-label">
+        <input type="checkbox" id="terms" formControlName="terms" />
+        <span>
+          Acepto los <a routerLink="/terms">términos y condiciones</a>
+        </span>
       </label>
+    
       @if (registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched) {
         <small role="alert">{{ 'REGISTER.TERMS_ERROR' | translate }}</small>
       }
     </div>
-
+    
+    
+    
     <!-- Submit Button -->
     <button type="submit" class="register-button" [disabled]="registerForm.invalid" aria-label="Register">
       {{ 'REGISTER.BUTTON' | translate }}
