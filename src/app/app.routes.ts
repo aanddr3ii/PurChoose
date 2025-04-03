@@ -4,11 +4,11 @@ import { Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 
 // Nav-Belt
-import { LoginComponent } from './login/login.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { RegisterComponent } from './register/register.component';
-import { RegisterSellerComponent } from './register-seller/register-seller.component';
+import { LoginComponent } from './authUser/login/login.component';
+import { ForgotPasswordComponent } from './authUser/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './authUser/reset-password/reset-password.component';
+import { RegisterComponent } from './authUser/register/register.component';
+import { RegisterSellerComponent } from './authUser/register-seller/register-seller.component';
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 import { InboxComponent } from './Inboxx/inbox/inbox.component';
 import { SellProductComponent } from './sell-product/sell-product.component';

@@ -1,12 +1,12 @@
 <main class="register-container">
-  <h1>{{ 'REGISTER.TITLE' | translate }}</h1>
+  <h1>{{ 'REGISTER.TITLE_SELLER' | translate }}</h1>
 
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" aria-labelledby="register-title">
 
     <!-- Login link outside the form -->
     <div class="login-redirect">
       <p>
-        {{ 'REGISTER.DESCRIPTION' | translate }}
+        {{ 'REGISTER.DESCRIPTION_SELLER' | translate }}
         <a routerLink="/login">{{ 'REGISTER.LINK' | translate }}</a>.
       </p>
     </div>

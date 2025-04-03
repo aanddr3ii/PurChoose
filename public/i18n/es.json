@@ -79,15 +79,17 @@
 
   "REGISTER": {
     "TITLE": "Regístrate",
+    "TITLE_SELLER": "Comienza a vender en PurChoose",
     "DESCRIPTION": "Crea tu cuenta a continuación. Si ya tienes una cuenta, puedes",
+    "DESCRIPTION_SELLER": "Crea tu cuenta de vendedor a continuación para listar y gestionar tus productos fácilmente. Si ya tienes una cuenta, puedes",
     "LINK": "Iniciar sesión aquí",
     "FULL_NAME": "Nombre completo",
-    "FULL_NAME_ERROR": "El nombre completo debe tener al menos 3 caracteres.",
+    "FULL_NAME_ERROR": "El nombre debe tener al menos 3 caracteres.",
     "EMAIL": "Correo electrónico",
-    "EMAIL_ERROR": "Introduce un correo electrónico válido.",
+    "EMAIL_ERROR": "Introduce una dirección de correo válida.",
     "PHONE_NUMBER": "Número de teléfono",
     "PHONE_PLACEHOLDER": "612345678",
-    "PHONE_ERROR": "Introduce un número de teléfono válido de 9 dígitos.",
+    "PHONE_ERROR": "Introduce un número de 9 dígitos válido.",
     "SET_PASSWORD": "Crear contraseña",
     "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres.",
     "CONFIRM_PASSWORD": "Confirmar contraseña",
@@ -97,7 +99,9 @@
     "TERMS_ERROR": "Debes aceptar los términos",
     "BUTTON": "Registrarse",
     "SELLER_PROMPT": "¿Quieres vender productos como empresa?",
-    "DELETE": "Registro como vendedor"
+    "SELLER_PROMPT2": "¿Vas a comprar para tu hogar?",
+    "BUTTON_SELLER": "Registro de Vendedor",
+    "BUTTON_USER": "Ir a PurChoose"
   },
 
   "FORGOT_PASSWORD": {

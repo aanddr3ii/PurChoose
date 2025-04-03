@@ -81,7 +81,9 @@
   
   "REGISTER": {
     "TITLE": "Sign up",
+    "TITLE_SELLER": "Start selling on PurChoose",
     "DESCRIPTION": "Create your account below. If you already have an account, you can",
+    "DESCRIPTION_SELLER": "Create your seller account below to list and manage your products easily. If you already have an account, you can",
     "LINK": "Login here",
     "FULL_NAME": "Full Name",
     "FULL_NAME_ERROR": "Full name must be at least 3 characters long.",
