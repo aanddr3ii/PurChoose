@@ -7,11 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    RouterLink,
-    TranslateModule
-  ],
+  imports: [ReactiveFormsModule, RouterLink, TranslateModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })

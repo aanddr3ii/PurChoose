@@ -26,14 +26,12 @@ export class RegisterSellerComponent {
     private router: Router
   ) {
     this.registerForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.minLength(3)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      dob: ['', [Validators.required]],
-      countryCode: ['+34', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
+      prefijo: ['+34', Validators.required], // Código de país
+      telefono: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]], // Número de teléfono sin prefijo
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
-      role: ['seller', Validators.required], // Nuevo campo
       terms: [false, Validators.requiredTrue]
     }, { validators: this.passwordMatchValidator });
   }
@@ -48,16 +46,27 @@ export class RegisterSellerComponent {
   onSubmit() {
     if (this.registerForm.valid) {
       const userData = this.registerForm.value;
-      
-      if (this.auth.register({
-        ...userData,
-        phone: userData.countryCode + userData.phone
-      })) {
-        this.router.navigate(['/login']);
-      } else {
-        // Mostrar error de email duplicado
-        this.registerForm.get('email')?.setErrors({ duplicate: true });
-      }
+
+      // Llamar al servicio para registrar al usuario
+      this.auth.register(userData).subscribe({
+        next: (response) => {
+          console.log('Registro exitoso:', response);
+          // Redirigir al usuario al formulario de inicio de sesión
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          console.error('Error al registrar:', error);
+          if (error.status === 422) {
+            // Mostrar error de validación (por ejemplo, email duplicado)
+            const validationErrors = error.error.errors;
+            for (const field in validationErrors) {
+              this.registerForm.get(field)?.setErrors({ serverError: validationErrors[field][0] });
+            }
+          } else {
+            alert('Error al registrar. Inténtalo de nuevo.');
+          }
+        }
+      });
     }
   }
 }

@@ -1,14 +1,17 @@
 <main class="register-container">
   <h1>{{ 'REGISTER.TITLE' | translate }}</h1>
-  <p>
-    {{ 'REGISTER.DESCRIPTION' | translate }}
-    <a routerLink="/login">{{ 'REGISTER.LINK' | translate }}</a>.
-    <a routerLink="/register-seller">{{ 'REGISTER.DELETE' | translate }}</a>.
-  </p>
 
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" aria-labelledby="register-title">
 
-    <!-- Name -->
+    <!-- Login link outside the form -->
+    <div class="login-redirect">
+      <p>
+        {{ 'REGISTER.DESCRIPTION' | translate }}
+        <a routerLink="/login">{{ 'REGISTER.LINK' | translate }}</a>.
+      </p>
+    </div>
+
+    <!-- Full Name -->
     <div class="form-group">
       <label for="name">{{ 'REGISTER.FULL_NAME' | translate }}</label>
       <input type="text" id="name" formControlName="name" aria-required="true" aria-describedby="nameError">
@@ -23,7 +26,7 @@
       <input type="email" id="email" formControlName="email" aria-required="true" aria-describedby="emailError">
       @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
         <small id="emailError" role="alert">
-          {{ registerForm.get('email')?.errors?.['duplicate'] ? 'El correo ya está registrado' : 'Correo inválido' }}
+          {{ registerForm.get('email')?.errors?.['duplicate'] ? 'El correo ya está registrado' : ('REGISTER.EMAIL_ERROR' | translate) }}
         </small>
       }
     </div>
@@ -37,7 +40,7 @@
             <option [value]="code.value">{{ code.flag }} {{ code.value }}</option>
           }
         </select>
-        <input type="tel" id="phone" formControlName="telefono" placeholder="(123) 456-7890"
+        <input type="tel" id="phone" formControlName="telefono" placeholder="{{ 'REGISTER.PHONE_PLACEHOLDER' | translate }}"
                aria-required="true" aria-describedby="phoneError">
       </div>
       @if (registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched) {
@@ -65,25 +68,27 @@
       }
     </div>
 
-    <!-- Terms and Conditions -->
+    <!-- Terms -->
     <div class="form-group checkbox-group">
       <label class="checkbox-label">
         <input type="checkbox" id="terms" formControlName="terms" />
-        <span>
-          Acepto los <a routerLink="/terms">términos y condiciones</a>
-        </span>
       </label>
-    
+      <span class="terms-text">
+        {{ 'REGISTER.ACCEPT_TERMS' | translate }} <a routerLink="/terms">{{ 'REGISTER.ACCEPT_TERMS2' | translate }}</a>
+      </span>
       @if (registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched) {
         <small role="alert">{{ 'REGISTER.TERMS_ERROR' | translate }}</small>
       }
     </div>
-    
-    
-    
-    <!-- Submit Button -->
-    <button type="submit" class="register-button" [disabled]="registerForm.invalid" aria-label="Register">
+
+    <button type="submit" class="register-button" [disabled]="registerForm.invalid">
       {{ 'REGISTER.BUTTON' | translate }}
     </button>
+
+      <!-- Seller register -->
+  <div class="seller-callout">
+    <p class="seller-text">{{ 'REGISTER.SELLER_PROMPT' | translate }}</p>
+    <a routerLink="/register-seller" class="seller-button">{{ 'REGISTER.BUTTON_SELLER' | translate }}</a>
+  </div>
   </form>
 </main>
