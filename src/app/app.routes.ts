@@ -1,45 +1,72 @@
 import { Routes } from '@angular/router';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+
+// Index
 import { IndexComponent } from './index/index.component';
-import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
-import { CategoryProductComponent } from './category-product/category-product.component';
-import { PaginaPerfilComponent } from './pagina-perfil/pagina-perfil.component';
-import { UserProductComponent } from './userProduct/user-product/user-product.component';
-import { RegisterSellerComponent } from './register-seller/register-seller.component';
+
+// Nav-Belt
+import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { AdminComponent } from './admin/admin.component';
-import { ManageUsersComponent } from './manage-users/manage-users.component';
-import { ManageProductsComponent } from './manage-products/manage-products.component';
-import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
+import { RegisterComponent } from './register/register.component';
+import { RegisterSellerComponent } from './register-seller/register-seller.component';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 import { InboxComponent } from './Inboxx/inbox/inbox.component';
+import { SellProductComponent } from './sell-product/sell-product.component';
 import { CartComponent } from './cart/cart.component';
+import { PaginaPerfilComponent } from './pagina-perfil/pagina-perfil.component';
+import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
+
+// Shopping Progress
 import { ShoppingInProgressComponent } from './shopping-products/shopping-in-progress/shopping-in-progress.component';
 import { ShoppingFinalizedComponent } from './shopping-products/shopping-finalized/shopping-finalized.component';
-import { SellProductComponent } from './sell-product/sell-product.component';
+
+// User Product Selling 
+import { UserProductComponent } from './userProduct/user-product/user-product.component';
+
+// Product Filters
+import { CategoryProductComponent } from './category-product/category-product.component';
+
+// Admin
+import { AdminComponent } from './admin/admin.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component';
 
 export const routes: Routes = [
+    // Index
     { path: '', component: IndexComponent },
-    { path: 'perfil', component: PaginaPerfilComponent },
+
+    // Nav-Belt 
+    { path: 'login', component: LoginComponent },
+        { path: 'forgot-password', component: ForgotPasswordComponent },
+        { path: 'reset-password', component: ResetPasswordComponent },
+    { path: 'register', component: RegisterComponent },
+        { path: 'register-seller', component: RegisterSellerComponent },
+        { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
     { path: 'inbox', component: InboxComponent },
+    { path: 'sell-product', component: SellProductComponent },
+    { path: 'cart', component: CartComponent },
+    { path: 'perfil', component: PaginaPerfilComponent },
+        { path: 'editarP', component: EditarPerfilComponent },
+
+    // Where you see the products you buy and sell "the progress"
     { path: 'shopping-InProgress', component: ShoppingInProgressComponent },
     { path: 'shopping-Finalized', component: ShoppingFinalizedComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'register-seller', component: RegisterSellerComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'sell-product', component: SellProductComponent },
-    { path: 'editarP', component: EditarPerfilComponent },
-    { path: 'category-product', component: CategoryProductComponent },
+    
+    
+    // User product selling
     { path: 'user-product', component: UserProductComponent },
-    { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'reset-password', component: ResetPasswordComponent },
-    { path: 'admin', component: AdminComponent }, 
-    { path: 'admin/manage-users', component: ManageUsersComponent }, // Gestionar usuarios
-    { path: 'admin/manage-categories', component: ManageCategoriesComponent }, // Gestionar categorías
-    { path: 'admin/manage-products', component: ManageProductsComponent }, // Gestionar productos
-    { path: 'cart', component: CartComponent }, // Ruta para el carrito
+
+    // Where you see the product and the filters
+    { path: 'category-product', component: CategoryProductComponent },
 
 
+    /* Admin */
+    { path: 'admin', component: AdminComponent }, // Menu
+        { path: 'admin/manage-users', component: ManageUsersComponent }, // Manage users
+        { path: 'admin/manage-categories', component: ManageCategoriesComponent }, // Manage categories
+        { path: 'admin/manage-products', component: ManageProductsComponent }, // Manage products
+    
+    //...
 
 ];
