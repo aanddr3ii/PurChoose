@@ -1,0 +1,37 @@
+<!-- Language Footer Bar -->
+<footer class="language-footer">
+    <hr class="hr" />
+    <div class="footer-content">
+      <a href="/"><img src="images/Purchooseblack.png" class="logo" alt="Logo" /></a>
+  
+      <div
+        class="language-selector"
+        (mouseenter)="toggleDropdown(true)"
+        (mouseleave)="toggleDropdown(false)"
+      >
+        <div class="selected-language">
+          <img
+            class="flag-icon"
+            [src]="'/flags/' + currentLang + '.png'"
+            alt="Language Flag"
+          />
+          <span class="nav-lang">{{ currentLang.toUpperCase() }}</span>
+          <span class="dropdown-icon">▲</span>
+        </div>
+  
+        <ul class="language-dropdown" [class.show]="dropdownOpen">
+          @for (lang of languages; track lang.code) {
+            <li (click)="onLanguageSelect(lang.code)">
+              <input
+                type="radio"
+                [checked]="lang.code === currentLang"
+                name="language"
+              />
+              <span>{{ lang.label }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+</footer>
+  
