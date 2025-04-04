@@ -32,13 +32,11 @@ p {
   color: #666;
   margin-bottom: 20px;
 }
-
 p a {
   color: #007bff;
   text-decoration: none;
   font-weight: 600;
 }
-
 p a:hover {
   text-decoration: underline;
 }
@@ -48,7 +46,6 @@ p a:hover {
   text-align: left;
   margin-bottom: 20px;
 }
-
 label {
   display: block;
   font-size: 15px;
@@ -56,7 +53,6 @@ label {
   color: #333;
   margin-bottom: 5px;
 }
-
 input {
   width: 100%;
   padding: 12px;
@@ -67,53 +63,59 @@ input {
   transition: border-color 0.3s ease;
   box-sizing: border-box;
 }
-
-input:focus {
+input:focus,
+select:focus {
   border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+  outline: 2px solid #0056b3;
+}
+input:focus-visible {
+  border-color: #0056b3;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
 }
 
-/* Contenedor de contraseña con el icono */
-.password-wrapper {
+/* Contenedor de contraseña con el botón */
+.password-group {
+  position: relative;
+}
+.input-with-button {
+  position: relative;
   display: flex;
   align-items: center;
 }
-
-.password-wrapper input {
+.input-with-button input {
   flex: 1;
+  padding-right: 40px;
 }
-
-.toggle-password {
+.password-toggle {
+  position: absolute;
+  right: 0;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 18px;
-  padding-left: 10px;
-  color: #666;
-}
-
-.toggle-password:hover {
   color: #007bff;
+  padding: 0 10px;
+}
+.password-toggle:hover {
+  color: #0056b3;
 }
 
-/* Sección de 'Remember me' y 'Forgot Password' */
+/* Sección de recuperación de contraseña */
 .form-remember {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
   margin-bottom: 20px;
 }
-
 .form-remember a {
   color: #007bff;
   text-decoration: none;
 }
-
 .form-remember a:hover {
   text-decoration: underline;
 }
 
-/* Botón de inicio de sesión */
+/* Botón login */
 .login-button {
   width: 100%;
   padding: 12px;
@@ -126,55 +128,19 @@ input:focus {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 .login-button:hover {
   background-color: #0056b3;
 }
+.login-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
+/* Mensajes de error */
 .error-message {
   font-size: 0.8em;
   color: #f44336;
   margin-top: 6px;
   display: block;
-}
-
-/* Estilos para estados deshabilitados */
-.login-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-/* Mejora el foco para accesibilidad */
-input:focus-visible {
-  border-color: #0056b3;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
-}
-
-.password-group {
-  position: relative;
-}
-
-.input-with-button {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.input-with-button input {
-  flex: 1;
-  padding-right: 40px; /* Espacio para el botón */
-}
-
-.password-toggle {
-  position: absolute;
-  right: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #666;
-  padding: 0 10px;
-}
-
-.password-toggle:focus {
-  outline: 2px solid #4CAF50;
+  margin-bottom: 6px;
 }
