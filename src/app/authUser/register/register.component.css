@@ -174,3 +174,12 @@ small[role='alert'] {
   background-color: #007bff;
   color: white;
 }
+
+.app-language-bar {
+  z-index: 900;
+  background-color: red;
+}
+
+.app-register{
+  z-index: 1000;
+}

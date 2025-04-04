@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/authService/auth.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { LanguageBarComponent } from "../language-bar/language-bar.component";
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, TranslateModule],
+  imports: [ReactiveFormsModule, RouterLink, TranslateModule, LanguageBarComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
