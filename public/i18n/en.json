@@ -1,172 +1,154 @@
 {
-  "NAV-BELT": {
-    "FAVORITES": "Favorites",
-    "INBOX": "Inbox",
-    "SELL-PRODUCT": "Sell",
-    "CART": "Cart",
-    "ADMIN": "Admin"
-
-  },
-  
   "ADMIN": {
-    "TITLE": "Admin Panel",
     "DESCRIPTION": "Welcome to the admin panel.",
-    "MANAGE_USERS": "Manage Users",
     "MANAGE_CATEGORIES": "Manage Categories",
     "MANAGE_PRODUCTS": "Manage Products",
+    "MANAGE_USERS": "Manage Users",
+    "TITLE": "Admin Panel",
     "VIEW_ANALYTICS": "View Analytics",
     "CATEGORIES": {
-      "TITLE": "Category Management",
       "ADD_CATEGORY": "Add Category",
-      "EDIT_CATEGORY": "Edit Category",
-      "SAVE_CHANGES": "Save Changes",
       "CANCEL": "Cancel",
-      "LIST_TITLE": "Category List",
-      "NAME": "Name",
+      "DELETE": "Delete",
       "DESCRIPTION": "Description",
-      "NAME_PLACEHOLDER": "E.g., Electronics",
       "DESCRIPTION_PLACEHOLDER": "E.g., Electronic devices and accessories.",
       "EDIT": "Edit",
-      "DELETE": "Delete"
+      "EDIT_CATEGORY": "Edit Category",
+      "LIST_TITLE": "Category List",
+      "NAME": "Name",
+      "NAME_PLACEHOLDER": "E.g., Electronics",
+      "SAVE_CHANGES": "Save Changes",
+      "TITLE": "Category Management"
     },
     "PRODUCTS": {
-      "TITLE": "Product Management",
       "ADD_PRODUCT": "Add Product",
-      "EDIT_PRODUCT": "Edit Product",
-      "SAVE_CHANGES": "Save Changes",
       "CANCEL": "Cancel",
+      "CATEGORY": "Category",
+      "DELETE": "Delete",
+      "EDIT": "Edit",
+      "EDIT_PRODUCT": "Edit Product",
       "LIST_TITLE": "Product List",
       "NAME": "Name",
-      "PRICE": "Price",
-      "CATEGORY": "Category",
-      "SELECT_CATEGORY": "Select a category",
       "NAME_PLACEHOLDER": "E.g., Laptop",
+      "PRICE": "Price",
       "PRICE_PLACEHOLDER": "E.g., 999",
-      "EDIT": "Edit",
-      "DELETE": "Delete"
+      "SAVE_CHANGES": "Save Changes",
+      "SELECT_CATEGORY": "Select a category",
+      "TITLE": "Product Management"
     }
   },
 
-  
+  "BANNER": {
+    "DESCRIPTION": "Multiple selection with great variety of products",
+    "TITLE": "Multiple Products"
+  },
+
+  "BAR-CHAT": {
+    "PLACEHOLDER": "Write a message.."
+  },
+
+  "FORGOT_PASSWORD": {
+    "BUTTON": "Send Reset Link",
+    "DESCRIPTION": "Enter your email to reset your password.",
+    "EMAIL": "Email",
+    "EMAIL_ERROR": "Please enter a valid email address.",
+    "SECURITY_ANSWER_ERROR": "The answer is required.",
+    "SECURITY_QUESTION": "What is your favorite color?",
+    "TITLE": "Forgot Password?"
+  },
+
+  "LEFT-BAR": {
+    "FAVORITES": "Favorites",
+    "INBOX": "Inbox",
+    "SALES": "Sales",
+    "SHOPPING": "Shopping"
+  },
+
+  "LEFT-BAR-PRODUCT": {
+    "INBOX": "Inbox"
+  },
+
+  "LOGIN": {
+    "BUTTON": "Log in",
+    "DESCRIPTION": "Don't have an account?",
+    "EMAIL": "Email",
+    "EMAIL_ERROR": "Enter a valid email address.",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "INVALID_CREDENTIALS": "Invalid credentials. Please try again",
+    "LINK": "Sign up",
+    "PASSWORD": "Password",
+    "PASSWORD_ERROR": "Password must be at least 6 characters long.",
+    "TITLE": "Login"
+  },
+
   "MANAGE_USERS": {
-    "TITLE": "User Management",
     "ADD_USER": "Add User",
+    "BACK_TO_ADMIN": "Back to Admin Menu",
+    "CANCEL": "Cancel",
+    "DELETE": "Delete",
+    "EDIT": "Edit",
     "EDIT_USER": "Edit User",
     "SAVE_CHANGES": "Save Changes",
-    "CANCEL": "Cancel",
-    "USER_LIST": "User List",
-    "EDIT": "Edit",
-    "DELETE": "Delete",
-    "BACK_TO_ADMIN": "Back to Admin Menu"
+    "TITLE": "User Management",
+    "USER_LIST": "User List"
+  },
+  
+  "NAV-BELT": {
+    "ADMIN": "Admin",
+    "CART": "Cart",
+    "FAVORITES": "Favorites",
+    "INBOX": "Inbox",
+    "SELL-PRODUCT": "Sell"
   },
 
   "NAV-CATEGORIES": {
     "ALL_CATEGORIES": "All Categories",
-    "TECHNOLOGY_AND_ELECTRONICS": "Technology and Electronics",
-    "MOVIES_BOOKS_MUSIC": "Movies, Books, and Music",
-    "FASHION_AND_ACCESSORIES": "Fashion and Accessories",
-    "CARS": "Cars",
-    "HOME_AND_GARDEN": "Home and Garden",
-    "MOTOR_AND_ACCESSORIES": "Motor and Accessories",
-    "REAL_ESTATE": "Real Estate",
-    "SPORTS_AND_LEISURE": "Sports and Leisure",
-    "BICYCLES": "Bicycles",
     "APPLIANCES": "Appliances",
-    "KIDS_AND_BABIES": "Kids and Babies",
+    "BICYCLES": "Bicycles",
+    "CARS": "Cars",
     "COLLECTIBLES": "Collectibles",
     "CONSTRUCTION_AND_RENOVATIONS": "Construction and Renovations",
+    "FASHION_AND_ACCESSORIES": "Fashion and Accessories",
+    "HOME_AND_GARDEN": "Home and Garden",
     "INDUSTRY_AND_AGRICULTURE": "Industry and Agriculture",
-    "MOTORBIKES": "Motorbikes"
-  },
-  
-  "REGISTER": {
-    "TITLE": "Sign up",
-    "TITLE_SELLER": "Start selling on PurChoose",
-    "DESCRIPTION": "Create your account below. If you already have an account, you can",
-    "DESCRIPTION_SELLER": "Create your seller account below to list and manage your products easily. If you already have an account, you can",
-    "LINK": "Login here",
-    "FULL_NAME": "Full Name",
-    "FULL_NAME_ERROR": "Full name must be at least 3 characters long.",
-    "EMAIL": "Email",
-    "EMAIL_ERROR": "Enter a valid email address.",
-    "PHONE_NUMBER": "Phone Number",
-    "PHONE_PLACEHOLDER": "4155552671",
-    "PHONE_ERROR": "Enter a valid 9 digit phone number.",
-    "SET_PASSWORD": "Set Password",
-    "PASSWORD_ERROR": "Password must be at least 6 characters long.",
-    "CONFIRM_PASSWORD": "Confirm Password",
-    "PASSWORD_MISMATCH": "Passwords do not match.",
-    "ACCEPT_TERMS": "I accept the",
-    "ACCEPT_TERMS2": "terms and conditions.",
-    "TERMS_ERROR": "You must accept the terms",
-    "BUTTON": "Register",
-    "SELLER_PROMPT": "Want to sell products as a business?",
-    "SELLER_PROMPT2": "Are you going to buy for your home?",
-    "BUTTON_SELLER": "Seller Registration",
-    "BUTTON_USER": "Go to PurChoose"
+    "KIDS_AND_BABIES": "Kids and Babies",
+    "MOTOR_AND_ACCESSORIES": "Motor and Accessories",
+    "MOTORBIKES": "Motorbikes",
+    "MOVIES_BOOKS_MUSIC": "Movies, Books, and Music",
+    "REAL_ESTATE": "Real Estate",
+    "SPORTS_AND_LEISURE": "Sports and Leisure",
+    "TECHNOLOGY_AND_ELECTRONICS": "Technology and Electronics"
   },
 
-  "FORGOT_PASSWORD": {
-    "TITLE": "Forgot Password?",
-    "DESCRIPTION": "Enter your email to reset your password.",
-    "EMAIL": "Email",
-    "BUTTON": "Send Reset Link",
-    "EMAIL_ERROR": "Please enter a valid email address.",
-    "SECURITY_QUESTION": "What is your favorite color?",
-    "SECURITY_ANSWER_ERROR": "The answer is required."
-  },
-  "RESET_PASSWORD": {
-    "TITLE": "Reset Password",
-    "DESCRIPTION": "Enter your new password.",
-    "NEW_PASSWORD": "New Password",
-    "CONFIRM_PASSWORD": "Confirm Password",
-    "BUTTON": "Reset Password",
-    "PASSWORD_ERROR": "Password must be at least 6 characters long.",
-    "PASSWORD_MISMATCH": "Passwords do not match."
-  },
-  "LOGIN": {
-    "TITLE": "Login",
-    "DESCRIPTION": "Don't have an account?",
-    "LINK": "Sign up",
-    "EMAIL": "Email",
-    "PASSWORD": "Password",
-    "FORGOT_PASSWORD": "Forgot password?",
-    "BUTTON": "Log in",
-    "EMAIL_ERROR": "Enter a valid email address.",
-    "PASSWORD_ERROR": "Password must be at least 6 characters long."
-  },
-  
-
-  "BANNER": {
-    "TITLE": "Multiple Products",
-    "DESCRIPTION": "Multiple selection with great variety of products"
-  },
-
-  "PRODUCT-USER-BAR": {
-    "FAVORITE-BUTTON": "Favorite",
-    "CHAT-BUTTON": "Chat"
-  },
-  
   "PRODUCT-DELIVERY": {
     "HEADER": "Delivery in 3 - 6 days",
-    "INFO-BUTTON": "+ info",
-    "PICKUP-OPTION": "At pickup point",
-    "PICKUP-PRICE": "from 2.59 EUR",
     "HOME-DELIVERY-OPTION": "At my address",
     "HOME-DELIVERY-PRICE": "from 3.49 EUR",
+    "INFO-BUTTON": "+ info",
     "MODAL-DESCRIPTION": "We calculate the delivery date considering:",
     "MODAL-POINT-1": "The time the seller has to hand over the package to the transport company (",
     "MODAL-POINT-1.1": "1 to 5 days",
     "MODAL-POINT-1.2": ").",
     "MODAL-POINT-2": "Once they have the package, the",
     "MODAL-POINT-2.1": "delivery time",
-    "MODAL-POINT-2.2": "will depend on the selected transport company."
+    "MODAL-POINT-2.2": "will depend on the selected transport company.",
+    "PICKUP-OPTION": "At pickup point",
+    "PICKUP-PRICE": "from 2.59 EUR"
+  },
+
+  "PRODUCT-DESCRIPTION": {
+    "DETAILS": "Product Details",
+    "STATE": "Condition:"
+  },
+  
+  "PRODUCT-FOOTER": {
+    "BUY-BUTTON": "Buy"
   },
 
   "PRODUCT-REFUND": {
+    "DESCRIPTION": "Buy with peace of mind using our shipping service. Transaction protected with refund, secure payments, and assistance whenever you need it.",
     "HEADER": "PurChoose Protection",
     "INFO-BUTTON": "+ info",
-    "DESCRIPTION": "Buy with peace of mind using our shipping service. Transaction protected with refund, secure payments, and assistance whenever you need it.",
     "MODAL-DESCRIPTION": "When you purchase your product using our shipping service, we charge a fee for:",
     "MODAL-POINT-1": "✔ Protecting your money until you verify that the product is in good condition.",
     "MODAL-POINT-2": "✔ Refunding the amount if the product is not as described. If you need to return it, it's free.",
@@ -174,28 +156,45 @@
     "MODAL-POINT-4": "✔ Assistance whenever you need it."
   },
 
-  "PRODUCT-DESCRIPTION": {
-    "DETAILS": "Product Details",
-    "STATE": "Condition:"
+  "PRODUCT-USER-BAR": {
+    "CHAT-BUTTON": "Chat",
+    "FAVORITE-BUTTON": "Favorite"
   },
 
-  "PRODUCT-FOOTER": {
-    "BUY-BUTTON": "Buy"
+  "REGISTER": {
+    "ACCEPT_TERMS": "I accept the",
+    "ACCEPT_TERMS2": "terms and conditions.",
+    "BUTTON": "Register",
+    "BUTTON_SELLER": "Seller Registration",
+    "BUTTON_USER": "Go to PurChoose",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "DESCRIPTION": "Create your account below. If you already have an account, you can",
+    "DESCRIPTION_SELLER": "Create your seller account below to list and manage your products easily. If you already have an account, you can",
+    "EMAIL": "Email",
+    "EMAIL_ERROR": "Enter a valid email address.",
+    "FULL_NAME": "Full Name",
+    "FULL_NAME_ERROR": "Full name must be at least 3 characters long.",
+    "LINK": "Login here",
+    "PASSWORD_ERROR": "Password must be at least 6 characters long.",
+    "PASSWORD_MISMATCH": "Passwords do not match.",
+    "PHONE_ERROR": "Enter a valid 9 digit phone number.",
+    "PHONE_NUMBER": "Phone Number",
+    "PHONE_PLACEHOLDER": "4155552671",
+    "SELLER_PROMPT": "Want to sell products as a business?",
+    "SELLER_PROMPT2": "Are you going to buy for your home?",
+    "SET_PASSWORD": "Set Password",
+    "TERMS_ERROR": "You must accept the terms",
+    "TITLE": "Sign up",
+    "TITLE_SELLER": "Start selling on PurChoose"
   },
 
-  "LEFT-BAR": {
-    "SHOPPING": "Shopping",
-    "SALES": "Sales",
-    "INBOX": "Inbox",
-    "FAVORITES": "Favorites"
-  },
-
-  "LEFT-BAR-PRODUCT": {
-    "INBOX": "Inbox"
-  },
-
-  "BAR-CHAT": {
-    "PLACEHOLDER": "Write a message.."
+  "RESET_PASSWORD": {
+    "BUTTON": "Reset Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "DESCRIPTION": "Enter your new password.",
+    "NEW_PASSWORD": "New Password",
+    "PASSWORD_ERROR": "Password must be at least 6 characters long.",
+    "PASSWORD_MISMATCH": "Passwords do not match.",
+    "TITLE": "Reset Password"
   }
-  
 }

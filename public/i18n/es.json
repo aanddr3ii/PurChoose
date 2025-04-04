@@ -1,173 +1,157 @@
 {
-  "NAV-BELT": {
-    "FAVORITES": "Favoritos",
-    "INBOX": "Buzón",
-    "SELL-PRODUCT": "Vender",
-    "CART": "Cesta",
-    "ADMIN": "Admin"
-  },
-
   "ADMIN": {
-    "TITLE": "Panel de Administración",
-    "DESCRIPTION": "Bienvenido al panel de administración.",
-    "MANAGE_USERS": "Gestionar Usuarios",
-    "MANAGE_CATEGORIES": "Gestionar Categorías",
-    "MANAGE_PRODUCTS": "Gestionar Productos",
-    "VIEW_ANALYTICS": "Ver Análisis",
     "CATEGORIES": {
-      "TITLE": "Gestión de Categorías",
       "ADD_CATEGORY": "Añadir Categoría",
-      "EDIT_CATEGORY": "Editar Categoría",
-      "SAVE_CHANGES": "Guardar Cambios",
       "CANCEL": "Cancelar",
-      "LIST_TITLE": "Lista de Categorías",
-      "NAME": "Nombre",
+      "DELETE": "Eliminar",
       "DESCRIPTION": "Descripción",
-      "NAME_PLACEHOLDER": "Ej. Electrónica",
       "DESCRIPTION_PLACEHOLDER": "Ej. Dispositivos electrónicos y accesorios.",
       "EDIT": "Editar",
-      "DELETE": "Eliminar"
-    },
-    "PRODUCTS": {
-      "TITLE": "Gestión de Productos",
-      "ADD_PRODUCT": "Añadir Producto",
-      "EDIT_PRODUCT": "Editar Producto",
+      "EDIT_CATEGORY": "Editar Categoría",
+      "LIST_TITLE": "Lista de Categorías",
+      "NAME": "Nombre",
+      "NAME_PLACEHOLDER": "Ej. Electrónica",
       "SAVE_CHANGES": "Guardar Cambios",
+      "TITLE": "Gestión de Categorías"
+    },
+
+    "PRODUCTS": {
+      "ADD_PRODUCT": "Añadir Producto",
       "CANCEL": "Cancelar",
+      "CATEGORY": "Categoría",
+      "DELETE": "Eliminar",
+      "EDIT": "Editar",
+      "EDIT_PRODUCT": "Editar Producto",
       "LIST_TITLE": "Lista de Productos",
       "NAME": "Nombre",
-      "PRICE": "Precio",
-      "CATEGORY": "Categoría",
-      "SELECT_CATEGORY": "Selecciona una categoría",
       "NAME_PLACEHOLDER": "Ej. Laptop",
+      "PRICE": "Precio",
       "PRICE_PLACEHOLDER": "Ej. 999",
-      "EDIT": "Editar",
-      "DELETE": "Eliminar"
-    }
-  },
-    "MANAGE_USERS": {
-      "TITLE": "Gestión de Usuarios",
-      "ADD_USER": "Añadir Usuario",
-      "EDIT_USER": "Editar Usuario",
       "SAVE_CHANGES": "Guardar Cambios",
-      "CANCEL": "Cancelar",
-      "USER_LIST": "Lista de Usuarios",
-      "EDIT": "Editar",
-      "DELETE": "Eliminar",
-      "BACK_TO_ADMIN": "Volver al Menú de Admin"
+      "SELECT_CATEGORY": "Selecciona una categoría",
+      "TITLE": "Gestión de Productos"
     },
-  
-  
-  "NAV-CATEGORIES": {
-    "ALL_CATEGORIES": "Todas las categorías",
-    "TECHNOLOGY_AND_ELECTRONICS": "Tecnología y electrónica",
-    "MOVIES_BOOKS_MUSIC": "Cine, libros y música",
-    "FASHION_AND_ACCESSORIES": "Moda y accesorios",
-    "CARS": "Coches",
-    "HOME_AND_GARDEN": "Hogar y jardín",
-    "MOTOR_AND_ACCESSORIES": "Motor y accesorios",
-    "REAL_ESTATE": "Inmobiliaria",
-    "SPORTS_AND_LEISURE": "Deporte y ocio",
-    "BICYCLES": "Bicicletas",
-    "APPLIANCES": "Electrodomésticos",
-    "KIDS_AND_BABIES": "Niños y bebés",
-    "COLLECTIBLES": "Coleccionismo",
-    "CONSTRUCTION_AND_RENOVATIONS": "Construcción y reformas",
-    "INDUSTRY_AND_AGRICULTURE": "Industria y agricultura",
-    "MOTORBIKES": "Motos"
-  },
 
-  "REGISTER": {
-    "TITLE": "Regístrate",
-    "TITLE_SELLER": "Comienza a vender en PurChoose",
-    "DESCRIPTION": "Crea tu cuenta a continuación. Si ya tienes una cuenta, puedes",
-    "DESCRIPTION_SELLER": "Crea tu cuenta de vendedor a continuación para listar y gestionar tus productos fácilmente. Si ya tienes una cuenta, puedes",
-    "LINK": "Iniciar sesión aquí",
-    "FULL_NAME": "Nombre completo",
-    "FULL_NAME_ERROR": "El nombre debe tener al menos 3 caracteres.",
-    "EMAIL": "Correo electrónico",
-    "EMAIL_ERROR": "Introduce una dirección de correo válida.",
-    "PHONE_NUMBER": "Número de teléfono",
-    "PHONE_PLACEHOLDER": "612345678",
-    "PHONE_ERROR": "Introduce un número de 9 dígitos válido.",
-    "SET_PASSWORD": "Crear contraseña",
-    "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres.",
-    "CONFIRM_PASSWORD": "Confirmar contraseña",
-    "PASSWORD_MISMATCH": "Las contraseñas no coinciden.",
-    "ACCEPT_TERMS": "Acepto los",
-    "ACCEPT_TERMS2": "términos y condiciones.",
-    "TERMS_ERROR": "Debes aceptar los términos",
-    "BUTTON": "Registrarse",
-    "SELLER_PROMPT": "¿Quieres vender productos como empresa?",
-    "SELLER_PROMPT2": "¿Vas a comprar para tu hogar?",
-    "BUTTON_SELLER": "Registro de Vendedor",
-    "BUTTON_USER": "Ir a PurChoose"
-  },
-
-  "FORGOT_PASSWORD": {
-    "TITLE": "¿Olvidaste tu contraseña?",
-    "DESCRIPTION": "Ingresa tu correo electrónico para restablecer tu contraseña.",
-    "EMAIL": "Correo electrónico",
-    "BUTTON": "Enviar enlace de restablecimiento",
-    "EMAIL_ERROR": "Por favor, introduce un correo electrónico válido.",
-    "SECURITY_QUESTION": "¿Cuál es tu color favorito?",
-    "SECURITY_ANSWER_ERROR": "La respuesta es obligatoria."
-    
-  },
-  "RESET_PASSWORD": {
-    "TITLE": "Restablecer contraseña",
-    "DESCRIPTION": "Ingresa tu nueva contraseña.",
-    "NEW_PASSWORD": "Nueva contraseña",
-    "CONFIRM_PASSWORD": "Confirmar contraseña",
-    "BUTTON": "Restablecer contraseña",
-    "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres.",
-    "PASSWORD_MISMATCH": "Las contraseñas no coinciden."
-  },
-
-
-  "LOGIN": {
-    "TITLE": "Iniciar sesión",
-    "DESCRIPTION": "¿No tienes una cuenta?",
-    "LINK": "Regístrate",
-    "EMAIL": "Correo electrónico",
-    "PASSWORD": "Contraseña",
-    "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
-    "BUTTON": "Iniciar sesión",
-    "EMAIL_ERROR": "Introduce una dirección de correo válida.",
-    "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres."
+    "DESCRIPTION": "Bienvenido al panel de administración.",
+    "MANAGE_CATEGORIES": "Gestionar Categorías",
+    "MANAGE_PRODUCTS": "Gestionar Productos",
+    "MANAGE_USERS": "Gestionar Usuarios",
+    "TITLE": "Panel de Administración",
+    "VIEW_ANALYTICS": "Ver Análisis"
   },
 
   "BANNER": {
-    "TITLE": "Múltiples Productos",
-    "DESCRIPTION": "Selección múltiple con gran variedad de productos"
+    "DESCRIPTION": "Selección múltiple con gran variedad de productos",
+    "TITLE": "Múltiples Productos"
   },
 
-  "PRODUCT-USER-BAR": {
-    "FAVORITE-BUTTON": "Favorito",
-    "CHAT-BUTTON": "Chat"
+  "BAR-CHAT": {
+    "PLACEHOLDER": "Escribe un mensaje.."
+  },
+
+  "FORGOT_PASSWORD": {
+    "BUTTON": "Enviar enlace de restablecimiento",
+    "DESCRIPTION": "Ingresa tu correo electrónico para restablecer tu contraseña.",
+    "EMAIL": "Correo electrónico",
+    "EMAIL_ERROR": "Por favor, introduce un correo electrónico válido.",
+    "SECURITY_ANSWER_ERROR": "La respuesta es obligatoria.",
+    "SECURITY_QUESTION": "¿Cuál es tu color favorito?",
+    "TITLE": "¿Olvidaste tu contraseña?"
+  },
+
+  "LEFT-BAR": {
+    "FAVORITES": "Favoritos",
+    "INBOX": "Buzón",
+    "SALES": "Ventas",
+    "SHOPPING": "Compras"
+  },
+
+  "LEFT-BAR-PRODUCT": {
+    "INBOX": "Bandeja de Entrada"
+  },
+
+  "LOGIN": {
+    "BUTTON": "Iniciar sesión",
+    "DESCRIPTION": "¿No tienes una cuenta?",
+    "EMAIL": "Correo electrónico",
+    "EMAIL_ERROR": "Introduce una dirección de correo válida.",
+    "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
+    "INVALID_CREDENTIALS": "Credenciales inválidas. Inténtalo de nuevo",
+    "LINK": "Regístrate",
+    "PASSWORD": "Contraseña",
+    "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres.",
+    "TITLE": "Iniciar sesión"
+  },
+
+  "MANAGE_USERS": {
+    "ADD_USER": "Añadir Usuario",
+    "BACK_TO_ADMIN": "Volver al Menú de Admin",
+    "CANCEL": "Cancelar",
+    "DELETE": "Eliminar",
+    "EDIT": "Editar",
+    "EDIT_USER": "Editar Usuario",
+    "SAVE_CHANGES": "Guardar Cambios",
+    "TITLE": "Gestión de Usuarios",
+    "USER_LIST": "Lista de Usuarios"
+  },
+
+  "NAV-BELT": {
+    "ADMIN": "Admin",
+    "CART": "Cesta",
+    "FAVORITES": "Favoritos",
+    "INBOX": "Buzón",
+    "SELL-PRODUCT": "Vender"
+  },
+
+  "NAV-CATEGORIES": {
+    "ALL_CATEGORIES": "Todas las categorías",
+    "APPLIANCES": "Electrodomésticos",
+    "BICYCLES": "Bicicletas",
+    "CARS": "Coches",
+    "COLLECTIBLES": "Coleccionismo",
+    "CONSTRUCTION_AND_RENOVATIONS": "Construcción y reformas",
+    "FASHION_AND_ACCESSORIES": "Moda y accesorios",
+    "HOME_AND_GARDEN": "Hogar y jardín",
+    "INDUSTRY_AND_AGRICULTURE": "Industria y agricultura",
+    "KIDS_AND_BABIES": "Niños y bebés",
+    "MOTOR_AND_ACCESSORIES": "Motor y accesorios",
+    "MOTORBIKES": "Motos",
+    "MOVIES_BOOKS_MUSIC": "Cine, libros y música",
+    "REAL_ESTATE": "Inmobiliaria",
+    "SPORTS_AND_LEISURE": "Deporte y ocio",
+    "TECHNOLOGY_AND_ELECTRONICS": "Tecnología y electrónica"
   },
 
   "PRODUCT-DELIVERY": {
     "HEADER": "Entrega en 3 - 6 días",
-    "INFO-BUTTON": "+ info",
-    "PICKUP-OPTION": "En punto de recogida",
-    "PICKUP-PRICE": "desde 2.59 EUR",
     "HOME-DELIVERY-OPTION": "En mi dirección",
     "HOME-DELIVERY-PRICE": "desde 3.49 EUR",
-    "MODAL-TITLE": "Entrega en 3 - 7 días",
-    "MODAL-DESCRIPTION": "Calculamos la fecha de entrega teniendo en cuenta:",
+    "INFO-BUTTON": "+ info",
     "MODAL-POINT-1": "El tiempo que tiene el vendedor para entregar el paquete a la empresa de transporte (",
     "MODAL-POINT-1.1": "de 1 a 5 días",
     "MODAL-POINT-1.2": ").",
     "MODAL-POINT-2": "Una vez que tengan el paquete, el",
     "MODAL-POINT-2.1": "plazo de entrega",
-    "MODAL-POINT-2.2": "dependerá de la empresa de transporte seleccionada."
+    "MODAL-POINT-2.2": "dependerá de la empresa de transporte seleccionada.",
+    "MODAL-TITLE": "Entrega en 3 - 7 días",
+    "MODAL-DESCRIPTION": "Calculamos la fecha de entrega teniendo en cuenta:",
+    "PICKUP-OPTION": "En punto de recogida",
+    "PICKUP-PRICE": "desde 2.59 EUR"
+  },
+
+  "PRODUCT-DESCRIPTION": {
+    "DETAILS": "Detalles del producto",
+    "STATE": "Estado:"
+  },
+  
+  "PRODUCT-FOOTER": {
+    "BUY-BUTTON": "Comprar"
   },
 
   "PRODUCT-REFUND": {
+    "DESCRIPTION": "Compra sin preocupaciones mediante nuestro servicio de envíos. Transacción protegida con reembolso, pagos seguros y ayuda siempre que la necesites.",
     "HEADER": "Protección PurChoose",
     "INFO-BUTTON": "+ info",
-    "DESCRIPTION": "Compra sin preocupaciones mediante nuestro servicio de envíos. Transacción protegida con reembolso, pagos seguros y ayuda siempre que la necesites.",
     "MODAL-DESCRIPTION": "Cuando compras tu producto mediante nuestro servicio de envío, cobramos una tarifa por:",
     "MODAL-POINT-1": "✔ Proteger tu dinero hasta que compruebes que el producto está en orden.",
     "MODAL-POINT-2": "✔ Reembolsar el importe si el producto no es como se describía. Si necesitas devolverlo, es gratis.",
@@ -175,28 +159,45 @@
     "MODAL-POINT-4": "✔ Asistencia cuando la necesites."
   },
 
-  "PRODUCT-DESCRIPTION": {
-    "DETAILS": "Detalles del producto",
-    "STATE": "Estado:"
+  "PRODUCT-USER-BAR": {
+    "CHAT-BUTTON": "Chat",
+    "FAVORITE-BUTTON": "Favorito"
+  },
+  
+  "REGISTER": {
+    "ACCEPT_TERMS": "Acepto los",
+    "ACCEPT_TERMS2": "términos y condiciones.",
+    "BUTTON": "Registrarse",
+    "BUTTON_SELLER": "Registro de Vendedor",
+    "BUTTON_USER": "Ir a PurChoose",
+    "CONFIRM_PASSWORD": "Confirmar contraseña",
+    "DESCRIPTION": "Crea tu cuenta a continuación. Si ya tienes una cuenta, puedes",
+    "DESCRIPTION_SELLER": "Crea tu cuenta de vendedor a continuación para listar y gestionar tus productos fácilmente. Si ya tienes una cuenta, puedes",
+    "EMAIL": "Correo electrónico",
+    "EMAIL_ERROR": "Introduce una dirección de correo válida.",
+    "FULL_NAME": "Nombre completo",
+    "FULL_NAME_ERROR": "El nombre debe tener al menos 3 caracteres.",
+    "LINK": "Iniciar sesión aquí",
+    "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres.",
+    "PASSWORD_MISMATCH": "Las contraseñas no coinciden.",
+    "PHONE_ERROR": "Introduce un número de 9 dígitos válido.",
+    "PHONE_NUMBER": "Número de teléfono",
+    "PHONE_PLACEHOLDER": "612345678",
+    "SELLER_PROMPT": "¿Quieres vender productos como empresa?",
+    "SELLER_PROMPT2": "¿Vas a comprar para tu hogar?",
+    "SET_PASSWORD": "Crear contraseña",
+    "TERMS_ERROR": "Debes aceptar los términos",
+    "TITLE": "Regístrate",
+    "TITLE_SELLER": "Comienza a vender en PurChoose"
   },
 
-  "PRODUCT-FOOTER": {
-    "BUY-BUTTON": "Comprar"
-  },
-
-  "LEFT-BAR": {
-    "SHOPPING": "Compras",
-    "SALES": "Ventas",
-    "INBOX": "Buzón",
-    "FAVORITES": "Favoritos"
-  },
-
-  "LEFT-BAR-PRODUCT": {
-    "INBOX": "Bandeja de Entrada"
-  },
-
-  "BAR-CHAT": {
-    "PLACEHOLDER": "Escribe un mensaje.."
+  "RESET_PASSWORD": {
+    "BUTTON": "Restablecer contraseña",
+    "CONFIRM_PASSWORD": "Confirmar contraseña",
+    "DESCRIPTION": "Ingresa tu nueva contraseña.",
+    "NEW_PASSWORD": "Nueva contraseña",
+    "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres.",
+    "PASSWORD_MISMATCH": "Las contraseñas no coinciden.",
+    "TITLE": "Restablecer contraseña"
   }
-
 }
