@@ -198,5 +198,14 @@
     "PASSWORD_ERROR": "A senha deve ter pelo menos 6 caracteres.",
     "PASSWORD_MISMATCH": "As senhas não coincidem.",
     "TITLE": "Redefinir Senha"
+  },
+
+  "PROMO": {
+  "TITLE": "Você poderia ter",
+  "TITLE2": "economizado",
+  "TITLE3": "500€",
+  "DESCRIPTION": "Escolha a Purchoose para todas as suas compras e ganhe dinheiro.",
+  "BUTTON": "Comprar agora",
+  "IMAGE_ALT": "Imagem promocional da carteira"
   }
 }

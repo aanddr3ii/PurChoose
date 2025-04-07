@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 // Index
-import { IndexComponent } from './index/index.component';
+import { IndexComponent } from './IndexPurchoose/index/index.component';
 
 // Nav-Belt
 import { LoginComponent } from './authUser/login/login.component';

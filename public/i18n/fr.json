@@ -198,5 +198,14 @@
     "PASSWORD_ERROR": "Le mot de passe doit contenir au moins 6 caractères.",
     "PASSWORD_MISMATCH": "Les mots de passe ne correspondent pas.",
     "TITLE": "Réinitialiser le mot de passe"
+  },
+
+  "PROMO": {
+  "TITLE": "Vous auriez pu",
+  "TITLE2": "économiser",
+  "TITLE3": "500€",
+  "DESCRIPTION": "Choisissez Purchoose pour tous vos achats et gagnez de l'argent.",
+  "BUTTON": "Acheter maintenant",
+  "IMAGE_ALT": "Image promotionnelle de portefeuille"
   }
 }

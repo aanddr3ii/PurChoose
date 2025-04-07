@@ -196,5 +196,14 @@
     "PASSWORD_ERROR": "Password must be at least 6 characters long.",
     "PASSWORD_MISMATCH": "Passwords do not match.",
     "TITLE": "Reset Password"
+  },
+
+  "PROMO": {
+  "TITLE": "You could have",
+  "TITLE2": "saved",
+  "TITLE3": "500€",
+  "DESCRIPTION": "Choose Purchoose for all your purchases and earn money.",
+  "BUTTON": "Shop now",
+  "IMAGE_ALT": "Wallet Promo Image"
   }
 }

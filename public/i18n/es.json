@@ -199,5 +199,14 @@
     "PASSWORD_ERROR": "La contraseña debe tener al menos 6 caracteres.",
     "PASSWORD_MISMATCH": "Las contraseñas no coinciden.",
     "TITLE": "Restablecer contraseña"
+  },
+
+  "PROMO": {
+  "TITLE": "Podrías haber",
+  "TITLE2": "ahorrado",
+  "TITLE3": "500€",
+  "DESCRIPTION": "Elige Purchoose para todas tus compras y gana dinero.",
+  "BUTTON": "Comprar ya",
+  "IMAGE_ALT": "Imagen de promoción de cartera"
   }
 }
