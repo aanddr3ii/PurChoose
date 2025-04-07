@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/Product/product.service';
 import { Product } from '../../interfaces/product';
 
@@ -7,25 +7,32 @@ import { Product } from '../../interfaces/product';
   standalone: true,
   imports: [],
   templateUrl: './product-carousel.component.html',
-  styleUrl: './product-carousel.component.css'
+  styleUrl: './product-carousel.component.css',
 })
-export class ProductCarouselComponent {
+export class ProductCarouselComponent implements OnInit {
   product: Product | null = null;
-  images: string[] = []; 
+  images: string[] = [];
   currentIndex: number = 0;
-  
+
   constructor(private productService: ProductService) {}
-  
+
   ngOnInit(): void {
-    const products = this.productService.getProducts();
-    if (products.length > 0) {
-      this.product = products[0];
-      this.images = this.product.images ?? [];
-    }
+    // Suscribirse al Observable para obtener los productos
+    this.productService.getProducts().subscribe({
+      next: (products) => {
+        if (products.length > 0) {
+          this.product = products[0]; // Asignar el primer producto
+          this.images = this.product?.images ?? []; // Inicializar las imágenes
+        }
+      },
+      error: (error) => {
+        console.error('Error al cargar los productos:', error);
+      },
+    });
   }
 
   nextSlide(): void {
-    if (this.product && this.product.images && this.currentIndex < this.product.images.length - 1) {
+    if (this.product && this.images && this.currentIndex < this.images.length - 1) {
       this.currentIndex++;
     }
   }
@@ -37,6 +44,8 @@ export class ProductCarouselComponent {
   }
 
   goToImage(index: number): void {
-    this.currentIndex = index;
+    if (index >= 0 && index < this.images.length) {
+      this.currentIndex = index;
+    }
   }
 }

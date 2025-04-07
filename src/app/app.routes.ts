@@ -55,7 +55,7 @@ export const routes: Routes = [
     
     
     // User product selling
-    { path: 'user-product', component: UserProductComponent },
+    { path: 'user-product/:id', component: UserProductComponent },
 
     // Where you see the product and the filters
     { path: 'category-product', component: CategoryProductComponent },

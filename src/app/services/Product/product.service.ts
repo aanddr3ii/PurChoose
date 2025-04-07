@@ -1,65 +1,98 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../interfaces/product';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Product } from '../../interfaces/product';
+import { ApiUrls } from '../../Shared/api-urls'; // Importa las URLs de la API
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-
-
-
-
-
-
-
-
-
-
-
-
-  private products: Product[] = [
-    {
-      id: 1,
-      images: [
-        "https://cdn.wallapop.com/images/10420/ia/rg/__/c10420p1106468713/i5438087286.jpg?pictureSize=W640",
-        "https://cdn.wallapop.com/images/10420/ia/rg/__/c10420p1106468713/i5438087372.jpg?pictureSize=W640",
-        "https://cdn.wallapop.com/images/10420/ia/rg/__/c10420p1106468713/i5438087391.jpg?pictureSize=W640"
-      ],
-      price: 196,
-      title: "Botas esqui tecnica",
-      state: "Nuevo",
-      location: "Barcelona",
-      description: "Botas de esqui marca Nordica tamaño de la suela 295 mm, talla 25-25,5 en buen estado.",
-      popularity: 4.8,
-      dateAdded: new Date("2024-03-11")
-    },
-    {
-      id: 2,
-      images: [
-        "https://cdn.wallapop.com/images/10420/ie/kr/__/c10420p1112875012/i5485839981.jpg?pictureSize=W640",
-        "https://cdn.wallapop.com/images/10420/ie/kr/__/c10420p1112875012/i5485840017.jpg?pictureSize=W640"
-      ],
-      price: 49,
-      title: "Lámpara de escritorio",
-      state: "Usado",
-      location: "Madrid",
-      description: "Lámpara de escritorio en buen estado, perfecta para estudiar.",
-      popularity: 4.5,
-      dateAdded: new Date("2024-02-15")
-    }
-  ];
-
-  getProducts(): Product[] {
-    return this.products;
+  /**
+   * Obtiene todos los productos disponibles.
+   * @returns Un Observable que emite una lista de productos.
+   */
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(ApiUrls.PRODUCTOS.LIST).pipe(
+      catchError((error) => {
+        console.error('Error al obtener los productos:', error);
+        return throwError(() => new Error('No se pudieron cargar los productos.'));
+      })
+    );
   }
 
-  createProduct(product: Product): Observable<any> {
-    // Replace the URL with your API endpoint
-    const apiUrl = 'https://your-api-endpoint.com/products';
-    return this.http.post(apiUrl, product);
+  /**
+   * Filtra productos por una lista de IDs de categorías.
+   * @param categoryIds Array de IDs de categorías.
+   * @returns Un Observable que emite una lista de productos filtrados.
+   */
+  getProductsByCategories(categoryIds: number[]): Observable<Product[]> {
+    console.log('Filtrando productos por categorías:', categoryIds); // Debugging
+    return this.http.post<Product[]>(ApiUrls.PRODUCTOS.FILTRAR, { categorias: categoryIds }).pipe(
+      catchError((error) => {
+        console.error('Error al filtrar productos por categorías:', error);
+        return throwError(() => new Error('No se pudieron filtrar los productos.'));
+      })
+    );
+  }
+
+  /**
+   * Obtiene un producto específico por su ID.
+   * @param productId ID del producto.
+   * @returns Un Observable que emite el producto solicitado.
+   */
+  getProductById(productId: number): Observable<Product> {
+    return this.http.get<Product>(`${ApiUrls.PRODUCTOS.LIST}/${productId}`).pipe(
+      catchError((error) => {
+        console.error('Error al obtener el producto:', error);
+        return throwError(() => new Error('No se pudo cargar el producto.'));
+      })
+    );
+  }
+
+  /**
+   * Crea un nuevo producto.
+   * @param productData Datos del producto a crear.
+   * @returns Un Observable que emite la respuesta del servidor.
+   */
+  addProduct(productData: any): Observable<any> {
+    return this.http.post(ApiUrls.PRODUCTOS.STORE, productData).pipe(
+      catchError((error) => {
+        console.error('Error al crear el producto:', error);
+        return throwError(() => new Error('No se pudo crear el producto.'));
+      })
+    );
+  }
+
+  /**
+   * Actualiza un producto existente.
+   * @param productId ID del producto a actualizar.
+   * @param updatedData Datos actualizados del producto.
+   * @returns Un Observable que emite la respuesta del servidor.
+   */
+  updateProduct(productId: number, updatedData: any): Observable<any> {
+    return this.http.put(`${ApiUrls.PRODUCTOS.LIST}/${productId}`, updatedData).pipe(
+      catchError((error) => {
+        console.error('Error al actualizar el producto:', error);
+        return throwError(() => new Error('No se pudo actualizar el producto.'));
+      })
+    );
+  }
+
+  /**
+   * Elimina un producto existente.
+   * @param productId ID del producto a eliminar.
+   * @returns Un Observable que emite la respuesta del servidor.
+   */
+  deleteProduct(productId: number): Observable<any> {
+    return this.http.delete(`${ApiUrls.PRODUCTOS.LIST}/${productId}`).pipe(
+      catchError((error) => {
+        console.error('Error al eliminar el producto:', error);
+        return throwError(() => new Error('No se pudo eliminar el producto.'));
+      })
+    );
   }
 }

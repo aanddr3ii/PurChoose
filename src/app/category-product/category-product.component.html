@@ -2,7 +2,50 @@
 <app-nav-categories></app-nav-categories>
 
 <div class="category-products-container">
-  <h2 class="category-title">Cars</h2>
+ <!-- Selector de categorías -->
+<div class="category-dropdown">
+  <button class="dropdown-toggle" (click)="toggleDropdown()">
+    Seleccionar Categoría
+    <svg 
+      class="dropdown-icon" 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="16" 
+      height="16" 
+      fill="currentColor" 
+      viewBox="0 0 16 16"
+    >
+      <path 
+        fill-rule="evenodd" 
+        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+      />
+    </svg>
+  </button>
+
+  <!-- Lista de categorías dentro del dropdown -->
+  @if (isDropdownOpen) {
+    <ul class="dropdown-menu">
+      @for (category of allCategories; track category.id) {
+        <li (click)="addCategoryFilter(category.id)">
+          {{ category.nombre }}
+        </li>
+      }
+    </ul>
+  }
+</div>
+
+
+  <!-- Filtros activos -->
+  <div class="active-filters">
+    <h3>Filtros Activos</h3>
+    <div class="filter-tags">
+      @for (categoryId of selectedCategories; track categoryId) {
+        <div class="filter-tag">
+          {{ getCategoryNameById(categoryId) }}
+          <button class="remove-filter" (click)="removeCategoryFilter(categoryId)">×</button>
+        </div>
+      }
+    </div>
+  </div>
 
   <!-- Contenedor principal con dos columnas -->
   <div class="content-container">
@@ -18,7 +61,7 @@
             name="price" 
             [(ngModel)]="filters.price" 
             [value]="null" 
-            (change)="applyFilters('price', null)"
+            (change)="applyFilters()"
           />
           Ninguno
         </label>
@@ -28,7 +71,7 @@
             name="price" 
             [(ngModel)]="filters.price" 
             [value]="'asc'" 
-            (change)="applyFilters('price', 'asc')"
+            (change)="applyFilters()"
           />
           Precio (Bajo a Alto)
         </label>
@@ -38,7 +81,7 @@
             name="price" 
             [(ngModel)]="filters.price" 
             [value]="'desc'" 
-            (change)="applyFilters('price', 'desc')"
+            (change)="applyFilters()"
           />
           Precio (Alto a Bajo)
         </label>
@@ -52,7 +95,7 @@
             name="popularity" 
             [(ngModel)]="filters.popularity" 
             [value]="null" 
-            (change)="applyFilters('popularity', null)"
+            (change)="applyFilters()"
           />
           Ninguno
         </label>
@@ -62,7 +105,7 @@
             name="popularity" 
             [(ngModel)]="filters.popularity" 
             [value]="'asc'" 
-            (change)="applyFilters('popularity', 'asc')"
+            (change)="applyFilters()"
           />
           Popularidad (Baja a Alta)
         </label>
@@ -72,23 +115,34 @@
             name="popularity" 
             [(ngModel)]="filters.popularity" 
             [value]="'desc'" 
-            (change)="applyFilters('popularity', 'desc')"
+            (change)="applyFilters()"
           />
           Popularidad (Alta a Baja)
         </label>
       </div>
 
       <!-- Filtro por estado del producto -->
-      <hr class="filter-divider"/>
+      <hr class="filter-divider" />
 
       <div class="filter-accordion">
         <div class="filter-header" (click)="toggleFilter('state')">
           <span class="filter-title">Estado del producto</span>
-          <svg class="filter-icon" [class.rotate]="openFilter === 'state'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+          <svg 
+            class="filter-icon" 
+            [class.rotate]="openFilter === 'state'" 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="16" 
+            height="16" 
+            fill="currentColor" 
+            viewBox="0 0 16 16"
+          >
+            <path 
+              fill-rule="evenodd" 
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+            />
           </svg>
         </div>
-      
+
         @if (openFilter === 'state') {
           <div class="filter-options">
             @for (option of productStates; track option.value) {
@@ -107,34 +161,7 @@
           </div>
         }
       </div>
-
-      <!-- Filtro por publicación reciente -->
-      <div class="filter-accordion">
-        <div class="filter-header" (click)="toggleFilter('dateRange')">
-          <span class="filter-title">Publicado hace</span>
-          <svg class="filter-icon" [class.rotate]="openFilter === 'dateRange'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-          </svg>
-        </div>
-
-        @if (openFilter === 'dateRange') {
-          <div class="filter-options">
-            @for (option of dateOptions; track option.value) {
-              <label>
-                <input 
-                  type="radio" 
-                  name="dateRange" 
-                  [(ngModel)]="filters.dateRange" 
-                  [value]="option.value" 
-                  (change)="applyFilters('dateRange', option.value)"
-                />
-                {{ option.label }}
-              </label>
-            }
-          </div>
-        }
-      </div>
-    </div> <!-- Fin de columna filtros -->
+    </div> <!-- Fin de columna de filtros -->
 
     <!-- Columna de productos -->
     <div class="products-column">

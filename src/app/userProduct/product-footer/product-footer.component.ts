@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProductService } from '../../services/Product/product.service';
 import { Product } from '../../interfaces/product';
@@ -8,17 +8,24 @@ import { Product } from '../../interfaces/product';
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './product-footer.component.html',
-  styleUrl: './product-footer.component.css'
+  styleUrl: './product-footer.component.css',
 })
-export class ProductFooterComponent {
-  product: Product | null = null; // Define a product object
+export class ProductFooterComponent implements OnInit {
+  product: Product | null = null; // Define un producto
 
-  constructor(private productService: ProductService) {} // Inject the service
+  constructor(private productService: ProductService) {} // Inyecta el servicio
 
   ngOnInit(): void {
-    const products = this.productService.getProducts(); // Get products from service
-    if (products.length > 0) {
-      this.product = products[0]; // Use the first product (adjust logic as needed)
-    }
+    // Suscríbete al Observable para obtener los productos
+    this.productService.getProducts().subscribe({
+      next: (products) => {
+        if (products.length > 0) {
+          this.product = products[0]; // Usa el primer producto (ajusta según sea necesario)
+        }
+      },
+      error: (error) => {
+        console.error('Error al cargar los productos:', error);
+      },
+    });
   }
 }

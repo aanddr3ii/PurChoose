@@ -1,13 +1,9 @@
+// src/app/services/category.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiUrls } from '../../Shared/api-urls'; // Importa las URLs de la API
-
-export interface Category {
-  id: number;
-  nombre: string;
-  imagen: string;
-}
+import { Category } from '../../interfaces/category'; // Importa la interfaz de categoría
 
 @Injectable({
   providedIn: 'root',

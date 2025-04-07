@@ -17,6 +17,7 @@ export class ApiUrls {
     public static readonly PRODUCTOS = {
       LIST: `${ApiUrls.BASE_URL}/productos`,
       STORE: `${ApiUrls.BASE_URL}/productos`,
+      FILTRAR:`${ApiUrls.BASE_URL}/categorias/productos`, // URL para filtrar productos por categorías
     };
   
     // Endpoints de categorías
