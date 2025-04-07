@@ -1,13 +1,13 @@
 <div class="product-description">
     @for (product of products; track product.id) {
         <div class="product-card">
-            <p class="product-price">{{ product.price }}€</p>
-            <h1 class="product-title">{{ product.title }}</h1>
+            <p class="product-price">{{ product.precio }}€</p>
+            <h1 class="product-title">{{ product.nombre }}</h1>
     
             <h2 class="section-title">{{ 'PRODUCT-DESCRIPTION.DETAILS' | translate }}</h2>
-            <p class="product-text">{{ product.description }}</p>
+            <p class="product-text">{{ product.descripcion }}</p>
     
-            <p class="product-state">{{ 'PRODUCT-DESCRIPTION.STATE' | translate }} <span>{{ product.state }}</span></p>
+            <p class="product-state">{{ 'PRODUCT-DESCRIPTION.STATE' | translate }} <span>{{ product.estado }}</span></p>
         </div>
     } @empty {
         <li>No products available.</li>
@@ -15,7 +15,7 @@
     
     @for (category of categories; track category.id) {
         <div class="product-category">
-            <span>{{ category.text }}</span>
+            <span>{{ category.nombre }}</span>
         </div>
     } @empty {
         <li>There are no categories.</li>

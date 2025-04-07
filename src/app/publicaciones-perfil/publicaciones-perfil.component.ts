@@ -8,7 +8,7 @@ import { CardProductComponent } from '../card-product/card-product.component'; /
   standalone: true,
   templateUrl: './publicaciones-perfil.component.html',
   styleUrls: ['./publicaciones-perfil.component.css'],
-  imports: [CardProductComponent] // Importamos el componente CardProduct
+  imports: [CardProductComponent], // Importamos el componente CardProduct
 })
 export class PublicacionesPerfilComponent implements OnInit {
   products: Product[] = []; // Array para almacenar los productos
@@ -16,6 +16,14 @@ export class PublicacionesPerfilComponent implements OnInit {
   constructor(private productService: ProductService) {} // Inyectamos el servicio
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts(); // Cargamos los productos desde el servicio
+    // Suscribirse al Observable para obtener los productos
+    this.productService.getProducts().subscribe({
+      next: (data: Product[]) => {
+        this.products = data; // Asignar los productos obtenidos
+      },
+      error: (error: any) => {
+        console.error('Error al cargar los productos:', error);
+      },
+    });
   }
 }

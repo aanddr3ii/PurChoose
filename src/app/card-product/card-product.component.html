@@ -5,7 +5,7 @@
       @if (product.images && product.images.length > 0) {
         @for (image of product.images; track $index) {
           <div class="carousel-slide">
-            <img [src]="image" alt="{{ product.title || 'Producto sin título' }}" />
+            <img [src]="image" alt="{{ product.nombre || 'Producto sin título' }}" />
           </div>
         }
       } @else {
@@ -32,7 +32,7 @@
 
   <!-- Información del producto -->
   <div class="product-info">
-    <h3 class="product-title">{{ shortenDescription(product.title) || 'Sin título' }}</h3>
-    <span><p class="price">{{ product.price || 0 }} €</p></span>
+    <h3 class="product-title">{{ shortenDescription(product.nombre) || 'Sin título' }}</h3>
+    <span><p class="price">{{ product.precio || 0 }} €</p></span>
   </div>
 </div>

@@ -74,54 +74,39 @@
       />
     </div>
 
-    <!-- Category & Plus Button on the Same Row -->
-    <div class="sell-product-form-group cat-row">
-      <div class="cat-row-left">
-        <label for="categoria" class="sell-product-label">Categoría</label>
-        <select
-          id="categoria"
-          class="sell-product-select"
-          formControlName="categoria"
-        >
-          @for (cat of categories; track cat) {
-            <option [value]="cat">{{ cat }}</option>
-          }
-        </select>
-      </div>
-
-      <!-- Plus (+) button to show/hide the new category form on the same row -->
+    <!-- Categorías Dinámicas -->
+    <div class="sell-product-form-group">
+      <label class="sell-product-label">Categorías</label>
+      @for (category of selectedCategories; track category; let i = $index) {
+        <div class="dynamic-category-row">
+          <select
+            class="sell-product-select"
+            [(ngModel)]="selectedCategories[i]"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            @for (cat of categories; track cat.id) {
+              <option [value]="cat.id">{{ cat.nombre }}</option>
+            }
+          </select>
+          <button
+            type="button"
+            class="remove-category-button"
+            (click)="removeCategory(i)"
+          >
+            &#x2715;
+          </button>
+        </div>
+      }
       <button
         type="button"
-        class="plus-button"
-        (click)="toggleAddCategory()"
+        class="add-category-button"
+        (click)="addCategoryField()"
       >
-        +
+        Añadir otra categoría
       </button>
     </div>
 
-    <!-- Show the 'Add New Category' form only if showAddCategory is true -->
-    @if (showAddCategory) {
-      <div class="sell-product-form-group sell-product-add-category">
-        <label for="newCategoria" class="sell-product-label">
-          Agregar nueva categoría
-        </label>
-        <input
-          id="newCategoria"
-          class="sell-product-input"
-          type="text"
-          [(ngModel)]="newCategory"
-        />
-        <button
-          type="button"
-          class="sell-product-add-cat-button"
-          (click)="addCategory()"
-        >
-          Añadir
-        </button>
-      </div>
-    }
-
-    <!-- Picture component or image upload area: ensure it's only declared once -->
+    <!-- Picture component or image upload area -->
     <div class="sell-product-form-group">
       <app-sell-product-picture></app-sell-product-picture>
     </div>

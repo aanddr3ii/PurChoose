@@ -1,20 +1,36 @@
 <div class="picture-container">
+  <!-- Botón personalizado para seleccionar imágenes -->
+  <label class="custom-file-upload">
+    Añadir imágenes
+    <input
+      id="pictureInput"
+      type="file"
+      accept="image/*"
+      multiple
+      (change)="onFileSelect($event)"
+      style="display: none;"
+    />
+  </label>
 
-  <div class="picture-container">
-      <label class="picture-label" for="pictureInput">Elige una imagen</label>
-      <input
-        id="pictureInput"
-        type="file"
-        accept="image/*"
-        (change)="onFileSelect($event)"
-      />
-    
-      @if (imagePreviewUrl) {
+  <!-- Mensaje cuando no hay imágenes seleccionadas -->
+  @if (imagePreviewUrls.length === 0) {
+    <p class="no-images-message">No has seleccionado ninguna imagen aún.</p>
+  }
+
+  <!-- Vista previa de las imágenes -->
+  @if (imagePreviewUrls.length > 0) {
+    <div class="picture-previews">
+      @for (preview of imagePreviewUrls; track preview; let i = $index) {
         <div class="picture-preview">
-          <img [src]="imagePreviewUrl" alt="Preview" />
+          <img [src]="preview" alt="Preview" />
+          <button class="remove-image-button" (click)="removeImage(i)">×</button>
         </div>
       }
-  </div>
-      
+    </div>
+  }
+
+  <!-- Mensaje de límite alcanzado -->
+  @if (imagePreviewUrls.length >= 6) {
+    <p class="max-images-message">Has alcanzado el límite máximo de 6 imágenes.</p>
+  }
 </div>
-  

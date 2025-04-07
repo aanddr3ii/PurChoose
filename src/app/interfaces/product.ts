@@ -1,12 +1,18 @@
+// src/app/interfaces/product.ts
 export interface Product {
-    id?: number; // Identificador único
-    src?: string; // URL principal de la imagen (opcional)
-    price?: number; // Precio del producto
-    title?: string; // Título del producto
-    state?: string; // Estado del producto (nuevo/usado)
-    location?: string; // Ubicación del producto
-    description?: string; // Descripción del producto
-    images?: string[]; // Array de URLs de imágenes
-    popularity?: number; // Popularidad del producto (opcional)
-    dateAdded?: Date; // Fecha de publicación del producto (opcional)
-  }
+  id: number; // ID del producto
+  nombre: string; // Nombre del producto
+  descripcion: string; // Descripción del producto
+  precio: number; // Precio del producto
+  ubicacion?: string; // Ubicación del producto (opcional)
+  estado?: string; // Estado del producto (por ejemplo, "Nuevo", "Como nuevo")
+  oferta?: boolean; // Indica si el producto está en oferta
+  user_id?: number; // ID del usuario que creó el producto
+  categoryIds?: number[]; // IDs de las categorías asociadas al producto
+  created_at?: Date; // Fecha de creación
+  updated_at?: Date; // Fecha de actualización
+  images?: string[]; // Array de URLs de imágenes del producto
+  src?: string; // URL de la imagen principal (opcional)
+
+
+}

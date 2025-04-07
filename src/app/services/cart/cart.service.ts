@@ -19,7 +19,7 @@ export class CartService {
       .filter((item: any) => item.product && item.product.price !== undefined) // Asegurarse de que product y price existan
       .map((item: CartItem) => ({
         ...item,
-        price: Number(item.product?.price) || 0, // Convierte explícitamente a número
+        price: Number(item.product?.precio) || 0, // Convierte explícitamente a número
         status: item.status || 'No pagado', // Estado predeterminado: 'No pagado'
         quantity: item.quantity || 1 // Cantidad predeterminada: 1
       }));
@@ -60,7 +60,7 @@ addToCart(
     cartItems.push({
       product,
       quantity,
-      price: Number(product.price) || 0, // Usa el precio del producto
+      price: Number(product.precio) || 0, // Usa el precio del producto
       status // Estado inicial (predeterminado: No pagado)
     });
   }

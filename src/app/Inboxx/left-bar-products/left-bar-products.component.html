@@ -4,7 +4,7 @@
     @for (product of products; track product.id) {
         <div class="product-card">
             <img [src]="product.images?.[0] ?? 'assets/default-image.jpg'" class="slider-image" />
-            <p class="product-name">{{ product.title }}</p>
+            <p class="product-name">{{ product.nombre }}</p>
         </div>
     }
 </div>

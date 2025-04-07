@@ -7,10 +7,10 @@ import { Category } from '../../interfaces/category';
 
 export class ProductCategoryService {
   private categories: Category[] = [
-    {id: 1, text: "Montaña y esquí"},
-    {id: 2, text: "Botas"},
-    {id: 3, text: "Accesorios"},
-    {id: 4, text: "Ropa"}
+    {id: 1, nombre: "Montaña y esquí"},
+    {id: 2, nombre: "Botas"},
+    {id: 3, nombre: "Accesorios"},
+    {id: 4, nombre: "Ropa"}
   ];
 
   getCategories(): Category[] {

@@ -5,35 +5,58 @@ import { Component, EventEmitter, Output } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './sell-product-picture.component.html',
-  styleUrl: './sell-product-picture.component.css'
+  styleUrl: './sell-product-picture.component.css',
 })
 export class SellProductPictureComponent {
-// Emit the selected file so the parent can store or upload it
-@Output() fileSelected = new EventEmitter<File | null>();
+  // Emitir las imágenes seleccionadas al componente padre
+  @Output() filesSelected = new EventEmitter<File[]>();
 
-// Store a data URL for the image preview
-imagePreviewUrl: string | ArrayBuffer | null = null;
+  // Lista de URLs de vista previa para las imágenes
+  imagePreviewUrls: string[] = [];
 
-onFileSelect(event: Event): void {
-  const inputElement = event.target as HTMLInputElement;
-  if (!inputElement.files?.length) {
-    this.fileSelected.emit(null);
-    return;
+  // Lista de archivos seleccionados
+  selectedFiles: File[] = [];
+
+  onFileSelect(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    if (!inputElement.files?.length) {
+      return;
+    }
+
+    // Obtener los archivos seleccionados
+    const files = Array.from(inputElement.files);
+
+    // Verificar el límite de 6 imágenes
+    const totalImages = this.selectedFiles.length + files.length;
+    if (totalImages > 6) {
+      alert('No puedes seleccionar más de 6 imágenes.');
+      return;
+    }
+
+    // Procesar cada archivo
+    files.forEach((file) => {
+      // Convertir el archivo a una URL de vista previa
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imagePreviewUrls.push(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+
+      // Guardar el archivo seleccionado
+      this.selectedFiles.push(file);
+    });
+
+    // Notificar al componente padre sobre los archivos seleccionados
+    this.filesSelected.emit(this.selectedFiles);
+
+    // Limpiar el input para permitir volver a seleccionar archivos
+    inputElement.value = '';
   }
 
-  const file = inputElement.files[0];
-  if (file) {
-    // Convert the file to a Base64 data URL for preview
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      this.imagePreviewUrl = e.target?.result ?? null;
-    };
-    reader.readAsDataURL(file);
-
-    // Notify parent of the selected file
-    this.fileSelected.emit(file);
+  // Método para eliminar una imagen específica
+  removeImage(index: number): void {
+    this.imagePreviewUrls.splice(index, 1); // Eliminar la vista previa
+    this.selectedFiles.splice(index, 1); // Eliminar el archivo correspondiente
+    this.filesSelected.emit(this.selectedFiles); // Notificar cambios al componente padre
   }
-}
-
-
 }

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService, Category } from '../services/CatgeoryService/category.service'; // Importa el servicio y la interfaz
-import { RouterLink } from '@angular/router';
+import { CategoryService} from '../services/CatgeoryService/category.service'; // Importa el servicio y la interfaz
+import { Category } from '../interfaces/category'; // Importa la interfaz de categoría
+import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-nav-categories',
   standalone: true,
-  imports: [RouterLink, TranslateModule],
+  imports: [RouterLink, TranslateModule, RouterModule],
   templateUrl: './nav-categories.component.html',
   styleUrls: ['./nav-categories.component.css'],
 })
@@ -18,7 +19,7 @@ export class NavCategoriesComponent implements OnInit {
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.loadCategories(); // Cargar las categorías al inicializar el componente
+    this.loadCategories();
   }
 
   // Método para cargar las categorías desde el backend
@@ -30,7 +31,7 @@ export class NavCategoriesComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error al cargar las categorías:', error);
-      },
+      }
     });
   }
 
