@@ -19,15 +19,17 @@
     <h3>{{ 'NAV-CATEGORIES.ALL_CATEGORIES' | translate }}</h3>
     <button class="close-btn" (click)="toggleSidenav($event)">X</button>
   </div>
-  <ul>
-    @for (category of allCategories; track category.id) {
-      <li>
-        <img [src]="category.imagen" alt="{{ category.nombre }}" class="category-image" />
-        <a [routerLink]="['/category-product', category.id]">{{ category.nombre }}</a>
+    <ul class="category-list">
+      @for (category of allCategories; track category.id) {
+      <li class="category-item">
+        <a [routerLink]="['/category-product', category.id]" class="category-link">
+          <img [src]="category.imagen" alt="{{ category.nombre }}" class="category-image" />
+          <span class="category-name">  {{ category.nombre }}</span>
+        </a>
       </li>
-    }
-  </ul>
-</div>
+      }
+    </ul>
+  </div>
 
 <!-- Oscurece el fondo cuando se abre el menú -->
 <div class="overlay" [class.show]="isSidenavOpen" (click)="toggleSidenav($event)"></div>

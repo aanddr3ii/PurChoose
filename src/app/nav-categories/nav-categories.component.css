@@ -40,7 +40,7 @@
 /* El menu desplegable */
 .side-menu {
     position: fixed;
-    top: 121px; 
+    top: 121px;
     left: -340px;
     width: 300px;
     height: calc(100% - 121px);
@@ -114,3 +114,62 @@
 .overlay.show {
     display: block;
 }
+
+.category-card {
+  cursor: pointer;
+  list-style: none;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+
+/* Eliminar viñetas y márgenes */
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Contenedor de cada categoría */
+.category-item {
+  padding: 8px 0;
+}
+
+/* Enlace clickeable con Flexbox */
+.category-link {
+  display: flex;
+  /* Alineación horizontal [[7]] */
+  align-items: center;
+  /* Centrado vertical [[9]] */
+  gap: 8px;
+  /* Espacio entre imagen y texto [[1]] */
+  text-decoration: none;
+  color: inherit;
+  padding: 4px;
+  /* Área clickeable ampliada */
+}
+
+/* Tamaño de la imagen */
+.category-image {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  filter: brightness(0) invert(1);
+  /* Imagen en blanco [[9]] */
+}
+
+/* Texto de la categoría */
+.category-name {
+  font-size: 16px;
+  white-space: nowrap;
+  /* Evita saltos de línea */
+}
+
+.imagen-blanca {
+  filter: brightness(0) invert(1);
+  /* Convierte a blanco [[1]][[6]] */
+}
+
