@@ -16,6 +16,9 @@ import { CartComponent } from './cart/cart.component';
 import { PaginaPerfilComponent } from './pagina-perfil/pagina-perfil.component';
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 
+// Shopping
+import { MethodPaymentComponent } from './method-payment/method-payment.component';
+
 // Shopping Progress
 import { ShoppingInProgressComponent } from './shopping-products/shopping-in-progress/shopping-in-progress.component';
 import { ShoppingFinalizedComponent } from './shopping-products/shopping-finalized/shopping-finalized.component';
@@ -53,7 +56,9 @@ export const routes: Routes = [
     { path: 'shopping-InProgress', component: ShoppingInProgressComponent },
     { path: 'shopping-Finalized', component: ShoppingFinalizedComponent },
     
-    
+    // Shopping
+    { path: 'payment', component: MethodPaymentComponent },
+
     // User product selling
     { path: 'user-product/:id', component: UserProductComponent },
 
