@@ -1,14 +1,15 @@
-<div class="slider-container">
-  <!-- Botón para ir atrás -->
-  <button class="slider-button prev" (click)="prevSlide()">&#8249;</button>
-  <div class="slider">
-    <div #slider class="image-container" [style.transform]="'translateX(' + (-currentIndex * 200) + 'px)'">
-      <!-- Repetir todas las imágenes -->
+<div class="slider-container-wrapper">
+  <button class="slider-button prev" (click)="scrollSlider(-1)">&#8249;</button>
+
+  <div class="slider-container" #sliderContainer>
+    <div class="slider">
       @for (image of images; track image.id) {
-        <img [src]="image.src" class="slider-image" />
+        <img [src]="image.src" class="slider-image" alt="carousel image" />
+      } @empty {
+        <p class="empty-message">No images to display.</p>
       }
     </div>
   </div>
-  <!-- Botón para ir adelante -->
-  <button class="slider-button next" (click)="nextSlide()">&#8250;</button>
+
+  <button class="slider-button next" (click)="scrollSlider(1)">&#8250;</button>
 </div>

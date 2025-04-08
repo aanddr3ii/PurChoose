@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-
+import { Component, ElementRef, ViewChild } from '@angular/core'; 
+// ViewChild encuentra el elemento para sincronizar el scrollSlider y que funcione a la vez el scrollbar y los botones de la izquierda y derecha
+// ElementRef te permite acceder y controlarlo
 @Component({
   selector: 'app-carousel',
   standalone: true,
@@ -27,6 +28,19 @@ export class CarouselComponent {
 
   currentIndex = 0;
 
+  @ViewChild('sliderContainer', { static: true }) sliderContainer!: ElementRef;
+
+  scrollSlider(direction: number): void {
+    const container = this.sliderContainer.nativeElement as HTMLElement;
+    const scrollAmount = 260 + 10;
+    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  }
+
+  // Evitar reenderizado inecesario con @for
+  trackById(index: number, item: any) {
+    return item.id;
+  }
+  
   prevSlide() {
     const maxIndex = this.images.length / 2 - 1; // Índice máximo (sin duplicados)
     this.currentIndex = (this.currentIndex - 1 + maxIndex + 1) % (maxIndex + 1);
@@ -36,4 +50,7 @@ export class CarouselComponent {
     const maxIndex = this.images.length / 2 - 1; // Índice máximo (sin duplicados)
     this.currentIndex = (this.currentIndex + 1) % (maxIndex + 1);
   }
+
+
+
 }

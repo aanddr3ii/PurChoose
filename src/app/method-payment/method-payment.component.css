@@ -1,0 +1,152 @@
+.payment-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 4rem;
+    padding: 2rem;
+    background-color: #eef1f8;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .left-section,
+  .right-section {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    flex: 1 1 360px;
+    max-width: 450px;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .payment-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .payment-btn:hover {
+    border-color: #000;
+  }
+  
+  .payment-btn.selected {
+    border-color: #1e53cc;
+    background-color: #e5f8ff;
+  }
+  
+  .icon-svg {
+    width: 24px;
+    height: auto;
+    display: block;
+  }
+  
+  .payment-card {
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.2rem;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .payment-card.selected {
+    border-color: #1e53cc;
+    background-color: #e5f8ff;
+  }
+  
+  .payment-card .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .payment-card img,
+  .icon-card {
+    width: 40px;
+    height: auto;
+    display: block;
+  }
+  
+  .total-price {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
+  }
+  
+  .product-summary {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .product-summary li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.95rem;
+    color: #374151;
+  }
+  
+  .security-box {
+    background-color: #f3f3f3;
+    padding: 1.5rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: #000;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .security-box svg {
+    width: 32px;
+    height: auto;
+  }
+  
+  .confirm-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: #1e53cc; /* Color corporativo PurChoose */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.1s ease;
+    box-shadow: 0 4px 8px rgba(30, 83, 204, 0.2);
+  }
+  
+  .confirm-btn:hover {
+    background-color: #1747b1; /* Hover un poco más oscuro */
+  }
+  
+  .confirm-btn:active {
+    transform: scale(0.98);
+  }
+  
+  
