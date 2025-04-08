@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Category } from '../../interfaces/category';
+import { ApiUrls } from '../../Shared/api-urls';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class ProductCategoryService {
-  private categories: Category[] = [
-    {id: 1, nombre: "Montaña y esquí"},
-    {id: 2, nombre: "Botas"},
-    {id: 3, nombre: "Accesorios"},
-    {id: 4, nombre: "Ropa"}
-  ];
+  constructor(private http: HttpClient) {}
 
-  getCategories(): Category[] {
-    return this.categories;
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(ApiUrls.CATEGORIAS.LIST); // Asegúrate de que la URL es correcta
   }
 }

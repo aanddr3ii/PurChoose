@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user/user.service';
 import { UserReviewService } from '../../services/userReview/user-review.service';
+import { Product } from '../../interfaces/product';
+
 
 @Component({
   selector: 'app-product-user-bar-review',

@@ -52,13 +52,14 @@ export const routes: Routes = [
     // Where you see the products you buy and sell "the progress"
     { path: 'shopping-InProgress', component: ShoppingInProgressComponent },
     { path: 'shopping-Finalized', component: ShoppingFinalizedComponent },
-    
+
+    { path: 'productos/:id/detalles', component: UserProductComponent },
     
     // User product selling
-    { path: 'user-product/:id', component: UserProductComponent },
+    { path: 'user-product', component: UserProductComponent },
 
     // Where you see the product and the filters
-    { path: 'category-product', component: CategoryProductComponent },
+    { path: 'category-product/:id', component: CategoryProductComponent },
 
 
     /* Admin */

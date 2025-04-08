@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CategoryService } from '../services/CatgeoryService/category.service'; // Importa el servicio de categorías
 import { ProductService } from '../services/Product/product.service'; // Importa el servicio de productos
 import { Category } from '../interfaces/category'; // Importa la interfaz de categoría
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-category-product',
   standalone: true,
-  imports: [NavBeltComponent, NavCategoriesComponent, CardProductComponent, AsyncPipe, FormsModule],
+  imports: [NavBeltComponent, NavCategoriesComponent, CardProductComponent, AsyncPipe, FormsModule,RouterModule],
   templateUrl: './category-product.component.html',
   styleUrls: ['./category-product.component.css']
 })

@@ -1,12 +1,17 @@
 <div class="user-bar-container">
-    <div class="user-info">
-        <img class="user-avatar" [src]="user?.fotoPerfil" alt="User avatar">
-        <span class="user-name">{{ user?.name }}</span>
-    </div>
+    <!-- Solo mostrar si el nombre del usuario está cargado -->
+    @if (userName) {
+      <div class="user-info">
+        <span class="user-name">{{ userName }}</span>
+      </div>
+    } @else {
+      <p>Cargando datos del usuario...</p>
+    }
+  
     <div class="user-actions">
-        <button class="favorite-button">
-            <span class="favorites-button">{{ 'PRODUCT-USER-BAR.FAVORITE-BUTTON' | translate }}</span>
-        </button>
-        <button class="chat-button">{{ 'PRODUCT-USER-BAR.CHAT-BUTTON' | translate }}</button>
+      <button class="favorite-button">
+        <span class="favorites-button">{{ 'PRODUCT-USER-BAR.FAVORITE-BUTTON' | translate }}</span>
+      </button>
+      <button class="chat-button">{{ 'PRODUCT-USER-BAR.CHAT-BUTTON' | translate }}</button>
     </div>
-</div>
+  </div>
