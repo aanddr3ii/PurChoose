@@ -1,31 +1,31 @@
 <div class="product-description">
     @if (product) {
-        <div class="product-card">
-            <p class="product-price">{{ product.precio }}€</p>
-            <h1 class="product-title">{{ product.nombre }}</h1>
-    
-            <h2 class="section-title">{{ 'PRODUCT-DESCRIPTION.DETAILS' | translate }}</h2>
-            <p class="product-text">{{ product.descripcion }}</p>
-    
-            <p class="product-state">{{ 'PRODUCT-DESCRIPTION.STATE' | translate }} <span>{{ product.estado }}</span></p>
-
-            
-        </div>
-    } @else {
-        <li>No product available.</li>
-    }
-    
-    <!-- Mostrar las categorías disponibles -->
-    <div class="product-categories">
+      <div class="product-card">
+        <p class="product-price">{{ product.precio }}€</p>
+        <h1 class="product-title">{{ product.nombre }}</h1>
+  
+        <h2 class="section-title">{{ 'PRODUCT-DESCRIPTION.DETAILS' | translate }}</h2>
+        <p class="product-text">{{ product.descripcion }}</p>
+  
+        <p class="product-state">
+          {{ 'PRODUCT-DESCRIPTION.STATE' | translate }} <span>{{ product.estado }}</span>
+        </p>
+      </div>
+  
+      <!-- Mostrar las categorías asociadas al producto -->
+      <div class="product-categories">
         <h3>Categorías:</h3>
-        @if (categories.length > 0) {
-            <ul>
-                @for (category of categories; track category.id) {
-                    <li>{{ category.nombre }}</li>
-                }
-            </ul>
+        @if (product.categorias && product.categorias.length > 0) {
+          <ul>
+            @for (category of product.categorias; track category.id) {
+              <li>{{ category.nombre }}</li>
+            }
+          </ul>
         } @else {
-            <p>No hay categorías disponibles.</p>
+          <p>No hay categorías disponibles para este producto.</p>
         }
-    </div>
-</div>
+      </div>
+    } @else {
+      <p>No hay detalles del producto disponibles.</p>
+    }
+  </div>

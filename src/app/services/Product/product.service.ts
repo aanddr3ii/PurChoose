@@ -54,6 +54,41 @@ export class ProductService {
   }
 
   /**
+ * Crea un nuevo producto.
+ * @param productData Datos del producto a crear.
+ * @returns Un Observable que emite la respuesta del servidor.
+ */
+createProduct(productData: any): Observable<any> {
+  return this.http.post(ApiUrls.PRODUCTOS.STORE, productData).pipe(
+    catchError((error) => {
+      console.error('Error al crear el producto:', error);
+      return throwError(() => new Error('No se pudo crear el producto.'));
+    })
+  );
+}
+
+/**
+ * Sube múltiples imágenes para un producto específico.
+ * @param productId ID del producto al que pertenecen las imágenes.
+ * @param images Array de archivos de imágenes.
+ * @returns Un Observable que emite la respuesta del servidor.
+ */
+uploadImages(productId: number, images: File[]): Observable<any> {
+  const formData = new FormData();
+  images.forEach((image) => {
+    formData.append('images[]', image);
+  });
+
+  // Usa la función UPLOAD_IMAGES para generar la URL
+  return this.http.post(ApiUrls.PRODUCTOS.UPLOAD_IMAGES(productId), formData).pipe(
+    catchError((error) => {
+      console.error('Error al subir imágenes:', error);
+      return throwError(() => new Error('No se pudieron subir las imágenes.'));
+    })
+  );
+}
+
+  /**
    * Crea un nuevo producto.
    * @param productData Datos del producto a crear.
    * @returns Un Observable que emite la respuesta del servidor.

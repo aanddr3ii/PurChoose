@@ -201,38 +201,6 @@ export class CartComponent implements OnInit {
     // Limpiar datos residuales antes de añadir productos predeterminados
     this.clearHistoryData();
 
-    const defaultProducts: Product[] = [
-      {
-        id: 1, // ID fijo para pruebas
-        images: [
-          "https://cdn.wallapop.com/images/10420/ia/rg/__/c10420p1106468713/i5438087286.jpg?pictureSize=W640"
-        ],
-        precio: 196,
-        nombre: "Botas esqui tecnica",
-        estado: "Nuevo",
-        ubicacion: "Barcelona",
-        descripcion: "Botas de esquí marca Nordica tamaño de la suela 295 mm, talla 25-25,5 en buen estado.",
-        created_at: new Date("2024-03-11")
-      },
-      {
-        id: 2, // ID fijo para pruebas
-        images: [
-          "https://www.barcelonaled.com/20510-large_default/lampara-mono-de-mesa-de-resina-rila.jpg",
-        ],
-        precio: 49,
-        nombre: "Lámpara de escritorio",
-        estado: "Usado",
-        ubicacion: "Madrid",
-        descripcion: "Lámpara de escritorio en buen estado, perfecta para estudiar.",
-        created_at: new Date("2024-02-15")
-      }
-    ];
-
-    // Añadir productos predeterminados al carrito
-    defaultProducts.forEach(product => {
-      this.cartService.addToCart(this.userId, product, 1, 'No pagado'); // Estado inicial: No pagado
-    });
-
     // Recargar los productos del carrito
     this.loadCartItems();
 

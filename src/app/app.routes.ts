@@ -65,7 +65,7 @@ export const routes: Routes = [
     // Where you see the product and the filters
     { path: 'category-product/:id', component: CategoryProductComponent },
 
-    { path: 'productos/:id/detalles', component: UserProductComponent },
+    { path: 'productos/:id/detalles', component: UserProductComponent },    
 
     /* Admin */
     { path: 'admin', component: AdminComponent }, // Menu

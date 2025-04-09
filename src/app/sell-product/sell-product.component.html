@@ -108,7 +108,7 @@
 
     <!-- Picture component or image upload area -->
     <div class="sell-product-form-group">
-      <app-sell-product-picture></app-sell-product-picture>
+      <app-sell-product-picture (filesSelected)="onFilesSelected($event)"></app-sell-product-picture>
     </div>
 
     <!-- Hidden if you retrieve user from Auth context -->

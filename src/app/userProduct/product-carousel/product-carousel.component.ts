@@ -22,7 +22,9 @@ export class ProductCarouselComponent implements OnInit {
       next: (products) => {
         if (products.length > 0) {
           this.product = products[0]; // Asignar el primer producto
-          this.images = this.product?.images ?? []; // Inicializar las imágenes
+  
+          // Extraer las URLs de las imágenes
+          this.images = this.product?.imagenes?.map(image => image.url) ?? [];
         }
       },
       error: (error) => {
@@ -32,7 +34,7 @@ export class ProductCarouselComponent implements OnInit {
   }
 
   nextSlide(): void {
-    if (this.product && this.images && this.currentIndex < this.images.length - 1) {
+    if (this.currentIndex < this.images.length - 1) {
       this.currentIndex++;
     }
   }
