@@ -13,8 +13,12 @@
             [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
             
             <!-- Mostrar las imágenes del producto -->
-            @for (image of images; track $index) {
-                <img [src]="image" class="slider-image" />
+            @if (images && images.length > 0) {
+                @for (image of images; track $index) {
+                    <img [src]="image" class="slider-image" alt="Imagen del producto" />
+                }
+            } @else {
+                <p>No hay imágenes disponibles.</p>
             }
         </div>
     </div>
@@ -30,8 +34,15 @@
   
     <!-- Indicadores de progreso -->
     <div class="indicators">
-        @for (index of images; track $index) {
-            <span (click)="goToImage($index)" [class.active]="$index === currentIndex">•</span>
+        @if (images && images.length > 0) {
+            @for (i of images; track $index) {
+                <span 
+                    (click)="goToImage($index)" 
+                    [class.active]="$index === currentIndex"
+                >
+                    •
+                </span>
+            }
         }
     </div>
-  </div>
+</div>

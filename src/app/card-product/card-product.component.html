@@ -5,7 +5,7 @@
       @if (product.images && product.images.length > 0) {
         @for (image of product.images; track $index) {
           <div class="carousel-slide">
-            <img [src]="image" alt="{{ product.nombre || 'Producto sin título' }}" />
+            <img [src]="getAbsoluteImageUrl(image)" alt="{{ product.nombre || 'Producto sin título' }}" />
           </div>
         }
       } @else {
@@ -36,3 +36,4 @@
     <span><p class="price">{{ product.precio || 0 }} €</p></span>
   </div>
 </div>
+

@@ -28,4 +28,13 @@ export class CardProductComponent {
     if (!description) return ''; // Si no hay descripción, devolvemos una cadena vacía
     return description.length > limit ? description.substring(0, limit) + '...' : description;
   }
+
+  getAbsoluteImageUrl(image: string | { url: string }): string {
+    const imageUrl = typeof image === 'string' ? image : image.url;
+  
+    if (imageUrl.startsWith('/storage')) {
+      return `http://localhost:8000${imageUrl}`;
+    }
+    return imageUrl; // Ya es una URL absoluta
+  }
 }

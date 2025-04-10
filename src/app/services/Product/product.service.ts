@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Product } from '../../interfaces/product';
 import { ApiUrls } from '../../Shared/api-urls'; // Importa las URLs de la API
 
@@ -40,60 +40,11 @@ export class ProductService {
   }
 
   /**
-   * Obtiene un producto específico por su ID.
-   * @param productId ID del producto.
-   * @returns Un Observable que emite el producto solicitado.
-   */
-  getProductById(productId: number): Observable<Product> {
-    return this.http.get<Product>(`${ApiUrls.PRODUCTOS.LIST}/${productId}`).pipe(
-      catchError((error) => {
-        console.error('Error al obtener el producto:', error);
-        return throwError(() => new Error('No se pudo cargar el producto.'));
-      })
-    );
-  }
-
-  /**
- * Crea un nuevo producto.
- * @param productData Datos del producto a crear.
- * @returns Un Observable que emite la respuesta del servidor.
- */
-createProduct(productData: any): Observable<any> {
-  return this.http.post(ApiUrls.PRODUCTOS.STORE, productData).pipe(
-    catchError((error) => {
-      console.error('Error al crear el producto:', error);
-      return throwError(() => new Error('No se pudo crear el producto.'));
-    })
-  );
-}
-
-/**
- * Sube múltiples imágenes para un producto específico.
- * @param productId ID del producto al que pertenecen las imágenes.
- * @param images Array de archivos de imágenes.
- * @returns Un Observable que emite la respuesta del servidor.
- */
-uploadImages(productId: number, images: File[]): Observable<any> {
-  const formData = new FormData();
-  images.forEach((image) => {
-    formData.append('images[]', image);
-  });
-
-  // Usa la función UPLOAD_IMAGES para generar la URL
-  return this.http.post(ApiUrls.PRODUCTOS.UPLOAD_IMAGES(productId), formData).pipe(
-    catchError((error) => {
-      console.error('Error al subir imágenes:', error);
-      return throwError(() => new Error('No se pudieron subir las imágenes.'));
-    })
-  );
-}
-
-  /**
    * Crea un nuevo producto.
    * @param productData Datos del producto a crear.
    * @returns Un Observable que emite la respuesta del servidor.
    */
-  addProduct(productData: any): Observable<any> {
+  createProduct(productData: any): Observable<any> {
     return this.http.post(ApiUrls.PRODUCTOS.STORE, productData).pipe(
       catchError((error) => {
         console.error('Error al crear el producto:', error);
@@ -127,6 +78,65 @@ uploadImages(productId: number, images: File[]): Observable<any> {
       catchError((error) => {
         console.error('Error al eliminar el producto:', error);
         return throwError(() => new Error('No se pudo eliminar el producto.'));
+      })
+    );
+  }
+
+  /**
+   * Obtiene las imágenes de un producto específico.
+   * @param productId ID del producto.
+   * @returns Un Observable que emite las URLs de las imágenes.
+   */
+  getImagesByProductId(productId: number): Observable<string[]> {
+    return this.http.get<any>(`${ApiUrls.PRODUCTOS.IMAGES(productId)}`).pipe(
+      map((response) => {
+        // Extraer las URLs de las imágenes y agregar el dominio si es necesario
+        return response.imagenes.map((image: { url: string }) => {
+          if (image.url.startsWith('/storage')) {
+            return `http://localhost:8000${image.url}`;
+          }
+          return image.url;
+        });
+      }),
+      catchError((error) => {
+        console.error('Error al obtener las imágenes del producto:', error);
+        return throwError(() => new Error('No se pudieron cargar las imágenes.'));
+      })
+    );
+  }
+  getProductsWithCategoriesAndImages(): Observable<any> {
+    return this.http.get(ApiUrls.PRODUCTOS.WITH_CATEGORIES_AND_IMAGES).pipe(
+      catchError((error) => {
+        console.error('Error al obtener los productos con categorías e imágenes:', error);
+  
+        if (error.status === 404) {
+          return throwError(() => new Error('La ruta no existe. Verifica la URL.'));
+        } else if (error.status === 0) {
+          return throwError(() => new Error('No se pudo conectar con el servidor. Verifica CORS.'));
+        } else if (error.error instanceof ProgressEvent) {
+          return throwError(() => new Error('Ocurrió un error de red. Verifica la conexión.'));
+        } else {
+          return throwError(() => new Error('Ocurrió un error inesperado.'));
+        }
+      })
+    );
+  }
+  /**
+   * Sube imágenes para un producto específico.
+   * @param productId ID del producto.
+   * @param images Array de archivos de imágenes.
+   * @returns Un Observable que emite la respuesta del servidor.
+   */
+  uploadImages(productId: number, images: File[]): Observable<any> {
+    const formData = new FormData();
+    images.forEach((image) => {
+      formData.append('images[]', image);
+    });
+
+    return this.http.post(ApiUrls.PRODUCTOS.UPLOAD_IMAGES(productId), formData).pipe(
+      catchError((error) => {
+        console.error('Error al subir imágenes:', error);
+        return throwError(() => new Error('No se pudieron subir las imágenes.'));
       })
     );
   }
