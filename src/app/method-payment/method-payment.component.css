@@ -1,152 +1,371 @@
+/* General Container Styles */
 .payment-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 4rem;
-    padding: 2rem;
-    background-color: #eef1f8;
-    min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .left-section,
-  .right-section {
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    flex: 1 1 360px;
-    max-width: 450px;
-  }
-  
-  h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-  
-  .payment-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    width: 100%;
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    background-color: #fff;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  .payment-btn:hover {
-    border-color: #000;
-  }
-  
-  .payment-btn.selected {
-    border-color: #1e53cc;
-    background-color: #e5f8ff;
-  }
-  
-  .icon-svg {
-    width: 24px;
-    height: auto;
-    display: block;
-  }
-  
-  .payment-card {
-    border: 2px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 4rem;
+  padding: 2rem;
+  background-color: #eef1f8;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    cursor: pointer;
-    transition: all 0.2s ease;
+.left-section,
+.right-section {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  flex: 1 1 360px;
+  max-width: 450px;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Payment Buttons */
+.payment-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-btn:hover {
+  border-color: #000;
+}
+
+.payment-btn.selected {
+  border-color: #1e53cc;
+  background-color: #e5f8ff;
+}
+
+.icon-svg {
+  width: 24px;
+  height: auto;
+  display: block;
+}
+
+/* Payment Cards */
+.payment-card {
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-card:hover {
+  border-color: #000;
+}
+
+.payment-card.selected {
+  border-color: #1e53cc;
+  background-color: #e5f8ff;
+}
+
+.payment-card .card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.payment-card img,
+.icon-card {
+  width: 40px;
+  height: auto;
+  display: block;
+}
+
+/* Action Buttons */
+.action-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin: 0 0 0 10px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.action-edit {
+  background-color: #1e53cc;
+  color: #fff;
+}
+
+.action-edit:hover {
+  background-color: #1747b1;
+}
+
+.action-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.action-delete:hover {
+  background-color: #c82333;
+}
+
+/* Edit and Delete Buttons */
+.edit-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #218838;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Add Button */
+.add-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.03);
+}
+
+/* Form Styles */
+.user-info-form {
+  padding: 20px;
+  margin-bottom: 2rem;
+}
+
+.user-info-form .form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.user-info-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.user-info-form input,
+.user-info-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.user-info-form input:focus,
+.user-info-form select:focus {
+  border-color: black 2px;
+}
+
+.phone-container {
+  display: flex;
+  gap: 10px;
+}
+
+.phone-container select {
+  flex: 0 0 90px;
+}
+
+.phone-container input {
+  flex: 1;
+}
+
+.save-user-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #1e53cc;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.save-user-btn:hover {
+  background-color: #1747b1;
+}
+
+.save-user-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.form-error {
+  font-size: 13px;
+  color: #f44336;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+/* List Styles */
+.tarjetas-list,
+.servicios-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tarjeta-item,
+.servicio-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+/* Added Services */
+.added-service {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.added-service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.added-service .service-name {
+  font-size: 1rem;
+  color: #111827;
+}
+
+/* Total Price and Summary */
+.total-price {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.product-summary {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.product-summary li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* Security Box */
+.security-box {
+  background-color: #f3f3f3;
+  padding: 1.5rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: #000;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.security-box svg {
+  width: 32px;
+  height: auto;
+}
+
+/* Confirm Button */
+.confirm-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: #1e53cc;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+  box-shadow: 0 4px 8px rgba(30, 83, 204, 0.2);
+}
+
+.confirm-btn:hover {
+  background-color: #1747b1;
+}
+
+.confirm-btn:active {
+  transform: scale(0.98);
+}
+
+.confirm-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .payment-button {
+    width: 100px;
+    height: 50px;
   }
-  
-  .payment-card.selected {
-    border-color: #1e53cc;
-    background-color: #e5f8ff;
+
+  .popup-content {
+    max-width: 300px;
   }
-  
-  .payment-card .card-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .payment-card img,
-  .icon-card {
-    width: 40px;
-    height: auto;
-    display: block;
-  }
-  
-  .total-price {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 1.5rem;
-  }
-  
-  .product-summary {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1.5rem;
-  }
-  
-  .product-summary li {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #e5e7eb;
-    font-size: 0.95rem;
-    color: #374151;
-  }
-  
-  .security-box {
-    background-color: #f3f3f3;
-    padding: 1.5rem;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    color: #000;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  
-  .security-box svg {
-    width: 32px;
-    height: auto;
-  }
-  
-  .confirm-btn {
-    display: block;
-    width: 100%;
-    padding: 1rem;
-    background-color: #1e53cc; /* Color corporativo PurChoose */
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.25s ease, transform 0.1s ease;
-    box-shadow: 0 4px 8px rgba(30, 83, 204, 0.2);
-  }
-  
-  .confirm-btn:hover {
-    background-color: #1747b1; /* Hover un poco más oscuro */
-  }
-  
-  .confirm-btn:active {
-    transform: scale(0.98);
-  }
-  
-  
+}
