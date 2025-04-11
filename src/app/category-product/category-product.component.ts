@@ -65,6 +65,15 @@ export class CategoryProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+     // Obtener todos los productos con sus categorías e imágenes
+     this.productService.getProductsWithCategoriesAndImages().subscribe({
+      next: (response) => {
+        this.products = response.productos; // Asignar los productos obtenidos
+      },
+      error: (error) => {
+        console.error('Error al cargar los productos:', error);
+      },
+    });
     // Obtener el ID de la categoría desde la URL
     this.route.params.subscribe((params) => {
       this.categoryId = +params['id']; // Obtiene el ID de la categoría

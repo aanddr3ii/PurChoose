@@ -21,14 +21,15 @@ export class ShoppingBoxComponent {
       ubicacion: 'Leganés',
       descripcion: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
       images: [
-        'images/wgg2.1.png',
-        'images/wgg2.0.png',
-        'images/wgg2.3.png',
-        'images/wgg2.2.png'
+        { url: 'images/wgg2.1.png' },
+        { url: 'images/wgg2.0.png' },
+        { url: 'images/wgg2.3.png' },
+        { url: 'images/wgg2.2.png' }
       ],
       user_id: 1,
-      created_at: new Date('2011-09-25')
-    },
+      estado: 'nuevo',
+      oferta: false,
+        },
   {
     id: 2,
     nombre: 'CUPRA LEON 1.5 eTSI 150CV',
@@ -36,14 +37,15 @@ export class ShoppingBoxComponent {
     ubicacion: 'Leganés',
     descripcion: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
     images: [
-      'images/wgg2.1.png',
-      'images/wgg2.0.png',
-      'images/wgg2.3.png',
-      'images/wgg2.2.png'
+      { url: 'images/wgg2.1.png' },
+      { url: 'images/wgg2.0.png' },
+      { url: 'images/wgg2.3.png' },
+      { url: 'images/wgg2.2.png' }
     ],
     user_id: 1,
-    created_at: new Date('2011-09-25')
-  },
+    estado: 'nuevo',
+    oferta: false,
+    },
   
   {
     id: 3,
@@ -52,14 +54,15 @@ export class ShoppingBoxComponent {
     ubicacion: 'Leganés',
     descripcion: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
     images: [
-      'images/wgg2.1.png',
-      'images/wgg2.0.png',
-      'images/wgg2.3.png',
-      'images/wgg2.2.png'
+      { url: 'images/wgg2.1.png' },
+      { url: 'images/wgg2.0.png' },
+      { url: 'images/wgg2.3.png' },
+      { url: 'images/wgg2.2.png' }
     ],
     user_id: 1,
-    created_at: new Date('2011-09-25')
-  },
+    estado: 'nuevo',
+    oferta: false,
+    },
 
   {
     id: 4,
@@ -68,14 +71,15 @@ export class ShoppingBoxComponent {
     ubicacion: 'Leganés',
     descripcion: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
     images: [
-      'images/wgg2.1.png',
-      'images/wgg2.0.png',
-      'images/wgg2.3.png',
-      'images/wgg2.2.png'
+      { url: 'images/wgg2.1.png' },
+      { url: 'images/wgg2.0.png' },
+      { url: 'images/wgg2.3.png' },
+      { url: 'images/wgg2.2.png' }
     ],
     user_id: 1,
-    created_at: new Date('2011-09-25')
-  },
+    estado: 'nuevo',
+    oferta: false,
+    },
 
   {
     id: 5,
@@ -84,14 +88,15 @@ export class ShoppingBoxComponent {
     ubicacion: 'Leganés',
     descripcion: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
     images: [
-      'images/wgg2.1.png',
-      'images/wgg2.0.png',
-      'images/wgg2.3.png',
-      'images/wgg2.2.png'
+      { url: 'images/wgg2.1.png' },
+      { url: 'images/wgg2.0.png' },
+      { url: 'images/wgg2.3.png' },
+      { url: 'images/wgg2.2.png' }
     ],
     user_id: 1,
-    created_at: new Date('2011-09-25')
-  },
+    estado: 'nuevo',
+    oferta: false,
+    },
   
   {
     id: 6,
@@ -100,14 +105,15 @@ export class ShoppingBoxComponent {
     ubicacion: 'Leganés',
     descripcion: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
     images: [
-      'images/wgg2.1.png',
-      'images/wgg2.0.png',
-      'images/wgg2.3.png',
-      'images/wgg2.2.png'
+      { url: 'images/wgg2.1.png' },
+      { url: 'images/wgg2.0.png' },
+      { url: 'images/wgg2.3.png' },
+      { url: 'images/wgg2.2.png' }
     ],
     user_id: 1,
-    created_at: new Date('2011-09-25')
-  },
+    estado: 'nuevo',
+    oferta: false,
+    },
   {
     id: 7,
     nombre: 'CUPRA LEON 1.5 eTSI 150CV',
@@ -115,14 +121,15 @@ export class ShoppingBoxComponent {
     ubicacion: 'Leganés',
     descripcion: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
     images: [
-      'images/wgg2.1.png',
-      'images/wgg2.0.png',
-      'images/wgg2.3.png',
-      'images/wgg2.2.png'
+      { url: 'images/wgg2.1.png' },
+      { url: 'images/wgg2.0.png' },
+      { url: 'images/wgg2.3.png' },
+      { url: 'images/wgg2.2.png' }
     ],
     user_id: 1,
-    created_at: new Date('2011-09-25')
-  },
+    estado: 'nuevo',
+    oferta: false,
+    },
   {
     id: 8,
     nombre: 'CUPRA LEON 1.5 eTSI 150CV',
@@ -130,14 +137,15 @@ export class ShoppingBoxComponent {
     ubicacion: 'Leganés',
     descripcion: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
     images: [
-      'images/wgg2.1.png',
-      'images/wgg2.0.png',
-      'images/wgg2.3.png',
-      'images/wgg2.2.png'
+      { url: 'images/wgg2.1.png' },
+      { url: 'images/wgg2.0.png' },
+      { url: 'images/wgg2.3.png' },
+      { url: 'images/wgg2.2.png' }
     ],
     user_id: 1,
-    created_at: new Date('2011-09-25')
-  },
+    estado: 'nuevo',
+    oferta: false,
+    },
 
   {
     id: 9,
@@ -146,14 +154,15 @@ export class ShoppingBoxComponent {
     ubicacion: 'Leganés',
     descripcion: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
     images: [
-      'images/wgg2.1.png',
-      'images/wgg2.0.png',
-      'images/wgg2.3.png',
-      'images/wgg2.2.png'
+      { url: 'images/wgg2.1.png' },
+      { url: 'images/wgg2.0.png' },
+      { url: 'images/wgg2.3.png' },
+      { url: 'images/wgg2.2.png' }
     ],
     user_id: 1,
-    created_at: new Date('2011-09-25')
-  },
+    estado: 'nuevo',
+    oferta: false,
+    },
 
   {
     id: 10,
@@ -162,13 +171,14 @@ export class ShoppingBoxComponent {
     ubicacion: 'Leganés',
     descripcion: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
     images: [
-      'images/wgg2.1.png',
-      'images/wgg2.0.png',
-      'images/wgg2.3.png',
-      'images/wgg2.2.png'
+      { url: 'images/wgg2.1.png' },
+      { url: 'images/wgg2.0.png' },
+      { url: 'images/wgg2.3.png' },
+      { url: 'images/wgg2.2.png' }
     ],
     user_id: 1,
-    created_at: new Date('2011-09-25')
+    estado: 'nuevo',
+    oferta: false,
   },
 
   {
@@ -178,13 +188,14 @@ export class ShoppingBoxComponent {
     ubicacion: 'Leganés',
     descripcion: 'Coche de noviembre 2022 en perfecto estado, duerme en garaje, 19.000km',
     images: [
-      'images/wgg2.1.png',
-      'images/wgg2.0.png',
-      'images/wgg2.3.png',
-      'images/wgg2.2.png'
+      { url: 'images/wgg2.1.png' },
+      { url: 'images/wgg2.0.png' },
+      { url: 'images/wgg2.3.png' },
+      { url: 'images/wgg2.2.png' }
     ],
     user_id: 1,
-    created_at: new Date('2011-09-25')
+    estado: 'nuevo',
+    oferta: false,  
   }
   ];
 

@@ -26,17 +26,7 @@
               <!-- Columna 1: Información del Producto -->
               <td class="product-info">
                 <!-- Imagen del Producto -->
-                <div class="product-image-container">
-                  @if (getFirstImage(item.product?.images)) {
-                    <img
-                      [src]="getFirstImage(item.product?.images)"
-                      alt="Imagen del producto"
-                      class="product-image"
-                    />
-                  } @else {
-                    <span class="no-image">Sin imagen</span>
-                  }
-                </div>
+              
 
                 <!-- Detalles del Producto -->
                 <div class="product-details">
