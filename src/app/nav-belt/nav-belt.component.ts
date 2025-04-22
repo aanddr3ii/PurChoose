@@ -48,7 +48,6 @@ export class NavBeltComponent {
       this.isUserAdmin = this.authService.getUserRole() === 'admin';
 
       // Actualiza la cantidad de productos en el carrito
-      this.updateCartCount();
     }
   }
 
@@ -83,12 +82,7 @@ export class NavBeltComponent {
     this.router.navigate(['/cart']);
   }
   
-  // Actualizar la cantidad de productos en el carrito
-  updateCartCount(): void {
-    const userId = 1; // Suponemos que esta es la ID del usuario actual
-    const cartItems = this.cartService.getCartItems(userId);
-    this.cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-  }
+
 
   isInvitado(): boolean {
     const user = this.userService.getUser();
