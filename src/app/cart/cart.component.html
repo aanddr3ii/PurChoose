@@ -6,29 +6,15 @@
   <div class="cart-container">
     <h1>Carrito de Compras</h1>
 
-<!-- Botón para Añadir Productos Predeterminados -->
-<button class="admin-action-button add-default-items-button" (click)="addDefaultItems()">
-  <span class="admin-icon">🔒</span> Añadir Productos Predeterminados
-</button>
-
-<!-- Botón para Limpiar Datos Residuales del Historial -->
-<button class="admin-action-button clear-history-button" (click)="clearHistoryData()">
-  <span class="admin-icon">🔒</span> Limpiar Datos Residuales del Historial
-</button>
     <!-- Lista de Carrito (Productos No Pagados) -->
     <h2>Productos en el Carrito</h2>
     @if (cartItems.length > 0) {
       <table>
-
         <tbody>
           @for (item of cartItems; track $index) {
             <tr>
               <!-- Columna 1: Información del Producto -->
               <td class="product-info">
-                <!-- Imagen del Producto -->
-              
-
-                <!-- Detalles del Producto -->
                 <div class="product-details">
                   <div class="product-title">{{ item.product?.nombre || 'Sin título' }}</div>
                   <div class="product-price">{{ item.price }} €</div>
@@ -36,39 +22,41 @@
               </td>
 
               <!-- Columna 2: Cantidad -->
-<td class="quantity-controls">
-  <!-- Botón Incrementar (+) -->
-  <button class="quantity-button" (click)="increaseQuantity($index)">+</button>
+              <td class="quantity-controls">
+                <button class="quantity-button" (click)="increaseQuantity(item.id)">+</button>
+                <input
+                  type="number"
+                  min="1"
+                  [value]="item.quantity"
+                  (input)="updateQuantity(item.id, $event)"
+                  class="quantity-input"
+                />
+                <button class="quantity-button" (click)="decreaseQuantity(item.id)">-</button>
+              </td>
 
-  <!-- Campo de Entrada Numérica -->
-  <input
-    type="number"
-    min="1"
-    [value]="item.quantity"
-    (input)="updateQuantity($index, $event)"
-    class="quantity-input"
-  />
-
-  <!-- Botón Decrementar (-) -->
-  <button class="quantity-button" (click)="decreaseQuantity($index)">-</button>
-</td>
               <!-- Columna 3: Total -->
               <td>{{ item.price * item.quantity }} €</td>
 
               <!-- Columna 4: Acciones -->
               <td class="product-actions">
-                <!-- Botón Eliminar -->
-                <button class="delete-button-top" (click)="removeItem($index)">
+                <button class="delete-button-top" (click)="removeItem(item.id)">
                   <span class="trash-icon">🗑️</span>
                 </button>
 
                 <!-- Barra de Progreso -->
                 <div class="progress-container">
                   <div class="progress-bar">
-                    <!-- Barra de Progreso Continua -->
                     <div
                       class="progress-fill"
-                      [style.width]="calculateProgress(item.status)"
+                      [style.width]="
+                        item.status === 'No pagado'
+                          ? '0%'
+                          : item.status === 'Pagado'
+                          ? '33%'
+                          : item.status === 'Enviado'
+                          ? '66%'
+                          : '100%'
+                      "
                     ></div>
                   </div>
 
@@ -76,13 +64,22 @@
                   <div class="progress-checkpoints">
                     <div
                       class="checkpoint"
-                      [class.active]="item.status === 'No pagado' || item.status === 'Pagado' || item.status === 'Enviado' || item.status === 'Recibido'"
+                      [class.active]="
+                        item.status === 'No pagado' ||
+                        item.status === 'Pagado' ||
+                        item.status === 'Enviado' ||
+                        item.status === 'Recibido'
+                      "
                     >
                       No Pagado
                     </div>
                     <div
                       class="checkpoint"
-                      [class.active]="item.status === 'Pagado' || item.status === 'Enviado' || item.status === 'Recibido'"
+                      [class.active]="
+                        item.status === 'Pagado' ||
+                        item.status === 'Enviado' ||
+                        item.status === 'Recibido'
+                      "
                     >
                       Pagado
                     </div>
@@ -92,23 +89,18 @@
                     >
                       Enviado
                     </div>
-                    <div
-                      class="checkpoint"
-                      [class.active]="item.status === 'Recibido'"
-                    >
+                    <div class="checkpoint" [class.active]="item.status === 'Recibido'">
                       Recibido
                     </div>
                   </div>
                 </div>
 
-                <!-- Botones de Cambio de Estado (Solo para Admins) -->
-                @if (isUserAdmin) {
-                  <div>
-                    <button (click)="changeStatus($index, 'Pagado')">Marcar como Pagado</button>
-                    <button (click)="changeStatus($index, 'Enviado')">Marcar como Enviado</button>
-                    <button (click)="changeStatus($index, 'Recibido')">Marcar como Recibido</button>
-                  </div>
-                }
+                <!-- Botones de Cambio de Estado -->
+                <div>
+                  <button (click)="changeStatus(item.id, 'Pagado')">Marcar como Pagado</button>
+                  <button (click)="changeStatus(item.id, 'Enviado')">Marcar como Enviado</button>
+                  <button (click)="changeStatus(item.id, 'Recibido')">Marcar como Recibido</button>
+                </div>
               </td>
             </tr>
           }
@@ -119,26 +111,24 @@
     }
   </div>
 
-<!-- Resumen de Compra -->
-<div class="summary-container">
-  <h2 class="summary-title">Resumen de Compra</h2>
-
-  <!-- Mensaje si el carrito está vacío -->
-  @if (isCartEmpty()) {
-    <p>No hay productos en el carrito.</p>
-  } @else {
-    <div class="summary-item">
-      <span>Subtotal:</span>
-      <span>{{ calculateSubtotal() }} €</span>
-    </div>
-    <div class="summary-item">
-      <span>Envío:</span>
-      <span>{{ calculateShipping() }} €</span>
-    </div>
-    <div class="summary-total">
-      <span>Total a Pagar:</span>
-      <span>{{ calculateTotal() }} €</span>
-    </div>
-    <a class="summary-action-button" routerLink="/payment" (click)="proceedToCheckout()">Proceder al Pago</a>
-  }
+  <!-- Resumen de Compra -->
+  <div class="summary-container">
+    <h2 class="summary-title">Resumen de Compra</h2>
+    @if (isCartEmpty()) {
+      <p>No hay productos en el carrito.</p>
+    } @else {
+      <div class="summary-item">
+        <span>Subtotal:</span>
+        <span>{{ calculateSubtotal() }} €</span>
+      </div>
+      <div class="summary-item">
+        <span>Envío:</span>
+        <span>{{ calculateShipping() }} €</span>
+      </div>
+      <div class="summary-total">
+        <span>Total a Pagar:</span>
+        <span>{{ calculateTotal() }} €</span>
+      </div>
+    }
+  </div>
 </div>
