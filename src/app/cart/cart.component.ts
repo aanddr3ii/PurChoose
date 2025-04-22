@@ -6,7 +6,6 @@ import { Product } from '../interfaces/product';
 import { AuthService } from '../services/authService/auth.service'; // Importamos el servicio de autenticación
 import { NavBeltComponent } from '../nav-belt/nav-belt.component';
 import { NavCategoriesComponent } from '../nav-categories/nav-categories.component';
-import { CART_ITEM_STATUS, CartItemStatus } from '../models/cart-status';
 
 @Component({
   selector: 'app-cart',
@@ -16,130 +15,70 @@ import { CART_ITEM_STATUS, CartItemStatus } from '../models/cart-status';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartItems: CartItem[] = []; // Productos en el carrito
-  userId: number = 0; // ID del usuario logueado
+  cartItems: CartItem[] = []; // Productos no pagados (carrito)
+  userId: number = 1; // Suponemos que esta es la ID del usuario actual
+  isUserAdmin: boolean = false; // Indicador de administrador
 
   constructor(private cartService: CartService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.userId = this.authService.getUserId(); // Obtiene el ID del usuario logueado
-    this.loadCartItems(); // Carga los productos del carrito
+    this.loadCartItems(); // Cargar productos del carrito
+    this.checkIfUserIsAdmin(); // Verificar si el usuario es administrador
   }
 
   // Cargar productos del carrito del usuario actual
   loadCartItems(): void {
-    this.cartService.getCartItems(this.userId).subscribe({
-      next: (items) => {
-        this.cartItems = items;
-      },
-      error: (error) => {
-        console.error('Error al cargar los productos del carrito:', error);
-      },
-    });
+    this.cartItems = this.cartService.getCartItems(this.userId).filter(item => item.status === 'No pagado');
   }
 
-  // Incrementar la cantidad de un producto
-  increaseQuantity(cartItemId: number): void {
-    const item = this.cartItems.find((i) => i.id === cartItemId);
-    if (!item) {
-      console.error('Producto no encontrado en el carrito');
-      return;
-    }
-
-    item.quantity += 1;
-    this.updateCartItem(cartItemId, { quantity: item.quantity });
+  // Verificar si el usuario es administrador
+  checkIfUserIsAdmin(): void {
+    const userRole = this.authService.getUserRole(); // Obtenemos el rol del usuario
+    this.isUserAdmin = userRole === 'admin'; // El usuario es admin si su rol es 'admin'
   }
 
-  // Decrementar la cantidad de un producto
-  decreaseQuantity(cartItemId: number): void {
-    const item = this.cartItems.find((i) => i.id === cartItemId);
-    if (!item) {
-      console.error('Producto no encontrado en el carrito');
-      return;
-    }
-
-    if (item.quantity > 1) {
-      item.quantity -= 1;
-      this.updateCartItem(cartItemId, { quantity: item.quantity });
-    } else {
-      this.removeItem(cartItemId); // Elimina el producto si la cantidad llega a 0
+  // Calcular el ancho de la barra de progreso basado en el estado
+  calculateProgress(status: 'No pagado' | 'Pagado' | 'Enviado' | 'Recibido'): string {
+    switch (status) {
+      case 'No pagado':
+        return '0%'; // 0% completado
+      case 'Pagado':
+        return '33%'; // 33% completado
+      case 'Enviado':
+        return '66%'; // 66% completado
+      case 'Recibido':
+        return '100%'; // 100% completado
+      default:
+        return '0%'; // Por defecto, 0% si el estado no es reconocido
     }
   }
 
-  // Actualizar la cantidad de un producto
-  updateQuantity(cartItemId: number, event: Event): void {
-    const target = event.target as HTMLInputElement | null;
-    if (!target) {
-      console.error('El evento no tiene un target válido');
-      return;
+  // Obtener la primera imagen de un producto
+  getFirstImage(images: string[] | undefined): string | null {
+    if (!images || images.length === 0) {
+      return null; // Retorna null si no hay imágenes
     }
-
-    const value = parseInt(target.value, 10);
-    const item = this.cartItems.find((i) => i.id === cartItemId);
-    if (!item) {
-      console.error('Producto no encontrado en el carrito');
-      return;
-    }
-
-    if (isNaN(value) || value <= 0) {
-      this.removeItem(cartItemId); // Elimina el producto si la cantidad es inválida o <= 0
-    } else {
-      item.quantity = value;
-      this.updateCartItem(cartItemId, { quantity: item.quantity });
-    }
+    return images[0]; // Retorna la primera imagen
   }
 
-  // Guardar cambios en un producto del carrito
-  private updateCartItem(cartItemId: number, updates: Partial<CartItem>): void {
-    this.cartService.updateCartItem(cartItemId, updates).subscribe({
-      next: () => {
-        console.log('Producto actualizado correctamente');
-      },
-      error: (error) => {
-        console.error('Error al actualizar el producto:', error);
-      },
-    });
-  }
-
-  // Eliminar un producto del carrito
-  removeItem(cartItemId: number): void {
-    if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
-      this.cartService.removeCartItem(cartItemId).subscribe({
-        next: () => {
-          this.loadCartItems(); // Recarga los productos del carrito
-        },
-        error: (error) => {
-          console.error('Error al eliminar el producto:', error);
-        },
-      });
-    }
-  }
-
-  changeStatus(cartItemId: number, newStatus: string): void {
-    // Valida que el estado sea uno de los valores permitidos
-    if (Object.values(CART_ITEM_STATUS).includes(newStatus as CartItemStatus)) {
-      this.cartService.changeStatus(cartItemId, newStatus as CartItemStatus).subscribe({
-        next: () => {
-          this.loadCartItems(); // Recarga los productos del carrito
-        },
-        error: (error) => {
-          console.error('Error al cambiar el estado del producto:', error);
-        },
-      });
-    } else {
-      console.error('Estado inválido:', newStatus);
-    }
-  }
-
-  // Calcular el subtotal del carrito
+  // Calcular el subtotal
   calculateSubtotal(): number {
     return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }
 
   // Calcular el costo de envío (ejemplo: envío gratis si el subtotal supera 500€)
   calculateShipping(): number {
+    if (this.cartItems.length === 0) {
+      return 0; // Si no hay productos en el carrito, el envío es 0€
+    }
+
     const subtotal = this.calculateSubtotal();
     return subtotal >= 500 ? 0 : 10; // Envío gratis si el subtotal es mayor o igual a 500€
+  }
+
+  // Verificar si el carrito está vacío
+  isCartEmpty(): boolean {
+    return this.cartItems.length === 0;
   }
 
   // Calcular el total a pagar (subtotal + envío)
@@ -147,8 +86,125 @@ export class CartComponent implements OnInit {
     return this.calculateSubtotal() + this.calculateShipping();
   }
 
-  // Verificar si el carrito está vacío
-  isCartEmpty(): boolean {
-    return this.cartItems.length === 0;
+  // Incrementar la cantidad
+  increaseQuantity(index: number): void {
+    const item = this.cartItems[index];
+    if (!item) {
+      console.error('Índice inválido en el carrito');
+      return;
+    }
+
+    item.quantity += 1;
+    this.updateCartItem(index);
+  }
+
+  // Decrementar la cantidad
+  decreaseQuantity(index: number): void {
+    const item = this.cartItems[index];
+    if (!item) {
+      console.error('Índice inválido en el carrito');
+      return;
+    }
+
+    if (item.quantity > 1) {
+      item.quantity -= 1;
+      this.updateCartItem(index);
+    } else {
+      this.removeItem(index); // Si la cantidad llega a 0, elimina el producto
+    }
+  }
+
+  // Actualizar la cantidad desde la entrada de texto
+  updateQuantity(index: number, event: Event): void {
+    const target = event.target as HTMLInputElement | null;
+    if (!target) {
+      console.error('El evento no tiene un target válido');
+      return;
+    }
+
+    const value = parseInt(target.value, 10);
+
+    const item = this.cartItems[index];
+    if (!item) {
+      console.error('Índice inválido en el carrito');
+      return;
+    }
+
+    if (isNaN(value) || value <= 0) {
+      this.removeItem(index); // Si la cantidad es inválida o <= 0, elimina el producto
+    } else {
+      item.quantity = value;
+      this.updateCartItem(index);
+    }
+  }
+
+  // Guardar cambios en el carrito
+  private updateCartItem(index: number): void {
+    const item = this.cartItems[index];
+    if (!item) {
+      console.error('Índice inválido en el carrito');
+      return;
+    }
+
+    this.cartService.updateCartItem(this.userId, index, { quantity: item.quantity });
+  }
+
+  // Eliminar un producto del carrito
+  removeItem(index: number): void {
+    if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+      this.cartService.removeCartItem(this.userId, index);
+      this.loadCartItems(); // Recarga los productos del carrito
+    }
+  }
+
+  // Limpiar datos residuales del historial en localStorage
+  clearHistoryData(): void {
+    if (confirm('¿Estás seguro de que quieres eliminar todos los datos residuales del historial?')) {
+      const allItems = this.cartService.getCartItems(this.userId);
+
+      // Filtrar solo los productos no pagados (eliminar productos pagados)
+      const filteredItems = allItems.filter(item => item.status === 'No pagado');
+
+      // Guardar solo los productos no pagados en localStorage
+      this.cartService.saveCartItems(this.userId, filteredItems);
+
+      // Recargar los productos del carrito
+      this.loadCartItems();
+
+      alert('Datos residuales del historial eliminados correctamente.');
+    }
+  }
+
+  // Cambiar el estado de un producto
+  changeStatus(index: number, newStatus: 'No pagado' | 'Pagado' | 'Enviado' | 'Recibido'): void {
+    this.cartService.changeStatus(this.userId, index, newStatus);
+    this.loadCartItems(); // Recarga los productos del carrito
+  }
+
+  // Proceder al pago (simulado)
+  proceedToCheckout(): void {
+    const confirmPayment = confirm('¿Deseas proceder al pago? (Simulación: Introduce detalles de tarjeta)');
+    if (confirmPayment) {
+      // Marcar todos los productos del carrito como "Pagado"
+      this.cartItems.forEach((item, index) => {
+        this.cartService.changeStatus(this.userId, index, 'Pagado');
+      });
+
+      // Recargar los productos del carrito
+      this.loadCartItems();
+
+      alert('Pago completado. Todos los productos han sido marcados como "Pagado".');
+    }
+  }
+
+  // Añadir productos predeterminados al carrito
+  addDefaultItems(): void {
+    // Limpiar datos residuales antes de añadir productos predeterminados
+    this.clearHistoryData();
+
+    // Recargar los productos del carrito
+    this.loadCartItems();
+
+    alert('Productos predeterminados añadidos correctamente.');
   }
 }
