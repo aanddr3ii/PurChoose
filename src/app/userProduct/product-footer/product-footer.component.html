@@ -1,10 +1,12 @@
 <div class="product-footer-bar" role="contentinfo">
     <div class="product-footer">
-        <div class="product-info">
-            <p class="product-title">{{ product?.nombre }}</p>
+      <div class="product-info">
+        <p class="product-title">{{ product?.nombre }}</p>
         <div class="product-space"></div>
-            <span class="product-price">{{ product?.precio }} €</span>
-        </div>
-        <a href="/cart" class="purchase-button" aria-label="buy-button">{{ 'PRODUCT-FOOTER.BUY-BUTTON' | translate }}</a>
+        <span class="product-price">{{ product?.precio }} €</span>
+      </div>
+      <button (click)="addToCart()" class="purchase-button" aria-label="buy-button">
+        {{ 'PRODUCT-FOOTER.BUY-BUTTON' | translate }}
+      </button>
     </div>
-</div>
+  </div>

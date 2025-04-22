@@ -9,19 +9,18 @@ import { CartItem } from '../../interfaces/cart-item';
 export class CartService {
   private cartKey = 'cartItems'; // Clave base para almacenar carritos
 
-  // Obtener todos los productos del carrito de un usuario específico
   getCartItems(userId: number): CartItem[] {
     const storedCart = localStorage.getItem(`${this.cartKey}_${userId}`);
     const cartItems = storedCart ? JSON.parse(storedCart) : [];
-
+  
     // Filtrar y corregir productos inválidos
     return cartItems
-      .filter((item: any) => item.product && item.product.price !== undefined) // Asegurarse de que product y price existan
+      .filter((item: any) => item.product && item.product.precio !== undefined)
       .map((item: CartItem) => ({
         ...item,
-        price: Number(item.product?.precio) || 0, // Convierte explícitamente a número
-        status: item.status || 'No pagado', // Estado predeterminado: 'No pagado'
-        quantity: item.quantity || 1 // Cantidad predeterminada: 1
+        price: Number(item.product?.precio) || 0,
+        status: item.status || 'No pagado',
+        quantity: item.quantity || 1,
       }));
   }
 
