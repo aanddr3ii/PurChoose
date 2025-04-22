@@ -4,6 +4,8 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
 import { AuthService } from '../services/authService/auth.service'; // Servicio de autenticación
 import { CartService } from '../services/cart/cart.service'; // Servicio del carrito
+import { UserService } from '../services/userService/user.service'; // Servicio de usuario
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-nav-belt',
@@ -31,7 +33,8 @@ export class NavBeltComponent {
     private route: ActivatedRoute,
     @Inject(PLATFORM_ID) private platformId: object,
     private authService: AuthService, // Inyecta el servicio de autenticación
-    private cartService: CartService // Inyecta el servicio del carrito
+    private cartService: CartService, // Inyecta el servicio del carrito
+    private userService: UserService // Inyecta el servicio de usuario
   ) {}
 
   ngOnInit(): void {
@@ -86,4 +89,21 @@ export class NavBeltComponent {
     const cartItems = this.cartService.getCartItems(userId);
     this.cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
   }
+
+  isInvitado(): boolean {
+    const user = this.userService.getUser();
+    return user.id === null || user.name?.toLowerCase() === 'invitado';
+  }
+
+  handleProfileClick(): void {
+    const user = this.userService.getUser();
+    const isInvitado = user.id === null || user.name?.toLowerCase() === 'invitado';
+  
+    if (isInvitado) {
+      this.router.navigate(['/login']);
+    } else {
+      this.router.navigate(['/perfil']);
+    }
+  }
+  
 }
