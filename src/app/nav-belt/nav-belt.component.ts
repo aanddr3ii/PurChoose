@@ -83,6 +83,27 @@ export class NavBeltComponent {
     this.router.navigate(['/cart']);
   }
   
+  // Actualizar la cantidad de productos en el carrito
+  updateCartCount(): void {
+    const userId = 1; // Suponemos que esta es la ID del usuario actual
+    const cartItems = this.cartService.getCartItems(userId);
+    this.cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  }
 
+  isInvitado(): boolean {
+    const user = this.userService.getUser();
+    return user.id === null || user.name?.toLowerCase() === 'invitado';
+  }
+
+  handleProfileClick(): void {
+    const user = this.userService.getUser();
+    const isInvitado = user.id === null || user.name?.toLowerCase() === 'invitado';
+  
+    if (isInvitado) {
+      this.router.navigate(['/login']);
+    } else {
+      this.router.navigate(['/perfil']);
+    }
+  }
   
 }
