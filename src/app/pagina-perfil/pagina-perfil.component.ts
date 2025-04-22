@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import{AuthService} from '../services/authService/auth.service';
 // Importamos los componentes necesarios
 import { NavBeltComponent } from "../nav-belt/nav-belt.component";
@@ -32,7 +32,7 @@ export class PaginaPerfilComponent implements OnInit {
   isGuest: boolean = false; // Indica si el usuario es un invitado
   reviews: Review[] = []; // Datos de reseñas (simulados)
 
-  constructor(private authService: AuthService, private userService: UserService) {}
+  constructor(private authService: AuthService, private userService: UserService, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
     try {
@@ -57,11 +57,6 @@ export class PaginaPerfilComponent implements OnInit {
     }
   }
 
-  // Método para cerrar sesión
-  onLogout(): void {
-    this.authService.logout(); // Llamamos al método logout del AuthService
-  }
-
   // Método para editar el perfil
   onEditProfile(): void {
     if (this.isGuest) {
@@ -71,4 +66,10 @@ export class PaginaPerfilComponent implements OnInit {
     alert('Redirigiendo a la página de edición...');
     // Redirigimos al usuario a la página de edición
   }
+
+  cerrarSesion(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
+  
 }
