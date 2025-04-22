@@ -29,7 +29,11 @@ export class AuthService {
     localStorage.removeItem(this.tokenKey);
 
   }
-
+// Obtener el ID del usuario actual
+getUserId(): number {
+  const user = this.getCurrentUser();
+  return user?.id || 0; // Si no hay usuario, devuelve 0
+}
   // Guardar el usuario y el token en localStorage
   setCurrentUser(user: any, token: string): void {
     localStorage.setItem(this.currentUserKey, JSON.stringify(user));

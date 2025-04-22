@@ -22,6 +22,12 @@
     WITH_CATEGORIES_AND_IMAGES: '/productos/with-categories-and-images',
 
   };
+  public static readonly CARRITO = {
+      GET: (userId: number) => `/api/carrito/${userId}`, // Obtener productos del carrito
+      ADD: '/api/carrito', // Añadir producto al carrito
+      UPDATE: (cartItemId: number) => `/api/carrito/${cartItemId}`, // Actualizar producto del carrito
+      DELETE: (cartItemId: number) => `/api/carrito/${cartItemId}`, // Eliminar producto del carrito
+  };
 
     // Endpoints de categorías
     public static readonly CATEGORIAS = {
