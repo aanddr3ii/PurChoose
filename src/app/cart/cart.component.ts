@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart/cart.service';
+import { RouterLink } from '@angular/router';
 import { CartItem } from '../interfaces/cart-item';
 import { Product } from '../interfaces/product';
 import { AuthService } from '../services/authService/auth.service'; // Importamos el servicio de autenticación
@@ -9,7 +10,7 @@ import { NavCategoriesComponent } from '../nav-categories/nav-categories.compone
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [NavBeltComponent, NavCategoriesComponent], // Asegúrate de importar solo los componentes necesarios aquí
+  imports: [NavBeltComponent, NavCategoriesComponent, RouterLink], // Asegúrate de importar solo los componentes necesarios aquí
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })

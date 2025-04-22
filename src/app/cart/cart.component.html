@@ -139,8 +139,6 @@
       <span>Total a Pagar:</span>
       <span>{{ calculateTotal() }} €</span>
     </div>
-    <button class="summary-action-button" (click)="proceedToCheckout()">
-      Proceder al Pago
-    </button>
+    <a class="summary-action-button" routerLink="/payment" (click)="proceedToCheckout()">Proceder al Pago</a>
   }
 </div>
