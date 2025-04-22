@@ -13,7 +13,7 @@
 
         <!-- Mostrar mensaje si es un invitado -->
         @if (isGuest) {
-          <p class="guest-message">Invitado</p>
+          <p class="guest-message"></p>
         } @else {
           <a class="edit-profile-button" routerLink="/editarP" [routerLinkActive]="'active-button'"> Editar Perfil </a>
           <button class="logout-button" (click)="onLogout()">Cerrar Sesión</button>
