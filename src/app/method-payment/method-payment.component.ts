@@ -17,127 +17,54 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './method-payment.component.css'
 })
 export class MethodPaymentComponent {
-// Datos de tarjetas y servicios de pago
-tarjetas: { numero: string; tipo: string; fechaExpiracion: string; cvc: string }[] = [];
-serviciosPago: { nombre: string; email: string }[] = [];
 
-// Estado del popup
-mostrarPopup = false;
+  //  PROPIEDADES Y ARRAYS
+  tarjetas: { numero: string; tipo: string; fechaExpiracion: string; cvc: string }[] = [];
+  serviciosPago: { nombre: string; email: string }[] = [];
+  prefixes = [
+    { value: '+1', flag: '🇺🇸' },
+    { value: '+351', flag: '🇵🇹' },
+    { value: '+33', flag: '🇫🇷' },
+    { value: '+34', flag: '🇪🇸' },
+  ];
 
-// Datos para edición/agregación de tarjetas
-nuevaTarjeta: { tipo?: string; numero?: string; fechaExpiracion?: string; cvc?: string; index?: number } = {};
+  // Estado del popup
+  mostrarPopup = false;
+  servicioSeleccionado: string | null = null;
 
-// Datos para edición/agregación de servicios
-nuevoServicio: { nombre?: string; email?: string; index?: number } = {};
+  // Datos para formularios
+  nuevaTarjeta: { tipo?: string; numero?: string; fechaExpiracion?: string; cvc?: string; index?: number } = {};
+  nuevoServicio: { nombre?: string; email?: string; index?: number } = {};
 
-// Servicio seleccionado en el popup
-servicioSeleccionado: string | null = null;
+  // Formulario y usuario
+  editForm!: FormGroup;
+  user!: User;
 
-constructor(private paymentService: PaymentService, private fb: FormBuilder, private userService: UserService) {}
 
-// Método para agregar o editar una tarjeta
-agregarOEditarTarjeta() {
-  const { tipo, numero, fechaExpiracion, cvc, index } = this.nuevaTarjeta;
+  // CONSTRUCTOR
+  constructor(
+    private paymentService: PaymentService,
+    private fb: FormBuilder,
+    private userService: UserService
+  ) {}
 
-  if (!tipo || !numero || !fechaExpiracion || !cvc || cvc.length !== 3) {
-    alert('Por favor, completa todos los campos correctamente. El CVC debe tener exactamente 3 dígitos.');
-    return;
-  }
+  //  CICLO DE VIDA
+  ngOnInit(): void {
+    this.tarjetas = this.paymentService.getTarjetas();
+    this.serviciosPago = this.paymentService.getServiciosPago();
+    this.user = this.userService.getUser();
 
-  this.paymentService.addOrUpdateTarjeta({ tipo, numero, fechaExpiracion, cvc }, index);
-  this.tarjetas = this.paymentService.getTarjetas(); // Actualizamos la lista local
-  this.cerrarPopup();
-}
-
-// Método para abrir el popup para tarjetas
-abrirPopupTarjeta(tipo?: string, index?: number) {
-  this.mostrarPopup = true;
-
-  if (index !== undefined) {
-    // Si se proporciona un índice, estamos editando una tarjeta existente
-    const tarjetaExistente = this.tarjetas[index];
-    this.nuevaTarjeta = { ...tarjetaExistente, index }; // Cargamos los datos actuales
-  } else {
-    // Si no se proporciona un índice, estamos agregando una nueva tarjeta
-    this.nuevaTarjeta = { tipo: '', numero: '', fechaExpiracion: '', cvc: '', index: undefined };
-  }
-}
-
-// Método para eliminar una tarjeta
-eliminarTarjeta(index: number) {
-  this.paymentService.deleteTarjeta(index);
-  this.tarjetas = this.paymentService.getTarjetas(); // Actualizamos la lista local
-}
-
-// Método para agregar o editar un servicio de pago
-agregarOEditarServicio() {
-  const { nombre, email, index } = this.nuevoServicio;
-
-  if (!nombre || !email) {
-    alert('Por favor, completa todos los campos.');
-    return;
-  }
-
-  this.paymentService.addOrUpdateServicio({ nombre, email }, index);
-  this.serviciosPago = this.paymentService.getServiciosPago(); // Actualizamos la lista local
-  this.cerrarPopup();
-}
-
-// Método para abrir el popup para servicios de pago
-abrirPopupServicio(nombre: string, index?: number) {
-  this.mostrarPopup = true;
-  this.servicioSeleccionado = nombre;
-
-  if (index !== undefined) {
-    // Si se proporciona un índice, estamos editando un servicio existente
-    const servicioExistente = this.serviciosPago[index];
-    this.nuevoServicio = { ...servicioExistente, index }; // Cargamos los datos actuales
-  } else {
-    // Si no se proporciona un índice, estamos agregando un nuevo servicio
-    this.nuevoServicio = { nombre, email: '', index: undefined };
-  }
-}
-
-// Método para eliminar un servicio de pago
-eliminarServicio(index: number) {
-  this.paymentService.deleteServicio(index);
-  this.serviciosPago = this.paymentService.getServiciosPago(); // Actualizamos la lista local
-}
-
-// Método para cerrar el popup
-cerrarPopup() {
-  this.mostrarPopup = false;
-  this.nuevaTarjeta = {}; // Limpiamos el formulario de tarjetas
-  this.nuevoServicio = {}; // Limpiamos el formulario de servicios
-  this.servicioSeleccionado = null; // Limpiamos el servicio seleccionado
-}
-
-///////////////////////////////////////
-///////////////////////////////////////
-prefixes = [
-  { value: '+1', flag: '🇺🇸' },
-  { value: '+351', flag: '🇵🇹' },
-  { value: '+33', flag: '🇫🇷' },
-  { value: '+34', flag: '🇪🇸' },
-]; // Lista de prefijos telefónicos
-
-ngOnInit(): void {
-  // Cargamos los datos desde el servicio
-  this.tarjetas = this.paymentService.getTarjetas();
-  this.serviciosPago = this.paymentService.getServiciosPago();3
-
-  this.user = this.userService.getUser(); // Obtenemos el usuario actual desde el servicio
-
-    // Inicializamos el formulario con los datos actuales del usuario
     this.editForm = this.fb.group({
-      name: [this.user.name, Validators.required], // Campo obligatorio
-      location: [this.user.ubicacion || '', Validators.required], // Ubicación (obligatoria)
-      email: [this.user.email, [Validators.required, Validators.email]], // Email (obligatorio)
-      prefijo: ['+34', Validators.required], // Prefijo telefónico con validación
-      phone: [this.user.telefono?.toString().slice(3) || null, [Validators.required, Validators.pattern(/^\d{9}$/)]], // Teléfono sin prefijo
+      name: [this.user.name, Validators.required],
+      location: [this.user.ubicacion || '', Validators.required],
+      email: [this.user.email, [Validators.required, Validators.email]],
+      prefijo: ['+34', Validators.required],
+      phone: [
+        this.user.telefono?.toString().slice(3) || null,
+        [Validators.required, Validators.pattern(/^\d{9}$/)]
+      ],
     });
 
-    // Validación condicional para password_confirmation
     this.editForm.get('password')?.valueChanges.subscribe((value) => {
       if (value) {
         this.editForm.get('password_confirmation')?.setValidators([Validators.required]);
@@ -146,16 +73,11 @@ ngOnInit(): void {
       }
       this.editForm.get('password_confirmation')?.updateValueAndValidity();
     });
-}
-/* User ubi */
+  }
 
-editForm!: FormGroup; // Formulario reactivo
-user!: User; // Propiedad para almacenar el usuario actual
-
-  // Método para guardar los cambios
+  // MÉTODOS DEL FORMULARIO
   onSubmit(): void {
     if (this.editForm.valid) {
-      // Verificamos que el ID del usuario exista
       if (!this.user.id) {
         this.showErrorPopup('Error: No se encontró el ID del usuario.');
         return;
@@ -163,33 +85,22 @@ user!: User; // Propiedad para almacenar el usuario actual
 
       const formValues = this.editForm.value;
 
-      // Construir el objeto JSON con los datos a enviar
       const updatedUserData = {
         name: formValues.name,
         email: formValues.email,
         prefijo: formValues.prefijo,
-        telefono: formValues.phone ? `${formValues.prefijo}${formValues.phone}` : null, // Concatenar prefijo y teléfono
+        telefono: formValues.phone ? `${formValues.prefijo}${formValues.phone}` : null,
         ubicacion: formValues.location,
       };
 
-      console.log('Datos enviados al backend:', updatedUserData);
-
-      // Enviamos los datos al backend como JSON
       this.userService.editUserInApi(this.user.id, updatedUserData).subscribe({
         next: (response) => {
-          console.log('Respuesta del servidor:', response);
-
-          // Actualizar el usuario actual en localStorage
-          const updatedUser = response.user; // Asegúrate de que el backend devuelve los datos actualizados
-          this.userService.updateCurrentUser(updatedUser);
-
-          // Mostrar mensaje de éxito
+          this.userService.updateCurrentUser(response.user);
           this.showSuccessPopup('¡Cambios guardados exitosamente!');
         },
         error: (error) => {
-          console.error('Error al actualizar el perfil:', error);
           if (error.error && error.error.message) {
-            this.showErrorPopup(error.error.message); // Mostrar mensaje detallado del backend
+            this.showErrorPopup(error.error.message);
           } else {
             this.showErrorPopup('Ocurrió un error inesperado.');
           }
@@ -200,14 +111,82 @@ user!: User; // Propiedad para almacenar el usuario actual
     }
   }
 
-  // Método para mostrar un popup de éxito
   showSuccessPopup(message: string): void {
-    alert(message); // Puedes reemplazar esto con un componente de popup personalizado
+    alert(message);
   }
 
-  // Método para mostrar un popup de error
   showErrorPopup(message: string): void {
-    alert(message); // Puedes reemplazar esto con un componente de popup personalizado
+    alert(message);
   }
 
+  // TARJETAS
+  agregarOEditarTarjeta() {
+    const { tipo, numero, fechaExpiracion, cvc, index } = this.nuevaTarjeta;
+
+    if (!tipo || !numero || !fechaExpiracion || !cvc || cvc.length !== 3) {
+      alert('Por favor, completa todos los campos correctamente. El CVC debe tener exactamente 3 dígitos.');
+      return;
+    }
+
+    this.paymentService.addOrUpdateTarjeta({ tipo, numero, fechaExpiracion, cvc }, index);
+    this.tarjetas = this.paymentService.getTarjetas();
+    this.cerrarPopup();
+  }
+
+  abrirPopupTarjeta(tipo?: string, index?: number) {
+    this.mostrarPopup = true;
+
+    if (index !== undefined) {
+      const tarjetaExistente = this.tarjetas[index];
+      this.nuevaTarjeta = { ...tarjetaExistente, index };
+    } else {
+      this.nuevaTarjeta = { tipo: '', numero: '', fechaExpiracion: '', cvc: '', index: undefined };
+    }
+  }
+
+  eliminarTarjeta(index: number) {
+    this.paymentService.deleteTarjeta(index);
+    this.tarjetas = this.paymentService.getTarjetas();
+  }
+
+  // SERVICIOS DE PAGO
+  agregarOEditarServicio() {
+    const { nombre, email, index } = this.nuevoServicio;
+
+    if (!nombre || !email) {
+      alert('Por favor, completa todos los campos.');
+      return;
+    }
+
+    this.paymentService.addOrUpdateServicio({ nombre, email }, index);
+    this.serviciosPago = this.paymentService.getServiciosPago();
+    this.cerrarPopup();
+  }
+
+  abrirPopupServicio(nombre: string, index?: number) {
+    this.mostrarPopup = true;
+    this.servicioSeleccionado = nombre;
+
+    if (index !== undefined) {
+      const servicioExistente = this.serviciosPago[index];
+      this.nuevoServicio = { ...servicioExistente, index };
+    } else {
+      this.nuevoServicio = { nombre, email: '', index: undefined };
+    }
+  }
+
+  eliminarServicio(index: number) {
+    this.paymentService.deleteServicio(index);
+    this.serviciosPago = this.paymentService.getServiciosPago();
+  }
+
+  //  CERRAR POPUP
+  cerrarPopup() {
+    this.mostrarPopup = false;
+    this.nuevaTarjeta = {};
+    this.nuevoServicio = {};
+    this.servicioSeleccionado = null;
+  }
+
+  // PRODUCTOS POR PAGAR
 }

@@ -175,12 +175,16 @@
   <div class="payment-section">
 
     <!-- Lista de tarjetas -->
-    <ul class="tarjetas-list">
+    <ul class="servicios-list">
       @for (tarjeta of tarjetas; track $index; let i = $index) {
-        <li class="tarjeta-item">
-          <span>{{ tarjeta.tipo }}</span>
-          <button class="action-button action-edit" (click)="abrirPopupTarjeta(tarjeta.tipo, i)">Editar</button>
-          <button class="action-button action-delete" (click)="eliminarTarjeta(i)">Eliminar</button>
+        <li class="payment-card added-service">
+          <span><strong>{{ tarjeta.tipo }}</strong></span>
+          <div class="added-service-header">
+            <div class="card-actionstarjeta">
+              <button class="action-button action-edit" (click)="abrirPopupTarjeta(tarjeta.tipo, i)">Editar</button>
+              <button class="action-button action-delete" (click)="eliminarTarjeta(i)">Eliminar</button>
+            </div>
+          </div>
         </li>
       }
     </ul>
