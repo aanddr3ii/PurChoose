@@ -4,6 +4,8 @@ import { ProductDetailService } from '../../services/ProductDetail/product-detai
 import { CartService } from '../../services/cart/cart.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/authService/auth.service'; // Importa AuthService
+
 @Component({
   selector: 'app-product-footer',
   standalone: true,
@@ -13,16 +15,21 @@ import { Router } from '@angular/router';
 })
 export class ProductFooterComponent implements OnInit {
   product: any = null;
-  userId: number = 1; // ID del usuario actual
+  userId: number | null = null; // Declarar userId como nulo inicialmente
 
   constructor(
     private productDetailService: ProductDetailService,
     private cartService: CartService,
+    private authService: AuthService, // Inyecta AuthService
     private route: ActivatedRoute,
-    private router: Router // Inyecta Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    // Obtener el ID del usuario autenticado
+    this.userId = this.authService.getUserId();
+    console.log('Usuario ID obtenido:', this.userId);
+
     const productId = Number(this.route.snapshot.paramMap.get('id'));
 
     if (productId) {
@@ -40,8 +47,18 @@ export class ProductFooterComponent implements OnInit {
   }
 
   addToCart(): void {
+    if (!this.userId) {
+      console.error('Error: No se encontró un ID de usuario válido.');
+      return;
+    }
+
     if (this.product && this.product.id) {
       const productId = this.product.id; // Extrae el ID del producto
+
+      // Imprime el userId y productId para depuración
+      console.log('Usuario ID antes de enviar:', this.userId);
+      console.log('Producto ID antes de enviar:', productId);
+
       this.cartService.addToCart(this.userId, productId).subscribe({
         next: () => {
           alert('Producto añadido al carrito');
@@ -54,6 +71,5 @@ export class ProductFooterComponent implements OnInit {
     } else {
       console.error('No hay producto disponible para añadir al carrito.');
     }
-  
   }
 }

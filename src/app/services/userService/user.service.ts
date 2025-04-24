@@ -35,17 +35,23 @@ export class UserService {
     const authUser = this.authService.getCurrentUser();
     return authUser ? authUser : this.guestUser;
   }
-
-// Establecer el usuario actual desde la API
-async setCurrentUserFromApi(): Promise<void> {
-  try {
-    const user = await this.authService.getCurrentUser().toPromise();
-    this.currentUser = user || this.guestUser; // Sobrescribe el usuario invitado con el usuario autenticado
-  } catch (error) {
-    console.error('Error al obtener el usuario actual:', error);
-    this.currentUser = this.guestUser; // Si falla, mantenemos al usuario invitado
+  
+  async setCurrentUserFromApi(): Promise<void> {
+    try {
+      const userId = this.authService.getUserId();
+      if (!userId) {
+        console.error('Error: No se encontró un ID de usuario válido.');
+        this.currentUser = this.guestUser;
+        return;
+      }
+  
+      const user = await this.getUserByIdFromApi(userId).toPromise();
+      this.currentUser = user || this.guestUser;
+    } catch (error) {
+      console.error('Error al obtener el usuario actual desde la API:', error);
+      this.currentUser = this.guestUser; // Si falla, mantenemos al usuario invitado
+    }
   }
-}
 
 // Actualizar el usuario actual
 updateUser(updatedUser: Partial<User>): void {
