@@ -3,7 +3,7 @@ import { CartItemStatus } from '../models/cart-status'; // Importa el tipo segur
 
 export interface CartItem {
   id: number;
-  product?: Product;
+  productDetails?: Product; // Cambia 'product' por 'productDetails'
   price: number;
   quantity: number;
   status: CartItemStatus; // Usa el tipo seguro

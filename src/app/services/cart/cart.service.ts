@@ -14,8 +14,8 @@ export class CartService {
   getCartItems(userId: number): Observable<CartItem[]> {
     const url = ApiUrls.CARRITO.GET(userId); // Genera la URL dinámica
     console.log('URL generada para GET:', url); // Depuración: Imprime la URL
-
-    return this.http.get<CartItem[]>(url).pipe(
+  
+    return this.http.get<any[]>(url).pipe(
       catchError((error) => {
         console.error('Error al obtener los productos del carrito:', error);
         return throwError(() => new Error('No se pudieron cargar los productos del carrito.'));
@@ -23,9 +23,10 @@ export class CartService {
       map((items) =>
         items.map((item) => ({
           ...item,
-          price: Number(item.product?.precio) || 0,
-          status: item.status || 'No pagado',
-          quantity: item.quantity || 1,
+          price: Number(item.producto?.precio) || 0, // Obtiene el precio del producto
+          status: item.estado || 'No pagado',       // Usa 'estado' del backend
+          quantity: item.cantidad || 1,            // Usa 'cantidad' del backend
+          productDetails: item.producto || null,   // Asigna los detalles del producto
         }))
       )
     );
@@ -52,9 +53,10 @@ export class CartService {
   }
 
   updateCartItem(cartItemId: number, updates: Partial<CartItem>): Observable<any> {
-    const url = ApiUrls.CARRITO.UPDATE(cartItemId); // Genera la URL dinámica
+    const url = ApiUrls.CARRITO.UPDATE(cartItemId); // URL dinámica para actualizar el carrito
     console.log('URL generada para PUT:', url); // Depuración: Imprime la URL
-
+    console.log('Datos enviados al backend:', updates); // Depuración: Imprime los datos enviados
+  
     return this.http.put(url, updates).pipe(
       catchError((error) => {
         console.error('Error al actualizar el producto del carrito:', error);
