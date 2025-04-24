@@ -295,9 +295,9 @@
 
     <ul class="product-summary">
       
-      @for (item of cartItems; track item.price) {
+      @for (item of cartItems; track $index) {
         <li>
-       
+          <span>{{ item.productDetails?.nombre }}</span>
           <span>{{ item.price | number: '1.2-2' }}€</span>
         </li>
       }
@@ -317,7 +317,7 @@
         with verified payment gateways. Your trust is a priority for us.
       </p>
     </div>
-
+    <br>
     <button class="confirm-btn"
     [disabled]="cartItems.length === 0 || !paymentMethod()"
     (click)="confirmPurchase()">
