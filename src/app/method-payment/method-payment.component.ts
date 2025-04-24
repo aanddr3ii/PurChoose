@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { NavBeltComponent } from '../nav-belt/nav-belt.component';
 import { NavCategoriesComponent } from '../nav-categories/nav-categories.component';
 import { FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -6,7 +6,6 @@ import { PaymentService } from '../services/paymentService/payment.service';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/userService/user.service';
 
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 @Component({
@@ -189,4 +188,68 @@ export class MethodPaymentComponent {
   }
 
   // PRODUCTOS POR PAGAR
+  paymentMethod = signal<{ tipo: 'card' | 'servicio', valor: string } | null>(null);
+
+  seleccionarMetodoDePago(tipo: 'card' | 'servicio', valor: string): void {
+    this.paymentMethod.set({ tipo, valor });
+  }
+  
+
+
+
+
+
+  cartItems = signal([
+    { name: 'et', price: 774.64, quantity: 1 },
+  ]);
+  
+  totalPrice = computed(() =>
+    this.cartItems().reduce((sum, item) => sum + item.price, 0)
+  );
+
+    // Calcular el subtotal del carrito
+  calculateSubtotal(): number {
+    return this.cartItems().reduce((total, item) => total + item.price * item.quantity, 0);
+  }
+
+  // Calcular el costo de envío (ejemplo: gratis si el subtotal >= 500€)
+  calculateShipping(): number {
+    const subtotal = this.calculateSubtotal();
+    return subtotal >= 500 ? 0 : 10;
+  }
+
+  // Calcular el total a pagar (subtotal + envío)
+  calculateTotal(): number {
+    return this.calculateSubtotal() + this.calculateShipping();
+  }
+
+  confirmPurchase(): void {
+    const productos = this.cartItems();
+    const metodo = this.paymentMethod();
+  
+    if (!productos.length) {
+      alert('No hay productos en el carrito.');
+      return;
+    }
+  
+    if (!metodo) {
+      alert('Selecciona un método de pago válido.');
+      return;
+    }
+  
+    const pedido = {
+      productos,
+      subtotal: this.calculateSubtotal(),
+      envio: this.calculateShipping(),
+      total: this.calculateTotal(),
+      metodoPago: metodo
+    };
+  
+    console.log('Pedido confirmado:', pedido);
+    alert('¡Tu pedido ha sido procesado!');
+  }
+  
+  
+  
+  
 }

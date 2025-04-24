@@ -114,17 +114,22 @@
       <h4>Servicios de Pago Añadidos</h4>
       <ul class="servicios-list">
         @for (servicio of serviciosPago; track $index; let i = $index) {
-          <li class="payment-card added-service">
+          <li
+            class="payment-card added-service"
+            [class.selected]="paymentMethod()?.tipo === 'servicio' && paymentMethod()?.valor === servicio.email"
+            (click)="seleccionarMetodoDePago('servicio', servicio.email)"
+          >
             <div class="added-service-header">
               <span class="service-name"><strong>{{ servicio.nombre }}</strong></span>
               <div class="card-actions">
-                <button class="action-button action-edit" (click)="abrirPopupServicio(servicio.nombre, i)">Editar</button>
-                <button class="action-button action-delete" (click)="eliminarServicio(i)">Eliminar</button>
+                <button class="action-button action-edit" (click)="abrirPopupServicio(servicio.nombre, i); $event.stopPropagation()">Editar</button>
+                <button class="action-button action-delete" (click)="eliminarServicio(i); $event.stopPropagation()">Eliminar</button>
               </div>
             </div>
           </li>
         }
       </ul>
+      
       
 
       <!-- Mensaje si no hay servicios agregados -->
@@ -177,17 +182,22 @@
     <!-- Lista de tarjetas -->
     <ul class="servicios-list">
       @for (tarjeta of tarjetas; track $index; let i = $index) {
-        <li class="payment-card added-service">
-          <span><strong>{{ tarjeta.tipo }}</strong></span>
+        <li
+          class="payment-card added-service"
+          [class.selected]="paymentMethod()?.tipo === 'card' && paymentMethod()?.valor === tarjeta.numero"
+          (click)="seleccionarMetodoDePago('card', tarjeta.numero)"
+        >
+          <span><strong>{{ tarjeta.tipo }} •••• {{ tarjeta.numero.slice(-4) }}</strong></span>
           <div class="added-service-header">
             <div class="card-actionstarjeta">
-              <button class="action-button action-edit" (click)="abrirPopupTarjeta(tarjeta.tipo, i)">Editar</button>
-              <button class="action-button action-delete" (click)="eliminarTarjeta(i)">Eliminar</button>
+              <button class="action-button action-edit" (click)="abrirPopupTarjeta(tarjeta.tipo, i); $event.stopPropagation()">Editar</button>
+              <button class="action-button action-delete" (click)="eliminarTarjeta(i); $event.stopPropagation()">Eliminar</button>
             </div>
           </div>
         </li>
       }
     </ul>
+    
 
     <!-- Mensaje si no hay tarjetas registradas -->
     @if (tarjetas.length === 0) {
@@ -279,9 +289,9 @@
   </section>
 
   <section class="right-section">
-  <!--
+
     <h3>Total price</h3>
-    <div class="total-price">{{ totalPrice() | number: '1.2-2' }}€</div>
+    <strong class="total-price">{{ calculateTotal() | currency:'EUR' }}</strong>
 
     <ul class="product-summary">
       
@@ -292,7 +302,13 @@
         </li>
       }
     </ul>
-  -->
+
+    <div>
+      <span>Envío:</span>
+      <span>{{ calculateShipping() | currency:'EUR' }}</span>
+      <br><br>
+    </div>
+
 
     <div class="security-box">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 14.5V16.5M7 10.0288C7.47142 10 8.05259 10 8.8 10H15.2C15.9474 10 16.5286 10 17 10.0288M7 10.0288C6.41168 10.0647 5.99429 10.1455 5.63803 10.327C5.07354 10.6146 4.6146 11.0735 4.32698 11.638C4 12.2798 4 13.1198 4 14.8V16.2C4 17.8802 4 18.7202 4.32698 19.362C4.6146 19.9265 5.07354 20.3854 5.63803 20.673C6.27976 21 7.11984 21 8.8 21H15.2C16.8802 21 17.7202 21 18.362 20.673C18.9265 20.3854 19.3854 19.9265 19.673 19.362C20 18.7202 20 17.8802 20 16.2V14.8C20 13.1198 20 12.2798 19.673 11.638C19.3854 11.0735 18.9265 10.6146 18.362 10.327C18.0057 10.1455 17.5883 10.0647 17 10.0288M7 10.0288V8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8V10.0288" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
@@ -303,6 +319,11 @@
     </div>
 
     <br>
-    <button class="confirm-btn">Continue</button>
+    <button class="confirm-btn"
+    [disabled]="cartItems().length === 0 || !paymentMethod()"
+    (click)="confirmPurchase()">Continue
+    </button>
+
+    <!-- <button class="confirm-btn">Continue</button> -->
   </section>
 </div>
