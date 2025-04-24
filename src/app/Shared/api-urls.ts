@@ -24,8 +24,8 @@
   };
   public static readonly CARRITO = {
       GET: (userId: number) => `${ApiUrls.BASE_URL}/carrito/${userId}`, // Obtener productos del carrito
-      ADD: '/api/carrito', // Añadir producto al carrito
-      UPDATE: (cartItemId: number) => `${ApiUrls.BASE_URL}/carrito/${cartItemId}`, // Actualizar producto del carrito
+      ADD: `${ApiUrls.BASE_URL}/carrito`, // Añadir producto al carrito
+      UPDATE: (userId: number) => `${ApiUrls.BASE_URL}/carrito/${userId}`, // Actualizar producto del carrito
       DELETE: (cartItemId: number) => `${ApiUrls.BASE_URL}/carrito/${cartItemId}`, // Eliminar producto del carrito
   };
 

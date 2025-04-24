@@ -78,7 +78,7 @@
       const item = this.cartItems.find((i) => i.id === cartItemId);
       if (!item) {
         console.error('Producto no encontrado en el carrito');
-        return;
+        return; 
       }
 
       if (isNaN(value) || value <= 0) {

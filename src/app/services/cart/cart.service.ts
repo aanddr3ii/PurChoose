@@ -34,13 +34,15 @@ export class CartService {
   addToCart(userId: number, productId: number, quantity: number = 1): Observable<any> {
     const url = ApiUrls.CARRITO.ADD; // URL para añadir al carrito
     console.log('URL generada para POST:', url); // Depuración: Imprime la URL
-
+  
     const body = {
       user_id: userId,
       producto_id: productId,
       cantidad: quantity,
     };
-
+  
+    console.log('Datos enviados:', body); // Depuración: Imprime los datos enviados
+  
     return this.http.post(url, body).pipe(
       catchError((error) => {
         console.error('Error al añadir el producto al carrito:', error);

@@ -40,12 +40,20 @@ export class ProductFooterComponent implements OnInit {
   }
 
   addToCart(): void {
-    if (this.product) {
-      this.cartService.addToCart(this.userId, this.product); // Añade el producto al carrito
-      alert('Producto añadido al carrito');
-      this.router.navigate(['/cart']); // Redirige al carrito
+    if (this.product && this.product.id) {
+      const productId = this.product.id; // Extrae el ID del producto
+      this.cartService.addToCart(this.userId, productId).subscribe({
+        next: () => {
+          alert('Producto añadido al carrito');
+          this.router.navigate(['/cart']); // Redirige al carrito
+        },
+        error: (error) => {
+          console.error('Error al añadir el producto al carrito:', error);
+        },
+      });
     } else {
       console.error('No hay producto disponible para añadir al carrito.');
     }
+  
   }
 }
