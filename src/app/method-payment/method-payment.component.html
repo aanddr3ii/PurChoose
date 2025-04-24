@@ -295,9 +295,9 @@
 
     <ul class="product-summary">
       
-      @for (item of cartItems(); track item.name) {
+      @for (item of cartItems; track item.price) {
         <li>
-          <span>{{ item.name }}</span>
+       
           <span>{{ item.price | number: '1.2-2' }}€</span>
         </li>
       }
@@ -318,11 +318,12 @@
       </p>
     </div>
 
-    <br>
     <button class="confirm-btn"
-    [disabled]="cartItems().length === 0 || !paymentMethod()"
-    (click)="confirmPurchase()">Continue
+    [disabled]="cartItems.length === 0 || !paymentMethod()"
+    (click)="confirmPurchase()">
+    Continue
     </button>
+
 
     <!-- <button class="confirm-btn">Continue</button> -->
   </section>
