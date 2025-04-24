@@ -23,10 +23,10 @@
 
   };
   public static readonly CARRITO = {
-      GET: (userId: number) => `/api/carrito/${userId}`, // Obtener productos del carrito
+      GET: (userId: number) => `${ApiUrls.BASE_URL}/carrito/${userId}`, // Obtener productos del carrito
       ADD: '/api/carrito', // Añadir producto al carrito
-      UPDATE: (cartItemId: number) => `/api/carrito/${cartItemId}`, // Actualizar producto del carrito
-      DELETE: (cartItemId: number) => `/api/carrito/${cartItemId}`, // Eliminar producto del carrito
+      UPDATE: (cartItemId: number) => `${ApiUrls.BASE_URL}/carrito/${cartItemId}`, // Actualizar producto del carrito
+      DELETE: (cartItemId: number) => `${ApiUrls.BASE_URL}/carrito/${cartItemId}`, // Eliminar producto del carrito
   };
 
     // Endpoints de categorías
