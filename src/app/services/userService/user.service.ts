@@ -16,7 +16,7 @@ export class UserService {
   private guestUser: User = {
     id: 0, // ID especial para el usuario invitado
     name: 'Invitado',
-    email: 'invitado@example.com',
+    email: 'invitado@example.com',  
     password: '', // No tiene contraseña
     role: 'guest', // Rol específico para invitados
     fechaRegistro: new Date(),
@@ -62,11 +62,20 @@ export class UserService {
     return user;
   }
 
-  // Actualizar el usuario actual en el servicio
-  updateCurrentUser(updatedUser: User): void {
-    this.currentUser = { ...this.currentUser, ...updatedUser };
-  }
+/// Actualizar el usuario actual en el servicio y en el localStorage
+updateCurrentUser(updatedUser: User): void {
+  // Asegurarse de que el ID del usuario actual no se sobrescriba
+  const updatedUserData = { ...this.currentUser, ...updatedUser, id: this.currentUser.id };
 
+  // Actualizar el usuario actual con los datos modificados
+  this.currentUser = updatedUserData;
+
+  // Obtener el token actual del localStorage
+  const token = localStorage.getItem('token') || ''; // Usar una cadena vacía si no hay token
+
+  // Actualizar el usuario en el AuthService
+  this.authService.setCurrentUser(this.currentUser, token); // Ahora se pasan ambos argumentos
+}
   // ------------------- Métodos de la API -------------------
 
   // Obtener todos los usuarios desde la API
