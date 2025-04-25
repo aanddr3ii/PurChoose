@@ -1,4 +1,5 @@
 import { Component, signal, computed } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavBeltComponent } from '../nav-belt/nav-belt.component';
 import { NavCategoriesComponent } from '../nav-categories/nav-categories.component';
 import { FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -9,9 +10,15 @@ import { UserService } from '../services/userService/user.service';
 import { CartItem } from '../interfaces/cart-item';
 import { CartService } from '../services/cart/cart.service';
 import { AuthService } from '../services/authService/auth.service';
+import { HttpClient } from '@angular/common/http';
+
+import { forkJoin, of } from 'rxjs'; 
+import { catchError } from 'rxjs/operators';
+
 
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-method-payment',
   standalone: true,
@@ -49,7 +56,9 @@ export class MethodPaymentComponent {
     private paymentService: PaymentService,
     private fb: FormBuilder,
     private userService: UserService,
-    private cartService: CartService, private authService: AuthService
+    private cartService: CartService, private authService: AuthService,
+    private router: Router,
+    private http: HttpClient
   ) {}
 
   //  CICLO DE VIDA
@@ -218,6 +227,53 @@ export class MethodPaymentComponent {
       });
     }
   }
+  
+  // Confirmar compra
+  confirmPurchase(): void {
+    const productos = this.cartItems;
+    const metodo = this.paymentMethod();
+  
+    if (!productos.length) {
+      alert('No hay productos en el carrito.');
+      return;
+    }
+  
+    if (!metodo) {
+      alert('Selecciona un método de pago válido.');
+      return;
+    }
+  
+    const pedido = {
+      productos,
+      subtotal: this.calculateSubtotal(),
+      envio: this.calculateShipping(),
+      total: this.calculateTotal(),
+      metodoPago: metodo
+    };
+  
+    console.log('Pedido confirmado:', pedido);
+  
+    const deleteRequests = productos.map(item =>
+      this.cartService.removeCartItem(item.id).pipe(
+        catchError((err: unknown) => {
+          console.error(`Error eliminando producto ID ${item.id}:`, err);
+          return of(null);
+        })
+      )
+    );
+  
+    forkJoin(deleteRequests).subscribe({
+      next: () => {
+        alert('¡Tu pedido ha sido procesado!');
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.error('Error al vaciar el carrito:', err);
+        alert('Hubo un problema al procesar tu pedido.');
+      }
+    });
+  }
+  
 
   loadCartItems(): void {
     this.cartService.getCartItems(this.userId).subscribe({
@@ -230,59 +286,34 @@ export class MethodPaymentComponent {
       },
     });
   }
-  
-    //GLHF
-    paymentMethod = signal<{ tipo: 'card' | 'servicio', valor: string } | null>(null);
 
-    seleccionarMetodoDePago(tipo: 'card' | 'servicio', valor: string): void {
-      this.paymentMethod.set({ tipo, valor });
-    }
-    
-    // Total solo de precios, sin cantidades (no necesario si ya tienes calculateSubtotal)
-    totalPrice = computed(() =>
-      this.cartItems.reduce((sum, item) => sum + item.price, 0)
-    );
+  //GLHF
+  paymentMethod = signal<{ tipo: 'card' | 'servicio', valor: string } | null>(null);
 
-    // Calcular el subtotal (precio * cantidad)
-    calculateSubtotal(): number {
-      return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-    }
-  
-    // Calcular el costo de envío (ejemplo: gratis si el subtotal >= 500€)
-    calculateShipping(): number {
-      const subtotal = this.calculateSubtotal();
-      return subtotal >= 500 ? 0 : 10;
-    }
-  
-    // Calcular el total a pagar (subtotal + envío)
-    calculateTotal(): number {
-      return this.calculateSubtotal() + this.calculateShipping();
-    }
-  
-  // Confirmar compra
-  confirmPurchase(): void {
-    const productos = this.cartItems; // ¡Sin paréntesis!
-    const metodo = this.paymentMethod();
-
-    if (!productos.length) {
-      alert('No hay productos en el carrito.');
-      return;
-    }
-
-    if (!metodo) {
-      alert('Selecciona un método de pago válido.');
-      return;
-    }
-
-    const pedido = {
-      productos,
-      subtotal: this.calculateSubtotal(),
-      envio: this.calculateShipping(),
-      total: this.calculateTotal(),
-      metodoPago: metodo
-    };
-
-    console.log('Pedido confirmado:', pedido);
-    alert('¡Tu pedido ha sido procesado!');
+  seleccionarMetodoDePago(tipo: 'card' | 'servicio', valor: string): void {
+    this.paymentMethod.set({ tipo, valor });
   }
+  
+  // Total solo de precios, sin cantidades (no necesario si ya tienes calculateSubtotal)
+  totalPrice = computed(() =>
+    this.cartItems.reduce((sum, item) => sum + item.price, 0)
+  );
+
+  // Calcular el subtotal (precio * cantidad)
+  calculateSubtotal(): number {
+    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  }
+
+  // Calcular el costo de envío (ejemplo: gratis si el subtotal >= 500€)
+  calculateShipping(): number {
+    const subtotal = this.calculateSubtotal();
+    return subtotal >= 500 ? 0 : 10;
+  }
+
+  // Calcular el total a pagar (subtotal + envío)
+  calculateTotal(): number {
+    return this.calculateSubtotal() + this.calculateShipping();
+  }
+
+
 }
