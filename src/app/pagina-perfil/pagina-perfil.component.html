@@ -13,9 +13,9 @@
 
         <!-- Mostrar mensaje si es un invitado -->
         @if (isGuest) {
-          <p class="guest-message"></p>
+          <p class="guest-message">Estás viendo el perfil como invitado.</p>
         } @else {
-          <a class="edit-profile-button" routerLink="/editarP" [routerLinkActive]="'active-button'"> Editar Perfil </a>
+          <a class="edit-profile-button" routerLink="/editarP" [routerLinkActive]="'active-button'">Editar Perfil</a>
           <button class="logout-button" (click)="cerrarSesion()">Cerrar Sesión</button>
         }
       </div>
@@ -47,8 +47,7 @@
     </button>
   </div>
 
-  <!-- Botón de logout -->
-  
+  <!-- Contenido dinámico -->
   <div class="profile-content-container">
     <div class="profile-content">
       @if (activeTab === 'info') {

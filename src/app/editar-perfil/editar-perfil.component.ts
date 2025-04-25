@@ -12,7 +12,7 @@ import { MetodosPagoComponentComponent } from '../metodos-pago-component/metodos
   selector: 'app-editar-perfil',
   templateUrl: './editar-perfil.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, NavBeltComponent, NavCategoriesComponent,MetodosPagoComponentComponent],
+  imports: [ReactiveFormsModule, RouterModule, NavBeltComponent, NavCategoriesComponent, MetodosPagoComponentComponent],
   styleUrls: ['./editar-perfil.component.css']
 })
 export class EditarPerfilComponent {
@@ -59,13 +59,19 @@ export class EditarPerfilComponent {
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.editForm.patchValue({ profilePicture: file }); // Actualizamos el campo "profilePicture"
-      this.editForm.get('profilePicture')?.updateValueAndValidity();
-
       // Mostramos una vista previa de la imagen
-      const reader = new FileReader();
-      reader.onload = () => (this.previewImage = reader.result as string);
-      reader.readAsDataURL(file);
+      const readerPreview = new FileReader();
+      readerPreview.onload = () => (this.previewImage = readerPreview.result as string);
+      readerPreview.readAsDataURL(file);
+
+      // Convertimos la imagen a Base64 para enviarla al backend
+      const readerBase64 = new FileReader();
+      readerBase64.onload = () => {
+        const base64String = readerBase64.result as string;
+        this.editForm.patchValue({ profilePicture: base64String }); // Actualizamos el campo "profilePicture"
+        this.editForm.get('profilePicture')?.updateValueAndValidity();
+      };
+      readerBase64.readAsDataURL(file);
     }
   }
 
@@ -87,6 +93,7 @@ export class EditarPerfilComponent {
         prefijo: formValues.prefijo,
         telefono: formValues.phone ? `${formValues.prefijo}${formValues.phone}` : null, // Concatenar prefijo y teléfono
         ubicacion: formValues.location,
+        fotoPerfil: formValues.profilePicture || null, // Imagen codificada en Base64
         password: formValues.password || null, // Solo incluir si se proporciona
         password_confirmation: formValues.password_confirmation || null, // Solo incluir si se proporciona
       };

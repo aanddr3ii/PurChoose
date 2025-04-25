@@ -2,20 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
-import{AuthService} from '../services/authService/auth.service';
-// Importamos los componentes necesarios
+import { AuthService } from '../services/authService/auth.service';
 import { NavBeltComponent } from "../nav-belt/nav-belt.component";
 import { NavCategoriesComponent } from "../nav-categories/nav-categories.component";
 import { InfoPerfilComponent } from '../info-perfil/info-perfil.component';
 import { PublicacionesPerfilComponent } from '../publicaciones-perfil/publicaciones-perfil.component';
 import { ResenasPerfilComponent } from '../resenas-perfil/resenas-perfil.component';
-
-// Importamos las interfaces
 import { User } from '../interfaces/user';
-import { Post } from '../interfaces/post';
 import { Review } from '../interfaces/review';
-
-// Importamos el servicio de usuario
 import { UserService } from '../services/userService/user.service';
 import { CardProductComponent } from "../card-product/card-product.component";
 
@@ -41,6 +35,15 @@ export class PaginaPerfilComponent implements OnInit {
 
       // Obtener el usuario actual
       this.user = this.userService.getUser();
+      console.log('Usuario cargado:', this.user); // Imprime el usuario cargado
+
+      // Asegurarse de que la URL de la imagen tenga el dominio del backend
+      if (this.user.fotoPerfil && !this.user.fotoPerfil.startsWith('http')) {
+        const backendUrl = 'http://localhost:8000'; // URL base del backend
+        this.user.fotoPerfil = `${backendUrl}${this.user.fotoPerfil}`;
+      }
+      console.log('URL de la imagen ajustada:', this.user.fotoPerfil);
+
       this.isGuest = this.user.role === 'guest'; // Verificar si el rol es 'guest'
 
       // Inicializar las reseñas simuladas
@@ -63,13 +66,11 @@ export class PaginaPerfilComponent implements OnInit {
       alert('Debes iniciar sesión para editar tu perfil.');
       return;
     }
-    alert('Redirigiendo a la página de edición...');
-    // Redirigimos al usuario a la página de edición
+    this.router.navigate(['/editarP']);
   }
 
   cerrarSesion(): void {
     this.authService.logout();
     this.router.navigate(['/']);
   }
-  
 }

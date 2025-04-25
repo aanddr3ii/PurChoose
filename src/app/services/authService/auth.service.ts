@@ -6,7 +6,7 @@ import { ApiUrls } from '../../Shared/api-urls'; // Importamos las URLs de la AP
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService {  
   private currentUserKey = 'currentUser'; // Clave para almacenar el usuario en localStorage
   private tokenKey = 'authToken'; // Clave para almacenar el token en localStorage
 
