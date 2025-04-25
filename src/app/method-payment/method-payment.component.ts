@@ -1,4 +1,5 @@
 import { Component, signal, computed } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavBeltComponent } from '../nav-belt/nav-belt.component';
 import { NavCategoriesComponent } from '../nav-categories/nav-categories.component';
 import { FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -6,8 +7,18 @@ import { PaymentService } from '../services/paymentService/payment.service';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/userService/user.service';
 
+import { CartItem } from '../interfaces/cart-item';
+import { CartService } from '../services/cart/cart.service';
+import { AuthService } from '../services/authService/auth.service';
+import { HttpClient } from '@angular/common/http';
+
+import { forkJoin, of } from 'rxjs'; 
+import { catchError } from 'rxjs/operators';
+
+
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-method-payment',
   standalone: true,
@@ -44,7 +55,10 @@ export class MethodPaymentComponent {
   constructor(
     private paymentService: PaymentService,
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private cartService: CartService, private authService: AuthService,
+    private router: Router,
+    private http: HttpClient
   ) {}
 
   //  CICLO DE VIDA
@@ -52,6 +66,15 @@ export class MethodPaymentComponent {
     this.tarjetas = this.paymentService.getTarjetas();
     this.serviciosPago = this.paymentService.getServiciosPago();
     this.user = this.userService.getUser();
+          this.userId = this.authService.getUserId();
+  
+      if (!this.userId) {
+        console.error('Usuario no autenticado');
+        alert('Debes iniciar sesión para ver tu carrito.');
+        return;
+      }
+  
+      this.loadCartItems();
 
     this.editForm = this.fb.group({
       name: [this.user.name, Validators.required],
@@ -188,43 +211,26 @@ export class MethodPaymentComponent {
   }
 
   // PRODUCTOS POR PAGAR
-  paymentMethod = signal<{ tipo: 'card' | 'servicio', valor: string } | null>(null);
+  //LOS MUERTOS DEL PRODUCTO QUE ME CAGO
+  cartItems: CartItem[] = [];
+  userId: number = 0;
 
-  seleccionarMetodoDePago(tipo: 'card' | 'servicio', valor: string): void {
-    this.paymentMethod.set({ tipo, valor });
+  removeItem(cartItemId: number): void {
+    if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+      this.cartService.removeCartItem(cartItemId).subscribe({
+        next: () => {
+          this.loadCartItems();
+        },
+        error: (error) => {
+          console.error('Error al eliminar el producto:', error);
+        },
+      });
+    }
   }
   
-
-
-
-
-
-  cartItems = signal([
-    { name: 'et', price: 774.64, quantity: 1 },
-  ]);
-  
-  totalPrice = computed(() =>
-    this.cartItems().reduce((sum, item) => sum + item.price, 0)
-  );
-
-    // Calcular el subtotal del carrito
-  calculateSubtotal(): number {
-    return this.cartItems().reduce((total, item) => total + item.price * item.quantity, 0);
-  }
-
-  // Calcular el costo de envío (ejemplo: gratis si el subtotal >= 500€)
-  calculateShipping(): number {
-    const subtotal = this.calculateSubtotal();
-    return subtotal >= 500 ? 0 : 10;
-  }
-
-  // Calcular el total a pagar (subtotal + envío)
-  calculateTotal(): number {
-    return this.calculateSubtotal() + this.calculateShipping();
-  }
-
+  // Confirmar compra
   confirmPurchase(): void {
-    const productos = this.cartItems();
+    const productos = this.cartItems;
     const metodo = this.paymentMethod();
   
     if (!productos.length) {
@@ -246,10 +252,68 @@ export class MethodPaymentComponent {
     };
   
     console.log('Pedido confirmado:', pedido);
-    alert('¡Tu pedido ha sido procesado!');
+  
+    const deleteRequests = productos.map(item =>
+      this.cartService.removeCartItem(item.id).pipe(
+        catchError((err: unknown) => {
+          console.error(`Error eliminando producto ID ${item.id}:`, err);
+          return of(null);
+        })
+      )
+    );
+  
+    forkJoin(deleteRequests).subscribe({
+      next: () => {
+        alert('¡Tu pedido ha sido procesado!');
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.error('Error al vaciar el carrito:', err);
+        alert('Hubo un problema al procesar tu pedido.');
+      }
+    });
   }
   
+
+  loadCartItems(): void {
+    this.cartService.getCartItems(this.userId).subscribe({
+      next: (items) => {
+        console.log('Datos del carrito cargados:', items);
+        this.cartItems = items;
+      },
+      error: (error) => {
+        console.error('Error al cargar los productos del carrito:', error);
+      },
+    });
+  }
+
+  //GLHF
+  paymentMethod = signal<{ tipo: 'card' | 'servicio', valor: string } | null>(null);
+
+  seleccionarMetodoDePago(tipo: 'card' | 'servicio', valor: string): void {
+    this.paymentMethod.set({ tipo, valor });
+  }
   
-  
-  
+  // Total solo de precios, sin cantidades (no necesario si ya tienes calculateSubtotal)
+  totalPrice = computed(() =>
+    this.cartItems.reduce((sum, item) => sum + item.price, 0)
+  );
+
+  // Calcular el subtotal (precio * cantidad)
+  calculateSubtotal(): number {
+    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  }
+
+  // Calcular el costo de envío (ejemplo: gratis si el subtotal >= 500€)
+  calculateShipping(): number {
+    const subtotal = this.calculateSubtotal();
+    return subtotal >= 500 ? 0 : 10;
+  }
+
+  // Calcular el total a pagar (subtotal + envío)
+  calculateTotal(): number {
+    return this.calculateSubtotal() + this.calculateShipping();
+  }
+
+
 }
