@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators'; // Importamos los operadores map y tap
+import { Observable, of } from 'rxjs';
 import { User } from '../../interfaces/user'; // Importa la interfaz User
 import { AuthService } from '../../services/authService/auth.service'; // Importamos el servicio Auth
+
 import { ApiUrls } from '../../Shared/api-urls'; // Importamos las URLs de la API
 
 @Injectable({
@@ -53,18 +53,15 @@ export class UserService {
     }
   }
 
-  // Ajustar la URL de la imagen para incluir el prefijo del backend
+  // Actualizar el usuario actual en el servicio
+  updateCurrentUser(updatedUser: User): void {
+    this.currentUser = { ...this.currentUser, ...updatedUser };
+  }
   private adjustImageUrl(user: User): User {
     if (user.fotoPerfil && !user.fotoPerfil.startsWith('http')) {
       user.fotoPerfil = `${this.backendUrl}${user.fotoPerfil}`;
     }
-    console.log('URL ajustada:', user.fotoPerfil); // Imprime la URL ajustada
     return user;
-  }
-
-  // Actualizar el usuario actual en el servicio
-  updateCurrentUser(updatedUser: User): void {
-    this.currentUser = { ...this.currentUser, ...updatedUser };
   }
 
   // ------------------- Métodos de la API -------------------
@@ -76,15 +73,7 @@ export class UserService {
 
   // Obtener un usuario por su ID desde la API
   getUserByIdFromApi(id: number): Observable<User> {
-    return this.http.get<{ success: boolean; user: User }>(ApiUrls.USUARIO.SHOW(id)).pipe(
-      tap((response) => {
-        console.log('Datos originales del backend:', response.user); // Imprime los datos originales
-      }),
-      map((response) => {
-        const user = response.user;
-        return this.adjustImageUrl(user); // Ajusta la URL de la imagen
-      })
-    );
+    return this.http.get<User>(ApiUrls.USUARIO.SHOW(id));
   }
 
   // Editar un usuario existente a través de la API
