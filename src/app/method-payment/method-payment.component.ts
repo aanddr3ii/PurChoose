@@ -50,6 +50,9 @@ export class MethodPaymentComponent {
   editForm!: FormGroup;
   user!: User;
 
+  // Mensaje de error
+  errorMensaje: string = '';
+
 
   // CONSTRUCTOR
   constructor(
@@ -144,16 +147,54 @@ export class MethodPaymentComponent {
   // TARJETAS
   agregarOEditarTarjeta() {
     const { tipo, numero, fechaExpiracion, cvc, index } = this.nuevaTarjeta;
-
-    if (!tipo || !numero || !fechaExpiracion || !cvc || cvc.length !== 3) {
-      alert('Por favor, completa todos los campos correctamente. El CVC debe tener exactamente 3 dígitos.');
+    this.errorMensaje = '';
+  
+    const numeroSanitizado = (numero ?? '').replace(/\s+/g, '');
+  
+    if (!tipo || !numeroSanitizado || !fechaExpiracion || !cvc) {
+      this.errorMensaje = 'Por favor, completa todos los campos.';
       return;
     }
-
-    this.paymentService.addOrUpdateTarjeta({ tipo, numero, fechaExpiracion, cvc }, index);
+  
+    if (!/^\d{16}$/.test(numeroSanitizado)) {
+      this.errorMensaje = 'El número de tarjeta debe tener 16 dígitos.';
+      return;
+    }
+  
+    if (!/^\d{3}$/.test(cvc)) {
+      this.errorMensaje = 'El CVC debe tener exactamente 3 dígitos numéricos.';
+      return;
+    }
+  
+    const fechaRegex = /^(0[1-9]|1[0-2])\/(\d{2}|\d{4})$/;
+    if (!fechaRegex.test(fechaExpiracion)) {
+      this.errorMensaje = 'La fecha debe tener el formato MM/YY o MM/YYYY.';
+      return;
+    }
+  
+    const [mesStr, anioStr] = fechaExpiracion.split('/');
+    const mes = parseInt(mesStr, 10);
+    const anio = parseInt(anioStr.length === 2 ? '20' + anioStr : anioStr, 10);
+  
+    const ahora = new Date();
+    const mesActual = ahora.getMonth() + 1;
+    const anioActual = ahora.getFullYear();
+  
+    if (anio < anioActual || (anio === anioActual && mes < mesActual)) {
+      this.errorMensaje = 'La fecha no puede ser anterior al mes actual.';
+      return;
+    }
+  
+    // Si pasa todas las validaciones
+    this.paymentService.addOrUpdateTarjeta(
+      { tipo, numero: numeroSanitizado, fechaExpiracion, cvc },
+      index
+    );
     this.tarjetas = this.paymentService.getTarjetas();
     this.cerrarPopup();
   }
+  
+  
 
   abrirPopupTarjeta(tipo?: string, index?: number) {
     this.mostrarPopup = true;
@@ -164,6 +205,8 @@ export class MethodPaymentComponent {
     } else {
       this.nuevaTarjeta = { tipo: '', numero: '', fechaExpiracion: '', cvc: '', index: undefined };
     }
+
+    document.body.classList.add('no-scroll'); // <-- Aquí sí se aplica bien
   }
 
   eliminarTarjeta(index: number) {
@@ -195,6 +238,7 @@ export class MethodPaymentComponent {
     } else {
       this.nuevoServicio = { nombre, email: '', index: undefined };
     }
+    document.body.classList.add('no-scroll'); // <-- Aquí sí se aplica bien
   }
 
   eliminarServicio(index: number) {
@@ -208,6 +252,7 @@ export class MethodPaymentComponent {
     this.nuevaTarjeta = {};
     this.nuevoServicio = {};
     this.servicioSeleccionado = null;
+    document.body.classList.remove('no-scroll'); // <-- También quitarlo aquí
   }
 
   // PRODUCTOS POR PAGAR

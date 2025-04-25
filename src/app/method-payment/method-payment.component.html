@@ -217,22 +217,21 @@
           </h4>
 
           <!-- Formulario para agregar/editar tarjetas -->
-          <form class="add-form" #form="ngForm" (ngSubmit)="form.valid && agregarOEditarTarjeta(); cerrarPopup()">
+          <form class="add-form" #form="ngForm" (ngSubmit)="agregarOEditarTarjeta()">
             <div class="form-group">
               <label for="tipo-tarjeta">Tipo de Tarjeta:</label>
               <select 
                 id="tipo-tarjeta" 
                 [(ngModel)]="nuevaTarjeta.tipo" 
                 name="tipo"
-                required
-              >
+                required>
                 <option value="" disabled selected>-- Selecciona un tipo --</option>
                 <option value="Visa">Visa</option>
                 <option value="Mastercard">Mastercard</option>
                 <option value="American Express">American Express</option>
               </select>
             </div>
-
+          
             <div class="form-group">
               <label for="numero-tarjeta">Número de Tarjeta:</label>
               <input 
@@ -244,7 +243,7 @@
                 required
               >
             </div>
-
+          
             <div class="form-group">
               <label for="fecha-expiracion">Fecha de Expiración (MM/YY):</label>
               <input 
@@ -256,7 +255,7 @@
                 required
               >
             </div>
-
+          
             <div class="form-group">
               <label for="cvc">CVC (3 dígitos):</label>
               <input 
@@ -269,7 +268,7 @@
                 required
               >
             </div>
-
+          
             <button type="submit" class="save-button" [disabled]="!form.valid">
               @if (nuevaTarjeta.index !== undefined) {
                 Actualizar
@@ -277,8 +276,13 @@
                 Guardar
               }
             </button>
+          
             <button type="button" class="cancel-button" (click)="cerrarPopup()">Cancelar</button>
-          </form>
+          
+            @if (errorMensaje) {
+              <p class="form-error"><strong>{{ errorMensaje }}</strong></p>
+            }
+          </form>          
         </div>
       </div>
     }

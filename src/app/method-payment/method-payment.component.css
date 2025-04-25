@@ -280,6 +280,14 @@ h3 {
   z-index: 1000;
 }
 
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+
+
 /* Contenido del popup */
 .popup-content {
   background-color: #fff;
