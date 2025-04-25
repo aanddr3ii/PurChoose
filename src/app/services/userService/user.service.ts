@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators'; // Importamos los operadores map y tap
+import { Observable, of } from 'rxjs';
 import { User } from '../../interfaces/user'; // Importa la interfaz User
 import { AuthService } from '../../services/authService/auth.service'; // Importamos el servicio Auth
+
 import { ApiUrls } from '../../Shared/api-urls'; // Importamos las URLs de la API
 
 @Injectable({
@@ -16,7 +16,7 @@ export class UserService {
   private guestUser: User = {
     id: 0, // ID especial para el usuario invitado
     name: 'Invitado',
-    email: 'invitado@example.com',  
+    email: 'invitado@example.com',
     password: '', // No tiene contraseña
     role: 'guest', // Rol específico para invitados
     fechaRegistro: new Date(),
@@ -53,29 +53,17 @@ export class UserService {
     }
   }
 
-  // Ajustar la URL de la imagen para incluir el prefijo del backend
+  // Actualizar el usuario actual en el servicio
+  updateCurrentUser(updatedUser: User): void {
+    this.currentUser = { ...this.currentUser, ...updatedUser };
+  }
   private adjustImageUrl(user: User): User {
     if (user.fotoPerfil && !user.fotoPerfil.startsWith('http')) {
       user.fotoPerfil = `${this.backendUrl}${user.fotoPerfil}`;
     }
-    console.log('URL ajustada:', user.fotoPerfil); // Imprime la URL ajustada
     return user;
   }
 
-/// Actualizar el usuario actual en el servicio y en el localStorage
-updateCurrentUser(updatedUser: User): void {
-  // Asegurarse de que el ID del usuario actual no se sobrescriba
-  const updatedUserData = { ...this.currentUser, ...updatedUser, id: this.currentUser.id };
-
-  // Actualizar el usuario actual con los datos modificados
-  this.currentUser = updatedUserData;
-
-  // Obtener el token actual del localStorage
-  const token = localStorage.getItem('token') || ''; // Usar una cadena vacía si no hay token
-
-  // Actualizar el usuario en el AuthService
-  this.authService.setCurrentUser(this.currentUser, token); // Ahora se pasan ambos argumentos
-}
   // ------------------- Métodos de la API -------------------
 
   // Obtener todos los usuarios desde la API
@@ -85,15 +73,7 @@ updateCurrentUser(updatedUser: User): void {
 
   // Obtener un usuario por su ID desde la API
   getUserByIdFromApi(id: number): Observable<User> {
-    return this.http.get<{ success: boolean; user: User }>(ApiUrls.USUARIO.SHOW(id)).pipe(
-      tap((response) => {
-        console.log('Datos originales del backend:', response.user); // Imprime los datos originales
-      }),
-      map((response) => {
-        const user = response.user;
-        return this.adjustImageUrl(user); // Ajusta la URL de la imagen
-      })
-    );
+    return this.http.get<User>(ApiUrls.USUARIO.SHOW(id));
   }
 
   // Editar un usuario existente a través de la API
