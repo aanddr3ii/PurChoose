@@ -14,34 +14,27 @@
           @for (item of cartItems; track $index) {
             <tr>
               <!-- Columna 1: Información del Producto -->
-              <td class="product-info">
-                <div class="product-details">
-                  <div class="product-title">{{ item.productDetails?.nombre || 'Sin título' }}</div>
-                  <div class="product-price">{{ item.price }} €</div>
-                </div>
-              </td>
+              <div class="info">
+                <div class="title">{{ item.productDetails?.nombre ?? 'Sin título' }}</div>
+                <div class="price">{{ item.price }} €</div>
+              </div>
+
 
               <!-- Columna 2: Cantidad -->
-              <td class="quantity-controls">
-                <button class="quantity-button" (click)="increaseQuantity(item.id)">+</button>
-                <input
-                  type="number"
-                  min="1"
-                  [value]="item.quantity"
-                  (input)="updateQuantity(item.id, $event)"
-                  class="quantity-input"
-                />
-                <button class="quantity-button" (click)="decreaseQuantity(item.id)">-</button>
-              </td>
+              <div class="item-right">
+                <div class="quantity">
+                  <button (click)="decreaseQuantity(item.id)">−</button>
+                  <input type="number" min="1" [value]="item.quantity" (input)="updateQuantity(item.id, $event)" />
+                  <button (click)="increaseQuantity(item.id)">+</button>
+                </div>
+              </div>
 
               <!-- Columna 3: Total -->
-              <td>{{ item.price * item.quantity }} €</td>
+              <div class="total">{{ item.price * item.quantity }} €</div>
 
               <!-- Columna 4: Acciones -->
               <td class="product-actions">
-                <button class="delete-button-top" (click)="removeItem(item.id)">
-                  <span class="trash-icon">🗑️</span>
-                </button>
+                <button class="remove-btn" (click)="removeItem(item.id)">✕</button>
 
                 <!-- Barra de Progreso -->
                 <div class="progress-container">
@@ -96,10 +89,10 @@
                 </div>
 
                 <!-- Botones de Cambio de Estado -->
-                <div>
-                  <button (click)="changeStatus(item.id, 'Pagado')">Marcar como Pagado</button>
-                  <button (click)="changeStatus(item.id, 'Enviado')">Marcar como Enviado</button>
-                  <button (click)="changeStatus(item.id, 'Recibido')">Marcar como Recibido</button>
+                <div class="status-buttons">
+                  <button (click)="changeStatus(item.id, 'Pagado')">Pagado</button>
+                  <button (click)="changeStatus(item.id, 'Enviado')">Enviado</button>
+                  <button (click)="changeStatus(item.id, 'Recibido')">Recibido</button>
                 </div>
               </td>
             </tr>
@@ -107,29 +100,31 @@
         </tbody>
       </table>
     } @else {
-      <p>No hay productos en el carrito.</p>
+      <p class="empty-cart">Tu carrito está vacío.</p>
     }
   </div>
 
   <!-- Resumen de Compra -->
   <div class="summary-container">
     <h2 class="summary-title">Resumen de Compra</h2>
-    @if (isCartEmpty()) {
-      <p>No hay productos en el carrito.</p>
-    } @else {
-      <div class="summary-item">
-        <span>Subtotal:</span>
+    @if (!isCartEmpty()) {
+      <div class="summary-line">
+        <span>Subtotal</span>
         <span>{{ calculateSubtotal() }} €</span>
       </div>
-      <div class="summary-item">
-        <span>Envío:</span>
+      <div class="summary-line">
+        <span>Envío</span>
         <span>{{ calculateShipping() }} €</span>
       </div>
-      <div class="summary-total">
-        <span>Total a Pagar:</span>
+      <div class="summary-line total">
+        <span>Total</span>
         <span>{{ calculateTotal() }} €</span>
       </div>
-      <a class="confirm-btn" routerLink="/payment">Continue</a>
+    
+      <button class="checkout-btn" routerLink="/payment">Continuar</button>
+    } @else {
+      <p class="empty-cart">No hay productos en el carrito.</p>
     }
+    
   </div>
 </div>
