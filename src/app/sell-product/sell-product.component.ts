@@ -24,7 +24,7 @@ import { SellProductPictureComponent } from '../sell-product-picture/sell-produc
 export class SellProductComponent {
   productForm!: FormGroup;
   categories: Category[] = [];
-  selectedCategories: number[] = []; // Categorías seleccionadas
+  selectedCategories: (number | null)[] = []; // ← NO pongas ningún valor inicial
   selectedFiles: File[] = []; // Imágenes seleccionadas
 
   constructor(
@@ -68,7 +68,7 @@ export class SellProductComponent {
 
   // Añadir un nuevo campo de categoría
   addCategoryField(): void {
-    this.selectedCategories.push(1); // Añade un nuevo campo vacío
+    this.selectedCategories.push(null); // Añade un nuevo campo vacío
   }
 
   // Eliminar un campo de categoría
@@ -80,6 +80,7 @@ export class SellProductComponent {
   onFilesSelected(files: File[]): void {
     this.selectedFiles = files;
   }
+
 
   onSubmit(): void {
     if (this.productForm.invalid) {

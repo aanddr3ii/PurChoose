@@ -1,216 +1,204 @@
-/* Parent Container */
-.sell-product-container {
-    display: block;
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1rem;
-}
-  
-  /* Form Container */
-.sell-product-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background-color: #fff;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-  
-  /* Form Groups */
-.sell-product-form-group {
-    display: flex;
-    flex-direction: column;
+:host {
+  display: block;
+  font-family: 'Arial';
+  box-sizing: border-box;
 }
 
-/* Estilos generales */
+/* Contenedor principal */
 .sell-product-container {
-  max-width: 600px;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 480px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  padding-bottom: 50px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Formulario */
 .sell-product-form {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
+/* Form groups */
 .sell-product-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  width: 100%;
+  text-align: left;
 }
 
+/* Etiquetas */
 .sell-product-label {
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 600;
   color: #333;
+  margin-bottom: 5px;
+  display: block;
 }
 
+/* Inputs, selects y textarea */
 .sell-product-input,
 .sell-product-select,
 .sell-product-textarea {
+  width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
   font-size: 14px;
-  transition: border-color 0.3s ease;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
 }
 
 .sell-product-input:focus,
 .sell-product-select:focus,
 .sell-product-textarea:focus {
   border-color: #007bff;
-  outline: none;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+  outline: 2px solid #0056b3;
 }
 
+/* Textarea */
 .sell-product-textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 100px;
 }
 
-.dynamic-category-row {
+/* Checkbox y label */
+.sell-product-checkbox-wrapper {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.sell-product-select {
-  flex-grow: 1;
+/* Categorías dinámicas */
+.dynamic-category-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px; /* ← esto es lo nuevo */
 }
 
+
+/* Botones de eliminar categoría */
 .remove-category-button {
-  background-color: #ff4d4d;
+  background-color: #dc3545;
   color: white;
   border: none;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 4px;
+  padding: 6px 10px;
   font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
+.remove-category-button:hover {
+  background-color: #c82333;
+}
+
+/* Botón de añadir categoría */
 .add-category-button {
   background-color: #007bff;
   color: white;
   border: none;
   padding: 10px;
-  cursor: pointer;
-  border-radius: 4px;
   font-size: 14px;
-  text-align: center;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .add-category-button:hover {
   background-color: #0056b3;
 }
 
+/* Botón de crear producto */
 .sell-product-submit {
-  background-color: #28a745;
+  width: 100%;
+  padding: 14px;
+  background-color: #007bff;
   color: white;
-  border: none;
-  padding: 12px;
-  cursor: pointer;
-  border-radius: 4px;
   font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .sell-product-submit:hover {
-  background-color: #218838;
+  background-color: #0056b3;
 }
 
+/* Hint de ayuda */
 .sell-product-hint {
   font-size: 12px;
   color: #6c757d;
   margin-top: 4px;
 }
-  
-  /* Labels */
-.sell-product-label {
-    display: inline-block;
-    margin-bottom: 0.25rem;
-    font-weight: 600;
+
+/* Responsive */
+@media (max-width: 600px) {
+  .sell-product-container {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .sell-product-submit {
+    font-size: 15px;
+  }
 }
-  
-  /* Inputs, Textarea, Select */
-.sell-product-input,
-.sell-product-textarea,
-.sell-product-select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
-    font-size: 1rem;
-    width: 100%;
+
+/* Imagenes seleccionadas */
+.sell-product-picture-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
 }
-  
-  /* Checkbox + Label Row */
-.sell-product-checkbox {
-    width: auto;
-    margin-right: 0.5rem;
+
+.sell-product-picture-preview img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
-  
-.sell-product-checkbox-wrapper {
-    flex-direction: row;
-    align-items: center;
+
+/* Botón de subida de imágenes */
+.sell-product-upload-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
-  
-.sell-product-checkbox-wrapper .sell-product-label {
-    margin-right: 0.5rem;
-    margin-bottom: 0; /* override default if needed */
+
+.sell-product-upload-button:hover {
+  background-color: #0056b3;
 }
-  
-  /* Category Row */
-.cat-row {
-    flex-direction: row;
-    align-items: flex-end; /* or 'center' */
-    justify-content: space-between;
-    gap: 0.5rem;
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-  
-.cat-row-left {
-    display: flex;
-    flex-direction: column;
+
+.category-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f8f9fa;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
-  
-  /* Button for toggling category form */
-.plus-button {
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.5rem;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-bottom: 0.25rem;
-}
-  
-.plus-button:hover {
-    background-color: #218838;
-}
-  
-  /* Optional: style the "Add Category" form row */
-.sell-product-add-category {
-    flex-direction: column;
-    gap: 0.5rem;
-}
-  
-  /* Submit Button */
-.sell-product-submit {
-    align-self: flex-end;
-    padding: 0.75rem 1.5rem;
-    background-color: #0077cc;
-    color: #fff;
-    border: none;
-    border-radius: 0.25rem;
-    font-size: 1rem;
-    cursor: pointer;
-}
-  
-.sell-product-submit:hover {
-    background-color: #005fa3;
-}
-  
+
