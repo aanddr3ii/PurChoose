@@ -140,4 +140,39 @@ export class ProductService {
       })
     );
   }
+
+  /**
+   * Obtiene los productos de un usuario específico.
+   * @param userId ID del usuario.
+   * @returns Un Observable que emite la lista de productos del usuario.
+   */
+  getProductsByUserId(userId: number): Observable<{
+    user: { id: number; nombre: string; email: string };
+    productos: {
+      id: number;
+      titulo: string;
+      precio: number;
+      publicado: string;
+      modificado: string;
+      imagen: string | null;
+    }[];
+  }> {
+    return this.http.get<{
+      user: { id: number; nombre: string; email: string };
+      productos: {
+        id: number;
+        titulo: string;
+        precio: number;
+        publicado: string;
+        modificado: string;
+        imagen: string | null;
+      }[];
+    }>(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);
+  }
+  
+
+
+  
+  
+  
 }
