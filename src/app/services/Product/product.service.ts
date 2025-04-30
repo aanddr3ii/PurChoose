@@ -9,6 +9,8 @@ import { ApiUrls } from '../../Shared/api-urls'; // Importa las URLs de la API
   providedIn: 'root',
 })
 export class ProductService {
+  private apiUrl: string = ApiUrls.BASE_URL;
+
   constructor(private http: HttpClient) {}
 
   /**
@@ -169,10 +171,10 @@ export class ProductService {
       }[];
     }>(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);
   }
-  
 
-
-  
+  getProductById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/productos/${id}`);
+  }
   
   
 }
