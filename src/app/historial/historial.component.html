@@ -1,0 +1,32 @@
+<div class="historial-container">
+    <h1>Mi Historial de Compras</h1>
+  
+    <!-- Mensaje si no hay registros -->
+    @if (historial.length === 0) {
+      <div class="no-items-message">
+        No tienes ningún registro en tu historial.
+      </div>
+    } @else {
+      <!-- Lista de tarjetas -->
+      <div class="historial-grid">
+        @for (item of historial; track item.id) {
+          <div class="historial-card">
+            <h3>{{ item.producto.nombre }}</h3>
+            <p>Cantidad: {{ item.cantidad }}</p>
+            <p>Precio Total: {{ item.precio_total }}</p>
+            <p>Estado: {{ item.estado }}</p>
+  
+            <!-- Botones de acción -->
+            <div class="actions">
+              <button class="action-button edit" (click)="updateItem(item.id, { estado: 'recibido' })">
+                Marcar como Recibido
+              </button>
+              <button class="action-button delete" (click)="deleteItem(item.id)">
+                Eliminar
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>

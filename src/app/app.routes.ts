@@ -34,6 +34,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { HistorialComponent } from './historial/historial.component';
 
 export const routes: Routes = [
     // Index
@@ -55,7 +56,8 @@ export const routes: Routes = [
     // Where you see the products you buy and sell "the progress"
     { path: 'shopping-InProgress', component: ShoppingInProgressComponent },
     { path: 'shopping-Finalized', component: ShoppingFinalizedComponent },
-    
+    { path: 'historial', component: HistorialComponent }, // Nueva ruta para el historial
+
     // Shopping
     { path: 'payment', component: MethodPaymentComponent },
 

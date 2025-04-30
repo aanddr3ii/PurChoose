@@ -1,12 +1,12 @@
 /* Reset básico */
-* {
+.profile-container * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 /* Estilos generales */
-body {
+.profile-container body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f9f9f9;
   color: #333;
@@ -24,7 +24,7 @@ body {
 }
 
 /* Primer recuadro (encabezado) */
-.profile-header-container {
+.profile-container .profile-header-container {
   display: flex;
   align-items: center;
   justify-content: space-between; /* Separa foto/info de los botones */
@@ -33,13 +33,13 @@ body {
   border-bottom: 1px solid #eaeaea;
 }
 
-.profile-header {
+.profile-container .profile-header {
   display: flex;
   align-items: center;
   flex-grow: 1; /* Asegura que la información ocupe el espacio disponible */
 }
 
-.profile-avatar img.avatar {
+.profile-container .profile-avatar img.avatar {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -48,25 +48,25 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.profile-info {
+.profile-container .profile-info {
   margin-left: 20px;
 }
 
-.profile-name {
+.profile-container .profile-name {
   font-size: 28px;
   font-weight: bold;
   margin: 0 0 10px;
   color: #333;
 }
 
-.guest-message {
+.profile-container .guest-message {
   font-size: 16px;
   color: #888;
 }
 
 /* Botones de acción (Editar Perfil y Cerrar Sesión) */
-.edit-profile-button,
-.logout-button {
+.profile-container .edit-profile-button,
+.profile-container .logout-button {
   display: block; /* Asegura que los botones estén uno encima del otro */
   margin-top: 10px; /* Espaciado entre los botones */
   padding: 10px 20px;
@@ -79,35 +79,35 @@ body {
   transition: all 0.3s ease; /* Transición suave para efectos hover */
 }
 
-.edit-profile-button {
+.profile-container .edit-profile-button {
   background-color: #007bff;
   color: #fff;
   border: none;
 }
 
-.edit-profile-button:hover {
+.profile-container .edit-profile-button:hover {
   background-color: #0056b3;
 }
 
-.logout-button {
+.profile-container .logout-button {
   background-color: #ff4d4d; /* Rojo brillante por defecto */
   color: #fff;
   border: none;
 }
 
-.logout-button:hover {
+.profile-container .logout-button:hover {
   background-color: #cc0000; /* Rojo más oscuro en hover */
 }
 
 /* Botones de navegación */
-.profile-tabs {
+.profile-container .profile-tabs {
   display: flex;
   justify-content: center; /* Centra los botones horizontalmente */
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.tab-button {
+.profile-container .tab-button {
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
@@ -119,17 +119,17 @@ body {
   transition: all 0.3s ease;
 }
 
-.tab-button.active {
+.profile-container .tab-button.active {
   background-color: #007bff;
   color: #fff;
 }
 
-.tab-button:hover:not(.active) {
+.profile-container .tab-button:hover:not(.active) {
   background-color: #eaeaea;
 }
 
 /* Contenido dinámico */
-.profile-content-container {
+.profile-container .profile-content-container {
   padding: 20px;
   background-color: #fafafa;
   border-radius: 10px;
@@ -137,37 +137,37 @@ body {
 }
 
 /* Componentes hijos */
-app-info-perfil,
-app-card-product,
-app-resenas-perfil {
+.profile-container app-info-perfil,
+.profile-container app-card-product,
+.profile-container app-resenas-perfil {
   display: block;
   margin-bottom: 20px;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .profile-header-container {
+  .profile-container .profile-header-container {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .profile-avatar img.avatar {
+  .profile-container .profile-avatar img.avatar {
     width: 100px;
     height: 100px;
   }
 
-  .profile-info {
+  .profile-container .profile-info {
     margin-left: 0;
     margin-top: 15px;
   }
 
-  .profile-tabs {
+  .profile-container .profile-tabs {
     flex-direction: column;
     align-items: center; /* Centra los botones verticalmente en pantallas pequeñas */
     gap: 5px;
   }
 
-  .tab-button {
+  .profile-container .tab-button {
     width: 100%;
     text-align: center;
   }

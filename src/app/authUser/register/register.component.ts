@@ -48,6 +48,9 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       const userData = this.registerForm.value;
 
+      // Imprimir los datos que se enviarán a Laravel
+      console.log('Datos enviados al backend:', userData);
+
       // Llamar al servicio para registrar al usuario
       this.auth.register(userData).subscribe({
         next: (response) => {

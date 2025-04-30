@@ -33,17 +33,17 @@
     </button>
     <button 
       class="tab-button" 
-      [class.active]="activeTab === 'publicaciones'" 
-      (click)="activeTab = 'publicaciones'"
-    >
-      Publicaciones
-    </button>
-    <button 
-      class="tab-button" 
       [class.active]="activeTab === 'reseñas'" 
       (click)="activeTab = 'reseñas'"
     >
       Reseñas
+    </button>
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 'historial'" 
+      (click)="activeTab = 'historial'"
+    >
+      Historial
     </button>
   </div>
 
@@ -57,6 +57,30 @@
         <app-card-product></app-card-product>
       } @else if (activeTab === 'reseñas') {
         <app-resenas-perfil [reviews]="reviews"></app-resenas-perfil>
+      } @else if (activeTab === 'historial') {
+        <!-- Mostrar el historial -->
+        <div class="historial-container">
+          <h1>Mi Historial de Compras</h1>
+
+          <!-- Mensaje si no hay registros -->
+          @if (historial.length === 0) {
+            <div class="no-items-message">
+              No tienes ningún registro en tu historial.
+            </div>
+          } @else {
+            <!-- Lista de registros del historial -->
+            <div class="historial-grid">
+              @for (item of historial; track item.id) {
+                <div class="historial-item">
+                  <h3>{{ item.producto.nombre }}</h3>
+                  <p>Cantidad: {{ item.cantidad }}</p>
+                  <p>Precio Total: {{ item.precio_total }}</p>
+                  <p>Estado: {{ item.estado }}</p>
+                </div>
+              }
+            </div>
+          }
+        </div>
       }
     </div>
   </div>
