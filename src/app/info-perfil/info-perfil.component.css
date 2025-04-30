@@ -1,64 +1,97 @@
-/* Aplicamos la fuente moderna al cuerpo del documento */
+/* Estilos generales */
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  color: #333333; /* Color de texto principal */
+  color: #333;
+  line-height: 1.6;
 }
 
 .info-perfil {
-  display: flex;
-  flex-direction: column; /* Diseño en columna */
-  align-items: center; /* Centramos horizontalmente */
-  padding: 20px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .profile-info {
-  text-align: center; /* Centramos el texto */
-  max-width: 400px; /* Limitamos el ancho para evitar que se expanda demasiado */
-  width: 100%; /* Aseguramos que ocupe todo el espacio disponible */
-  padding: 10px; /* Espaciado interno */
+  text-align: center;
 }
 
+/* Estilo del nombre del perfil */
 .profile-name {
-  font-size: 28px; /* Aumentamos el tamaño del nombre */
-  margin-bottom: 10px;
-  color: #2c3e50; /* Color de texto moderno */
-  font-weight: 600; /* Usamos un peso más moderno */
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
 }
 
+/* Estilo de las estadísticas del perfil */
 .profile-stats {
   display: flex;
-  flex-wrap: wrap; /* Permitimos que los elementos se envuelvan en pantallas pequeñas */
-  justify-content: center; /* Centramos los elementos */
-  gap: 15px; /* Espaciado entre los elementos */
-  margin-bottom: 15px;
-  font-size: 14px;
-  color: #555;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  text-align: left;
 }
 
 .profile-stats span {
-  padding: 5px 10px; /* Espaciado interno */
-  background-color: #eaeaea; /* Fondo suave para cada estadística */
-  border-radius: 5px; /* Redondeamos las esquinas */
-  font-weight: 500; /* Peso medio para destacar */
-}
-
-.additional-info {
-  display: flex;
-  flex-direction: column; /* Organizamos la información adicional en columna */
-  align-items: center; /* Centramos horizontalmente */
-  font-size: 14px;
+  font-size: 1rem;
   color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f4f8; /* Mantenemos un fondo suave para cada estadística */
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.additional-info span {
-  margin: 5px 0; /* Espaciado vertical entre cada dato */
-  padding: 5px 10px; /* Espaciado interno */
-  background-color: #f9f9f9; /* Fondo muy claro para cada dato */
-  border-radius: 5px; /* Redondeamos las esquinas */
-  width: 100%; /* Aseguramos que ocupe todo el ancho */
-  text-align: left; /* Alineamos el texto a la izquierda */
-  box-sizing: border-box; /* Incluimos el padding en el ancho */
-  font-weight: 400; /* Peso ligero para la información adicional */
+.profile-stats span:hover {
+  background: #dfeaf3;
+  transform: scale(1.02);
+}
+
+
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+  .profile-name {
+    font-size: 2rem;
+  }
+
+  .profile-stats span {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-name {
+    font-size: 1.8rem;
+  }
+
+  .profile-stats span {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+}
+
+/* Animaciones adicionales */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-perfil {
+  animation: fadeIn 0.8s ease-in-out;
 }

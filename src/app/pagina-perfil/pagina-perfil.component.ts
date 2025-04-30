@@ -6,27 +6,33 @@ import { AuthService } from '../services/authService/auth.service';
 import { NavBeltComponent } from "../nav-belt/nav-belt.component";
 import { NavCategoriesComponent } from "../nav-categories/nav-categories.component";
 import { InfoPerfilComponent } from '../info-perfil/info-perfil.component';
-import { PublicacionesPerfilComponent } from '../publicaciones-perfil/publicaciones-perfil.component';
 import { ResenasPerfilComponent } from '../resenas-perfil/resenas-perfil.component';
 import { User } from '../interfaces/user';
 import { Review } from '../interfaces/review';
 import { UserService } from '../services/userService/user.service';
+import { HistorialService } from '../services/Historial/historial.service'; // Importamos el servicio de historial
 import { CardProductComponent } from "../card-product/card-product.component";
 
 @Component({
   selector: 'app-pagina-perfil',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, NavBeltComponent, NavCategoriesComponent, InfoPerfilComponent, PublicacionesPerfilComponent, ResenasPerfilComponent, CardProductComponent],
+  imports: [CommonModule, FormsModule, RouterModule, NavBeltComponent, NavCategoriesComponent, InfoPerfilComponent, ResenasPerfilComponent, CardProductComponent],
   templateUrl: './pagina-perfil.component.html',
   styleUrls: ['./pagina-perfil.component.css']
 })
 export class PaginaPerfilComponent implements OnInit {
-  activeTab: 'info' | 'publicaciones' | 'reseñas' = 'info'; // Tipo específico
+  activeTab: 'info' | 'publicaciones' | 'reseñas' | 'historial' = 'info'; // Agregamos 'historial'
   user!: User; // Propiedad para almacenar el usuario actual
   isGuest: boolean = false; // Indica si el usuario es un invitado
   reviews: Review[] = []; // Datos de reseñas (simulados)
+  historial: any[] = []; // Array para almacenar los registros del historial
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private historialService: HistorialService, // Inyectamos el servicio de historial
+    private router: Router
+  ) {}
 
   async ngOnInit(): Promise<void> {
     try {
@@ -45,6 +51,17 @@ export class PaginaPerfilComponent implements OnInit {
       console.log('URL de la imagen ajustada:', this.user.fotoPerfil);
 
       this.isGuest = this.user.role === 'guest'; // Verificar si el rol es 'guest'
+
+      // Cargar el historial del usuario
+      const userId = this.user.id || 1; // Reemplaza con el ID del usuario actual
+      this.historialService.getHistorial(userId).subscribe({
+        next: (response) => {
+          this.historial = response.data; // Asignar los registros del historial obtenidos
+        },
+        error: (error) => {
+          console.error('Error al cargar el historial:', error);
+        },
+      });
 
       // Inicializar las reseñas simuladas
       this.reviews = [

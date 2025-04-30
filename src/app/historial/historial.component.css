@@ -1,0 +1,90 @@
+/* Contenedor específico para el historial */
+.historial-container {
+  all: unset; /* Restablece todos los estilos heredados */
+}
+
+/* Contenedor principal de las tarjetas */
+.historial-container .historial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  gap: 20px; /* Espacio entre las tarjetas */
+  margin: 20px 0; /* Margen superior e inferior */
+}
+
+/* Estilos generales para cada tarjeta */
+.historial-container .historial-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover para las tarjetas */
+.historial-container .historial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Título de la tarjeta */
+.historial-container .historial-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Detalles dentro de la tarjeta */
+.historial-container .historial-card p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Contenedor de botones de acción */
+.historial-container .actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px; /* Espacio entre los botones */
+}
+
+/* Estilos generales para los botones */
+.historial-container .action-button {
+  flex: 1; /* Hace que los botones ocupen el mismo ancho */
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Botón "Marcar como Recibido" */
+.historial-container .action-button.edit {
+  background-color: #007bff; /* Azul */
+  color: #fff;
+}
+
+/* Botón "Eliminar" */
+.historial-container .action-button.delete {
+  background-color: #ff4d4d; /* Rojo */
+  color: #fff;
+}
+
+/* Efecto hover para los botones */
+.historial-container .action-button:hover {
+  opacity: 0.9;
+}
+
+/* Diseño responsivo: 2 columnas en pantallas medianas y 1 columna en pantallas pequeñas */
+@media (max-width: 992px) {
+  .historial-container .historial-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  }
+}
+
+@media (max-width: 768px) {
+  .historial-container .historial-grid {
+    grid-template-columns: 1fr; /* 1 columna */
+  }
+}

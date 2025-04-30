@@ -52,4 +52,10 @@
         SHOW: (id: number) => `${ApiUrls.BASE_URL}/usuario/${id}`,
         UPDATE: (id: number) => `${ApiUrls.BASE_URL}/usuario/${id}`,
     };
+    // Endpoints del historial
+    public static readonly HISTORIAL = {
+      LIST: (user_id: number) => `${ApiUrls.BASE_URL}/historial/${user_id}`, // Obtener historial de un usuario
+      DELETE: (id: number) => `${ApiUrls.BASE_URL}/historial/${id}`, // Eliminar un registro del historial
+      UPDATE: (id: number) => `${ApiUrls.BASE_URL}/historial/${id}`, // Actualizar un registro del historial
+    };
   }
