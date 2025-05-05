@@ -272,50 +272,42 @@ export class MethodPaymentComponent {
       });
     }
   }
-  
-  // Confirmar compra
   confirmPurchase(): void {
     const productos = this.cartItems;
     const metodo = this.paymentMethod();
   
+    // Validaciones iniciales
     if (!productos.length) {
       alert('No hay productos en el carrito.');
       return;
     }
-  
     if (!metodo) {
       alert('Selecciona un método de pago válido.');
       return;
     }
   
+    // Crear el objeto de pedido
     const pedido = {
       productos,
       subtotal: this.calculateSubtotal(),
       envio: this.calculateShipping(),
       total: this.calculateTotal(),
-      metodoPago: metodo
+      metodoPago: metodo,
     };
   
     console.log('Pedido confirmado:', pedido);
   
-    const deleteRequests = productos.map(item =>
-      this.cartService.removeCartItem(item.id).pipe(
-        catchError((err: unknown) => {
-          console.error(`Error eliminando producto ID ${item.id}:`, err);
-          return of(null);
-        })
-      )
-    );
-  
-    forkJoin(deleteRequests).subscribe({
+    // Actualizar el estado de todos los productos del carrito a 'pagado'
+    this.cartService.updateCartStatus(this.userId, 'pagado').subscribe({
       next: () => {
-        alert('¡Tu pedido ha sido procesado!');
+        alert('¡Tu pedido ha sido procesado y marcado como Pagado!');
+        this.loadCartItems(); // Recargar los productos del carrito para reflejar los cambios
         this.router.navigate(['/']);
       },
       error: (err) => {
-        console.error('Error al vaciar el carrito:', err);
+        console.error('Error al actualizar el estado del carrito:', err);
         alert('Hubo un problema al procesar tu pedido.');
-      }
+      },
     });
   }
   
