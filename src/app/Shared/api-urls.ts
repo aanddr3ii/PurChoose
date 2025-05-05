@@ -34,6 +34,13 @@
     WITH_CATEGORIES_AND_IMAGES: '/productos/with-categories-and-images',
 
   };
+   // Rutas para métodos de pago
+   public static readonly METODOS_PAGO = {
+    GET_ALL: (userId: number) => `${this.BASE_URL}/metodos-pago?user_id=${userId}`,
+    CREATE: `${this.BASE_URL}/metodos-pago`,
+    UPDATE: (id: number) => `${this.BASE_URL}/metodos-pago/${id}`,
+    DELETE: (id: number) => `${this.BASE_URL}/metodos-pago/${id}`,
+  };
   public static readonly CARRITO = {
       GET: (userId: number) => `${ApiUrls.BASE_URL}/carrito/${userId}`, // Obtener productos del carrito
       ADD: `${ApiUrls.BASE_URL}/carrito`, // Añadir producto al carrito
@@ -47,6 +54,7 @@
         STORE: `${ApiUrls.BASE_URL}/categorias`,
     };
 
+    
     // Endpoints de perfil del usuario
     public static readonly USUARIO = {
         SHOW: (id: number) => `${ApiUrls.BASE_URL}/usuario/${id}`,

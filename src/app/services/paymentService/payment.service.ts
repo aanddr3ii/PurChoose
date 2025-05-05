@@ -1,77 +1,99 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ApiUrls } from '../../Shared/api-urls'; // Asegúrate de que la ruta sea correcta
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
-  // Datos simulados de tarjetas bancarias
-  private tarjetas: { numero: string; tipo: string; fechaExpiracion: string; cvc: string }[] = [];
 
-  // Datos simulados de servicios de pago
-  private serviciosPago: { nombre: string; email: string }[] = [];
-
-  constructor() {
-    // Simulamos datos iniciales
-    this.tarjetas = [
-      { numero: '**** **** **** 1234', tipo: 'Visa', fechaExpiracion: '12/25', cvc: '123' },
-      { numero: '**** **** **** 5678', tipo: 'Mastercard', fechaExpiracion: '03/26', cvc: '456' }
-    ];
-
-    this.serviciosPago = [
-      { nombre: 'PayPal', email: 'usuario@paypal.com' },
-      { nombre: 'Stripe', email: 'usuario@stripe.com' }
-    ];
-  }
+  constructor(private http: HttpClient) {}
 
   // Métodos para gestionar tarjetas
 
-  getTarjetas(): { numero: string; tipo: string; fechaExpiracion: string; cvc: string }[] {
-    return this.tarjetas;
+  getTarjetas(): Observable<{ numero: string; tipo: string; fechaExpiracion: string; cvc: string }[]> {
+    const userId = 1; // Deberías obtenerlo dinámicamente
+    return this.http.get<{ data: any[] }>(ApiUrls.METODOS_PAGO.GET_ALL(userId)).pipe(
+      map(response => response.data.map(item => ({
+        numero: item.numero,
+        tipo: item.tipo,
+        fechaExpiracion: item.fecha_caducidad,
+        cvc: item.codigo_validacion
+      })))
+    );
   }
 
-  addOrUpdateTarjeta(tarjeta: { tipo: string; numero: string; fechaExpiracion: string; cvc: string }, index?: number): void {
-    if (index !== undefined) {
-      // Edición de tarjeta existente
-      this.tarjetas[index] = tarjeta;
+   // Método para agregar o actualizar tarjetas
+   addOrUpdateTarjeta(
+    payload: {
+      tipo: string;
+      numero: string;
+      fechaExpiracion: string;
+      cvc: string;
+    },
+    id?: number
+  ): Observable<any> {
+    const userId = 1; // Reemplazar con authService.getUserId()
+    const metodoData = {
+      user_id: userId,
+      ...payload
+    };
+
+    if (id !== undefined) {
+      return this.http.put(ApiUrls.METODOS_PAGO.UPDATE(id), metodoData);
     } else {
-      // Creación de nueva tarjeta (sin restricciones de duplicados)
-      this.tarjetas.push(tarjeta);
+      return this.http.post(ApiUrls.METODOS_PAGO.CREATE, metodoData);
     }
-    alert('Tarjeta guardada exitosamente.');
   }
 
-  deleteTarjeta(index: number): void {
-    this.tarjetas.splice(index, 1);
-    alert('Tarjeta eliminada exitosamente.');
+  deleteTarjeta(id: number): Observable<any> {
+    return this.http.delete(ApiUrls.METODOS_PAGO.DELETE(id));
   }
 
   // Métodos para gestionar servicios de pago
 
-  getServiciosPago(): { nombre: string; email: string }[] {
-    return this.serviciosPago;
+  getServiciosPago(): Observable<{ nombre: string; email: string }[]> {
+    const userId = 1;
+    return this.http.get<{ data: any[] }>(ApiUrls.METODOS_PAGO.GET_ALL(userId)).pipe(
+      map(response => response.data.map(item => ({
+        nombre: item.tipo.charAt(0).toUpperCase() + item.tipo.slice(1),
+        email: item.email
+      })))
+    );
   }
 
-  addOrUpdateServicio(servicio: { nombre: string; email: string }, index?: number): void {
-    if (index !== undefined) {
-      // Edición de servicio existente
-      this.serviciosPago[index] = servicio;
-    } else {
-      // Creación de nuevo servicio
-      if (this.servicioYaExiste(servicio.nombre)) {
-        alert('Este servicio ya está registrado.');
-        return;
+    // Método para agregar o actualizar servicios de pago
+    addOrUpdateServicio(
+      servicio: { nombre: string; email: string },
+      id?: number
+    ): Observable<any> {
+      const userId = 1; // Reemplazar con authService.getUserId()
+      const metodoData = {
+        user_id: userId,
+        tipo: servicio.nombre.toLowerCase(),
+        email: servicio.email
+      };
+  
+      if (id !== undefined) {
+        return this.http.put(ApiUrls.METODOS_PAGO.UPDATE(id), metodoData);
+      } else {
+        return this.http.post(ApiUrls.METODOS_PAGO.CREATE, metodoData);
       }
-      this.serviciosPago.push(servicio);
     }
-    alert('Servicio de pago guardado exitosamente.');
-  }
 
-  deleteServicio(index: number): void {
-    this.serviciosPago.splice(index, 1);
-    alert('Servicio de pago eliminado exitosamente.');
-  }
+ // Método para eliminar un servicio de pago
+ deleteServicio(id: number): Observable<any> {
+  return this.http.delete(ApiUrls.METODOS_PAGO.DELETE(id));
+}
 
-  servicioYaExiste(nombre: string): boolean {
-    return this.serviciosPago.some((servicio) => servicio.nombre === nombre);
+  async servicioYaExiste(nombre: string): Promise<boolean> {
+    try {
+      const servicios = await this.getServiciosPago().toPromise();
+      return servicios?.some(servicio => servicio.nombre === nombre) || false;
+    } catch {
+      return false;
+    }
   }
 }
