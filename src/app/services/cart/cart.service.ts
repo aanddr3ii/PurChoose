@@ -77,7 +77,17 @@ export class CartService {
     );
   }
 
-  changeStatus(cartItemId: number, newStatus: 'No pagado' | 'Pagado' | 'Enviado' | 'Recibido'): Observable<any> {
-    return this.updateCartItem(cartItemId, { status: newStatus });
+  updateCartStatus(userId: number, newStatus: 'pagado' | 'no pagado' | 'recibido' | 'enviado' | 'cancelado'): Observable<any> {
+    const url = `${ApiUrls.CARRITO.UPDATE(userId)}`;
+    
+    // Construir el objeto JSON con los datos a enviar
+    const payload = { estado: newStatus };
+  
+    // Debug: Imprimir los datos que se enviarán
+    console.log('URL generada:', url);
+    console.log('Datos enviados al backend:', payload);
+  
+    // Enviamos los datos al backend como JSON
+    return this.http.put(url, payload, { headers: { 'Content-Type': 'application/json' } });
   }
 }

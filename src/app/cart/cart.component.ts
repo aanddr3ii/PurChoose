@@ -105,25 +105,7 @@ export class CartComponent implements OnInit {
     }
   }
 
-  changeStatus(cartItemId: number, newStatus: CartItemStatus): void {
-    if (!Object.values(CART_ITEM_STATUS).includes(newStatus)) {
-      console.error('Estado inválido:', newStatus);
-      return;
-    }
-  
-    console.log('Cambiando estado del producto con ID:', cartItemId); // Depuración: Imprime el ID del producto
-    console.log('Nuevo estado:', newStatus); // Depuración: Imprime el nuevo estado
-  
-    this.cartService.changeStatus(cartItemId, newStatus).subscribe({
-      next: () => {
-        console.log('Estado actualizado correctamente');
-        this.loadCartItems(); // Recarga los productos del carrito
-      },
-      error: (error) => {
-        console.error('Error al cambiar el estado del producto:', error);
-      },
-    });
-  }
+ 
   calculateSubtotal(): number {
     return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }
