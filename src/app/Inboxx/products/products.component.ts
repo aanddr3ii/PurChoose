@@ -39,7 +39,7 @@ export class ProductsComponent {
   }
   
   editarProducto(id: number): void {
-    this.router.navigate(['/sell-product'], {
+    this.router.navigate(['/edit-product'], {
       queryParams: { id }
     });
   }

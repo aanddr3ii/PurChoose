@@ -27,4 +27,18 @@ export class ProductImageService {
     // Realizar la solicitud POST al endpoint del backend
     return this.http.post(`${this.apiUrl}/${productId}/upload-images`, formData);
   }
+
+
+  //ARDEI
+  /**
+   * Obtiene las imágenes de un producto específico para editarlo.
+   * @param productId ID del producto.
+   * @returns Un Observable que emite la lista de imágenes del producto.
+   */
+  getImagesByProductIdedit(productId: number): Observable<any> {
+    return this.http.get(`http://localhost:8000/api/productos/${productId}/imagenes`);
+  }
+  
+  
+  
 }

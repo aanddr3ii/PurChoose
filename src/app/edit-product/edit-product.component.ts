@@ -14,22 +14,21 @@ import { Observable } from 'rxjs';
 import { ApiUrls } from '../Shared/api-urls'; // Importa las URLs de la API
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../services/userService/user.service'; // Importa el servicio de usuario
-import { ActivatedRoute } from '@angular/router'; // Recuperamos el id del producto desde la URL para editarlo y poder actualizarlo
+import { ActivatedRoute } from '@angular/router';
+import { EditProductImageComponent } from "../../app/edit-product-image/edit-product-image.component"; // Recuperamos el id del producto desde la URL para editarlo y poder actualizarlo
 
 
 @Component({
-  selector: 'app-sell-product',
+  selector: 'app-edit-product',
   standalone: true,
-  imports: [FormsModule,ReactiveFormsModule,
+  imports: [FormsModule, ReactiveFormsModule,
     NavBeltComponent,
     NavCategoriesComponent,
-    RouterModule,
-    SellProductPictureComponent, 
-  ],
-  templateUrl: './sell-product.component.html',
-  styleUrls: ['./sell-product.component.css'],
+    RouterModule, EditProductImageComponent],
+  templateUrl: './edit-product.component.html',
+  styleUrl: './edit-product.component.css'
 })
-export class SellProductComponent {
+export class EditProductComponent {
   productForm!: FormGroup;
   categories: Category[] = [];
   selectedCategories: (number | null)[] = []; // ← NO pongas ningún valor inicial
@@ -104,6 +103,8 @@ export class SellProductComponent {
     return user ? user.id : null; // Devuelve el ID del usuario o null si no hay usuario
   }
 
+
+  //Metodos categoria   ---falta apañarlo
   // Añadir un nuevo campo de categoría
   addCategoryField(): void {
     this.selectedCategories.push(null); // Añade un nuevo campo vacío
@@ -113,6 +114,9 @@ export class SellProductComponent {
   removeCategory(index: number): void {
     this.selectedCategories.splice(index, 1); // Elimina el campo seleccionado
   }
+
+
+
 
   // Manejar las imágenes seleccionadas desde el componente hijo
   onFilesSelected(files: File[]): void {
@@ -155,4 +159,9 @@ export class SellProductComponent {
       },
     });
   }
+
+  // EDITAR PRODUCTO ARRDDEEEIII todo menos imagen y categorias
+    getProductsByUserId(userId: number): Observable<any> {
+      return this.http.get(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);
+    }
 }
