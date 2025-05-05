@@ -87,4 +87,5 @@ export class UserService {
   deleteUserFromApi(id: number): Observable<void> {
     return this.http.delete<void>(`${ApiUrls.BASE_URL}/usuario/${id}`);
   }
+  
 }

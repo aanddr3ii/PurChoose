@@ -1,7 +1,19 @@
   export class ApiUrls {
     // Base URL de la API
     public static readonly BASE_URL = 'http://localhost:8000/api';
-
+    public static readonly PRODUCTOSUSER = {
+      LIST: `${ApiUrls.BASE_URL}/productos`,
+      STORE: `${ApiUrls.BASE_URL}/productos`,
+      FILTRAR: `${ApiUrls.BASE_URL}/categorias/productos`,
+      IMAGES: (productId: number) => `${ApiUrls.BASE_URL}/productos/${productId}/imagenes`,
+      UPLOAD_IMAGES: (productId: number) => `${ApiUrls.BASE_URL}/productos/${productId}/upload-images`,
+      WITH_CATEGORIES_AND_IMAGES: '/productos/with-categories-and-images',
+    
+      // ✅ AÑADE ESTA LÍNEA:
+      MIS_PRODUCTOS: `${ApiUrls.BASE_URL}/productos/mis-productos`
+    };
+    
+  
     // Endpoints de autenticación 
     public static readonly AUTH = {
         REGISTER: `${ApiUrls.BASE_URL}/register`,

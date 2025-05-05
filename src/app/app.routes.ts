@@ -16,6 +16,7 @@ import { CartComponent } from './cart/cart.component';
 import { PaginaPerfilComponent } from './pagina-perfil/pagina-perfil.component';
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 
+
 // Shopping
 import { MethodPaymentComponent } from './method-payment/method-payment.component';
 
@@ -28,6 +29,9 @@ import { UserProductComponent } from './userProduct/user-product/user-product.co
 
 // Product Filters
 import { CategoryProductComponent } from './category-product/category-product.component';
+
+// Inbox
+import { ProductsComponent } from './Inboxx/products/products.component';
 
 // Admin
 import { AdminComponent } from './admin/admin.component';
@@ -67,7 +71,10 @@ export const routes: Routes = [
     // Where you see the product and the filters
     { path: 'category-product/:id', component: CategoryProductComponent },
 
-    { path: 'productos/:id/detalles', component: UserProductComponent },    
+    { path: 'productos/:id/detalles', component: UserProductComponent },
+
+    //Inbox
+    { path: 'products', component: ProductsComponent },
 
     /* Admin */
     { path: 'admin', component: AdminComponent }, // Menu

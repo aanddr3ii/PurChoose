@@ -9,6 +9,14 @@ import { NavCategoriesComponent } from '../nav-categories/nav-categories.compone
 import { RouterModule } from '@angular/router';
 import { SellProductPictureComponent } from '../sell-product-picture/sell-product-picture.component';
 
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ApiUrls } from '../Shared/api-urls'; // Importa las URLs de la API
+import { HttpClient } from '@angular/common/http';
+import { UserService } from '../services/userService/user.service'; // Importa el servicio de usuario
+import { ActivatedRoute } from '@angular/router'; // Recuperamos el id del producto desde la URL para editarlo y poder actualizarlo
+
+
 @Component({
   selector: 'app-sell-product',
   standalone: true,
@@ -16,7 +24,7 @@ import { SellProductPictureComponent } from '../sell-product-picture/sell-produc
     NavBeltComponent,
     NavCategoriesComponent,
     RouterModule,
-    SellProductPictureComponent,
+    SellProductPictureComponent, 
   ],
   templateUrl: './sell-product.component.html',
   styleUrls: ['./sell-product.component.css'],
@@ -31,7 +39,10 @@ export class SellProductComponent {
     private fb: FormBuilder,
     private productService: ProductService,
     private categoryService: CategoryService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
+    private http: HttpClient, // Inject HttpClient service
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +55,34 @@ export class SellProductComponent {
       oferta: [false],
       ubicacion: [''],
       user_id: [this.getUserId()], // Obtener el ID del usuario autenticado
+      
+    })
+    
+
+    this.route.queryParams.subscribe(params => {
+      const id = params['id'];
+  
+      if (id) {
+        this.productService.getProductById(+id).subscribe(product => {
+          this.productForm.patchValue({
+            nombre: product.nombre,
+            descripcion: product.descripcion,
+            precio: product.precio,
+            estado: product.estado,
+            oferta: product.oferta,
+            ubicacion: product.ubicacion,
+            user_id: product.user_id
+          });
+  
+          // Cargar categorías si vienen en array de IDs
+          this.selectedCategories = product.categorias ?? [null];
+        });
+      }
     });
+   
+    
+    
+    ;
 
     // Cargar categorías disponibles
     this.categoryService.getCategories().subscribe({
@@ -100,6 +138,7 @@ export class SellProductComponent {
             next: (imageResponse) => {
               console.log('Imágenes subidas correctamente:', imageResponse);
               alert('Producto creado y imágenes subidas exitosamente.');
+              this.router.navigate(['/products']);
             },
             error: (error) => {
               console.error('Error al subir imágenes:', error);
@@ -116,4 +155,10 @@ export class SellProductComponent {
       },
     });
   }
+
+  // EDITAR PRODUCTO ARRDDEEEIII
+
+    getProductsByUserId(userId: number): Observable<any> {
+      return this.http.get(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);
+    }
 }

@@ -9,6 +9,8 @@ import { ApiUrls } from '../../Shared/api-urls'; // Importa las URLs de la API
   providedIn: 'root',
 })
 export class ProductService {
+  private apiUrl: string = ApiUrls.BASE_URL;
+
   constructor(private http: HttpClient) {}
 
   /**
@@ -140,4 +142,39 @@ export class ProductService {
       })
     );
   }
+
+  /**
+   * Obtiene los productos de un usuario específico.
+   * @param userId ID del usuario.
+   * @returns Un Observable que emite la lista de productos del usuario.
+   */
+  getProductsByUserId(userId: number): Observable<{
+    user: { id: number; nombre: string; email: string };
+    productos: {
+      id: number;
+      titulo: string;
+      precio: number;
+      publicado: string;
+      modificado: string;
+      imagen: string | null;
+    }[];
+  }> {
+    return this.http.get<{
+      user: { id: number; nombre: string; email: string };
+      productos: {
+        id: number;
+        titulo: string;
+        precio: number;
+        publicado: string;
+        modificado: string;
+        imagen: string | null;
+      }[];
+    }>(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);
+  }
+
+  getProductById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/productos/${id}`);
+  }
+  
+  
 }

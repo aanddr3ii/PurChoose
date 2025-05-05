@@ -61,8 +61,9 @@
 
   "LEFT-BAR": {
     "FAVORITES": "Favoris",
-    "INBOX": "Boîte de réception",
+    "INBOX": "Messagerie",
     "SALES": "Ventes",
+    "PRODUCTS": "Produits",
     "SHOPPING": "Achats"
   },
 
