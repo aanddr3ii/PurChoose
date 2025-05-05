@@ -106,7 +106,7 @@
   <section class="form-section">
     <h2 class="form-section-title">Fotos</h2>
     <div class="sell-product-form-group">
-      <app-sell-product-picture (filesSelected)="onFilesSelected($event)"></app-sell-product-picture>
+      <app-edit-product-image (filesSelected)="onFilesSelected($event)"></app-edit-product-image>
     </div>
   </section>
 
@@ -114,7 +114,7 @@
   <input type="hidden" formControlName="user_id" />
 
   <!-- Submit -->
-  <button type="submit" class="sell-product-submit">Subir producto</button>
+  <button type="submit" class="sell-product-submit">Actualizar</button>
 </form>
 
 </div>

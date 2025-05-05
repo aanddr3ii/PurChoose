@@ -39,6 +39,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { HistorialComponent } from './historial/historial.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 export const routes: Routes = [
     // Index
@@ -64,7 +65,9 @@ export const routes: Routes = [
 
     // Shopping
     { path: 'payment', component: MethodPaymentComponent },
-
+    
+    // Edit product
+    { path: 'edit-product', component: EditProductComponent },
     // User product selling
     { path: 'user-product', component: UserProductComponent },
 
