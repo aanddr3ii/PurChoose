@@ -40,7 +40,12 @@
       UPDATE: (userId: number) => `${ApiUrls.BASE_URL}/carrito/${userId}`, // Actualizar producto del carrito
       DELETE: (cartItemId: number) => `${ApiUrls.BASE_URL}/carrito/${cartItemId}`, // Eliminar producto del carrito
   };
-
+  public static readonly METODOS_PAGO = {
+    GET_ALL: (userId: number) => `${this.BASE_URL}/metodos-pago?user_id=${userId}`,
+    CREATE: `${this.BASE_URL}/metodos-pago`,
+    UPDATE: (id: number) => `${this.BASE_URL}/metodos-pago/${id}`,
+    DELETE: (id: number) => `${this.BASE_URL}/metodos-pago/${id}`,
+  };
     // Endpoints de categorías
     public static readonly CATEGORIAS = {
         LIST: `${ApiUrls.BASE_URL}/categorias`,
