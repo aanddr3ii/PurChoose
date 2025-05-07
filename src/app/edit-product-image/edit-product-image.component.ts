@@ -46,36 +46,34 @@ export class EditProductImageComponent {
    */
   onFileSelect(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
-    if (!inputElement.files?.length) {
-      return;
-    }
-
-    // Obtener los archivos seleccionados
+    if (!inputElement.files?.length) return;
+  
     const files = Array.from(inputElement.files);
-
-    // Verificar el límite de 6 imágenes
+  
     const totalImages = this.selectedFiles.length + files.length;
     if (totalImages > 6) {
       alert('No puedes seleccionar más de 6 imágenes.');
       return;
     }
-
-    // Procesar cada archivo
+  
     files.forEach((file) => {
-      // Convertir el archivo a una URL de vista previa
       const reader = new FileReader();
       reader.onload = (e) => {
         this.imagePreviewUrls.push(e.target?.result as string);
       };
       reader.readAsDataURL(file);
-
-      // Guardar el archivo seleccionado
+  
       this.selectedFiles.push(file);
     });
-
-    // Limpiar el input para permitir volver a seleccionar archivos
+  
+    // Emitir los archivos seleccionados al componente padre
+    this.filesSelected.emit(this.selectedFiles);
+  
+    // Resetear el input
     inputElement.value = '';
   }
+  
+  
 
   
   removeImage(index: number): void {
