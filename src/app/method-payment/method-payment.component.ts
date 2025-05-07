@@ -66,33 +66,30 @@ export class MethodPaymentComponent {
 
   //  CICLO DE VIDA
   ngOnInit(): void {
-    this.loadTarjetas();
-    this.loadServiciosPago();
-  }
+    this.tarjetas = this.paymentService.getTarjetas();
+    this.serviciosPago = this.paymentService.getServiciosPago();
+    this.user = this.userService.getUser();
+          this.userId = this.authService.getUserId();
   
-  loadTarjetas(): void {
-    this.paymentService.getTarjetas().subscribe({
-      next: (data) => {
-        this.tarjetas = data;
-      },
-      error: (error) => {
-        console.error('Error al cargar las tarjetas:', error);
-        alert('Ocurrió un error al cargar tus tarjetas.');
+      if (!this.userId) {
+        console.error('Usuario no autenticado');
+        alert('Debes iniciar sesión para ver tu carrito.');
+        return;
       }
-    });
-  }
   
-  loadServiciosPago(): void {
-    this.paymentService.getServiciosPago().subscribe({
-      next: (data) => {
-        this.serviciosPago = data;
-      },
-      error: (error) => {
-        console.error('Error al cargar los servicios de pago:', error);
-        alert('Ocurrió un error al cargar tus servicios de pago.');
-      }
+      this.loadCartItems();
+
+    this.editForm = this.fb.group({
+      name: [this.user.name, Validators.required],
+      location: [this.user.ubicacion || '', Validators.required],
+      email: [this.user.email, [Validators.required, Validators.email]],
+      prefijo: ['+34', Validators.required],
+      phone: [
+        this.user.telefono?.toString().slice(3) || null,
+        [Validators.required, Validators.pattern(/^\d{9}$/)]
+      ],
     });
-    
+
     this.editForm.get('password')?.valueChanges.subscribe((value) => {
       if (value) {
         this.editForm.get('password_confirmation')?.setValidators([Validators.required]);
@@ -147,7 +144,8 @@ export class MethodPaymentComponent {
     alert(message);
   }
 
-  agregarOEditarTarjeta(): void {
+  // TARJETAS
+  agregarOEditarTarjeta() {
     const { tipo, numero, fechaExpiracion, cvc, index } = this.nuevaTarjeta;
     this.errorMensaje = '';
   
@@ -188,26 +186,14 @@ export class MethodPaymentComponent {
     }
   
     // Si pasa todas las validaciones
-this.paymentService.addOrUpdateTarjeta(
-  { 
-    tipo, 
-    numero: numeroSanitizado, 
-    fechaExpiracion: fechaExpiracion, // Ajustado: usa 'fechaExpiracion'
-    cvc 
-  },
-  index
-).subscribe({
-  next: () => {
-    alert('Tarjeta guardada exitosamente.');
-    this.loadTarjetas(); // Recargar tarjetas desde el backend
+    this.paymentService.addOrUpdateTarjeta(
+      { tipo, numero: numeroSanitizado, fechaExpiracion, cvc },
+      index
+    );
+    this.tarjetas = this.paymentService.getTarjetas();
     this.cerrarPopup();
-  },
-  error: (error: any) => { // Añadimos el tipo 'any' o mejor aún, 'HttpEvent | HttpErrorResponse'
-    console.error('Error al guardar la tarjeta:', error);
-    this.showErrorPopup('Ocurrió un error al guardar la tarjeta.');
   }
-});
-  }
+  
   
 
   abrirPopupTarjeta(tipo?: string, index?: number) {
@@ -223,68 +209,42 @@ this.paymentService.addOrUpdateTarjeta(
     document.body.classList.add('no-scroll'); // <-- Aquí sí se aplica bien
   }
 
-  eliminarTarjeta(index: number): void {
-    this.paymentService.deleteTarjeta(index).subscribe({
-      next: () => {
-        alert('Tarjeta eliminada exitosamente.');
-        this.loadTarjetas(); // Recargar desde el backend
-      },
-      error: (error: any) => {
-        console.error('Error al eliminar la tarjeta:', error);
-        this.showErrorPopup('Ocurrió un error al eliminar la tarjeta.');
-      }
-    });
+  eliminarTarjeta(index: number) {
+    this.paymentService.deleteTarjeta(index);
+    this.tarjetas = this.paymentService.getTarjetas();
   }
 
   // SERVICIOS DE PAGO
-agregarOEditarServicio(): void {
-  const { nombre, email, index } = this.nuevoServicio;
+  agregarOEditarServicio() {
+    const { nombre, email, index } = this.nuevoServicio;
 
-  if (!nombre || !email) {
-    alert('Por favor, completa todos los campos.');
-    return;
+    if (!nombre || !email) {
+      alert('Por favor, completa todos los campos.');
+      return;
+    }
+
+    this.paymentService.addOrUpdateServicio({ nombre, email }, index);
+    this.serviciosPago = this.paymentService.getServiciosPago();
+    this.cerrarPopup();
   }
 
-  // Llamamos al servicio y nos suscribimos a la respuesta
-  this.paymentService.addOrUpdateServicio({ nombre, email }, index).subscribe({
-    next: () => {
-      alert('Servicio de pago guardado exitosamente.');
-      this.loadServiciosPago(); // Recargar servicios desde el backend
-      this.cerrarPopup();
-    },
-    error: (error: any) => {
-      console.error('Error al guardar el servicio de pago:', error);
-      this.showErrorPopup('Ocurrió un error al guardar el servicio de pago.');
+  abrirPopupServicio(nombre: string, index?: number) {
+    this.mostrarPopup = true;
+    this.servicioSeleccionado = nombre;
+
+    if (index !== undefined) {
+      const servicioExistente = this.serviciosPago[index];
+      this.nuevoServicio = { ...servicioExistente, index };
+    } else {
+      this.nuevoServicio = { nombre, email: '', index: undefined };
     }
-  });
-}
-
-abrirPopupServicio(nombre: string, index?: number): void {
-  this.mostrarPopup = true;
-  this.servicioSeleccionado = nombre;
-
-  if (index !== undefined && this.serviciosPago[index]) {
-    const servicioExistente = this.serviciosPago[index];
-    this.nuevoServicio = { ...servicioExistente, index };
-  } else {
-    this.nuevoServicio = { nombre, email: '', index: undefined };
+    document.body.classList.add('no-scroll'); // <-- Aquí sí se aplica bien
   }
 
-  document.body.classList.add('no-scroll');
-}
-
-eliminarServicio(index: number): void {
-  this.paymentService.deleteServicio(index).subscribe({
-    next: () => {
-      alert('Servicio de pago eliminado exitosamente.');
-      this.loadServiciosPago(); // Recargar servicios desde el backend
-    },
-    error: (error: any) => {
-      console.error('Error al eliminar el servicio de pago:', error);
-      this.showErrorPopup('Ocurrió un error al eliminar el servicio de pago.');
-    }
-  });
-}
+  eliminarServicio(index: number) {
+    this.paymentService.deleteServicio(index);
+    this.serviciosPago = this.paymentService.getServiciosPago();
+  }
 
   //  CERRAR POPUP
   cerrarPopup() {
@@ -337,11 +297,7 @@ eliminarServicio(index: number): void {
   
     console.log('Pedido confirmado:', pedido);
   
-    // Debug: Imprimir el userId y el estado antes de enviarlos
-    console.log('UserId:', this.userId);
-    console.log('Nuevo estado:', 'Pagado');
-  
-    // Actualizar el estado de todos los productos del carrito a 'Pagado'
+    // Actualizar el estado de todos los productos del carrito a 'pagado'
     this.cartService.updateCartStatus(this.userId, 'pagado').subscribe({
       next: () => {
         alert('¡Tu pedido ha sido procesado y marcado como Pagado!');
