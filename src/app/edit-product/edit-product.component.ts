@@ -147,6 +147,7 @@ export class EditProductComponent {
           this.productImageService.uploadImagessubironEdit(productId, this.selectedFiles).subscribe({
             next: () => {
               alert('Producto actualizado correctamente con nuevas imágenes.');
+              this.router.navigate(['/products']);
             },
             error: (error) => {
               console.error('Error al subir nuevas imágenes:', error);
