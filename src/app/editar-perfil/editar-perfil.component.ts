@@ -32,6 +32,12 @@ export class EditarPerfilComponent {
   ngOnInit(): void {
     this.user = this.userService.getUser(); // Obtenemos el usuario actual desde el servicio
 
+    if (this.user.fotoPerfil && !this.user.fotoPerfil.startsWith('http')) {
+      const backendUrl = 'http://localhost:8000'; // URL base del backend
+      this.user.fotoPerfil = `${backendUrl}${this.user.fotoPerfil}`;
+    }
+    console.log('URL de la imagen ajustada:', this.user.fotoPerfil);
+
     // Inicializamos el formulario con los datos actuales del usuario
     this.editForm = this.fb.group({
       name: [this.user.name, Validators.required], // Campo obligatorio
