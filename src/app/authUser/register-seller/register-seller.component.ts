@@ -20,11 +20,7 @@ export class RegisterSellerComponent {
     { value: '+33', flag: '🇫🇷' }
   ];
 
-  constructor(
-    private fb: FormBuilder,
-    private auth: AuthService,
-    private router: Router
-  ) {
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -47,8 +43,11 @@ export class RegisterSellerComponent {
     if (this.registerForm.valid) {
       const userData = this.registerForm.value;
 
+      // Imprimir los datos que se enviarán a Laravel
+      console.log('Datos enviados al backend:', userData);
+
       // Llamar al servicio para registrar al usuario
-      this.auth.register(userData).subscribe({
+      this.auth.registerSeller(userData).subscribe({
         next: (response) => {
           console.log('Registro exitoso:', response);
           // Redirigir al usuario al formulario de inicio de sesión
@@ -69,4 +68,6 @@ export class RegisterSellerComponent {
       });
     }
   }
+  
 }
+

@@ -17,6 +17,7 @@
     // Endpoints de autenticación 
     public static readonly AUTH = {
         REGISTER: `${ApiUrls.BASE_URL}/register`,
+        REGISTER_SELLER: `${ApiUrls.BASE_URL}/registersegaroamigo`,
         LOGIN: `${ApiUrls.BASE_URL}/login`,
         LOGOUT: `${ApiUrls.BASE_URL}/logout`,
         
