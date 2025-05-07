@@ -120,7 +120,9 @@ export class PaymentService {
       fechaExpiracion: string;
       cvc: string;
     },
+    
     id_metodo?: number // 👈 Renombramos el parámetro para que sea claro
+    
   ): Observable<any> {
     const userId = this.authService.getUserId();
     const payload = {
