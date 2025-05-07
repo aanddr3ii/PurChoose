@@ -1,0 +1,206 @@
+:host {
+    display: block;
+    font-family: 'Arial';
+    box-sizing: border-box;
+  }
+  
+  /* Contenedor principal */
+  .sell-product-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 30px;
+    padding-bottom: 50px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Formulario */
+  .sell-product-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Form groups */
+  .sell-product-form-group {
+    width: 100%;
+    text-align: left;
+  }
+  
+  /* Etiquetas */
+  .sell-product-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  /* Inputs, selects y textarea */
+  .sell-product-input,
+  .sell-product-select,
+  .sell-product-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  .sell-product-input:focus,
+  .sell-product-select:focus,
+  .sell-product-textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+    outline: 2px solid #0056b3;
+  }
+  
+  /* Textarea */
+  .sell-product-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  /* Checkbox y label */
+  .sell-product-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Categorías dinámicas */
+  .dynamic-category-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px; /* ← esto es lo nuevo */
+  }
+  
+  
+  /* Botones de eliminar categoría */
+  .remove-category-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .remove-category-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Botón de añadir categoría */
+  .add-category-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .add-category-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Botón de crear producto */
+  .sell-product-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sell-product-submit:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Hint de ayuda */
+  .sell-product-hint {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 4px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .sell-product-container {
+      max-width: 90%;
+      padding: 20px;
+    }
+  
+    .sell-product-submit {
+      font-size: 15px;
+    }
+  }
+  
+  /* Imagenes seleccionadas */
+  .sell-product-picture-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .sell-product-picture-preview img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Botón de subida de imágenes */
+  .sell-product-upload-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sell-product-upload-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .category-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f8f9fa;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+
+  

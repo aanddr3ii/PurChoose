@@ -12,6 +12,7 @@ import { RegisterSellerComponent } from './authUser/register-seller/register-sel
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 import { InboxComponent } from './Inboxx/inbox/inbox.component';
 import { SellProductComponent } from './sell-product/sell-product.component';
+import { SellProductEmpresaurioComponent } from './sell-product-empresaurio/sell-product-empresaurio.component';
 import { CartComponent } from './cart/cart.component';
 import { PaginaPerfilComponent } from './pagina-perfil/pagina-perfil.component';
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
@@ -54,6 +55,7 @@ export const routes: Routes = [
         { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
     { path: 'inbox', component: InboxComponent },
     { path: 'sell-product', component: SellProductComponent },
+    { path: 'sell-product-empresaurio', component: SellProductEmpresaurioComponent },
     { path: 'cart', component: CartComponent },
     { path: 'perfil', component: PaginaPerfilComponent },
         { path: 'editarP', component: EditarPerfilComponent },

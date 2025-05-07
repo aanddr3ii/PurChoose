@@ -1,0 +1,124 @@
+<app-nav-belt></app-nav-belt>
+<app-nav-categories></app-nav-categories>
+<br>
+<div class="sell-product-container">
+  <form
+  class="sell-product-form"
+  [formGroup]="productForm"
+  (ngSubmit)="onSubmit()"
+>
+
+  <!-- Información del producto -->
+  <section class="form-section">
+    <h2 class="form-section-title">Información del producto</h2>
+
+    <div class="sell-product-form-group">
+      <label for="nombre" class="sell-product-label">Nombre</label>
+      <input id="nombre" class="sell-product-input" type="text" formControlName="nombre" />
+    </div>
+
+    <br>
+
+    <div class="sell-product-form-group">
+      <label for="descripcion" class="sell-product-label">Descripción</label>
+      <textarea id="descripcion" class="sell-product-textarea" formControlName="descripcion"></textarea>
+    </div>
+
+    <br>
+
+    <div class="sell-product-form-group">
+        <label for="cantidad" class="sell-product-label">Cantidad</label>
+        <input id="cantidad" class="sell-product-input" type="number" formControlName="cantidad" />
+    </div>
+    
+    <br>
+
+    <div class="sell-product-form-group">
+      <label for="precio" class="sell-product-label">Precio</label>
+      <input id="precio" class="sell-product-input" type="number" formControlName="precio" />
+    </div>
+
+    <br>
+
+    <div class="sell-product-form-group">
+      <label for="estado" class="sell-product-label">Estado</label>
+      <select id="estado" class="sell-product-select" formControlName="estado">
+        <option value="nuevo">Nuevo</option>
+        <option value="usado">Usado</option>
+      </select>
+    </div>
+
+    <br>
+
+    <div class="sell-product-form-group">
+      <label class="sell-product-label">
+        <input type="checkbox" formControlName="oferta" class="sell-product-checkbox" />
+        En oferta
+      </label>
+    </div>
+  </section>
+
+  <!-- Categorías -->
+  <div class="sell-product-form-group">
+    <label class="sell-product-label">Categorías</label>
+  
+    <div class="category-list">
+      @for (category of selectedCategories; track category; let i = $index) {
+        <div class="category-card">
+          <select class="sell-product-select" [(ngModel)]="selectedCategories[i]" [ngModelOptions]="{ standalone: true }">
+            <option disabled [value]="null">Selecciona una categoría</option>
+            @for (cat of categories; track cat.id) {
+              <option [value]="cat.id">{{ cat.nombre }}</option>
+            }
+          </select>
+  
+          @if (selectedCategories.length > 1) {
+            <button
+              type="button"
+              class="remove-category-button"
+              (click)="removeCategory(i)"
+              aria-label="Eliminar categoría"
+            >
+              &#x2715;
+            </button>
+          }
+        </div>
+      }
+    </div>
+    <br>
+    <button
+      type="button"
+      class="add-category-button"
+      (click)="addCategoryField()"
+    >
+      Añadir otra categoría
+    </button>
+  </div>
+  
+
+  <!-- Ubicación -->
+  <section class="form-section">
+    <h2 class="form-section-title">Ubicación</h2>
+    <div class="sell-product-form-group">
+      <label for="ubicacion" class="sell-product-label">Ubicación</label>
+      <input id="ubicacion" class="sell-product-input" type="text" formControlName="ubicacion" />
+    </div>
+  </section>
+
+  <!-- Imágenes -->
+  <section class="form-section">
+    <h2 class="form-section-title">Fotos</h2>
+    <div class="sell-product-form-group">
+      <app-sell-product-picture-empresaurio (filesSelected)="onFilesSelected($event)"></app-sell-product-picture-empresaurio>
+    </div>
+  </section>
+
+  <!-- Hidden user -->
+  <input type="hidden" formControlName="user_id" />
+
+  <!-- Submit -->
+  <button type="submit" class="sell-product-submit">Subir producto</button>
+</form>
+
+</div>
+<br><br>
