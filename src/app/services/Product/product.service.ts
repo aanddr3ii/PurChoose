@@ -172,9 +172,13 @@ export class ProductService {
     }>(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);
   }
 
+  // pilla el producto por id para editarlo
   getProductById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/productos/${id}`);
   }
-  
+  // edita el producto sin imagenes ni categorias
+  updateProductoedit(productId: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/productos/${productId}`, data);
+  }
   
 }

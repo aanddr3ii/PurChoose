@@ -71,4 +71,5 @@ getUserId(): number {
   resetPassword(email: string, newPassword: string): Observable<any> {
     return this.http.post(`${ApiUrls.BASE_URL}/reset-password`, { email, newPassword });
   }
+  
 }

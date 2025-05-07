@@ -64,6 +64,23 @@ export class UserService {
     return user;
   }
 
+  getUserIdEdit(): number | null {
+    try {
+      const userStr = localStorage.getItem('user');
+      if (!userStr) return null;
+  
+      const user = JSON.parse(userStr);
+      if (user && typeof user.id === 'number') {
+        return user.id;
+      }
+  
+      return null;
+    } catch (e) {
+      console.error('Error leyendo user del localStorage:', e);
+      return null;
+    }
+  }
+  
   // ------------------- Métodos de la API -------------------
 
   // Obtener todos los usuarios desde la API

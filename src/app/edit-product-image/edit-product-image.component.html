@@ -23,7 +23,7 @@
         @for (preview of imagePreviewUrls; track preview; let i = $index) {
           <div class="picture-preview">
             <img [src]="preview" alt="Preview" />
-            <button class="remove-image-button" (click)="removeImage(i)">×</button>
+            <button type="button"  class="remove-image-button"(click)="removeImage(i)">x</button>
           </div>
         }
       </div>

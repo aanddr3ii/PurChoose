@@ -16,7 +16,9 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from '../services/userService/user.service'; // Importa el servicio de usuario
 import { ActivatedRoute } from '@angular/router';
 import { EditProductImageComponent } from "../../app/edit-product-image/edit-product-image.component"; // Recuperamos el id del producto desde la URL para editarlo y poder actualizarlo
-
+import { ProductCategoryService } from '../services/productCategory/product-category.service'; // Importa el servicio de categorías de productos
+import { Product } from '../interfaces/product'; // Importa la interfaz de producto
+import { ProductImageService } from '../services/ProductImage/product-image.service'; // Importa el servicio de imágenes de productos
 
 @Component({
   selector: 'app-edit-product',
@@ -41,7 +43,9 @@ export class EditProductComponent {
     private authService: AuthService,
     private router: Router,
     private http: HttpClient, // Inject HttpClient service
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private productCategoryService: ProductCategoryService,
+    private productImageService: ProductImageService
   ) {}
 
   ngOnInit(): void {
@@ -53,16 +57,14 @@ export class EditProductComponent {
       estado: ['nuevo', Validators.required],
       oferta: [false],
       ubicacion: [''],
-      user_id: [this.getUserId()], // Obtener el ID del usuario autenticado
-      
-    })
-    
-
+      user_id: [this.getUserId()]
+    });
+  
     this.route.queryParams.subscribe(params => {
-      const id = params['id'];
+      const id = +params['id'];
   
       if (id) {
-        this.productService.getProductById(+id).subscribe(product => {
+        this.productService.getProductById(id).subscribe(product => {
           this.productForm.patchValue({
             nombre: product.nombre,
             descripcion: product.descripcion,
@@ -72,17 +74,15 @@ export class EditProductComponent {
             ubicacion: product.ubicacion,
             user_id: product.user_id
           });
+        });
   
-          // Cargar categorías si vienen en array de IDs
-          this.selectedCategories = product.categorias ?? [null];
+        // Cargar categorías del producto
+        this.productCategoryService.getCategoriesByProductIdEdit(id).subscribe((categorias) => {
+          this.selectedCategories = categorias.map((cat: any) => cat.id);
         });
       }
     });
-   
-    
-    
-    ;
-
+  
     // Cargar categorías disponibles
     this.categoryService.getCategories().subscribe({
       next: (categories) => {
@@ -90,12 +90,13 @@ export class EditProductComponent {
       },
       error: (error) => {
         console.error('Error al cargar las categorías:', error);
-      },
+      }
     });
-
+  
     // Inicializar con una categoría por defecto
     this.addCategoryField();
   }
+  
 
   // Método para obtener el ID del usuario autenticado
   getUserId(): number | null {
@@ -123,45 +124,49 @@ export class EditProductComponent {
     this.selectedFiles = files;
   }
 
-
   onSubmit(): void {
-    if (this.productForm.invalid) {
-      alert('Por favor, completa todos los campos obligatorios.');
+    const productId = +this.route.snapshot.queryParams['id'];
+    if (!productId) {
+      alert('No se ha podido identificar el producto a editar.');
       return;
     }
   
     const formData = this.productForm.value;
     formData.categorias = this.selectedCategories.filter((id) => id !== null);
   
-    this.productService.createProduct(formData).subscribe({
-      next: (response) => {
-        const productId = response.producto.id;
+    this.productService.updateProductoedit(productId, formData).subscribe({
+      next: () => {
+        // ✅ Actualizar categorías aparte
+        this.productCategoryService.updateProductCategories(productId, formData.categorias).subscribe({
+          next: () => console.log('Categorías actualizadas correctamente'),
+          error: (error) => console.error('Error al actualizar las categorías:', error),
+        });
   
+        // ✅ Subir nuevas imágenes si las hay (USANDO LA RUTA CORRECTA)
         if (this.selectedFiles.length > 0) {
-          this.productService.uploadImages(productId, this.selectedFiles).subscribe({
-            next: (imageResponse) => {
-              console.log('Imágenes subidas correctamente:', imageResponse);
-              alert('Producto creado y imágenes subidas exitosamente.');
-              this.router.navigate(['/products']);
+          this.productImageService.uploadImagessubironEdit(productId, this.selectedFiles).subscribe({
+            next: () => {
+              alert('Producto actualizado correctamente con nuevas imágenes.');
             },
             error: (error) => {
-              console.error('Error al subir imágenes:', error);
-              alert('Ocurrió un error al subir las imágenes.');
-            },
+              console.error('Error al subir nuevas imágenes:', error);
+              alert('Producto actualizado, pero ocurrió un error al subir las imágenes.');
+            }
           });
         } else {
-          alert('Producto creado exitosamente.');
+          alert('Producto actualizado correctamente.');
         }
       },
       error: (error) => {
-        console.error('Error al crear el producto:', error);
-        alert('Ocurrió un error al crear el producto');
-      },
+        console.error('Error al actualizar el producto:', error);
+        alert('Ocurrió un error al actualizar el producto.');
+      }
     });
   }
+  
 
   // EDITAR PRODUCTO ARRDDEEEIII todo menos imagen y categorias
-    getProductsByUserId(userId: number): Observable<any> {
-      return this.http.get(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);
-    }
+  getProductsByUserId(userId: number): Observable<any> {
+    return this.http.get(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);
+  }
 }

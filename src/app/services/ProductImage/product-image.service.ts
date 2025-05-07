@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApiUrls } from '../../Shared/api-urls';
+import { ProductService } from '../Product/product.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({providedIn: 'root'})
 export class ProductImageService {
   private apiUrl = '/api/products'; // Base URL del backend
+  private baseUrl = `${ApiUrls}`;
 
   constructor(private http: HttpClient) {}
 
@@ -38,7 +39,25 @@ export class ProductImageService {
   getImagesByProductIdedit(productId: number): Observable<any> {
     return this.http.get(`http://localhost:8000/api/productos/${productId}/imagenes`);
   }
+
+  uploadImagessubironEdit(productId: number, images: File[]): Observable<any> {
+    const formData = new FormData();
+    images.forEach((image) => {
+      formData.append('images[]', image);
+    });
+    return this.http.post(`http://localhost:8000/api/productos/${productId}/imagenes`, formData);
+  }
   
   
+  
+  
+  // borra la imagen del producto
+  deleteImageByUrl(imageName: string): Observable<any> {
+    const encoded = encodeURIComponent(imageName);
+    return this.http.delete(`http://localhost:8000/api/imagenes/${encoded}`);
+  }
+  
+  
+
   
 }

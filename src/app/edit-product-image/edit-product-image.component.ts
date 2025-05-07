@@ -73,17 +73,29 @@ export class EditProductImageComponent {
       this.selectedFiles.push(file);
     });
 
-    // Notificar al componente padre sobre los archivos seleccionados
-    this.filesSelected.emit(this.selectedFiles);
-
     // Limpiar el input para permitir volver a seleccionar archivos
     inputElement.value = '';
   }
 
+  
   removeImage(index: number): void {
-    this.imagePreviewUrls.splice(index, 1);
-    this.selectedFiles.splice(index, 1);
-    this.filesSelected.emit(this.selectedFiles);
+    const imageUrl = this.imagePreviewUrls[index];
+  
+    // Extraer solo el nombre del archivo
+    const imageName = imageUrl.split('/').pop();
+  
+    if (!imageName) return;
+  
+    this.productImageService.deleteImageByUrl(imageName).subscribe({
+      next: () => {
+        this.imagePreviewUrls.splice(index, 1);
+        this.selectedFiles.splice(index, 1);
+      },
+      error: (err) => {
+        console.error('Error eliminando la imagen:', err);
+      },
+    });
   }
+  
  
 }

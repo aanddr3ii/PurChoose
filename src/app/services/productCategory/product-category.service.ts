@@ -20,10 +20,18 @@ export class ProductCategoryService {
     return this.http.get<number[]>(`${this.apiUrl}/productos/${productId}/categorias`);
   }
 
-  //
+  // para enseñar la categoria en edit product
   getCategoriesByProductIdEdit(productId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/categorias/producto/${productId}`);
   }
+  // para actualizar la categoria en edit product
+  updateProductCategories(productId: number, categoryIds: number[]): Observable<any> {
+    return this.http.put(`http://localhost:8000/api/productos/${productId}/categorias`, {
+      categorias: categoryIds
+    });
+  }
+  
+  
   
   
 }

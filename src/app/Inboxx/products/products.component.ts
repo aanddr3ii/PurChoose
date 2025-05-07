@@ -9,8 +9,9 @@ import { Product } from '../../interfaces/product';
 import { ApiUrls } from '../../Shared/api-urls'; // Importa las URLs de la API
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserService } from '../../services/userService/user.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/authService/auth.service'; // Importa el servicio de autenticación
+import { User } from '../../interfaces/user'; // Importa la interfaz de usuario
 
 @Component({
   selector: 'app-products',
@@ -22,21 +23,26 @@ import { Router } from '@angular/router';
 export class ProductsComponent {
   productos: any[] = [];
 
-  constructor(private productService: ProductService, private http: HttpClient, private userService: UserService, private router: Router) {}
-
+  constructor(private productService: ProductService, private http: HttpClient, private router: Router, private authService: AuthService) {}
   ngOnInit(): void {
-    const user = this.userService.getUser();
-    if (user && user.id !== undefined) {
-      const userId = user.id;
-      console.log('User ID cargado:', userId); // útil para depurar
-    
-      this.productService.getProductsByUserId(userId).subscribe((res) => {
-        this.productos = res.productos;
-      });
-    } else {
-      console.error('User ID is undefined');
+    const userId = this.authService.getUserId();
+  
+    if (!userId) {
+      console.error('Usuario no identificado');
+      return;
     }
+  
+    this.productService.getProductsByUserId(userId).subscribe({
+      next: (res) => {
+        this.productos = res.productos;
+      },
+      error: (err) => {
+        console.error('Error al cargar productos:', err);
+      }
+    });
   }
+  
+  
   
   editarProducto(id: number): void {
     this.router.navigate(['/edit-product'], {
