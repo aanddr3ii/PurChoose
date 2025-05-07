@@ -10,8 +10,9 @@
       @for (tarjeta of tarjetas; track $index; let i = $index) {
         <li class="tarjeta-item">
           <span><strong>{{ tarjeta.nombre }} •••• {{ tarjeta.numero?.slice(-4) }}</strong></span>
-          <button class="edit-button" (click)="abrirPopupTarjeta(i)">Editar</button>
-          <button class="delete-button" (click)="eliminarTarjeta(tarjeta.id_metodo)">Eliminar</button>
+          <!-- ✅ Ahora pasamos todo el objeto tarjeta -->
+          <button class="edit-button" (click)="abrirPopupTarjeta(tarjeta.id_metodo)">Editar</button>
+          <button class="delete-button" (click)="eliminarTarjeta(i)">Eliminar</button>
         </li>
       }
     </ul>
@@ -131,9 +132,9 @@
         <img src="https://www.mesadvocats.com/blog/wp-content/uploads/PayPal.png" alt="PayPal">
       </button>
 
-      <!-- Stripe -->
+      <!-- Google Pay -->
       <button class="payment-button stripe" (click)="abrirPopupServicio('Google Pay')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/1200px-Google_Pay_Logo.svg.png" alt="Stripe">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/1200px-Google_Pay_Logo.svg.png" alt="Google Pay">
       </button>
 
       <!-- Apple Pay -->

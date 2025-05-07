@@ -132,25 +132,34 @@ private organizarMetodos(): void {
     });
   }
 
-  abrirPopupTarjeta(index?: number): void {
-    this.mostrarPopup = true;
   
-    if (index !== undefined && this.tarjetas[index]) {
-      const tarjetaExistente = this.tarjetas[index];
-      this.nuevaTarjeta = {
-        ...tarjetaExistente,
-        index // Esto es el índice local, NO el id_metodo
-      };
-    } else {
-      this.nuevaTarjeta = {
-        nombre: '', // Ej: 'Visa'
-        numero: '',
-        fechaExpiracion: '',
-        cvc: '',
-        index: undefined
-      };
-    }
+  abrirPopupTarjeta(index?: number): void {
+  this.mostrarPopup = true;
+
+  if (index !== undefined && this.tarjetas[index]) {
+    const tarjetaExistente = this.tarjetas[index];
+
+    this.nuevaTarjeta = {
+      index: tarjetaExistente.id_metodo, // ✅ Ahora este campo sí tiene el ID real
+      tipo: 'tarjeta', // fijo
+      nombre: tarjetaExistente.nombre, // 'Visa', 'Mastercard'
+      numero: tarjetaExistente.numero,
+      fechaExpiracion: tarjetaExistente.fechaExpiracion,
+      cvc: tarjetaExistente.cvc
+    };
+  } else {
+    this.nuevaTarjeta = {
+      tipo: '',
+      nombre: '',
+      numero: '',
+      fechaExpiracion: '',
+      cvc: '',
+      index: undefined
+    };
   }
+
+  document.body.classList.add('no-scroll');
+}
 
   eliminarTarjeta(index: number): void {
     const metodoId = this.tarjetas[index].id_metodo;

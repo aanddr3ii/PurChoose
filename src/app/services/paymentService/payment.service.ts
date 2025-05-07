@@ -168,30 +168,30 @@ export class PaymentService {
 
   // 🔹 AGREGAR O ACTUALIZAR UN SERVICIO DE PAGO
   addOrUpdateServicioApi(
-    servicio: {
-      nombre: string;
-      email: string;
-      password?: string;
-    },
-    id_metodo?: number // 👈 Mismo cambio aquí
-  ): Observable<any> {
-    const userId = this.authService.getUserId();
-    const payload = {
-      user_id: userId,
-      tipo: servicio.nombre.toLowerCase(),
-      email: servicio.email,
-      password: servicio.password
-    };
-  
-    console.log('Datos enviados al backend:', payload);
-    console.log('ID del método:', id_metodo); // 👈 Ahora es claro
-  
-    if (id_metodo !== undefined && id_metodo > 0) {
-      return this.http.put(ApiUrls.METODOS_PAGO.UPDATE(id_metodo), payload);
-    } else {
-      return this.http.post(ApiUrls.METODOS_PAGO.CREATE, payload);
-    }
+  servicio: {
+    nombre: string;
+    email: string;
+    password?: string;
+  },
+  id_metodo?: number // 👈 Mismo cambio aquí
+): Observable<any> {
+  const userId = this.authService.getUserId();
+  const payload = {
+    user_id: userId,
+    tipo: servicio.nombre.toLowerCase(),
+    email: servicio.email,
+    password: servicio.password
+  };
+
+  console.log('Datos enviados al backend:', payload);
+  console.log('ID del método:', id_metodo); // 👈 Ahora es claro
+
+  if (id_metodo !== undefined && id_metodo > 0) {
+    return this.http.put(ApiUrls.METODOS_PAGO.UPDATE(id_metodo), payload);
+  } else {
+    return this.http.post(ApiUrls.METODOS_PAGO.CREATE, payload);
   }
+}
 
   // 🔹 ELIMINAR UN SERVICIO DE PAGO
   deleteMetodoDePagoApi(id: number): Observable<any> {
