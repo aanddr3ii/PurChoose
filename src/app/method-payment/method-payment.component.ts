@@ -151,7 +151,16 @@ export class MethodPaymentComponent {
         this.organizarMetodos();
       },
       error: (error) => {
-        console.error('Error al cargar métodos de pago:', error);
+        console.error('Error al guardar el servicio:', error);
+    
+        if (error.status === 409) {
+          // ✅ Aquí capturamos el error 409 personalizado
+          alert(error.message ='sos gay'); // Ej: "Ya tienes un servicio de pago del tipo PayPal"
+        } else if (error.status === 422 && error.error?.errors) {
+          alert(`Errores:\n${JSON.stringify(error.error.errors, null, 2)}`);
+        } else {
+          alert('Ocurrió un error inesperado.');
+        }
       }
     });
   }

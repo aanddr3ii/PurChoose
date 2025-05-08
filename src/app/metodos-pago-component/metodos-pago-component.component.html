@@ -9,9 +9,8 @@
     <ul class="tarjetas-list">
       @for (tarjeta of tarjetas; track $index; let i = $index) {
         <li class="tarjeta-item">
-          <span><strong>{{ tarjeta.nombre }} •••• {{ tarjeta.numero?.slice(-4) }}</strong></span>
+          <span><strong>{{ tarjeta.nombre }}</strong></span>
           <!-- ✅ Ahora pasamos todo el objeto tarjeta -->
-          <button class="edit-button" (click)="abrirPopupTarjeta(tarjeta.id_metodo)">Editar</button>
           <button class="delete-button" (click)="eliminarTarjeta(i)">Eliminar</button>
         </li>
       }
