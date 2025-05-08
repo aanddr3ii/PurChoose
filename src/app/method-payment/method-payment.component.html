@@ -122,7 +122,6 @@
             <div class="added-service-header">
               <span class="service-name"><strong>{{ servicio.nombre }}</strong></span>
               <div class="card-actions">
-                <button class="action-button action-edit" (click)="abrirPopupServicio(servicio.nombre, i); $event.stopPropagation()">Editar</button>
                 <button class="action-button action-delete" (click)="eliminarServicio(i); $event.stopPropagation()">Eliminar</button>
               </div>
             </div>
@@ -137,67 +136,81 @@
         <p>No has agregado ningún servicio de pago aún.</p>
       }
 
-      <!-- Popup para agregar/editar servicios de pago -->
-      @if (mostrarPopup && servicioSeleccionado) {
-        <div class="popup-overlay" (click)="cerrarPopup()" style="cursor: pointer;">
-          <div class="popup-content" (click)="$event.stopPropagation()">
-            <h4 class="popup-title">
-              @if (nuevoServicio.index !== undefined) {
-                Editar {{ servicioSeleccionado }}
-              } @else {
-                Configura tu cuenta de {{ servicioSeleccionado }}
-              }
-            </h4>
+<!-- Popup para agregar/editar servicios de pago -->
+@if (mostrarPopup && servicioSeleccionado) {
+  <div class="popup-overlay" (click)="cerrarPopup()" style="cursor: pointer;">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <h4 class="popup-title">
+        @if (nuevoServicio.index !== undefined) {
+          Editar {{ servicioSeleccionado }}
+        } @else {
+          Configura tu cuenta de {{ servicioSeleccionado }}
+        }
+      </h4>
 
-            <!-- Formulario para agregar/editar servicios -->
-            <form class="add-form" #form="ngForm" (ngSubmit)="form.valid && agregarOEditarServicio(); cerrarPopup()">
-              <div class="form-group">
-                <label for="email-servicio">Correo Electrónico:</label>
-                <input 
-                  type="email" 
-                  id="email-servicio" 
-                  [(ngModel)]="nuevoServicio.email" 
-                  name="email"
-                  placeholder="Ingresa el correo electrónico" 
-                  required
-                >
-              </div>
-
-              <button type="submit" class="save-button" [disabled]="!form.valid">
-                @if (nuevoServicio.index !== undefined) {
-                  Actualizar
-                } @else {
-                  Guardar
-                }
-              </button>
-              <button type="button" class="cancel-button" (click)="cerrarPopup()">Cancelar</button>
-            </form>
-          </div>
+      <!-- Formulario para agregar/editar servicios -->
+      <form class="add-form" #form="ngForm" (ngSubmit)="form.valid && agregarOEditarServicio(); cerrarPopup()">
+        <div class="form-group">
+          <label for="email-servicio">Correo Electrónico:</label>
+          <input 
+            type="email" 
+            id="email-servicio" 
+            [(ngModel)]="nuevoServicio.email" 
+            name="email"
+            placeholder="Ingresa el correo electrónico" 
+            required
+          >
         </div>
-      }
 
+        <!-- Campo de Contraseña -->
+        <div class="form-group">
+          <label for="password-servicio">Contraseña:</label>
+          <input 
+            type="password" 
+            id="password-servicio" 
+            [(ngModel)]="nuevoServicio.password" 
+            name="password"
+            placeholder="Ingresa tu contraseña"
+            required
+          >
+        </div>
+
+        <button type="submit" class="save-button" [disabled]="!form.form.valid">
+          @if (nuevoServicio.index !== undefined) {
+            Actualizar
+          } @else {
+            Guardar
+          }
+        </button>
+        <button type="button" class="cancel-button" (click)="cerrarPopup()">Cancelar</button>
+      </form>
+    </div>
+  </div>
+}
       <!-- Sección de Tarjetas Bancarias -->
-  <div class="payment-section">
-
-    <!-- Lista de tarjetas -->
-    <ul class="servicios-list">
-      @for (tarjeta of tarjetas; track $index; let i = $index) {
-        <li
-          class="payment-card added-service"
-          [class.selected]="paymentMethod()?.tipo === 'card' && paymentMethod()?.valor === tarjeta.numero"
-          (click)="seleccionarMetodoDePago('card', tarjeta.numero)"
-        >
-          <span><strong>{{ tarjeta.tipo }} •••• {{ tarjeta.numero.slice(-4) }}</strong></span>
-          <div class="added-service-header">
-            <div class="card-actionstarjeta">
-              <button class="action-button action-edit" (click)="abrirPopupTarjeta(tarjeta.tipo, i); $event.stopPropagation()">Editar</button>
-              <button class="action-button action-delete" (click)="eliminarTarjeta(i); $event.stopPropagation()">Eliminar</button>
-            </div>
-          </div>
-        </li>
-      }
-    </ul>
-    
+      <div class="payment-section">
+        <!-- Lista de tarjetas -->
+        <ul class="servicios-list">
+          @for (tarjeta of tarjetas; track $index; let i = $index) {
+            <li 
+            class="payment-card added-service"
+            [class.selected]="paymentMethod()?.tipo === 'card' && paymentMethod()?.valor === tarjeta.numero?.toString()"
+            (click)="seleccionarMetodoDePago('card', tarjeta.numero)"
+          >
+          <span><strong>{{ tarjeta.nombre }} •••• {{ tarjeta.numero?.slice(-4) }}</strong></span>
+          <!-- Para depurar -->
+    <small>Valor tarjeta: "{{ tarjeta.numero }}"</small>
+    <small>Valor seleccionado: "{{ paymentMethod()?.valor }}"</small>
+          <div class="card-actions">
+                <button class="action-button action-delete" 
+                        (click)="eliminarTarjeta(i); $event.stopPropagation()">
+                  Eliminar
+                </button>
+              </div>
+            </li>
+          }
+        </ul>
+          
 
     <!-- Mensaje si no hay tarjetas registradas -->
     @if (tarjetas.length === 0) {

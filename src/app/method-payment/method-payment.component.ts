@@ -29,8 +29,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class MethodPaymentComponent {
 
   //  PROPIEDADES Y ARRAYS
-  tarjetas: { numero: string; tipo: string; fechaExpiracion: string; cvc: string }[] = [];
-  serviciosPago: { nombre: string; email: string }[] = [];
+  
+  tarjetas: {
+    id_metodo?: number; numero: string; tipo: string; nombre: string; fechaExpiracion: string; cvc: string;}[] = [];
+  serviciosPago: {id_metodo?:number, nombre: string; email: string }[] = [];
   prefixes = [
     { value: '+1', flag: '🇺🇸' },
     { value: '+351', flag: '🇵🇹' },
@@ -43,8 +45,8 @@ export class MethodPaymentComponent {
   servicioSeleccionado: string | null = null;
 
   // Datos para formularios
-  nuevaTarjeta: { tipo?: string; numero?: string; fechaExpiracion?: string; cvc?: string; index?: number } = {};
-  nuevoServicio: { nombre?: string; email?: string; index?: number } = {};
+  nuevaTarjeta: { id_metodo?:number, tipo?: string; numero?: string; fechaExpiracion?: string; cvc?: string; index?: number } = {};
+  nuevoServicio: { id_metodo?:number, nombre?: string;   password?: string; email?: string; index?: number } = {};
 
   // Formulario y usuario
   editForm!: FormGroup;
@@ -52,8 +54,8 @@ export class MethodPaymentComponent {
 
   // Mensaje de error
   errorMensaje: string = '';
-
-
+  metodosDePago: any[] = [];
+  
   // CONSTRUCTOR
   constructor(
     private paymentService: PaymentService,
@@ -66,8 +68,7 @@ export class MethodPaymentComponent {
 
   //  CICLO DE VIDA
   ngOnInit(): void {
-    this.tarjetas = this.paymentService.getTarjetas();
-    this.serviciosPago = this.paymentService.getServiciosPago();
+    this.loadMetodosDePago(); // ✅ Cargamos desde la API
     this.user = this.userService.getUser();
           this.userId = this.authService.getUserId();
   
@@ -143,6 +144,39 @@ export class MethodPaymentComponent {
   showErrorPopup(message: string): void {
     alert(message);
   }
+  loadMetodosDePago(): void {
+    this.paymentService.getMetodosDePagoApi().subscribe({
+      next: (data) => {
+        this.metodosDePago = data;
+        this.organizarMetodos();
+      },
+      error: (error) => {
+        console.error('Error al cargar métodos de pago:', error);
+      }
+    });
+  }
+  private organizarMetodos(): void {
+    // Tarjetas
+    this.tarjetas = this.metodosDePago
+  .filter((m: any) => m.tipo === 'tarjeta')
+  .map((t: any) => ({
+    id_metodo: t.id_metodo,
+    numero: t.num_tarjeta,
+    tipo: t.tipo, // este es 'tarjeta', fijo
+    nombre: t.nombre || 'Desconocido',
+    fechaExpiracion: t.fecha_caducidad,
+    cvc: t.codigo_validacion
+  }));
+  
+    // Servicios
+    this.serviciosPago = this.metodosDePago
+      .filter((s: any) => ['paypal', 'apple_pay', 'google_pay'].includes(s.tipo))
+      .map((s: any) => ({
+        id_metodo: s.id_metodo,
+        nombre: s.tipo,
+        email: s.email ?? ''
+      }));
+  }
 
   // TARJETAS
   agregarOEditarTarjeta() {
@@ -175,8 +209,8 @@ export class MethodPaymentComponent {
     const [mesStr, anioStr] = fechaExpiracion.split('/');
     const mes = parseInt(mesStr, 10);
     const anio = parseInt(anioStr.length === 2 ? '20' + anioStr : anioStr, 10);
-  
     const ahora = new Date();
+  
     const mesActual = ahora.getMonth() + 1;
     const anioActual = ahora.getFullYear();
   
@@ -185,65 +219,130 @@ export class MethodPaymentComponent {
       return;
     }
   
-    // Si pasa todas las validaciones
-    this.paymentService.addOrUpdateTarjeta(
-      { tipo, numero: numeroSanitizado, fechaExpiracion, cvc },
+    this.paymentService.addOrUpdateTarjetaApi(
+      {
+        tipo: 'tarjeta', // fijo
+        nombre: tipo, // ✅ Aquí va 'Visa', 'Mastercard', etc.
+        numero: numeroSanitizado,
+        fechaExpiracion,
+        cvc
+      },
       index
-    );
-    this.tarjetas = this.paymentService.getTarjetas();
-    this.cerrarPopup();
+    ).subscribe({
+      next: () => {
+        this.loadMetodosDePago();
+        this.cerrarPopup();
+        alert('Tarjeta guardada exitosamente');
+      },
+      error: (error) => {
+        console.error('Error al guardar la tarjeta:', error);
+        this.errorMensaje = 'Ocurrió un error al guardar la tarjeta.';
+      }
+    });
   }
-  
   
 
   abrirPopupTarjeta(tipo?: string, index?: number) {
     this.mostrarPopup = true;
-
-    if (index !== undefined) {
+  
+    if (index !== undefined && this.tarjetas[index]) {
       const tarjetaExistente = this.tarjetas[index];
-      this.nuevaTarjeta = { ...tarjetaExistente, index };
+      this.nuevaTarjeta = {
+        ...tarjetaExistente,
+        index
+      };
     } else {
-      this.nuevaTarjeta = { tipo: '', numero: '', fechaExpiracion: '', cvc: '', index: undefined };
+      this.nuevaTarjeta = {
+        tipo: '',
+        numero: '',
+        fechaExpiracion: '',
+        cvc: '',
+        index: undefined
+      };
     }
-
-    document.body.classList.add('no-scroll'); // <-- Aquí sí se aplica bien
+  
+    document.body.classList.add('no-scroll');
   }
 
   eliminarTarjeta(index: number) {
-    this.paymentService.deleteTarjeta(index);
-    this.tarjetas = this.paymentService.getTarjetas();
+    const metodoId = this.tarjetas[index]?.id_metodo;
+  
+    if (!metodoId) {
+      alert('No se pudo encontrar el ID del método de pago.');
+      return;
+    }
+  
+    this.paymentService.deleteMetodoDePagoApi(metodoId).subscribe({
+      next: () => {
+        this.loadMetodosDePago(); // ✅ Recargamos desde la API
+      },
+      error: (error) => {
+        console.error('Error al eliminar la tarjeta:', error);
+        alert('Hubo un error al eliminar la tarjeta.');
+      }
+    });
   }
 
   // SERVICIOS DE PAGO
-  agregarOEditarServicio() {
-    const { nombre, email, index } = this.nuevoServicio;
-
-    if (!nombre || !email) {
+  agregarOEditarServicio(): void {
+    const { nombre, email, password, index } = this.nuevoServicio;
+  
+    if (!nombre || !email || !password) {
       alert('Por favor, completa todos los campos.');
       return;
     }
-
-    this.paymentService.addOrUpdateServicio({ nombre, email }, index);
-    this.serviciosPago = this.paymentService.getServiciosPago();
-    this.cerrarPopup();
+  
+    this.paymentService.addOrUpdateServicioApi(
+      {
+        nombre,
+        email,
+        password
+      },
+      index
+    ).subscribe({
+      next: () => {
+        alert('Servicio guardado exitosamente');
+        this.loadMetodosDePago();
+        this.cerrarPopup();
+      },
+      error: (error) => {
+        console.error('Error al guardar el servicio:', error);
+        alert('Ocurrió un error al guardar el servicio.');
+      }
+    });
   }
-
+  
   abrirPopupServicio(nombre: string, index?: number) {
     this.mostrarPopup = true;
     this.servicioSeleccionado = nombre;
-
-    if (index !== undefined) {
+  
+    if (index !== undefined && this.serviciosPago[index]) {
       const servicioExistente = this.serviciosPago[index];
       this.nuevoServicio = { ...servicioExistente, index };
     } else {
       this.nuevoServicio = { nombre, email: '', index: undefined };
     }
-    document.body.classList.add('no-scroll'); // <-- Aquí sí se aplica bien
+  
+    document.body.classList.add('no-scroll');
   }
 
   eliminarServicio(index: number) {
-    this.paymentService.deleteServicio(index);
-    this.serviciosPago = this.paymentService.getServiciosPago();
+    const metodoId = this.serviciosPago[index]?.id_metodo;
+  
+    if (!metodoId) {
+      alert('No se encontró el ID del servicio.');
+      return;
+    }
+  
+    this.paymentService.deleteMetodoDePagoApi(metodoId).subscribe({
+      next: () => {
+        this.loadMetodosDePago(); // ✅ Refrescamos desde la API
+      },
+      error: (error) => {
+        console.error('Error al eliminar el servicio:', error);
+        alert('Hubo un error al eliminar el servicio.');
+      }
+    });
   }
 
   //  CERRAR POPUP
@@ -325,12 +424,12 @@ export class MethodPaymentComponent {
   }
 
   //GLHF
-  paymentMethod = signal<{ tipo: 'card' | 'servicio', valor: string } | null>(null);
+
+  paymentMethod = signal<{ tipo: 'card' | 'servicio'; valor: string } | null>(null);
 
   seleccionarMetodoDePago(tipo: 'card' | 'servicio', valor: string): void {
     this.paymentMethod.set({ tipo, valor });
   }
-  
   // Total solo de precios, sin cantidades (no necesario si ya tienes calculateSubtotal)
   totalPrice = computed(() =>
     this.cartItems.reduce((sum, item) => sum + item.price, 0)
