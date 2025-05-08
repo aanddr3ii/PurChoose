@@ -51,6 +51,11 @@ h3 {
   border-color: #1e53cc;
   background-color: #e5f8ff;
 }
+.selected {
+  border-color: #1e53cc;
+  border: 2px solid #007bff;
+  background-color: #e8f0fe;
+}
 
 .icon-svg {
   width: 24px;
