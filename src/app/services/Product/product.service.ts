@@ -55,6 +55,21 @@ export class ProductService {
     );
   }
 
+
+    /**
+   * Crea un nuevo producto del empresaurio.
+   * @param productData Datos del producto a crear.
+   * @returns Un Observable que emite la respuesta del servidor.
+   */
+    createProductEmpresaurio(productData: any): Observable<any> {
+      return this.http.post(ApiUrls.PRODUCTOS.STORE_EMPRESAURIO, productData).pipe(
+        catchError((error) => {
+          console.error('Error al crear el producto:', error);
+          return throwError(() => new Error('No se pudo crear el producto.'));
+        })
+      );
+    }
+
   /**
    * Actualiza un producto existente.
    * @param productId ID del producto a actualizar.

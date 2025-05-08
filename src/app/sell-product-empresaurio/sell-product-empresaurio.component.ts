@@ -52,6 +52,7 @@ export class SellProductEmpresaurioComponent {
       precio: [null, [Validators.required, Validators.min(0)]],
       estado: ['nuevo', Validators.required],
       oferta: [false],
+      quantity: [2, [Validators.required, Validators.min(2)]],
       ubicacion: [''],
       user_id: [this.getUserId()], // Obtener el ID del usuario autenticado
       
@@ -69,6 +70,7 @@ export class SellProductEmpresaurioComponent {
             precio: product.precio,
             estado: product.estado,
             oferta: product.oferta,
+            quantity: [2, [Validators.required, Validators.min(2)]],    // el 2 es el valor por defecto
             ubicacion: product.ubicacion,
             user_id: product.user_id
           });

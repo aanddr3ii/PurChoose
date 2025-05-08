@@ -27,9 +27,9 @@
     <br>
 
     <div class="sell-product-form-group">
-        <label for="cantidad" class="sell-product-label">Cantidad</label>
-        <input id="cantidad" class="sell-product-input" type="number" formControlName="cantidad" />
-    </div>
+      <label for="quantity" class="sell-product-label">Cantidad</label>
+      <input id="quantity" class="sell-product-input" type="number" formControlName="quantity" />
+    </div>    
     
     <br>
 
@@ -65,7 +65,11 @@
     <div class="category-list">
       @for (category of selectedCategories; track category; let i = $index) {
         <div class="category-card">
-          <select class="sell-product-select" [(ngModel)]="selectedCategories[i]" [ngModelOptions]="{ standalone: true }">
+          <select
+            class="sell-product-select"
+            [(ngModel)]="selectedCategories[i]"
+            [ngModelOptions]="{ standalone: true }"
+          >
             <option disabled [value]="null">Selecciona una categoría</option>
             @for (cat of categories; track cat.id) {
               <option [value]="cat.id">{{ cat.nombre }}</option>

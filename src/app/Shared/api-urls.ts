@@ -29,6 +29,7 @@
   public static readonly PRODUCTOS = {
     LIST: `${ApiUrls.BASE_URL}/productos`,
     STORE: `${ApiUrls.BASE_URL}/productos`,
+    STORE_EMPRESAURIO: `${ApiUrls.BASE_URL}/productos-empresauriales`,
     FILTRAR: `${ApiUrls.BASE_URL}/categorias/productos`,
     IMAGES: (productId: number) => `${ApiUrls.BASE_URL}/productos/${productId}/imagenes`, // URL correcta
     UPLOAD_IMAGES: (productId: number) => `${ApiUrls.BASE_URL}/productos/${productId}/upload-images`,
