@@ -71,7 +71,7 @@
       {{ 'NAV-BELT.INBOX' | translate }}
     </a>
     <!-- Boton de venta del producto -->
-    <a routerLink="/sell-product" class="nav-sell-link">
+    <a [routerLink]="sellProductLink" class="nav-sell-link">
       <svg class="sell-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path 
           fill-rule="evenodd" 

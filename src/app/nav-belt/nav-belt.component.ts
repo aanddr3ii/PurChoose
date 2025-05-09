@@ -17,6 +17,8 @@ import { User } from '../interfaces/user';
 export class NavBeltComponent {
   currentLang: string = 'en';
   dropdownOpen = false;
+  isEmpresa = false; // Propiedad para verificar si el usuario es empresa
+  sellProductLink: string = ''; // Enlace para vender productos
   isUserAdmin = false; // Propiedad para verificar si el usuario es admin
   cartItemCount: number = 0; // Cantidad de productos en el carrito
 
@@ -39,14 +41,23 @@ export class NavBeltComponent {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+    const userRole = this.authService.getUserRole();
+
       // Configuración del idioma
       const savedLang = localStorage.getItem('selectedLanguage');
       this.currentLang = savedLang || this.translate.getBrowserLang() || 'en';
       this.translate.use(this.currentLang);
+        
+      this.isEmpresa = this.authService.getUserRole() === 'empresauiro';
 
       // Verifica si el usuario es admin
       this.isUserAdmin = this.authService.getUserRole() === 'admin';
 
+    if (userRole === 'empresaurio') {
+      this.sellProductLink = '/sell-product-empresaurio';
+    } else {
+      this.sellProductLink = '/sell-product';
+    }
       // Actualiza la cantidad de productos en el carrito
     }
   }
