@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/authService/auth.service'; // Importa el servicio de autenticación
 import { User } from '../../interfaces/user'; // Importa la interfaz de usuario
 
+//
+
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -42,15 +44,13 @@ export class ProductsComponent {
     });
   }
   
-  
-  
+  // administracion de productos
   editarProducto(id: number): void {
     this.router.navigate(['/edit-product'], {
       queryParams: { id }
     });
   }
   
-
   eliminarProducto(id: number): void {
     this.productService.deleteProduct(id).subscribe(() => {
       this.productos = this.productos.filter(p => p.id !== id);

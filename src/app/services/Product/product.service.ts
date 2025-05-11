@@ -195,5 +195,12 @@ export class ProductService {
   updateProductoedit(productId: number, data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/productos/${productId}`, data);
   }
+
+  // INCREMENTA LAS VISITAS DEL PRODUCTO
+  incrementProductViews(productId: number): Observable<void> {
+    return this.http.post<void>(ApiUrls.PRODUCTOS.INCREMENT_VIEWS(productId), {});
+  }
+
+
   
 }

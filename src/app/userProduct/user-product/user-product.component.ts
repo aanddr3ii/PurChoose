@@ -12,6 +12,9 @@ import { UsersReviewComponent } from "../users-review/users-review.component";
 import { ProductFooterComponent } from '../product-footer/product-footer.component';
 import { PrductReviewButtonComponent } from "../prduct-review-button/prduct-review-button.component";
 
+import { ProductService } from '../../services/Product/product.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-product',
@@ -22,5 +25,16 @@ import { PrductReviewButtonComponent } from "../prduct-review-button/prduct-revi
 })
 
 export class UserProductComponent {
+  constructor(private route: ActivatedRoute, private productService: ProductService) {}
+  ngOnInit(): void {
+    const productId = this.route.snapshot.params['id'];
+
+    if (productId) {
+      this.productService.incrementProductViews(productId).subscribe({
+        next: () => console.log('Visita registrada'),
+        error: () => console.warn('Error al registrar la visita'),
+      });
+    }
+  }
 
 }

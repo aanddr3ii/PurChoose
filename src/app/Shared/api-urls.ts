@@ -34,6 +34,7 @@
     IMAGES: (productId: number) => `${ApiUrls.BASE_URL}/productos/${productId}/imagenes`, // URL correcta
     UPLOAD_IMAGES: (productId: number) => `${ApiUrls.BASE_URL}/productos/${productId}/upload-images`,
     WITH_CATEGORIES_AND_IMAGES: '/productos/with-categories-and-images',
+    INCREMENT_VIEWS: (productId: number) => `${ApiUrls.BASE_URL}/productos/${productId}/incrementViews`
 
   };
   public static readonly CARRITO = {
