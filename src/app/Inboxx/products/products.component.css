@@ -168,6 +168,19 @@
 .meta-modificado{
   margin-right: 202px;
 }
+
 .meta-pm{
   margin-right: 202px;
+}
+
+.meta-ppv{
+  margin-top: -30px;
+  margin-right: -7px;
+  margin-bottom: 35px;
+}
+
+.meta-pmn{
+  margin-top: -30px;
+  margin-right: 145px;
+  margin-left: -50px;
 }
