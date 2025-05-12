@@ -202,11 +202,21 @@
   },
 
   "PROMO": {
-  "TITLE": "Você poderia ter",
-  "TITLE2": "economizado",
-  "TITLE3": "500€",
-  "DESCRIPTION": "Escolha a Purchoose para todas as suas compras e ganhe dinheiro.",
-  "BUTTON": "Comprar agora",
-  "IMAGE_ALT": "Imagem promocional da carteira"
+    "TITLE": "Você poderia ter",
+    "TITLE2": "economizado",
+    "TITLE3": "500€",
+    "DESCRIPTION": "Escolha a Purchoose para todas as suas compras e ganhe dinheiro.",
+    "BUTTON": "Comprar agora",
+    "IMAGE_ALT": "Imagem promocional da carteira"
+  },
+
+  "USER_PRODUCTS": {
+    "TITLE": "Seus produtos",
+    "DESCRIPTION": "Aqui você pode enviar produtos, gerenciar os que já possui e destacá-los para vender mais rápido.",
+    "PUBLICATED": "Publicado",
+    "MODIFIED": "Modificado",
+    "VISUALIZATIONS": "Visualizações",
+    "NO_PRODUCT": "Você ainda não publicou nenhum produto.",
+    "STATS": "Estatísticas"
   }
 }

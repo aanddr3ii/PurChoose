@@ -20,6 +20,19 @@
   margin-left: 450px;
 }
 
+.pp{
+  margin-bottom: 0px;
+  margin-left: 450px;
+  margin-top: 12px;
+}
+
+.no-products {
+  text-align: center;
+  color: #999;
+  font-size: 16px;
+  margin-top: 24px;
+}
+
 .product-list {
   display: flex;
   flex-direction: column;
@@ -73,36 +86,26 @@
 .product-meta {
   display: flex;
   flex-direction: column;
-  justify-content: center;  /* centrado vertical */
-  align-items: flex-end;
+  align-items: center;
+  gap: 4px;
   font-size: 13px;
   color: #888;
-  margin-left: 24px;
-  height: 100%; /* asegura alineación */
 }
-
-
 
 .product-meta-row {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.meta-label,
-.meta-value {
-  font-size: 13px;
-  color: #555;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
 }
 
 .meta-label {
   font-weight: 600;
-  margin-right: 180px; /* ajusta este número para separar menos */
+  color: #555;
 }
 
 .meta-value {
   color: #333;
-  margin-right: 192px;
 }
 
 .product-actions-right {
@@ -111,7 +114,8 @@
   margin-left: 16px;
 }
 
-.icon-btn-delete {
+.icon-btn-delete,
+.icon-btn-edit {
   width: 36px;
   height: 36px;
   background-color: #f5f5f5;
@@ -126,20 +130,7 @@
 
 .icon-btn-delete:hover {
   background-color: #ee8c8c;
-  border: 1px solid #ee8c8c;
-}
-
-.icon-btn-edit {
-  width: 36px;
-  height: 36px;
-  background-color: #f5f5f5;
-  border: 1px solid #dcdcdc;
-  border-radius: 10%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  border-color: #ee8c8c;
 }
 
 .icon-btn-edit:hover {
@@ -151,36 +142,90 @@
   color: #555;
 }
 
-.pp{
-  margin-bottom: 0px;
-  margin-left: 450px;
-  margin-top: 12px;
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
-.meta-publicado{
-  margin-right: 70px;
+/* Modal Container */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 340px;
+  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: left;
 }
 
-.meta-pp{
-  margin-right: 64px;
+/* Modal Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.meta-modificado{
-  margin-right: 202px;
+.modal-header h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: black;
 }
 
-.meta-pm{
-  margin-right: 202px;
+/* Close Button */
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
 }
 
-.meta-ppv{
-  margin-top: -30px;
-  margin-right: -7px;
-  margin-bottom: 35px;
+.close-button:hover {
+  color: #ff3b3b;
 }
 
-.meta-pmn{
-  margin-top: -30px;
-  margin-right: 145px;
-  margin-left: -50px;
+/* Modal Body */
+.modal-body {
+  padding-top: 12px;
+}
+
+.modal-body p {
+  font-size: 14px;
+  color: black;
+}
+
+.modal-body ul {
+  list-style-type: disc;
+  padding-left: 18px;
+}
+
+.modal-body ul li {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.modal-body ul li b {
+  font-weight: bold;
+}
+
+.dialog-body p {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.dialog-body span {
+  margin-left: 4px;
+  color: #111;
 }

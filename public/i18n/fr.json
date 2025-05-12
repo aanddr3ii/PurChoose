@@ -202,11 +202,21 @@
   },
 
   "PROMO": {
-  "TITLE": "Vous auriez pu",
-  "TITLE2": "économiser",
-  "TITLE3": "500€",
-  "DESCRIPTION": "Choisissez Purchoose pour tous vos achats et gagnez de l'argent.",
-  "BUTTON": "Acheter maintenant",
-  "IMAGE_ALT": "Image promotionnelle de portefeuille"
+    "TITLE": "Vous auriez pu",
+    "TITLE2": "économiser",
+    "TITLE3": "500€",
+    "DESCRIPTION": "Choisissez Purchoose pour tous vos achats et gagnez de l'argent.",
+    "BUTTON": "Acheter maintenant",
+    "IMAGE_ALT": "Image promotionnelle de portefeuille"
+  },
+
+  "USER_PRODUCTS": {
+    "TITLE": "Vos produits",
+    "DESCRIPTION": "Ici, vous pouvez télécharger des produits, gérer ceux que vous avez déjà et les mettre en avant pour les vendre plus rapidement.",
+    "PUBLICATED": "Publié",
+    "MODIFIED": "Modifié",
+    "VISUALIZATIONS": "Vues",
+    "NO_PRODUCT": "Vous n'avez encore publié aucun produit.",
+    "STATS": "Statistiques"
   }
 }

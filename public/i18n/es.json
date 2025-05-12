@@ -203,11 +203,21 @@
   },
 
   "PROMO": {
-  "TITLE": "Podrías haber",
-  "TITLE2": "ahorrado",
-  "TITLE3": "500€",
-  "DESCRIPTION": "Elige Purchoose para todas tus compras y gana dinero.",
-  "BUTTON": "Comprar ya",
-  "IMAGE_ALT": "Imagen de promoción de cartera"
+    "TITLE": "Podrías haber",
+    "TITLE2": "ahorrado",
+    "TITLE3": "500€",
+    "DESCRIPTION": "Elige Purchoose para todas tus compras y gana dinero.",
+    "BUTTON": "Comprar ya",
+    "IMAGE_ALT": "Imagen de promoción de cartera"
+  },
+
+  "USER_PRODUCTS": {
+    "TITLE": "Tus productos",
+    "DESCRIPTION": "Aquí podrás subir productos, gestionar los que ya tienes y destacarlos para venderlos antes.",
+    "PUBLICATED": "Publicado",
+    "MODIFIED": "Modificado",
+    "VISUALIZATIONS": "Visualizaciones",
+    "NO_PRODUCT": "No has publicado ningún producto aún.",
+    "STATS": "Estadísticas"
   }
 }

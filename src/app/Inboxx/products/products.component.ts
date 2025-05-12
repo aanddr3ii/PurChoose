@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavBeltComponent } from '../../nav-belt/nav-belt.component';
 import { NavCategoriesComponent } from '../../nav-categories/nav-categories.component';
 import { LeftBarComponent } from '../left-bar/left-bar.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 //produ xixa
 import { ProductService } from '../../services/Product/product.service';
@@ -18,12 +19,23 @@ import { User } from '../../interfaces/user'; // Importa la interfaz de usuario
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [NavBeltComponent, NavCategoriesComponent, LeftBarComponent],
+  imports: [NavBeltComponent, NavCategoriesComponent, LeftBarComponent, TranslateModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
   productos: any[] = [];
+  isInfoVisible: boolean = false;
+
+  toggleInfo(): void {
+    this.isInfoVisible = !this.isInfoVisible;
+  }
+
+  closeModal(event: Event): void {
+    if ((event.target as HTMLElement).classList.contains('modal-overlay')) {
+        this.isInfoVisible = false;
+    }
+  }
 
   constructor(private productService: ProductService, private http: HttpClient, private router: Router, private authService: AuthService) {}
   ngOnInit(): void {

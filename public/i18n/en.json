@@ -200,11 +200,21 @@
   },
 
   "PROMO": {
-  "TITLE": "You could have",
-  "TITLE2": "saved",
-  "TITLE3": "500€",
-  "DESCRIPTION": "Choose Purchoose for all your purchases and earn money.",
-  "BUTTON": "Shop now",
-  "IMAGE_ALT": "Wallet Promo Image"
+    "TITLE": "You could have",
+    "TITLE2": "saved",
+    "TITLE3": "500€",
+    "DESCRIPTION": "Choose Purchoose for all your purchases and earn money.",
+    "BUTTON": "Shop now",
+    "IMAGE_ALT": "Wallet Promo Image"
+  },
+
+  "USER_PRODUCTS": {
+    "TITLE": "Your products",
+    "DESCRIPTION": "Here you can upload products, manage the ones you already have, and highlight them to sell faster.",
+    "PUBLICATED": "Published",
+    "MODIFIED": "Modified",
+    "VISUALIZATIONS": "Views",
+    "NO_PRODUCT": "You haven't published any products yet.",
+    "STATS": "Stats"
   }
 }
