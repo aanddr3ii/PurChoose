@@ -88,7 +88,7 @@ export const routes: Routes = [
         { path: 'admin/manage-categories', component: ManageCategoriesComponent }, // Manage categories
         { path: 'admin/manage-products', component: ManageProductsComponent }, // Manage products
     /*CHAT*/
-    {path: 'chat/:id', component: ChatDetailComponent, title: 'Chat'}
+    {  path: 'chat/:id',  component: ChatDetailComponent}
     
     //...
 

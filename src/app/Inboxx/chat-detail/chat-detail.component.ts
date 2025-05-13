@@ -1,67 +1,65 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ChatService } from '../../services/chat/chat.service';
-import { Chat} from '../../interfaces/Chat.model';
-import { Mensaje } from '../../interfaces/Mensaje.model';
-import { AuthService } from '../../services/authService/auth.service';
-import { FormsModule } from '@angular/forms';
 import { ChatStateService } from '../../services/chat/chat-state.service';
+import { Chat } from '../../interfaces/Chat.model';
+import { FormsModule } from '@angular/forms';
 import { effect } from '@angular/core';
+import { ChatService } from '../../services/chat/chat.service';
 
 @Component({
   selector: 'app-chat-detail',
-  standalone:true,
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './chat-detail.component.html',
   styleUrls: ['./chat-detail.component.css']
 })
 export class ChatDetailComponent implements OnInit {
-  chatId!: number;
   chat: Chat | null = null;
-  mensajes: Mensaje[] = [];
+
   nuevoMensaje = '';
-  usuarioId!: number;
+  chatId!: number;
 
- constructor(private chatState: ChatStateService, private chatService: ChatService, private authService: AuthService, private route: ActivatedRoute) {
-    // ✅ Escucha cambios en la señal
-    effect(() => {
-      this.chat = this.chatState.currentChat();
-    });
+  constructor(private chatState: ChatStateService, private chatService: ChatService // 👈 Inyectamos el servicio
+) {
+  effect(() => {
+    const currentChat = this.chatState.currentChat();
+    console.log('currentChat:', currentChat);
+    
+    if (currentChat?.id) {
+      this.loadChat(currentChat.id); // Cargamos los mensajes
+    }
+  });
   }
+loadChat(chatId: number): void {
+  this.chatService.getMessages(chatId).subscribe({
+    next: (mensajes) => {
+      const currentChat = this.chatState.currentChat();
 
+      if (!currentChat?.id) {
+        console.warn('No se encontró un chat válido para actualizar');
+        return;
+      }
+
+      // ✅ Ahora sí, construimos el chat completo
+      this.chat = {
+        ...currentChat,
+        mensajes: mensajes
+      };
+
+      console.log('Chat actualizado con mensajes:', this.chat);
+    },
+    error: (err) => {
+      console.error('Error al cargar los mensajes:', err);
+    }
+  });
+}
   ngOnInit(): void {
-    // Inicializa con el valor actual
+    // Inicializar con el valor actual
     this.chat = this.chatState.currentChat();
   }
 
-  loadChat(chatId: number): void {
-    this.chatService.getMessages(chatId).subscribe({
-      next: (data: any) => {
-        this.chat = data;
-        this.mensajes = data.mensajes || [];
-      },
-      error: (err) => {
-        console.error('Error al cargar el chat:', err);
-      }
-    });
-  }
-
   onSendMessage(): void {
-    if (!this.nuevoMensaje.trim() || !this.chatId) return;
-
-    const mensajeData = {
-      contenido: this.nuevoMensaje,
-      usuario_id: this.usuarioId
-    };
-
-    this.chatService.sendMessage(this.chatId, mensajeData.contenido, mensajeData.usuario_id).subscribe({
-      next: (mensaje: Mensaje) => {
-        this.mensajes.push(mensaje);
-        this.nuevoMensaje = '';
-      },
-      error: (err) => {
-        console.error('Error al enviar el mensaje:', err);
-      }
-    });
+    if (!this.nuevoMensaje.trim()) return;
+    console.log('Enviando mensaje:', this.nuevoMensaje);
+    this.nuevoMensaje = '';
   }
 }

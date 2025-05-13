@@ -4,15 +4,19 @@
 
   @if (chats.length > 0) {
     @for (chat of chats; track chat.id) {
-   <div 
-  class="product-card" 
-  (click)="onChatClick(chat)"
-  style="cursor: pointer;"
->
-  {{ chat.usuario1.id === usuarioId ? chat.usuario2.name : chat.usuario1.name }}
-</div>
+      <div 
+        class="product-card" 
+        (click)="onChatClick(chat)"
+        style="cursor: pointer;"
+      >
+        {{ chat.usuario1.id === usuarioId ? chat.usuario2.name : chat.usuario1.name }}
+      </div>
     }
   } @else {
     <p>No tienes chats aún.</p>
   }
 </div>
+
+@if (chatState.currentChat()) {
+  <app-chat-detail></app-chat-detail>
+}

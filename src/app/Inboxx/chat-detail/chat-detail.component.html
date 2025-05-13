@@ -1,19 +1,47 @@
-@if (chat) {
-  <div class="chat-header">
-    <h4>
-      {{ chat.usuario1.id === chat.usuario2.id ? chat.usuario1.name : chat.usuario2.name }}
-    </h4>
-  </div>
-
-  <div class="messages">
-    @if (chat.mensajes.length > 0) {
-      @for (mensaje of chat.mensajes; track mensaje.id) {
-        <p><strong>{{ mensaje.usuario_id === chat.usuario1.id ? 'Tú' : 'Otro' }}:</strong> {{ mensaje.contenido }}</p>
-      }
-    } @else {
-      <p>No hay mensajes aún.</p>
-    }
+@if (!chat) {
+  <!-- Mensaje fijo cuando no hay chat seleccionado -->
+  <div class="floating-message">
+    🔍 Selecciona un chat para comenzar a chatear
   </div>
 } @else {
-  <p>Selecciona un chat para comenzar</p>
+  <!-- Contenido del chat cuando hay uno seleccionado -->
+  <div class="chat-content">
+    <div class="chat-header">
+      {{ chat.usuario1.id === chat.usuario2.id ? chat.usuario1.name : chat.usuario2.name }}
+    </div>
+
+    <div class="messages-list">
+      @if (chat.mensajes && chat.mensajes.length > 0) {
+        @for (mensaje of chat.mensajes; track mensaje.id) {
+          <div 
+            class="message" 
+            [class.from-me]="mensaje.usuario_id === chat.usuario1.id"
+          >
+            <strong>{{ mensaje.usuario_id === chat.usuario1.id ? 'Tú' : 'Otro' }}:</strong>
+            {{ mensaje.contenido }}
+          </div>
+        }
+      } @else {
+        <p class="no-messages">📭 No hay mensajes aún.</p>
+      }
+    </div>
+
+    <div class="send-message-section">
+      <form class="send-form" (ngSubmit)="onSendMessage()" #formDir="ngForm">
+        <input 
+          type="text" 
+          [(ngModel)]="nuevoMensaje" 
+          name="nuevoMensaje" 
+          required 
+          placeholder="Escribe un mensaje..."
+        />
+        <button 
+          type="submit" 
+          [disabled]="!nuevoMensaje.trim() || formDir.submitted"
+        >
+          Enviar
+        </button>
+      </form>
+    </div>
+  </div>
 }
