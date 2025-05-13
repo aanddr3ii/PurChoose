@@ -1,10 +1,18 @@
 <div class="side-menu">
-    <p class="inbox-title">{{ 'LEFT-BAR-PRODUCT.INBOX' | translate }}</p>
-    <hr class="hr">
-    @for (product of products; track product.id) {
-        <div class="product-card">
-            <img [src]="product.images?.[0] ?? 'assets/default-image.jpg'" class="slider-image" />
-            <p class="product-name">{{ product.nombre }}</p>
-        </div>
+  <p class="inbox-title">Mensajes</p>
+  <hr class="hr">
+
+  @if (chats.length > 0) {
+    @for (chat of chats; track chat.id) {
+   <div 
+  class="product-card" 
+  (click)="onChatClick(chat)"
+  style="cursor: pointer;"
+>
+  {{ chat.usuario1.id === usuarioId ? chat.usuario2.name : chat.usuario1.name }}
+</div>
     }
+  } @else {
+    <p>No tienes chats aún.</p>
+  }
 </div>

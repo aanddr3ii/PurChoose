@@ -1,0 +1,19 @@
+@if (chat) {
+  <div class="chat-header">
+    <h4>
+      {{ chat.usuario1.id === chat.usuario2.id ? chat.usuario1.name : chat.usuario2.name }}
+    </h4>
+  </div>
+
+  <div class="messages">
+    @if (chat.mensajes.length > 0) {
+      @for (mensaje of chat.mensajes; track mensaje.id) {
+        <p><strong>{{ mensaje.usuario_id === chat.usuario1.id ? 'Tú' : 'Otro' }}:</strong> {{ mensaje.contenido }}</p>
+      }
+    } @else {
+      <p>No hay mensajes aún.</p>
+    }
+  </div>
+} @else {
+  <p>Selecciona un chat para comenzar</p>
+}

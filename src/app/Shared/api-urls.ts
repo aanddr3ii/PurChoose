@@ -66,4 +66,24 @@
       DELETE: (id: number) => `${ApiUrls.BASE_URL}/historial/${id}`, // Eliminar un registro del historial
       UPDATE: (id: number) => `${ApiUrls.BASE_URL}/historial/${id}`, // Actualizar un registro del historial
     };
+
+     // RUTAS DEL CHAT 🔥
+ public static readonly CHAT = {
+    CREATE_CHAT: `${ApiUrls.BASE_URL}/chat`,
+    GET_OR_CREATE_CHAT: (productoId: number, otroUsuarioId: number) => 
+      `${ApiUrls.BASE_URL}/producto/${productoId}/chat/${otroUsuarioId}`,
+    GET_ALL_CHATS_BY_USER: (usuarioId: number) => 
+      `${ApiUrls.BASE_URL}/chats/${usuarioId}`,
+    DELETE_CHAT: (chatId: number) => 
+      `${ApiUrls.BASE_URL}/chat/${chatId}`,
+    SEND_MESSAGE: (chatId: number) => 
+      `${ApiUrls.BASE_URL}/chat/${chatId}/mensaje`,
+    UPDATE_MESSAGE: (chatId: number, mensajeId: number) => 
+      `${ApiUrls.BASE_URL}/chat/${chatId}/mensaje/${mensajeId}`,
+    DELETE_MESSAGE: (chatId: number, mensajeId: number) => 
+      `${ApiUrls.BASE_URL}/chat/${chatId}/mensaje/${mensajeId}`,
+    GET_MESSAGES: (chatId: number) => 
+      `${ApiUrls.BASE_URL}/chat/${chatId}/mensajes`
+  };
+
   }

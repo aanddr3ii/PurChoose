@@ -16,6 +16,7 @@ import { SellProductEmpresaurioComponent } from './sell-product-empresaurio/sell
 import { CartComponent } from './cart/cart.component';
 import { PaginaPerfilComponent } from './pagina-perfil/pagina-perfil.component';
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
+import { ChatDetailComponent } from './Inboxx/chat-detail/chat-detail.component';
 
 
 // Shopping
@@ -86,6 +87,8 @@ export const routes: Routes = [
         { path: 'admin/manage-users', component: ManageUsersComponent }, // Manage users
         { path: 'admin/manage-categories', component: ManageCategoriesComponent }, // Manage categories
         { path: 'admin/manage-products', component: ManageProductsComponent }, // Manage products
+    /*CHAT*/
+    {path: 'chat/:id', component: ChatDetailComponent, title: 'Chat'}
     
     //...
 
