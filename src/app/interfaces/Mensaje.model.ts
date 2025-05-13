@@ -7,3 +7,8 @@ export interface Mensaje {
   created_at: string;
   updated_at: string;
 }
+
+// Extiende el tipo para incluir mensajes temporales
+export type MensajeConTemp = Mensaje & {
+  esTemporal?: boolean; // Nuevo campo opcional
+};

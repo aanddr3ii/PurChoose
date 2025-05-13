@@ -105,3 +105,37 @@
     padding-top: 20px;
     padding-left: 12px; /* Add spacing to the left */
 }
+
+.chat-container {
+  display: flex;
+  height: 100vh;
+}
+
+.side-menu {
+  width: 300px;
+  border-right: 1px solid #ccc;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.chat-detail {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+/* styles.css */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ❌ Quitar scroll global */
+}

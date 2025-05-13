@@ -79,3 +79,9 @@
     font-weight: 600;
     color: #0078D4;
 }
+/* styles.css */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ❌ Quitar scroll global */
+}

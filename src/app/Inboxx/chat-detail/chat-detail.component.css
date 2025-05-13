@@ -1,32 +1,31 @@
-.floating-message {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: rgba(0, 0, 0, 0.85);
-  color: white;
-  padding: 15px 25px;
-  border-radius: 10px;
-  font-size: 1rem;
-  z-index: 9999;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  animation: fadeIn 0.5s ease-in-out;
+:host {
+  position: absolute;
+  left: 320px; /* Ancho de la barra lateral + algo de margen */
+  top: 55%;
+  left: 66%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 1200px;
+  max-width: 100%;
+  height: 80vh;
+  z-index: 1000;
+
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.chat-content {
-  margin: 30px auto;
-  max-width: 600px;
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background-color: white;
   border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  overflow: hidden;
 }
 
 .chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-weight: bold;
   font-size: 1.2rem;
   padding-bottom: 10px;
@@ -34,7 +33,70 @@
   margin-bottom: 15px;
 }
 
+.chat-header span {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.popup-confirm {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  z-index: 9999;
+  text-align: center;
+}
+
+.popup-confirm p {
+  margin: 0 0 10px 0;
+}
+
+.popup-confirm button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup-confirm button:nth-child(1) {
+  background-color: #dc3545;
+  color: white;
+}
+
+.popup-confirm button:nth-child(2) {
+  background-color: #6c757d;
+  color: white;
+}
+.delete-chat-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #dc3545;
+  margin-left: 10px;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+/* styles.css */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ❌ Quitar scroll global */
+}
+
 .messages-list {
+  flex: 1;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -42,8 +104,6 @@
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #eee;
-  min-height: 150px;
-  margin-bottom: 15px;
 }
 
 .message {
@@ -53,18 +113,13 @@
   word-wrap: break-word;
   border: 1px solid #ddd;
   background-color: #fff;
+  align-self: flex-start;
 }
 
 .message.from-me {
   align-self: flex-end;
   background-color: #dcf8c6;
   border-color: #b2f2bb;
-}
-
-.message:not(.from-me) {
-  align-self: flex-start;
-  background-color: #ffffff;
-  border-color: #ddd;
 }
 
 .no-messages {
@@ -76,6 +131,8 @@
 .send-message-section {
   padding-top: 10px;
   border-top: 1px solid #ccc;
+  margin-top: auto;
+  background-color: white;
 }
 
 .send-form {
@@ -100,9 +157,81 @@
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .send-form button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
+}
+
+.message {
+  position: relative;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 70%;
+  word-wrap: break-word;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  align-self: flex-start;
+  cursor: context-menu;
+}
+
+.message.from-me {
+  align-self: flex-end;
+  background-color: #dcf8c6;
+  border-color: #b2f2bb;
+}
+
+/* Menú contextual */
+.message-menu {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 10;
+  font-size: 0.9rem;
+}
+
+.message-menu button {
+  width: 100%;
+  text-align: left;
+  padding: 5px 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.message-menu button:hover {
+  background-color: #eee;
+}
+
+/* Popups */
+.popup-confirm, .popup-edit {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popup-confirm p {
+  margin: 0;
+}
+
+.popup-edit input {
+  padding: 8px;
+  font-size: 1rem;
 }

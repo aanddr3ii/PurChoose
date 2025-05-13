@@ -1,4 +1,4 @@
-import { Mensaje } from './Mensaje.model';
+import { MensajeConTemp } from './Mensaje.model';
 import { User } from './user';
 
 export interface Chat {
@@ -9,7 +9,7 @@ export interface Chat {
   created_at: string;
   updated_at: string;
 
-  mensajes: Mensaje[];
+  mensajes: MensajeConTemp[]; // 👈 Ahora usa el tipo extendido
   usuario1: User;
   usuario2: User;
 }

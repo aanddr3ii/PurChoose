@@ -57,7 +57,6 @@ logChat(chat: Chat): void {
 
   // Al hacer clic en un chat, guardarlo en el servicio compartido
 onChatClick(chat: Chat): void {
-  this.chatState.currentChat.set(chat);
-  this.router.navigate(['/chat', chat.id]); // 👈 Navegamos a la ruta del chat
+  this.chatState.currentChat.set(chat); // ✅ Actualiza el chat seleccionado
 }
 }

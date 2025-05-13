@@ -1,24 +1,46 @@
 @if (!chat) {
-  <!-- Mensaje fijo cuando no hay chat seleccionado -->
-  <div class="floating-message">
+  <div class="placeholder">
     🔍 Selecciona un chat para comenzar a chatear
   </div>
 } @else {
-  <!-- Contenido del chat cuando hay uno seleccionado -->
-  <div class="chat-content">
-    <div class="chat-header">
-      {{ chat.usuario1.id === chat.usuario2.id ? chat.usuario1.name : chat.usuario2.name }}
-    </div>
+  <div class="chat-container">
 
-    <div class="messages-list">
+    <!-- Header del chat -->
+    <div class="chat-header">
+  <span>
+    {{ chat.usuario1.id === usuarioId ? chat.usuario2.name : chat.usuario1.name }}
+  </span>
+
+  <button 
+    class="delete-chat-button" 
+    title="Eliminar chat"
+    (click)="onDeleteChat()"
+  >
+    🗑️
+  </button>
+</div>
+
+    <!-- Lista de mensajes -->
+    <div class="messages-list" #messagesContainer>
       @if (chat.mensajes && chat.mensajes.length > 0) {
         @for (mensaje of chat.mensajes; track mensaje.id) {
           <div 
             class="message" 
-            [class.from-me]="mensaje.usuario_id === chat.usuario1.id"
+            [class.from-me]="mensaje.usuario_id === usuarioId"
+            (contextmenu)="showMessageMenu($event, mensaje)"
           >
-            <strong>{{ mensaje.usuario_id === chat.usuario1.id ? 'Tú' : 'Otro' }}:</strong>
+            <strong>
+              {{ mensaje.usuario_id === usuarioId ? 'Tú' : (mensaje.usuario_id === chat.usuario1.id ? chat.usuario1.name : chat.usuario2.name) }}
+            </strong>:
             {{ mensaje.contenido }}
+
+            <!-- Menú contextual -->
+            @if (selectedMessage?.id === mensaje.id) {
+              <div class="message-menu">
+                <button (click)="editMessage(mensaje)">✏️ Editar</button>
+                <button (click)="deleteMessage(mensaje)">🗑️ Eliminar</button>
+              </div>
+            }
           </div>
         }
       } @else {
@@ -26,8 +48,13 @@
       }
     </div>
 
+    <!-- Barra de envío -->
     <div class="send-message-section">
-      <form class="send-form" (ngSubmit)="onSendMessage()" #formDir="ngForm">
+      <form 
+        class="send-form" 
+        (ngSubmit)="onSendMessage()" 
+        #formDir="ngForm"
+      >
         <input 
           type="text" 
           [(ngModel)]="nuevoMensaje" 
@@ -43,5 +70,29 @@
         </button>
       </form>
     </div>
+
+    <!-- Popup de confirmación de eliminación -->
+    @if (showDeleteConfirm) {
+      <div class="popup-confirm">
+        <p>¿Estás seguro de que quieres borrar este mensaje?</p>
+        <button (click)="confirmDelete()">Sí</button>
+        <button (click)="cancelDelete()">No</button>
+      </div>
+    }
+
+    <!-- Popup de edición -->
+    @if (editingMessage) {
+      <div class="popup-edit">
+        <input 
+          type="text" 
+          [(ngModel)]="editingMessageContent" 
+          name="editMessageInput"
+          autofocus
+        />
+        <button (click)="saveEditedMessage()">Guardar</button>
+        <button (click)="cancelEdit()">Cancelar</button>
+      </div>
+    }
+
   </div>
 }
