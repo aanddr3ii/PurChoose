@@ -48,16 +48,10 @@ export class ProductImageService {
     return this.http.post(`http://localhost:8000/api/productos/${productId}/imagenes`, formData);
   }
   
-  
-  
-  
   // borra la imagen del producto
   deleteImageByUrl(imageName: string): Observable<any> {
     const encoded = encodeURIComponent(imageName);
     return this.http.delete(`http://localhost:8000/api/imagenes/${encoded}`);
   }
-  
-  
-
   
 }

@@ -52,11 +52,11 @@ export class EditProductComponent {
     // Inicializar el formulario reactivo
     this.productForm = this.fb.group({
       nombre: ['', Validators.required],
-      descripcion: [''],
+      descripcion: ['', Validators.required],
       precio: [null, [Validators.required, Validators.min(0)]],
       estado: ['nuevo', Validators.required],
       oferta: [false],
-      ubicacion: [''],
+      ubicacion: ['', Validators.required],
       user_id: [this.getUserId()]
     });
   
@@ -117,7 +117,7 @@ export class EditProductComponent {
   }
 
 
-
+  imageFiles: File[] = [];
 
   // Manejar las imágenes seleccionadas desde el componente hijo
   onFilesSelected(files: File[]): void {
@@ -125,45 +125,66 @@ export class EditProductComponent {
   }
 
   onSubmit(): void {
-    const productId = +this.route.snapshot.queryParams['id'];
-    if (!productId) {
-      alert('No se ha podido identificar el producto a editar.');
-      return;
-    }
-  
-    const formData = this.productForm.value;
-    formData.categorias = this.selectedCategories.filter((id) => id !== null);
-  
-    this.productService.updateProductoedit(productId, formData).subscribe({
-      next: () => {
-        // ✅ Actualizar categorías aparte
-        this.productCategoryService.updateProductCategories(productId, formData.categorias).subscribe({
-          next: () => console.log('Categorías actualizadas correctamente'),
-          error: (error) => console.error('Error al actualizar las categorías:', error),
-        });
-  
-        // ✅ Subir nuevas imágenes si las hay (USANDO LA RUTA CORRECTA)
-        if (this.selectedFiles.length > 0) {
-          this.productImageService.uploadImagessubironEdit(productId, this.selectedFiles).subscribe({
-            next: () => {
-              alert('Producto actualizado correctamente con nuevas imágenes.');
-              this.router.navigate(['/products']);
-            },
-            error: (error) => {
-              console.error('Error al subir nuevas imágenes:', error);
-              alert('Producto actualizado, pero ocurrió un error al subir las imágenes.');
-            }
-          });
-        } else {
-          alert('Producto actualizado correctamente.');
-        }
-      },
-      error: (error) => {
-        console.error('Error al actualizar el producto:', error);
-        alert('Ocurrió un error al actualizar el producto.');
-      }
-    });
+  const productId = +this.route.snapshot.queryParams['id'];
+  if (!productId) {
+    alert('No se ha podido identificar el producto a editar.');
+    return;
   }
+
+  // Validaciones personalizadas
+  if (this.productForm.invalid) {
+    alert('Por favor, completa todos los campos obligatorios.');
+    return;
+  }
+
+  if (!this.productForm.get('ubicacion')?.value?.trim()) {
+    alert('La ubicación es obligatoria.');
+    return;
+  }
+
+  if (this.selectedCategories.length === 0 || this.selectedCategories.some(cat => !cat)) {
+    alert('Selecciona al menos una categoría válida.');
+    return;
+  }
+
+  if (this.selectedFiles.length === 0) {
+    alert('Añade al menos una imagen del producto.');
+    return;
+  }
+
+  const formData = this.productForm.value;
+  formData.categorias = this.selectedCategories.filter((id) => id !== null);
+
+  this.productService.updateProductoedit(productId, formData).subscribe({
+    next: () => {
+      this.productCategoryService.updateProductCategories(productId, formData.categorias).subscribe({
+        next: () => console.log('Categorías actualizadas correctamente'),
+        error: (error) => console.error('Error al actualizar las categorías:', error),
+      });
+
+      if (this.selectedFiles.length > 0) {
+        this.productImageService.uploadImagessubironEdit(productId, this.selectedFiles).subscribe({
+          next: () => {
+            alert('Producto actualizado correctamente con nuevas imágenes.');
+            this.router.navigate(['/products']);
+          },
+          error: (error) => {
+            console.error('Error al subir nuevas imágenes:', error);
+            alert('Producto actualizado, pero ocurrió un error al subir las imágenes.');
+          }
+        });
+      } else {
+        alert('Producto actualizado correctamente.');
+        this.router.navigate(['/products']);
+      }
+    },
+    error: (error) => {
+      console.error('Error al actualizar el producto:', error);
+      alert('Ocurrió un error al actualizar el producto.');
+    }
+  });
+}
+
   
 
   // EDITAR PRODUCTO ARRDDEEEIII todo menos imagen y categorias
