@@ -67,6 +67,9 @@
     <a routerLink="/inbox" class="nav-link">
       {{ 'NAV-BELT.INBOX' | translate }}
     </a>
+    
+    <a class="nav-link"href="/products" routerLinkActive="active">{{ 'LEFT-BAR.PRODUCTS' | translate }}</a>
+        
     <!-- Boton de venta del producto -->
     <a [routerLink]="sellProductLink" class="nav-sell-link">
       <svg class="sell-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
