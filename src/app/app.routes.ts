@@ -42,6 +42,7 @@ import { ManageCategoriesComponent } from './manage-categories/manage-categories
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { HistorialComponent } from './historial/historial.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { VentasComponent } from './Inboxx/ventas/ventas.component';
 
 export const routes: Routes = [
     // Index
@@ -81,6 +82,7 @@ export const routes: Routes = [
 
     //Inbox
     { path: 'products', component: ProductsComponent },
+    { path: 'ventas', component: VentasComponent },
 
     /* Admin */
     { path: 'admin', component: AdminComponent }, // Menu

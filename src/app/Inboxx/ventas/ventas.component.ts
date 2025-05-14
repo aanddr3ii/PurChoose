@@ -15,17 +15,19 @@ import { AuthService } from '../../services/authService/auth.service'; // Import
 import { User } from '../../interfaces/user'; // Importa la interfaz de usuario
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-ventas',
   standalone: true,
   imports: [NavBeltComponent, NavCategoriesComponent, LeftBarComponent, TranslateModule],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+  templateUrl: './ventas.component.html',
+  styleUrl: './ventas.component.css'
 })
-export class ProductsComponent {
+export class VentasComponent {
   productos: any[] = [];
   isInfoVisible: boolean = false;
 
-
+  getProductsvendidosByUserId(userId: number): Observable<any> {
+    return this.http.get(`${ApiUrls.BASE_URL}/productos/usuario/${userId}?inactivos=true`);
+  }
 
   constructor(private productService: ProductService, private http: HttpClient, private router: Router, private authService: AuthService) {}
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class ProductsComponent {
       return;
     }
   
-    this.productService.getProductsByUserId(userId).subscribe({
+    this.productService.getProductsvendidosByUserId(userId).subscribe({
       next: (res) => {
         this.productos = res.productos;
       },
@@ -45,34 +47,5 @@ export class ProductsComponent {
       }
     });
   }
-  
-  // administracion de productos
-  editarProducto(id: number): void {
-    this.router.navigate(['/edit-product'], {
-      queryParams: { id }
-    });
-  }
-  
-  eliminarProducto(id: number): void {
-    this.productService.deleteProduct(id).subscribe(() => {
-      this.productos = this.productos.filter(p => p.id !== id);
-    });
-  }
 
-  getProductsByUserId(userId: number): Observable<any> {
-    return this.http.get(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);
-  }
-
-  selectedProduct: any = null;
-
-  toggleInfo(producto: any): void {
-    this.selectedProduct = producto;
-    this.isInfoVisible = true;
-  }
-
-  closeModal(): void {
-    this.isInfoVisible = false;
-    this.selectedProduct = null;
-  }
-  
 }
