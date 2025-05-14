@@ -48,14 +48,18 @@ export class ChatDetailComponent implements OnInit {
     this.usuarioId = this.authService.getUserId();
     this.chat = this.chatState.currentChat();
 
-    effect(() => {
-      const currentChat = this.chatState.currentChat();
-      if (currentChat?.id) {
-        this.loadChat(currentChat.id);
-        this.startPolling(currentChat.id);
-      }
-    });
-  }
+ effect(() => {
+    const currentChat = this.chatState.currentChat();
+    console.log('currentChat ha cambiado', currentChat);
+
+    if (currentChat && currentChat.id) {
+      this.chat = currentChat; // ✅ Asignamos directamente
+      this.loadChat(currentChat.id); // Cargamos mensajes
+    } else {
+      this.chat = null; // ✅ Si no hay chat seleccionado
+    }
+  });
+}
 
   ngOnInit(): void {
     this.usuarioId = this.authService.getUserId();
@@ -63,16 +67,23 @@ export class ChatDetailComponent implements OnInit {
   }
 
   // Cargar mensajes desde API
-  loadChat(chatId: number): void {
+loadChat(chatId: number): void {
     this.chatService.getMessages(chatId).subscribe({
       next: (mensajes) => {
-        if (!this.chat) return;
+        const currentChat = this.chatState.currentChat();
 
-        this.chat.mensajes = mensajes;
+        if (!currentChat?.id) return;
+
+        // ✅ Actualiza el chat localmente
+        this.chat = {
+          ...currentChat,
+          mensajes: mensajes
+        };
+
         this.scrollToBottom();
       },
       error: (err) => {
-        console.error('Error al cargar los mensajes:', err);
+        console.error('Error al cargar mensajes:', err);
       }
     });
   }
@@ -204,32 +215,37 @@ export class ChatDetailComponent implements OnInit {
 }
 showDeleteChatConfirm: boolean = false;
 
-// Mostrar confirmación
+// Botón de eliminar chat
 onDeleteChat(): void {
   this.showDeleteChatConfirm = true;
 }
 
-// Confirmar eliminación
+// Confirmar eliminación del chat
 confirmDeleteChat(): void {
   if (!this.chat?.id) return;
 
-  // Llamar al servicio para borrar el chat
   this.chatService.deleteChat(this.chat.id).subscribe({
     next: () => {
+      console.log('✅ Chat eliminado:', this.chat?.id);
+
+      this.chatState.currentChat.set(null);
+      this.chat = null;
+      this.stopPolling();
+
+      // 🔁 Notificamos que hay que recargar la lista
+      this.chatState.reloadChats.set(true);
+
       this.showDeleteChatConfirm = false;
-      this.chatState.currentChat.set(null); // Limpiar chat actual
-      this.stopPolling(); // Detener actualización
-      this.chat = null; // Limpiar UI
     },
     error: (err) => {
-      console.error('Error al eliminar el chat:', err);
+      console.error('❌ Error al eliminar el chat:', err);
       alert('No se pudo eliminar el chat');
       this.showDeleteChatConfirm = false;
     }
   });
 }
 
-// Cancelar eliminación
+// Cancelar eliminación del chat
 cancelDeleteChat(): void {
   this.showDeleteChatConfirm = false;
 }

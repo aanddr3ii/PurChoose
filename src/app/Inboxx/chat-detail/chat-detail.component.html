@@ -7,18 +7,18 @@
 
     <!-- Header del chat -->
     <div class="chat-header">
-  <span>
-    {{ chat.usuario1.id === usuarioId ? chat.usuario2.name : chat.usuario1.name }}
-  </span>
+      <span>
+        {{ chat.usuario1.id === usuarioId ? chat.usuario2.name : chat.usuario1.name }}
+      </span>
 
-  <button 
-    class="delete-chat-button" 
-    title="Eliminar chat"
-    (click)="onDeleteChat()"
-  >
-    🗑️
-  </button>
-</div>
+      <button 
+        class="delete-chat-button" 
+        title="Eliminar chat"
+        (click)="onDeleteChat()"
+      >
+        🗑️
+      </button>
+    </div>
 
     <!-- Lista de mensajes -->
     <div class="messages-list" #messagesContainer>
@@ -70,8 +70,15 @@
         </button>
       </form>
     </div>
-
-    <!-- Popup de confirmación de eliminación -->
+<!-- Popup de confirmación de eliminación del chat -->
+@if (showDeleteChatConfirm) {
+  <div class="popup-confirm">
+    <p>¿Estás seguro de que quieres eliminar este chat?</p>
+    <button (click)="confirmDeleteChat()">Sí</button>
+    <button (click)="cancelDeleteChat()">No</button>
+  </div>
+}
+    <!-- Popup de confirmación de eliminación de mensaje -->
     @if (showDeleteConfirm) {
       <div class="popup-confirm">
         <p>¿Estás seguro de que quieres borrar este mensaje?</p>

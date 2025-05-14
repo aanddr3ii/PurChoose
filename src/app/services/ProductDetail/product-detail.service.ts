@@ -56,6 +56,22 @@ export class ProductDetailService {
       })
     );
   }
+  // NUEVO: Obtener ID del propietario del producto
+getProductOwnerId(productId: number): Observable<number> {
+  return this.http.get<any>(`${ApiUrls.PRODUCTOS.LIST}/${productId}`).pipe(
+    map(response => {
+      const userId = response.user_id;
+      if (!userId || userId === 0) {
+        throw new Error('Producto sin dueño');
+      }
+      return userId;
+    }),
+    catchError(err => {
+      console.error('Error al obtener el owner:', err);
+      return throwError(() => new Error('No se pudo obtener el propietario'));
+    })
+  );
+}
   getProductLocation(productId: number): Observable<string> {
     return this.getProductDetails(productId).pipe(
       map((product) => {

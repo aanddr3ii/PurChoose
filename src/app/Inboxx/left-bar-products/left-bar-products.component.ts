@@ -1,22 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, effect } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterLink } from '@angular/router';
 
 // Servicios
 import { ChatService } from '../../services/chat/chat.service';
 import { AuthService } from '../../services/authService/auth.service';
-
+import { ChatStateService } from '../../services/chat/chat-state.service';
+import { ChatDetailComponent } from '../chat-detail/chat-detail.component';
 // Modelos
 import { Chat } from '../../interfaces/Chat.model';
-// Servicio compartido para estado del chat
-import { ChatStateService } from '../../services/chat/chat-state.service';
-import { Router } from '@angular/router';
-import { RouterLink } from '@angular/router';
-import { ChatDetailComponent } from '../chat-detail/chat-detail.component';
 
 @Component({
   selector: 'app-left-bar-products',
   standalone: true,
-  imports: [TranslateModule, RouterLink,ChatDetailComponent],
+  imports: [TranslateModule, RouterLink, ChatDetailComponent],
   templateUrl: './left-bar-products.component.html',
   styleUrls: ['./left-bar-products.component.css']
 })
@@ -25,14 +22,27 @@ export class LeftBarProductsComponent implements OnInit {
   usuarioId!: number;
 
   constructor(
-    public chatService: ChatService,
+    private chatService: ChatService,
     public chatState: ChatStateService,
-    public authService: AuthService,
-    public router: Router
-  ) {}
-logChat(chat: Chat): void {
-  console.log('Chat seleccionado:', chat);
-}
+    private authService: AuthService
+  ) {
+    // Escuchar cambios en currentChat()
+    effect(() => {
+      const currentChat = this.chatState.currentChat();
+      if (currentChat?.id) {
+        this.loadChats(); // Recarga toda la lista de chats
+      }
+    });
+
+    // Escuchar cambios en chats desde backend
+    effect(() => {
+      const currentChats = this.chatState.chats();
+      if (currentChats.length > 0) {
+        this.chats = currentChats;
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.usuarioId = this.authService.getUserId();
 
@@ -48,6 +58,7 @@ logChat(chat: Chat): void {
     this.chatService.getAllChatsByUser(this.usuarioId).subscribe({
       next: (data: Chat[]) => {
         this.chats = data;
+        this.chatState.chats.set(data); // Sincronizamos con señal compartida
       },
       error: (err) => {
         console.error('Error al cargar los chats:', err);
@@ -55,8 +66,11 @@ logChat(chat: Chat): void {
     });
   }
 
-  // Al hacer clic en un chat, guardarlo en el servicio compartido
-onChatClick(chat: Chat): void {
-  this.chatState.currentChat.set(chat); // ✅ Actualiza el chat seleccionado
-}
+  onChatClick(chat: Chat): void {
+    this.chatState.currentChat.set(chat); // ✅ Esto sí funciona
+  }
+
+  logChat(chat: Chat): void {
+    console.log('Chat seleccionado:', chat);
+  }
 }

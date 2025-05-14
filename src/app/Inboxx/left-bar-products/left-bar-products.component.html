@@ -1,4 +1,4 @@
-<div class="chat-container">
+<div class="main-container">
   <!-- Lista de chats -->
   <div class="side-menu">
     <p class="inbox-title">Mensajes</p>
@@ -20,7 +20,7 @@
   </div>
 
   <!-- Detalle del chat -->
-  <div class="chat-detail">
+  <div class="chat-detail-wrapper">
     @if (chatState.currentChat()) {
       <app-chat-detail></app-chat-detail>
     } @else {

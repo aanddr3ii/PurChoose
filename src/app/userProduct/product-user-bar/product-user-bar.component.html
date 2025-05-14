@@ -1,17 +1,25 @@
 <div class="user-bar-container">
-    <!-- Solo mostrar si el nombre del usuario está cargado -->
-    @if (userName) {
-      <div class="user-info">
-        <span class="user-name">{{ userName }}</span>
-      </div>
-    } @else {
-      <p>Cargando datos del usuario...</p>
-    }
-  
-    <div class="user-actions">
-      <button class="favorite-button">
-        <span class="favorites-button">{{ 'PRODUCT-USER-BAR.FAVORITE-BUTTON' | translate }}</span>
-      </button>
-      <button class="chat-button">{{ 'PRODUCT-USER-BAR.CHAT-BUTTON' | translate }}</button>
+  <!-- Solo mostrar si el nombre del usuario está cargado -->
+  @if (userName) {
+    <div class="user-info">
+      <span class="user-name">{{ userName }}</span>
     </div>
+  } @else {
+    <p>Cargando datos del usuario...</p>
+  }
+
+  <div class="user-actions">
+    <button class="favorite-button">
+      <span class="favorites-button">{{ 'PRODUCT-USER-BAR.FAVORITE-BUTTON' | translate }}</span>
+    </button>
+
+    <!-- Botón de chat -->
+    <button 
+      class="chat-button" 
+      (click)="onOpenChat()" 
+      type="button"
+    >
+      {{ 'PRODUCT-USER-BAR.CHAT-BUTTON' | translate }}
+    </button>
   </div>
+</div>
