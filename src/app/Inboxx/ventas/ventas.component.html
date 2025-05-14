@@ -1,0 +1,30 @@
+<app-nav-belt></app-nav-belt>
+<app-nav-categories></app-nav-categories>
+<div class="side-menu">
+  <app-left-bar></app-left-bar>
+</div>
+
+
+  <h2 class="section-title">Merca Vendida</h2>
+  <p class="pp">ya tu sabe brrr</p>
+  <br>
+<div class="user-products-container">
+  @if (productos.length === 0) {
+    <p class="no-products">{{ 'USER_PRODUCTS.NO_PRODUCT' | translate }}</p>
+  } @else {
+    <div class="product-list">
+      @for (producto of productos; track producto.id) {
+        <div class="product-row">
+          <img [src]="producto.imagen ?? 'assets/img/no-image.png'" class="product-thumb" />
+        
+          <div class="product-info-block">
+            <div class="product-texts">
+              <span class="product-price">{{ producto.precio }} €</span>
+              <h3 class="product-title">{{ producto.titulo }}</h3>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

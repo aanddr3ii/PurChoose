@@ -187,6 +187,30 @@ export class ProductService {
     }>(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);
   }
 
+    getProductsvendidosByUserId(userId: number): Observable<{
+    user: { id: number; nombre: string; email: string };
+    productos: {
+      id: number;
+      titulo: string;
+      precio: number;
+      publicado: string;
+      modificado: string;
+      imagen: string | null;
+    }[];
+  }> {
+    return this.http.get<{
+      user: { id: number; nombre: string; email: string };
+      productos: {
+        id: number;
+        titulo: string;
+        precio: number;
+        publicado: string;
+        modificado: string;
+        imagen: string | null;
+      }[];
+    }>(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}?inactivos=true`);
+  }
+
   // pilla el producto por id para editarlo
   getProductById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/productos/${id}`);
@@ -201,6 +225,9 @@ export class ProductService {
     return this.http.post<void>(ApiUrls.PRODUCTOS.INCREMENT_VIEWS(productId), {});
   }
 
+  //productos vendidos del usuario
+  getProductosVendidosByUserId(userId: number): Observable<any> {
+    return this.http.get(`${ApiUrls.BASE_URL}/productos/usuario/${userId}?inactivos=true`);
+  }
 
-  
 }
