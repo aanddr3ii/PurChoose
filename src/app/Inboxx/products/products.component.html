@@ -48,22 +48,22 @@
             <button class="icon-btn-edit" (click)="editarProducto(producto.id)">
               <svg width="29" height="29" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg" display="flex"><g id="Artboard" fill="none" fill-rule="evenodd" transform="translate(-82 -12)"><path d="M103.834 21.27l-1.31 1.31-2.978-2.977 1.31-1.311a.485.485 0 0 1 .348-.141.54.54 0 0 1 .385.162l2.225 2.224a.52.52 0 0 1 .02.733zM88.717 33.898a.247.247 0 0 1-.335-.322l1.715-3.961 2.449 2.449-3.829 1.834zm9.912-13.379l2.978 2.978-7.874 7.87a.145.145 0 0 1-.099-.048l-2.827-2.826c-.048-.049-.05-.096-.055-.096l7.877-7.878zm6.101-.898l-2.225-2.225a1.837 1.837 0 0 0-1.301-.541c-.46 0-.917.173-1.264.52L89.835 27.48a1.261 1.261 0 0 0-.209.289.632.632 0 0 0-.268.288l-2.165 5.003a1.55 1.55 0 0 0 .346 1.727 1.548 1.548 0 0 0 1.737.28l5.022-2.406a.633.633 0 0 0 .317-.345c.01-.01.021-.016.03-.025l10.105-10.105c.704-.703.694-1.851-.02-2.565z" id="Fill-1" fill="#607D8B"></path></g></svg>
             </button>
-            <button class="icon-btn-edit" (click)="toggleInfo()">
+            <button class="icon-btn-edit" (click)="toggleInfo(producto)">
               <svg width="32px" height="32px" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" display="flex"><path fill-rule="evenodd" clip-rule="evenodd" d="M24 34h2V7a3 3 0 013-3h2a3 3 0 013 3v27h1a1 1 0 110 2H5a1 1 0 110-2h1V21a3 3 0 013-3h2a3 3 0 013 3v13h2v-6a3 3 0 013-3h2a3 3 0 013 3v6zm5-28a1 1 0 00-1 1v27h4V7a1 1 0 00-1-1h-2zm-7 28v-6a1 1 0 00-1-1h-2a1 1 0 00-1 1v6h4zM8 21a1 1 0 011-1h2a1 1 0 011 1v13H8V21z" fill="#607D8B"></path></svg>
             </button> 
           </div>
           @if (isInfoVisible) {
-            <div class="modal-overlay" (click)="closeModal($event)" role="dialog" aria-modal="true" id="product-info-dialog">
+            <div class="modal-overlay" (click)="closeModal()" role="dialog" aria-modal="true" id="product-info-dialog">
               <div class="modal-content" (click)="$event.stopPropagation()">
                 <div class="modal-header">
                   <h2 id="modal-title">{{ 'USER_PRODUCTS.STATS' | translate }}</h2>
-                  <button class="close-button" (click)="toggleInfo()" aria-label="Close">×</button>
+                  <button class="close-button" (click)="closeModal()" aria-label="Close">×</button>
                 </div>
                 <br>
                 <div class="dialog-body">
-                  <p><strong>{{ 'USER_PRODUCTS.PUBLICATED' | translate }}:</strong> {{ producto.publicado }}</p>
-                  <p><strong>{{ 'USER_PRODUCTS.MODIFIED' | translate }}:</strong> {{ producto.modificado }}</p>
-                  <p><strong>{{ 'USER_PRODUCTS.VISUALIZATIONS' | translate }}:</strong> {{ producto.views }}</p>
+                  <p><strong>{{ 'USER_PRODUCTS.PRODUCT' | translate }}:</strong> {{ selectedProduct?.titulo }}</p>
+                  <p><strong>{{ 'USER_PRODUCTS.VISUALIZATIONS' | translate }}:</strong> {{ selectedProduct?.views }}</p>
+                  <p><strong>{{ 'USER_PRODUCTS.SALES' | translate }}:</strong> {{ selectedProduct?.ventas }}</p>
                 </div>
               </div>
             </div>

@@ -213,11 +213,11 @@
 
   "USER_PRODUCTS": {
     "TITLE": "Tus productos",
-    "DESCRIPTION": "Aquí podrás subir productos, gestionar los que ya tienes y destacarlos para venderlos antes.",
-    "PUBLICATED": "Publicado",
-    "MODIFIED": "Modificado",
-    "VISUALIZATIONS": "Visualizaciones",
-    "NO_PRODUCT": "No has publicado ningún producto aún.",
+    "DESCRIPTION": "Aquí puedes subir productos, gestionar los que ya tienes y destacarlos para vender más rápido.",
+    "PRODUCT": "Producto",
+    "VISUALIZATIONS": "Vistas",
+    "SALES": "Ventas",
+    "NO_PRODUCT": "Aún no has publicado ningún producto.",
     "STATS": "Estadísticas"
   }
 }

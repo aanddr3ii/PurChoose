@@ -213,9 +213,9 @@
   "USER_PRODUCTS": {
     "TITLE": "Seus produtos",
     "DESCRIPTION": "Aqui você pode enviar produtos, gerenciar os que já possui e destacá-los para vender mais rápido.",
-    "PUBLICATED": "Publicado",
-    "MODIFIED": "Modificado",
+    "PRODUCT": "Produto",
     "VISUALIZATIONS": "Visualizações",
+    "SALES": "Vendas",
     "NO_PRODUCT": "Você ainda não publicou nenhum produto.",
     "STATS": "Estatísticas"
   }

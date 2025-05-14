@@ -27,15 +27,7 @@ export class ProductsComponent {
   productos: any[] = [];
   isInfoVisible: boolean = false;
 
-  toggleInfo(): void {
-    this.isInfoVisible = !this.isInfoVisible;
-  }
 
-  closeModal(event: Event): void {
-    if ((event.target as HTMLElement).classList.contains('modal-overlay')) {
-        this.isInfoVisible = false;
-    }
-  }
 
   constructor(private productService: ProductService, private http: HttpClient, private router: Router, private authService: AuthService) {}
   ngOnInit(): void {
@@ -71,6 +63,18 @@ export class ProductsComponent {
 
   getProductsByUserId(userId: number): Observable<any> {
     return this.http.get(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);
+  }
+
+  selectedProduct: any = null;
+
+  toggleInfo(producto: any): void {
+    this.selectedProduct = producto;
+    this.isInfoVisible = true;
+  }
+
+  closeModal(): void {
+    this.isInfoVisible = false;
+    this.selectedProduct = null;
   }
   
 }

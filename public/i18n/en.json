@@ -211,9 +211,9 @@
   "USER_PRODUCTS": {
     "TITLE": "Your products",
     "DESCRIPTION": "Here you can upload products, manage the ones you already have, and highlight them to sell faster.",
-    "PUBLICATED": "Published",
-    "MODIFIED": "Modified",
+    "PRODUCT": "Product",
     "VISUALIZATIONS": "Views",
+    "SALES": "Sales",
     "NO_PRODUCT": "You haven't published any products yet.",
     "STATS": "Stats"
   }

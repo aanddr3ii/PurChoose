@@ -212,10 +212,10 @@
 
   "USER_PRODUCTS": {
     "TITLE": "Vos produits",
-    "DESCRIPTION": "Ici, vous pouvez télécharger des produits, gérer ceux que vous avez déjà et les mettre en avant pour les vendre plus rapidement.",
-    "PUBLICATED": "Publié",
-    "MODIFIED": "Modifié",
+    "DESCRIPTION": "Ici vous pouvez télécharger des produits, gérer ceux que vous avez déjà et les mettre en avant pour vendre plus rapidement.",
+    "PRODUCT": "Produit",
     "VISUALIZATIONS": "Vues",
+    "SALES": "Ventes",
     "NO_PRODUCT": "Vous n'avez encore publié aucun produit.",
     "STATS": "Statistiques"
   }
