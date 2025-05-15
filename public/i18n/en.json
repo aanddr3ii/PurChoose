@@ -216,5 +216,11 @@
     "SALES": "Sales",
     "NO_PRODUCT": "You haven't published any products yet.",
     "STATS": "Stats"
+  },
+
+  "USER_SALES":{
+    "SALES": "Sales",
+    "DESCRIPTION": "Here you can view the products you’ve sold and upcoming sales.",
+    "NO_SALE": "Here you can see the sales you have made and the ones you are going to make."
   }
 }
