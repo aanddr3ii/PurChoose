@@ -20,15 +20,7 @@
               </div>
 
 
-              <!-- Columna 2: Cantidad -->
-              <div class="item-right">
-                <div class="quantity">
-                  <button (click)="decreaseQuantity(item.id)">−</button>
-                  <input type="number" min="1" [value]="item.quantity" (input)="updateQuantity(item.id, $event)" />
-                  <button (click)="increaseQuantity(item.id)">+</button>
-                </div>
-              </div>
-
+            
               <!-- Columna 3: Total -->
               <div class="total">{{ item.price * item.quantity }} €</div>
 
