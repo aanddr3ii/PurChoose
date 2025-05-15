@@ -218,5 +218,11 @@
     "SALES": "Vendas",
     "NO_PRODUCT": "Você ainda não publicou nenhum produto.",
     "STATS": "Estatísticas"
+  },
+
+  "USER_SALES": {
+    "SALES": "Vendas",
+    "DESCRIPTION": "Aqui você pode ver os produtos que vendeu e as vendas futuras.",
+    "NO_SALE": "Aqui você pode ver as vendas que realizou e as que vai realizar."
   }
 }

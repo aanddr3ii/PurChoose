@@ -5,12 +5,12 @@
 </div>
 
 
-  <h2 class="section-title">Merca Vendida</h2>
-  <p class="pp">ya tu sabe brrr</p>
+  <h2 class="section-title">{{ 'USER_SALES.SALES' | translate }}</h2>
+  <p class="pp">{{ 'USER_SALES.DESCRIPTION' | translate }}</p>
   <br>
 <div class="user-products-container">
   @if (productos.length === 0) {
-    <p class="no-products">{{ 'USER_PRODUCTS.NO_PRODUCT' | translate }}</p>
+    <p class="no-products">{{ 'USER_SALES.NO_SALE' | translate }}</p>
   } @else {
     <div class="product-list">
       @for (producto of productos; track producto.id) {
