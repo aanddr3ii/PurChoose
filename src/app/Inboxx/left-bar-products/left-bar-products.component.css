@@ -16,7 +16,7 @@
 /* Sidebar Menu */
 .side-menu {
     position: fixed;
-    top: 121px;
+    top: 114px;
     left: 241.5px;
     width: 260px;
     height: calc(100vh - 121px);

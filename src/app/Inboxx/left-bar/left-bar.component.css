@@ -1,7 +1,7 @@
 /* Sidebar Menu */
 .side-menu {
     position: fixed;
-    top: 121px; 
+    top: 114px; 
     left: 0; /* Ensure it's visible */
     width: 200px; /* Slightly wider for better text visibility */
     height: 100vh;
