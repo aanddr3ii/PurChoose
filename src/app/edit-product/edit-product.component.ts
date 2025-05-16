@@ -147,11 +147,6 @@ export class EditProductComponent {
     return;
   }
 
-  if (this.selectedFiles.length === 0) {
-    alert('Añade al menos una imagen del producto.');
-    return;
-  }
-
   const formData = this.productForm.value;
   formData.categorias = this.selectedCategories.filter((id) => id !== null);
 
