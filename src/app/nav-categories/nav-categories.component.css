@@ -40,7 +40,7 @@
 /* El menu desplegable */
 .side-menu {
     position: fixed;
-    top: 121px;
+    top: 114px;
     left: -340px;
     width: 300px;
     height: calc(100% - 121px);
@@ -102,10 +102,10 @@
 /* Para el fondo negro de categorias cuando abres el desplegable */
 .overlay {
     position: fixed;
-    top: 121px;
+    top: 114px;
     left: 0;
     width: 100%;
-    height: calc(100% - 121px);
+    height: calc(100% - 114px);
     background-color: rgba(0, 0, 0, 0.5);
     display: none;
     z-index: 999;
