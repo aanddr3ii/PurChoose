@@ -107,13 +107,17 @@ export class ProductService {
   getImagesByProductId(productId: number): Observable<string[]> {
     return this.http.get<any>(`${ApiUrls.PRODUCTOS.IMAGES(productId)}`).pipe(
       map((response) => {
-        // Extraer las URLs de las imágenes y agregar el dominio si es necesario
-        return response.imagenes.map((image: { url: string }) => {
+        const imagenes = response.imagenes || [];
+
+        return imagenes.map((image: { url: string }) => {
+          if (!image.url) return '';
+
           if (image.url.startsWith('/storage')) {
             return `http://localhost:8000${image.url}`;
           }
+
           return image.url;
-        });
+        }).filter((url: string) => url); // Elimina vacíos
       }),
       catchError((error) => {
         console.error('Error al obtener las imágenes del producto:', error);
@@ -121,6 +125,7 @@ export class ProductService {
       })
     );
   }
+
   getProductsWithCategoriesAndImages(): Observable<any> {
     return this.http.get(ApiUrls.PRODUCTOS.WITH_CATEGORIES_AND_IMAGES).pipe(
       catchError((error) => {

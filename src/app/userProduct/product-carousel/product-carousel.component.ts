@@ -19,25 +19,17 @@ export class ProductCarouselComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Obtener el ID del producto de la ruta
-    const productId = Number(this.route.snapshot.params['id']);
-  
-    if (!productId) {
-      console.error('ID del producto no encontrado en la URL.');
-      return;
-    }
-  
-    // Obtener las imágenes del producto
+    const productId = this.route.snapshot.params['id']; // si el componente se carga por ruta
     this.productService.getImagesByProductId(productId).subscribe({
       next: (urls) => {
-        this.images = urls; // Asignar directamente el array de URLs
-        this.currentIndex = 0;
+        this.images = urls;
       },
-      error: (error) => {
-        console.error('Error al cargar las imágenes:', error);
-      },
+      error: (err) => {
+        console.error('No se pudieron cargar imágenes:', err);
+      }
     });
   }
+
 
   nextSlide(): void {
     if (this.currentIndex < this.images.length - 1) {
