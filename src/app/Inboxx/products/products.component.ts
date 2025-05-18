@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/authService/auth.service'; // Importa el servicio de autenticación
 import { User } from '../../interfaces/user'; // Importa la interfaz de usuario
+import { ProductImageService } from '../../services/ProductImage/product-image.service'; // Importa el servicio de imágenes de productos
 
 @Component({
   selector: 'app-products',
@@ -27,7 +28,7 @@ export class ProductsComponent {
 
 
 
-  constructor(private productService: ProductService, private http: HttpClient, private router: Router, private authService: AuthService) {}
+  constructor(private productService: ProductService, private http: HttpClient, private router: Router, private authService: AuthService, private productImageService: ProductImageService) {}
   ngOnInit(): void {
     const userId = this.authService.getUserId();
   
@@ -54,10 +55,27 @@ export class ProductsComponent {
   }
   
   eliminarProducto(id: number): void {
-    this.productService.deleteProduct(id).subscribe(() => {
-      this.productos = this.productos.filter(p => p.id !== id);
+    // 1. Eliminar todas las imágenes del producto
+    this.productImageService.deleteAllImagesByProductId(id).subscribe({
+      next: () => {
+        console.log(`Imágenes del producto ${id} eliminadas`);
+
+        // 2. Luego eliminar el producto
+        this.productService.deleteProduct(id).subscribe(() => {
+          this.productos = this.productos.filter(p => p.id !== id);
+        });
+      },
+      error: err => {
+        console.error('Error al eliminar imágenes:', err);
+
+        // 3. Aun si falla la eliminación de imágenes, eliminar el producto igualmente
+        this.productService.deleteProduct(id).subscribe(() => {
+          this.productos = this.productos.filter(p => p.id !== id);
+        });
+      }
     });
   }
+
 
   getProductsByUserId(userId: number): Observable<any> {
     return this.http.get(`${ApiUrls.BASE_URL}/productos/por-usuario/${userId}`);

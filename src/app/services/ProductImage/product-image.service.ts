@@ -53,5 +53,10 @@ export class ProductImageService {
     const encoded = encodeURIComponent(imageName);
     return this.http.delete(`http://localhost:8000/api/imagenes/${encoded}`);
   }
+
+  deleteAllImagesByProductId(productId: number): Observable<any> {
+    return this.http.delete(`http://localhost:8000/api/imagenes/por-producto/${productId}`);
+  }
+
   
 }
