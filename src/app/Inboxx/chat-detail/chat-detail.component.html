@@ -1,6 +1,6 @@
 @if (!chat) {
   <div class="placeholder">
-    🔍 Selecciona un chat para comenzar a chatear
+    Selecciona un chat para comenzar a chatear
   </div>
 } @else {
   <div class="chat-container">
@@ -11,13 +11,7 @@
         {{ chat.usuario1.id === usuarioId ? chat.usuario2.name : chat.usuario1.name }}
       </span>
 
-      <button 
-        class="delete-chat-button" 
-        title="Eliminar chat"
-        (click)="onDeleteChat()"
-      >
-        🗑️
-      </button>
+      <button class="delete-chat-button" title="Eliminar chat" (click)="onDeleteChat()"><svg width="18" height="20" viewBox="0 0 14 16" xmlns="http://www.w3.org/2000/svg" display="flex"><g id="Version-2" fill="none" fill-rule="evenodd"><g id="Catalog---Actions---Hover" transform="translate(-715 -281)" fill="#607d8b"><g id="Group" transform="translate(380 272)"><g id="Group-2" transform="translate(325)"><path d="M23.022 12.63v.03a.643.643 0 0 1-.621.615H11.576c-.319 0-.598-.289-.598-.618 0-.346.294-.649.629-.649h10.794c.325 0 .621.296.621.621zm-1.605 10.475c-.021.208-1.173.945-4.588.945-3.468 0-4.273-.749-4.287-.937l-.691-8.73h10.115l-.549 8.722zm-7.033-12.118c0-.64.379-1.037.989-1.037h2.989c.632 0 1.074.427 1.074 1.037v.071h-5.052v-.07zM18.362 9c1.17 0 2.052.855 2.052 1.987v.071h1.987c.867 0 1.599.72 1.599 1.571v.03c0 .657-.438 1.232-1.038 1.46l-.568 9.042C22.327 24.31 20.246 25 16.829 25c-4.463 0-5.212-1.138-5.262-1.817l-.724-9.145A1.587 1.587 0 0 1 10 12.657c0-.867.736-1.599 1.607-1.599h1.799v-.07c0-1.17.809-1.988 1.967-1.988h2.989zm-1.637 12.84c.27 0 .49-.212.49-.474V16.14a.482.482 0 0 0-.49-.475.482.482 0 0 0-.489.475v5.226c0 .262.22.475.49.475zm2.451 0c.27 0 .489-.212.489-.474V16.14a.482.482 0 0 0-.489-.475.482.482 0 0 0-.489.475v5.226c0 .262.219.475.489.475zm-4.766 0c.27 0 .49-.212.49-.474V16.14a.482.482 0 0 0-.49-.475.482.482 0 0 0-.489.475v5.226c0 .262.22.475.49.475z" id="trash"></path></g></g></g></g></svg></button>
     </div>
 
     <!-- Lista de mensajes -->
@@ -44,7 +38,7 @@
           </div>
         }
       } @else {
-        <p class="no-messages">📭 No hay mensajes aún.</p>
+        <p class="no-messages">{{ 'INBOX.NO_MESSAGES' | translate }}</p>
       }
     </div>
 

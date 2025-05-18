@@ -1,7 +1,7 @@
 <div class="main-container">
   <!-- Lista de chats -->
   <div class="side-menu">
-    <p class="inbox-title">Mensajes</p>
+    <p class="inbox-title">{{ 'INBOX.MESSAGES' | translate }}</p>
     <hr class="hr">
 
     @if (chats.length > 0) {
@@ -15,7 +15,7 @@
         </div>
       }
     } @else {
-      <p>No tienes chats aún.</p>
+      <p>{{ 'INBOX.NO_MESSAGES' | translate }}</p>
     }
   </div>
 
@@ -25,7 +25,7 @@
       <app-chat-detail></app-chat-detail>
     } @else {
       <div class="placeholder">
-        🔍 Selecciona un chat para comenzar a chatear
+        {{ 'INBOX.DESCRIPTION' | translate }}
       </div>
     }
   </div>

@@ -126,15 +126,19 @@
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  color: #607D8B;
 }
 
 .icon-btn-delete:hover {
   background-color: #ee8c8c;
   border-color: #ee8c8c;
+  color: #ffffff;
 }
 
 .icon-btn-edit:hover {
-  background-color: #eaeaea;
+  background-color: #80868d;
+  border-color: #80868d;
+  color: #ffffff;
 }
 
 .icon-btn i {

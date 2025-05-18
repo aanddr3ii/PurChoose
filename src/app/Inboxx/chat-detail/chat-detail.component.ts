@@ -5,6 +5,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { effect } from '@angular/core';
 import { ChatService } from '../../services/chat/chat.service';
 import { AuthService } from '../../services/authService/auth.service';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 // Extiende el tipo Mensaje para incluir esTemporal
 export interface MensajeConTemp {
@@ -21,7 +22,7 @@ export interface MensajeConTemp {
 @Component({
   selector: 'app-chat-detail',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, TranslateModule],
   templateUrl: './chat-detail.component.html',
   styleUrls: ['./chat-detail.component.css']
 })

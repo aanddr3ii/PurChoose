@@ -225,5 +225,11 @@
     "SALES": "Ventas",
     "DESCRIPTION": "Aquí puedes ver los productos que has vendido y las ventas próximas.",
     "NO_SALE": "Aquí puedes ver las ventas que has realizado y las que vas a realizar."
+  },
+
+  "INBOX": {
+    "MESSAGES": "Mensajes",
+    "DESCRIPTION": "Selecciona un chat para comenzar a chatear.",
+    "NO_MESSAGES": "No hay mensajes aún."
   }
 }
