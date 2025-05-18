@@ -37,7 +37,7 @@ export class ProductImageService {
    * @returns Un Observable que emite la lista de imágenes del producto.
    */
   getImagesByProductIdedit(productId: number): Observable<any> {
-    return this.http.get(`http://localhost:8000/api/productos/${productId}/imagenes`);
+    return this.http.get(`http://localhost:8000/api/productos/${productId}/imagenes/editar`);
   }
 
   uploadImagessubironEdit(productId: number, images: File[]): Observable<any> {
@@ -45,7 +45,7 @@ export class ProductImageService {
     images.forEach((image) => {
       formData.append('images[]', image);
     });
-    return this.http.post(`http://localhost:8000/api/productos/${productId}/imagenes`, formData);
+    return this.http.post(`http://localhost:8000/api/productos/${productId}/imagenes/nueva`, formData);
   }
   
   // borra la imagen del producto
