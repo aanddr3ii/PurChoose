@@ -13,8 +13,8 @@
       </div>
   
       <!-- Mostrar las categorías asociadas al producto -->
-      <div class="product-categories">
-        <h3>Categorías:</h3>
+      <div class="section-titles">
+        <h3 class="product-titles">Categorías:</h3>
         @if (product.categorias && product.categorias.length > 0) {
           <ul>
             @for (category of product.categorias; track category.id) {
