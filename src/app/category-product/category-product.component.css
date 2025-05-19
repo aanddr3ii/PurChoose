@@ -2,14 +2,14 @@
 .category-products-container {
   max-width: 1440px;
   margin: 40px auto; /* Aumentado margen superior para separar del techo */
-  font-family: 'Arial', sans-serif;
+  font-family: 'Arial';
   padding-bottom: 1.5rem;
 }
 
 .category-dropdown {
   position: relative;
   display: inline-block;
-  font-family: sans-serif;
+  font-family: 'Arial';
 }
 
 .dropdown-toggle {
