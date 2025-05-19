@@ -4,6 +4,7 @@ import { CategoryService } from '../services/CatgeoryService/category.service'; 
 import { ProductService } from '../services/Product/product.service'; // Importa el servicio de productos
 import { Category } from '../interfaces/category'; // Importa la interfaz de categoría
 import { Product } from '../interfaces/product'; // Importa la interfaz de producto
+
 // Componentes
 import { NavBeltComponent } from '../nav-belt/nav-belt.component';
 import { NavCategoriesComponent } from '../nav-categories/nav-categories.component';
@@ -26,7 +27,6 @@ export class CategoryProductComponent implements OnInit {
   filteredProducts: Product[] = []; // Productos filtrados
   allCategories: Category[] = []; // Todas las categorías disponibles
 
-  // Cambiamos selectedCategories por getter/setter
   private _selectedCategories: number[] = [];
 
   get selectedCategories(): number[] {
@@ -35,6 +35,7 @@ export class CategoryProductComponent implements OnInit {
 
   set selectedCategories(value: number[]) {
     this._selectedCategories = value;
+    console.log('Categorías enviadas:', this.selectedCategories); // ✅ Imprime en consola
     this.sendCategoriesToLaravel(); // Enviar automáticamente al cambiar
   }
 
@@ -97,7 +98,7 @@ export class CategoryProductComponent implements OnInit {
 
         // Activar automáticamente la categoría correspondiente al ID de la URL
         if (!this.selectedCategories.includes(this.categoryId)) {
-          this.addCategoryFilter(this.categoryId); // Añade la categoría al filtro
+          this.selectedCategories = [...this.selectedCategories, this.categoryId]; // ✅ Usa asignación
         }
       },
       error: (error) => {
@@ -106,36 +107,28 @@ export class CategoryProductComponent implements OnInit {
     });
   }
 
-  loadProducts(): void {
-    // Si hay categorías seleccionadas, filtramos los productos por esas categorías
-    if (this.selectedCategories.length > 0) {
-      this.productService.getProductsByCategories(this.selectedCategories).subscribe({
-        next: (data) => {
-          this.products = data;
-          this.filteredProducts = [...this.products]; // Inicializa los productos filtrados
-        },
-        error: (error) => {
-          console.error('Error al cargar los productos:', error);
-        }
-      });
-    } else {
-      // Si no hay categorías seleccionadas, cargamos todos los productos
-      this.productService.getProducts().subscribe({
-        next: (data) => {
-          this.products = data;
-          this.filteredProducts = [...this.products]; // Inicializa los productos filtrados
-        },
-        error: (error) => {
-          console.error('Error al cargar los productos:', error);
-        }
-      });
-    }
+loadProducts(): void {
+  if (this.selectedCategories.length > 0) {
+    this.sendCategoriesToLaravel();
+  } else {
+    this.productService.getProductsWithCategoriesAndImages().subscribe({
+      next: (response) => {
+        this.products = [...response.productos];
+        this.applyFilters(); // ✅ Aplica filtros y actualiza filteredProducts
+      },
+      error: (error) => {
+        console.error('Error al cargar todos los productos:', error);
+        this.products = [];
+        this.filteredProducts = [];
+      }
+    });
   }
+}
 
   // Añadir una categoría como filtro adicional
   addCategoryFilter(categoryId: number): void {
     if (!this.selectedCategories.includes(categoryId)) {
-      this.selectedCategories.push(categoryId); // Añade la categoría al filtro
+      this.selectedCategories = [...this.selectedCategories, categoryId]; // ✅ Usa asignación
       this.applyFilters(); // Aplica los filtros actualizados
     }
   }
@@ -148,7 +141,7 @@ export class CategoryProductComponent implements OnInit {
 
   // Eliminar una categoría del filtro
   removeCategoryFilter(categoryId: number): void {
-    this.selectedCategories = this.selectedCategories.filter(id => id !== categoryId); // Elimina la categoría
+    this.selectedCategories = this.selectedCategories.filter(id => id !== categoryId); // ✅ Bien hecho
     this.applyFilters(); // Aplica los filtros actualizados
   }
 
@@ -172,13 +165,6 @@ export class CategoryProductComponent implements OnInit {
         }
         return true; // No hay filtro de estado activo
       })
-      .filter(product => {
-        // Filtrar por categorías seleccionadas
-        if (this.selectedCategories.length > 0) {
-          return this.selectedCategories.every(categoryId => product.categoryIds?.includes(categoryId));
-        }
-        return true; // No hay filtro de categoría activo
-      });
 
     // Ordenar productos según los filtros seleccionados
     if (this.filters.price === 'asc') {
@@ -233,13 +219,20 @@ export class CategoryProductComponent implements OnInit {
   // ————————————————————————————————
   // ✨ NUEVO: Método que envía las categorías a Laravel
   sendCategoriesToLaravel(): void {
-    this.categoryService.filterByCategories(this.selectedCategories).subscribe({
-      next: (response) => {
-        console.log('Categorías enviadas correctamente:', response);
-      },
-      error: (err) => {
-        console.error('Error al enviar categorías a Laravel:', err);
-      }
-    });
+  this.categoryService.filterByCategories(this.selectedCategories).subscribe({
+    next: (response) => {
+      console.log('Productos recibidos:', response.productos);
+
+      // ✅ Actualizar los productos con los recibidos desde Laravel
+      this.products = [...response.productos];
+
+      // ✅ Volver a aplicar los filtros (como estado, precio...)
+      this.applyFilters();
+    },
+    error: (err) => {
+      console.error('Error al enviar categorías a Laravel:', err);
+    }
+  });
+
   }
 }
