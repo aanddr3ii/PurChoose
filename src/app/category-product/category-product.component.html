@@ -87,40 +87,6 @@
         </label>
       </div>
 
-      <!-- Filtro por popularidad -->
-      <div class="filter-group">
-        <label>
-          <input 
-            type="radio" 
-            name="popularity" 
-            [(ngModel)]="filters.popularity" 
-            [value]="null" 
-            (change)="applyFilters()"
-          />
-          Ninguno
-        </label>
-        <label>
-          <input 
-            type="radio" 
-            name="popularity" 
-            [(ngModel)]="filters.popularity" 
-            [value]="'asc'" 
-            (change)="applyFilters()"
-          />
-          Popularidad (Baja a Alta)
-        </label>
-        <label>
-          <input 
-            type="radio" 
-            name="popularity" 
-            [(ngModel)]="filters.popularity" 
-            [value]="'desc'" 
-            (change)="applyFilters()"
-          />
-          Popularidad (Alta a Baja)
-        </label>
-      </div>
-
       <!-- Filtro por estado del producto -->
       <hr class="filter-divider" />
 

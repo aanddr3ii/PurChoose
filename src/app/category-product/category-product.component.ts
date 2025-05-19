@@ -44,12 +44,9 @@ export class CategoryProductComponent implements OnInit {
 
   // Estados del producto
   productStates = [
-    { value: 'Sin abrir', label: 'Sin abrir', description: 'Conserva el precinto' },
     { value: 'Nuevo', label: 'Nuevo', description: 'Nunca se ha usado' },
-    { value: 'Como nuevo', label: 'Como nuevo', description: 'En perfectas condiciones' },
-    { value: 'En buen estado', label: 'En buen estado', description: 'Bastante usado, pero bien conservado' },
-    { value: 'En condiciones aceptables', label: 'En condiciones aceptables', description: 'Con evidentes signos de desgaste' },
-    { value: 'Lo ha dado todo', label: 'Lo ha dado todo', description: 'Puede que toque repararlo' }
+    { value: 'Usado', label: 'Usado', description: 'Conserva el precinto' },
+
   ];
 
   selectedStates: string[] = []; // Estados seleccionados como filtros
