@@ -8,33 +8,38 @@ import { Product } from '../interfaces/product';
   styleUrls: ['./card-product.component.css']
 })
 export class CardProductComponent {
-  @Input() product!: Product; // Recibimos un producto individual como entrada
-  currentIndex: number = 0; // Índice actual del carrusel
+  @Input() product!: Product;
+  currentIndex: number = 0;
 
-  /* Siguiente foto en el carrusel */
+  // Acceso simplificado para usar en el template
+  get imagenes() {
+    return this.product?.imagenes || [];
+  }
+
   nextSlide(): void {
-    const maxIndex = this.product.images?.length || 0;
+    const maxIndex = this.imagenes.length;
     this.currentIndex = (this.currentIndex + 1) % maxIndex;
   }
 
-  /* Foto anterior en el carrusel */
   prevSlide(): void {
-    const maxIndex = this.product.images?.length || 0;
+    const maxIndex = this.imagenes.length;
     this.currentIndex = (this.currentIndex - 1 + maxIndex) % maxIndex;
   }
 
-  /* Acortar descripción */
   shortenDescription(description: string | undefined, limit: number = 23): string {
-    if (!description) return ''; // Si no hay descripción, devolvemos una cadena vacía
+    if (!description) return '';
     return description.length > limit ? description.substring(0, limit) + '...' : description;
   }
 
-  getAbsoluteImageUrl(image: string | { url: string }): string {
-    const imageUrl = typeof image === 'string' ? image : image.url;
-  
-    if (imageUrl.startsWith('/storage')) {
-      return `http://localhost:8000${imageUrl}`;
+  getAbsoluteImageUrl(image: { url: string }): string {
+    if (!image || !image.url) {
+      return '/assets/images/placeholder.jpg';
     }
-    return imageUrl; // Ya es una URL absoluta
+
+    if (image.url.startsWith('/storage')) {
+      return `http://localhost:8000${image.url}`;
+    }
+
+    return image.url;
   }
 }

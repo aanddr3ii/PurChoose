@@ -1,32 +1,14 @@
 <div class="product-card">
-  <!-- Carrusel de imágenes -->
-  <div class="carousel-container">
-    <div class="carousel-wrapper" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
-      @if (product.images && product.images.length > 0) {
-        @for (image of product.images; track $index) {
-          <div class="carousel-slide">
-            <img [src]="getAbsoluteImageUrl(image)" alt="{{ product.nombre || 'Producto sin título' }}" />
-          </div>
-        }
-      } @else {
-        <div class="no-image">No hay imágenes disponibles</div>
-      }
-    </div>
-
-    <!-- Botones de carrusel -->
-    @if (product.images && product.images.length > 1) {
-      <button 
-        class="carousel-btn prev" 
-        (click)="prevSlide()"
-      >
-        &#10094;
-      </button>
-      <button 
-        class="carousel-btn next" 
-        (click)="nextSlide()"
-      >
-        &#10095;
-      </button>
+  <!-- Mostrar solo la primera imagen -->
+  <div class="image-container">
+    @if (imagenes.length > 0) {
+      <img 
+        [src]="getAbsoluteImageUrl(imagenes[0])" 
+        [alt]="product.nombre || 'Producto sin título'" 
+        class="product-image"
+      />
+    } @else {
+      <div class="no-image">No hay imágenes disponibles</div>
     }
   </div>
 
@@ -36,4 +18,3 @@
     <span><p class="price">{{ product.precio || 0 }} €</p></span>
   </div>
 </div>
-
