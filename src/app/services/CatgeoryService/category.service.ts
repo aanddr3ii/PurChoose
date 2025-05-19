@@ -15,4 +15,11 @@ export class CategoryService {
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(ApiUrls.CATEGORIAS.LIST);
   }
+
+  // Nuevo método: enviar IDs de categorías seleccionadas
+  filterByCategories(categoryIds: number[]): Observable<any> {
+    return this.http.post(ApiUrls.CATEGORIAS.FILTER, {
+      categories: categoryIds,
+    });
+  }
 }

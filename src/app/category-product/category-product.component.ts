@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-category-product',
   standalone: true,
-  imports: [NavBeltComponent, NavCategoriesComponent, CardProductComponent, AsyncPipe, FormsModule,RouterModule],
+  imports: [NavBeltComponent, NavCategoriesComponent, CardProductComponent, AsyncPipe, FormsModule, RouterModule],
   templateUrl: './category-product.component.html',
   styleUrls: ['./category-product.component.css']
 })
@@ -25,7 +25,18 @@ export class CategoryProductComponent implements OnInit {
   products: Product[] = []; // Todos los productos
   filteredProducts: Product[] = []; // Productos filtrados
   allCategories: Category[] = []; // Todas las categorías disponibles
-  selectedCategories: number[] = []; // IDs de las categorías seleccionadas como filtros
+
+  // Cambiamos selectedCategories por getter/setter
+  private _selectedCategories: number[] = [];
+
+  get selectedCategories(): number[] {
+    return this._selectedCategories;
+  }
+
+  set selectedCategories(value: number[]) {
+    this._selectedCategories = value;
+    this.sendCategoriesToLaravel(); // Enviar automáticamente al cambiar
+  }
 
   // Filtros
   filters = {
@@ -46,7 +57,6 @@ export class CategoryProductComponent implements OnInit {
   productStates = [
     { value: 'Nuevo', label: 'Nuevo', description: 'Nunca se ha usado' },
     { value: 'Usado', label: 'Usado', description: 'Conserva el precinto' },
-
   ];
 
   selectedStates: string[] = []; // Estados seleccionados como filtros
@@ -218,5 +228,18 @@ export class CategoryProductComponent implements OnInit {
   // Alternar el estado del dropdown
   toggleDropdown(): void {
     this.isDropdownOpen = !this.isDropdownOpen; // Alterna entre true y false
+  }
+
+  // ————————————————————————————————
+  // ✨ NUEVO: Método que envía las categorías a Laravel
+  sendCategoriesToLaravel(): void {
+    this.categoryService.filterByCategories(this.selectedCategories).subscribe({
+      next: (response) => {
+        console.log('Categorías enviadas correctamente:', response);
+      },
+      error: (err) => {
+        console.error('Error al enviar categorías a Laravel:', err);
+      }
+    });
   }
 }

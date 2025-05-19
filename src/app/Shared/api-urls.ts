@@ -53,6 +53,8 @@
     public static readonly CATEGORIAS = {
         LIST: `${ApiUrls.BASE_URL}/categorias`,
         STORE: `${ApiUrls.BASE_URL}/categorias`,
+        FILTER: `${ApiUrls.BASE_URL}/categorias/filter` // <-- debe estar definida
+
     };
 
     // Endpoints de perfil del usuario
