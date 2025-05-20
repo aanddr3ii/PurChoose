@@ -4,7 +4,7 @@
     <!-- Opcional: Información del usuario -->
     @if (user) {
       <li>
-        <div class="user-info">
+        <a routerLink="/perfil" class="user-info">
           <img 
             class="user-avatar" 
             [src]="user.fotoPerfil" 
@@ -14,7 +14,7 @@
             onerror="this.src='http://localhost:8000/assets/default-avatar.png'"
           />
           <span class="user-name">{{ user.name }}</span>
-        </div>
+        </a>
       </li>
     }
 

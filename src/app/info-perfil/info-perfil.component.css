@@ -1,6 +1,6 @@
 /* Estilos generales */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Arial';
   margin: 0;
   padding: 0;
   color: #333;
@@ -12,11 +12,13 @@ body {
   padding: 30px;
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Arial';
 }
 
 
 .profile-info {
   text-align: center;
+  font-family: 'Arial';
 }
 
 /* Estilo del nombre del perfil */
@@ -27,6 +29,7 @@ body {
   margin-bottom: 15px;
   text-transform: capitalize;
   letter-spacing: 1px;
+  font-family: 'Arial';
 }
 
 /* Estilo de las estadísticas del perfil */
