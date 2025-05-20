@@ -1,5 +1,5 @@
 {
-  "ADMIN": {
+"ADMIN": {
     "DESCRIPTION": "Welcome to the admin panel.",
     "MANAGE_CATEGORIES": "Manage Categories",
     "MANAGE_PRODUCTS": "Manage Products",
@@ -18,7 +18,9 @@
       "NAME": "Name",
       "NAME_PLACEHOLDER": "E.g., Electronics",
       "SAVE_CHANGES": "Save Changes",
-      "TITLE": "Category Management"
+      "TITLE": "Category Management",
+      "IMAGE": "Image",
+      "ACTIONS": "Actions"
     },
     "PRODUCTS": {
       "ADD_PRODUCT": "Add Product",
@@ -34,7 +36,13 @@
       "PRICE_PLACEHOLDER": "E.g., 999",
       "SAVE_CHANGES": "Save Changes",
       "SELECT_CATEGORY": "Select a category",
-      "TITLE": "Product Management"
+      "TITLE": "Product Management",
+      "IMAGE": "Image",
+      "ACTIONS": "Actions",
+      "STATUS": "Status",
+      "ON_SALE": "On Sale",
+      "LOCATION": "Location",
+      "CATEGORIES": "Categories"
     }
   },
 

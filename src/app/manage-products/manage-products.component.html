@@ -1,72 +1,127 @@
+<app-nav-belt></app-nav-belt>
+<app-nav-categories></app-nav-categories>
+
 <div class="admin-container">
-    <h1>{{ 'ADMIN.PRODUCTS.TITLE' | translate }}</h1>
-  
-    <!-- Botón para volver al menú de admin -->
-    <button class="back-button" (click)="backToAdminMenu()">
-      {{ 'MANAGE_USERS.BACK_TO_ADMIN' | translate }}
-    </button>
-  
-    <!-- Formulario para añadir/editar productos -->
+  <h1>{{ 'ADMIN.PRODUCTS.TITLE' | translate }}</h1>
+
+  <!-- Botón para volver al menú de admin -->
+  <button class="back-button" (click)="backToAdminMenu()">
+    {{ 'MANAGE_USERS.BACK_TO_ADMIN' | translate }}
+  </button>
+
+  <!-- Formulario para editar producto -->
+  @if (editingProduct !== null) {
     <div class="form-section">
-      <h2>{{ editingProductIndex !== null ? 'ADMIN.PRODUCTS.EDIT_PRODUCT' : 'ADMIN.PRODUCTS.ADD_PRODUCT' | translate }}</h2>
+      <h2>{{ 'ADMIN.PRODUCTS.EDIT_PRODUCT' | translate }}</h2>
       <form>
         <div class="form-group">
           <label for="productName">{{ 'ADMIN.PRODUCTS.NAME' | translate }}</label>
-          <input type="text" id="productName" placeholder="{{ 'ADMIN.PRODUCTS.NAME_PLACEHOLDER' | translate }}" disabled />
+          <input
+            type="text"
+            id="productName"
+            [(ngModel)]="editingProduct.nombre"
+            name="nombre"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="productDescription">{{ 'ADMIN.PRODUCTS.DESCRIPTION' | translate }}</label>
+          <textarea
+            id="productDescription"
+            [(ngModel)]="editingProduct.descripcion"
+            name="descripcion"
+            required
+          ></textarea>
         </div>
         <div class="form-group">
           <label for="productPrice">{{ 'ADMIN.PRODUCTS.PRICE' | translate }}</label>
-          <input type="number" id="productPrice" placeholder="{{ 'ADMIN.PRODUCTS.PRICE_PLACEHOLDER' | translate }}" disabled />
+          <input
+            type="number"
+            id="productPrice"
+            [(ngModel)]="editingProduct.precio"
+            name="precio"
+            required
+          />
         </div>
         <div class="form-group">
-          <label for="productCategory">{{ 'ADMIN.PRODUCTS.CATEGORY' | translate }}</label>
-          <select id="productCategory" disabled>
-            <option value="">{{ 'ADMIN.PRODUCTS.SELECT_CATEGORY' | translate }}</option>
-            @for (category of mockCategories; track category.name) {
-              <option value="{{ category.name }}">{{ category.name }}</option>
-            }
+          <label for="productEstado">{{ 'ADMIN.PRODUCTS.STATUS' | translate }}</label>
+          <input
+            type="text"
+            id="productEstado"
+            [(ngModel)]="editingProduct.estado"
+            name="estado"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="productOferta">{{ 'ADMIN.PRODUCTS.ON_SALE' | translate }}</label>
+          <select
+            id="productOferta"
+            [(ngModel)]="editingProduct.oferta"
+            name="oferta"
+            required
+          >
+            <option [value]="true">Sí</option>
+            <option [value]="false">No</option>
           </select>
         </div>
-        <button type="submit" class="action-button" disabled>
-          {{ editingProductIndex !== null ? 'ADMIN.PRODUCTS.SAVE_CHANGES' : 'ADMIN.PRODUCTS.ADD_PRODUCT' | translate }}
+        <div class="form-group">
+          <label for="productLocation">{{ 'ADMIN.PRODUCTS.LOCATION' | translate }}</label>
+          <input
+            type="text"
+            id="productLocation"
+            [(ngModel)]="editingProduct.ubicacion"
+            name="ubicacion"
+            required
+          />
+        </div>
+        <button type="button" class="action-button" (click)="saveEdit()">
+          {{ 'ADMIN.PRODUCTS.SAVE_CHANGES' | translate }}
         </button>
-        @if (editingProductIndex !== null) {
-          <button type="button" class="cancel-button" disabled>
-            {{ 'ADMIN.PRODUCTS.CANCEL' | translate }}
-          </button>
-        }
+        <button type="button" class="cancel-button" (click)="cancelEdit()">
+          {{ 'ADMIN.PRODUCTS.CANCEL' | translate }}
+        </button>
       </form>
     </div>
-  
-    <!-- Lista de productos -->
-    <div class="list-section">
-      <h3>{{ 'ADMIN.PRODUCTS.LIST_TITLE' | translate }}</h3>
-      <table>
-        <thead>
+  }
+
+  <!-- Lista de productos -->
+  <div class="list-section">
+    <h3>{{ 'ADMIN.PRODUCTS.LIST_TITLE' | translate }}</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>{{ 'ADMIN.PRODUCTS.NAME' | translate }}</th>
+          <th>{{ 'ADMIN.PRODUCTS.DESCRIPTION' | translate }}</th>
+          <th>{{ 'ADMIN.PRODUCTS.PRICE' | translate }}</th>
+          <th>{{ 'ADMIN.PRODUCTS.STATUS' | translate }}</th>
+          <th>{{ 'ADMIN.PRODUCTS.ON_SALE' | translate }}</th>
+          <th>{{ 'ADMIN.PRODUCTS.LOCATION' | translate }}</th>
+          <th>{{ 'ADMIN.PRODUCTS.CATEGORIES' | translate }}</th>
+          <th>{{ 'ADMIN.PRODUCTS.ACTIONS' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of products(); track $index) {
           <tr>
-            <th>{{ 'ADMIN.PRODUCTS.NAME' | translate }}</th>
-            <th>{{ 'ADMIN.PRODUCTS.PRICE' | translate }}</th>
-            <th>{{ 'ADMIN.PRODUCTS.CATEGORY' | translate }}</th>
-            <th>Acciones</th>
+            <td>{{ product.nombre }}</td>
+            <td>{{ product.descripcion }}</td>
+            <td>{{ product.precio }} €</td>
+            <td>{{ product.estado }}</td>
+            <td>{{ product.oferta ? 'Sí' : 'No' }}</td>
+            <td>{{ product.ubicacion }}</td>
+            <td>{{ getCategoryNames(product) }}</td>
+            <td>
+              <button class="edit-button" (click)="startEdit($index)">
+                {{ 'ADMIN.PRODUCTS.EDIT' | translate }}
+              </button>
+              <button class="delete-button" (click)="deleteProduct($index)">
+                {{ 'ADMIN.PRODUCTS.DELETE' | translate }}
+              </button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          @for (product of mockProducts; track $index) {
-            <tr>
-              <td>{{ product.name }}</td>
-              <td>{{ product.price }}</td>
-              <td>{{ product.category }}</td>
-              <td>
-                <button class="edit-button" disabled>
-                  {{ 'ADMIN.PRODUCTS.EDIT' | translate }}
-                </button>
-                <button class="delete-button" disabled>
-                  {{ 'ADMIN.PRODUCTS.DELETE' | translate }}
-                </button>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
+        }
+      </tbody>
+    </table>
   </div>
+</div>

@@ -19,7 +19,22 @@
     cursor: pointer;
     text-align: center;
   }
-  
+  .image-preview {
+  margin-top: 10px;
+}
+
+.preview-img {
+  max-width: 200px;
+  max-height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.table-img {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 4px;
+}
   .back-button:hover {
     background-color: #0056b3;
   }

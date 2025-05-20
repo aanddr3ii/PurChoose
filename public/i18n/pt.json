@@ -1,43 +1,49 @@
 {
   "ADMIN": {
+    "DESCRIPTION": "Bem-vindo ao painel de administração.",
+    "MANAGE_CATEGORIES": "Gerir Categorias",
+    "MANAGE_PRODUCTS": "Gerir Produtos",
+    "MANAGE_USERS": "Gerir Utilizadores",
+    "TITLE": "Painel de Administração",
+    "VIEW_ANALYTICS": "Ver Análises",
     "CATEGORIES": {
       "ADD_CATEGORY": "Adicionar Categoria",
       "CANCEL": "Cancelar",
-      "DELETE": "Excluir",
+      "DELETE": "Eliminar",
       "DESCRIPTION": "Descrição",
       "DESCRIPTION_PLACEHOLDER": "Ex: Dispositivos eletrônicos e acessórios.",
       "EDIT": "Editar",
       "EDIT_CATEGORY": "Editar Categoria",
       "LIST_TITLE": "Lista de Categorias",
       "NAME": "Nome",
-      "NAME_PLACEHOLDER": "Ex: Eletrônicos",
-      "SAVE_CHANGES": "Salvar Alterações",
-      "TITLE": "Gerenciamento de Categorias"
+      "NAME_PLACEHOLDER": "Ex: Eletrônica",
+      "SAVE_CHANGES": "Guardar Alterações",
+      "TITLE": "Gestão de Categorias",
+      "IMAGE": "Imagem",
+      "ACTIONS": "Ações"
     },
-
     "PRODUCTS": {
       "ADD_PRODUCT": "Adicionar Produto",
       "CANCEL": "Cancelar",
       "CATEGORY": "Categoria",
-      "DELETE": "Excluir",
+      "DELETE": "Eliminar",
       "EDIT": "Editar",
       "EDIT_PRODUCT": "Editar Produto",
       "LIST_TITLE": "Lista de Produtos",
       "NAME": "Nome",
-      "NAME_PLACEHOLDER": "Ex: Laptop",
+      "NAME_PLACEHOLDER": "Ex: Portátil",
       "PRICE": "Preço",
       "PRICE_PLACEHOLDER": "Ex: 999",
-      "SAVE_CHANGES": "Salvar Alterações",
+      "SAVE_CHANGES": "Guardar Alterações",
       "SELECT_CATEGORY": "Selecione uma categoria",
-      "TITLE": "Gerenciamento de Produtos"
-    },
-
-    "DESCRIPTION": "Bem-vindo ao painel de administração.",
-    "MANAGE_CATEGORIES": "Gerenciar Categorias",
-    "MANAGE_PRODUCTS": "Gerenciar Produtos",
-    "MANAGE_USERS": "Gerenciar Usuários",
-    "TITLE": "Painel de Administração",
-    "VIEW_ANALYTICS": "Ver Análises"
+      "TITLE": "Gestão de Produtos",
+      "IMAGE": "Imagem",
+      "ACTIONS": "Ações",
+      "STATUS": "Estado",
+      "ON_SALE": "Em Promoção",
+      "LOCATION": "Localização",
+      "CATEGORIES": "Categorias"
+    }
   },
 
   "BANNER": {

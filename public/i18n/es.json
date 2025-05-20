@@ -1,5 +1,11 @@
 {
   "ADMIN": {
+    "DESCRIPTION": "Bienvenido al panel de administración.",
+    "MANAGE_CATEGORIES": "Gestionar Categorías",
+    "MANAGE_PRODUCTS": "Gestionar Productos",
+    "MANAGE_USERS": "Gestionar Usuarios",
+    "TITLE": "Panel de Administración",
+    "VIEW_ANALYTICS": "Ver Analíticas",
     "CATEGORIES": {
       "ADD_CATEGORY": "Añadir Categoría",
       "CANCEL": "Cancelar",
@@ -12,9 +18,10 @@
       "NAME": "Nombre",
       "NAME_PLACEHOLDER": "Ej. Electrónica",
       "SAVE_CHANGES": "Guardar Cambios",
-      "TITLE": "Gestión de Categorías"
+      "TITLE": "Gestión de Categorías",
+      "IMAGE": "Imagen",
+      "ACTIONS": "Acciones"
     },
-
     "PRODUCTS": {
       "ADD_PRODUCT": "Añadir Producto",
       "CANCEL": "Cancelar",
@@ -24,20 +31,19 @@
       "EDIT_PRODUCT": "Editar Producto",
       "LIST_TITLE": "Lista de Productos",
       "NAME": "Nombre",
-      "NAME_PLACEHOLDER": "Ej. Laptop",
+      "NAME_PLACEHOLDER": "Ej. Portátil",
       "PRICE": "Precio",
       "PRICE_PLACEHOLDER": "Ej. 999",
       "SAVE_CHANGES": "Guardar Cambios",
       "SELECT_CATEGORY": "Selecciona una categoría",
-      "TITLE": "Gestión de Productos"
-    },
-
-    "DESCRIPTION": "Bienvenido al panel de administración.",
-    "MANAGE_CATEGORIES": "Gestionar Categorías",
-    "MANAGE_PRODUCTS": "Gestionar Productos",
-    "MANAGE_USERS": "Gestionar Usuarios",
-    "TITLE": "Panel de Administración",
-    "VIEW_ANALYTICS": "Ver Análisis"
+      "TITLE": "Gestión de Productos",
+      "IMAGE": "Imagen",
+      "ACTIONS": "Acciones",
+      "STATUS": "Estado",
+      "ON_SALE": "En Oferta",
+      "LOCATION": "Ubicación",
+      "CATEGORIES": "Categorías"
+    }
   },
 
   "BANNER": {

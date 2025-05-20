@@ -88,4 +88,14 @@
       `${ApiUrls.BASE_URL}/chat/${chatId}/mensajes`
   };
 
+
+public static readonly ADMIN = {
+  USUARIOS: `${ApiUrls.BASE_URL}/admin/usuarios`,
+  USUARIO: (id: number) => `${ApiUrls.BASE_URL}/admin/usuarios/${id}`,
+  CATEGORIAS: `${ApiUrls.BASE_URL}/admin/categorias`,
+  CATEGORIA: (id: number) => `${ApiUrls.BASE_URL}/admin/categorias/${id}`,
+  PRODUCTOS: `${ApiUrls.BASE_URL}/admin/productos`,
+  PRODUCTO: (id: number) => `${ApiUrls.BASE_URL}/admin/productos/${id}`,
+};
+
   }
